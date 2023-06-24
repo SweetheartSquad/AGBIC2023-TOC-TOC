@@ -1,10 +1,10 @@
 {
 	"private": true,
-	"name": "js-walkaround-template",
+	"name": "agbic2023",
 	"version": "1.0.0",
-	"description": "Template for a js walkaround game",
+	"description": "Peril in Meowland",
 	"main": "./src/index.js",
-	"author": "Sean S. LeBlanc <sean.s.leblanc@gmail.com>",
+	"author": "SweetHeart Squad <SweetHeartSquad@gmail.com>",
 	"scripts": {
 		"serve": "npx http-server ./dist --cors -p 80",
 		"build:debug": "webpack --config webpack.config.dev.js --mode development",

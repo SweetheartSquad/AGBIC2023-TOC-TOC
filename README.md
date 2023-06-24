@@ -1,4 +1,4 @@
-# js-walkaround-template
+# Peril in Meowland
 
 ![icon](./src/assets/icon.png)
 
@@ -16,7 +16,7 @@ Hot-reload is available for [`./src/assets/main-en.strand`](./src/assets/main-en
 
 1. Bump the package version (`npm version patch/minor/major`)
 2. Push changes
-3. Go to [release action](https://github.com/USERNAME/REPO/actions/workflows/release.yml)
+3. Go to [release action](https://github.com/SweetHeartSquad/AGBIC2023-Peril-in-Meowland/actions/workflows/release.yml)
 4. Select "Run workflow", and confirm on `main` branch
 
 The workflow will automatically create a build and upload it to itch.io.
