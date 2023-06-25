@@ -71,7 +71,7 @@ canvas {
 	cursor: none;
 }
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 640px) and (min-height: 480px) {
 
 	/* pixelated */
 	canvas {
