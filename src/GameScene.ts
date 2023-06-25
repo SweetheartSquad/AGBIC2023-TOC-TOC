@@ -315,10 +315,8 @@ export class GameScene {
 		if (this.interactionFocus) {
 			let { focusAmt } = this;
 			if (!this.dialogue.isOpen) focusAmt *= 0.5;
-			player.camPoint.y +=
-				(this.interactionFocus.y - player.transform.y) * focusAmt;
-			player.camPoint.x +=
-				(this.interactionFocus.x - player.transform.x) * focusAmt;
+			this.camPoint.y += this.interactionFocus.y * focusAmt;
+			this.camPoint.x += this.interactionFocus.x * focusAmt;
 		}
 
 		this.screenFilter.update();
