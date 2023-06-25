@@ -6,20 +6,17 @@ import {
 	SENSOR_PLAYER,
 } from './collision';
 import { Roam } from './Scripts/Roam';
-import * as VMath from './VMath';
 
 export class NPC extends Character {
 	roam: Roam;
 
 	constructor({
 		passage,
-		focus,
 		roam = 0,
 		...options
 	}: ConstructorParameters<typeof Character>[0] & {
 		passage?: string;
 		roam?: number;
-		focus?: VMath.V;
 	}) {
 		super({
 			...options,
@@ -39,7 +36,6 @@ export class NPC extends Character {
 				plugin: {
 					...options.bodySensor?.plugin,
 					passage,
-					focus,
 				},
 			},
 		});
