@@ -312,9 +312,6 @@ export class GameScene {
 		this.container.addChild(this.graphics);
 
 		// adjust camera based on dialogue state
-		const p = this.dialogue.progress();
-		this.camera.display.container.scale.x =
-			this.camera.display.container.scale.y = 1 + p * 2;
 		if (this.interactionFocus) {
 			let { focusAmt } = this;
 			if (!this.dialogue.isOpen) focusAmt *= 0.5;
