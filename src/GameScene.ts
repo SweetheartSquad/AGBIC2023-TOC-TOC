@@ -283,9 +283,11 @@ export class GameScene {
 			}
 		}
 
-		const relativeMousePos = relativeMouse();
-		this.camPoint.x = (relativeMousePos.x - size.x / 2) * 0.1;
-		this.camPoint.y = (relativeMousePos.y - size.y / 2) * 0.1;
+		if (!this.dialogue.isOpen) {
+			const relativeMousePos = relativeMouse();
+			this.camPoint.x = (relativeMousePos.x - size.x / 2) * 0.1;
+			this.camPoint.y = (relativeMousePos.y - size.y / 2) * 0.1;
+		}
 
 		const curTime = game.app.ticker.lastTime;
 
