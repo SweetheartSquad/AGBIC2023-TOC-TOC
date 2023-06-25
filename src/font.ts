@@ -8,6 +8,8 @@ export const fontDialogue: Partial<ITextStyle> = {
 	align: 'left',
 	lineHeight: 24 * 1.25,
 	letterSpacing: 0,
+	stroke: 0,
+	strokeThickness: 4,
 };
 export const fontPrompt: Partial<ITextStyle> = {
 	fontFamily: 'font',
