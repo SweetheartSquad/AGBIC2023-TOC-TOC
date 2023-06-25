@@ -171,6 +171,9 @@ interact
 ::talk
 talk
 
+::talk to {}
+talk to {}
+
 ::take-item
 <<do
 	const p = this.gameObject.body.body.plugin.interrupt.itemPassage;
