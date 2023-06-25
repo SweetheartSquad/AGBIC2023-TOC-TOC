@@ -446,7 +446,6 @@ export class UIDialogue extends GameObject {
 	private open() {
 		if (!this.isOpen) {
 			this.isOpen = true;
-			this.scrim(0.25, 500);
 			this.tweens.forEach((t) => TweenManager.abort(t));
 			this.tweens.length = 0;
 			this.tweens.push(
@@ -471,7 +470,6 @@ export class UIDialogue extends GameObject {
 			});
 			this.choices = [];
 			this.isOpen = false;
-			this.scrim(0, 500);
 			this.tweens.forEach((t) => TweenManager.abort(t));
 			this.tweens.length = 0;
 			this.tweens.push(
