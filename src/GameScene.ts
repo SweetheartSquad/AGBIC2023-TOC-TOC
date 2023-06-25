@@ -12,7 +12,6 @@ import { ScreenFilter } from './ScreenFilter';
 import { StrandE } from './StrandE';
 import { TweenManager } from './Tweens';
 import { UIDialogue } from './UIDialogue';
-import { V, add } from './VMath';
 import { size } from './config';
 import { DEBUG } from './debug';
 import { getInput } from './main';
@@ -40,8 +39,6 @@ export class GameScene {
 	strand: StrandE;
 
 	border: Border;
-
-	interactionFocus?: V;
 
 	areas: Partial<{ [key: string]: GameObject[] }> & { root: GameObject[] } = {
 		root: [],
@@ -147,13 +144,6 @@ export class GameScene {
 			if (interrupt) {
 				interactions.length = 0;
 				this.strand.gameObject = interrupt.plugin.gameObject as GameObject;
-				if (interrupt.plugin.focus) {
-					this.interactionFocus = add(interrupt.position, {
-						x: 0,
-						y: 0,
-						...interrupt.plugin.focus,
-					});
-				}
 				if (interrupt.plugin.interrupt.passage) {
 					this.strand.goto(interrupt.plugin.interrupt.passage);
 				}
@@ -183,13 +173,9 @@ export class GameScene {
 				.find((i) => i.plugin.passage);
 			if (!top) {
 				this.dialogue.prompt();
-				this.interactionFocus = undefined;
 			} else {
 				if (this.dialogue.isOpen) return;
 				const { passage, label = 'talk', focus, gameObject } = top.plugin;
-				this.interactionFocus = focus
-					? add(top.position, { x: 0, y: 0, ...focus })
-					: top.position;
 				this.dialogue.prompt(this.t(label).toUpperCase(), () => {
 					this.strand.gameObject = gameObject;
 					this.strand.goto(passage);
@@ -310,14 +296,6 @@ export class GameScene {
 			this.container.addChild(this.physicsDebug.display.container);
 		}
 		this.container.addChild(this.graphics);
-
-		// adjust camera based on dialogue state
-		if (this.interactionFocus) {
-			let { focusAmt } = this;
-			if (!this.dialogue.isOpen) focusAmt *= 0.5;
-			this.camPoint.y += this.interactionFocus.y * focusAmt;
-			this.camPoint.x += this.interactionFocus.x * focusAmt;
-		}
 
 		this.screenFilter.update();
 
