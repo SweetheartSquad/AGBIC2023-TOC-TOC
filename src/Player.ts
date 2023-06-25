@@ -1,7 +1,6 @@
 import eases from 'eases';
 import { IChamferableBodyDefinition } from 'matter-js';
 import { Container, DisplayObject } from 'pixi.js';
-import { resizer } from '.';
 import { sfx } from './Audio';
 import { Character } from './Character';
 import { getFrameCount, resource } from './Game';
@@ -19,7 +18,7 @@ import {
 } from './collision';
 import { size } from './config';
 import { getActiveScene, getInput, mouse } from './main';
-import { removeFromArray, tex } from './utils';
+import { relativeMouse, removeFromArray, tex } from './utils';
 
 const playerSpeedX = 0.00225;
 const playerSpeedY = 0.0015;
@@ -198,16 +197,7 @@ export class Player extends Character {
 	}
 
 	walkToMouse() {
-		const relativeMousePos = {
-			x:
-				((mouse.x - resizer.childElement.offsetLeft) /
-					resizer.childElement.clientWidth) *
-				size.x,
-			y:
-				((mouse.y - resizer.childElement.offsetTop) /
-					resizer.childElement.clientHeight) *
-				size.y,
-		};
+		const relativeMousePos = relativeMouse();
 		const targetPos = (
 			getActiveScene() as GameScene
 		).camera.display.container.toLocal(relativeMousePos);
