@@ -302,11 +302,6 @@ export class GameScene {
 		}
 
 		const curTime = game.app.ticker.lastTime;
-		this.screenFilter.uniforms.curTime = curTime / 1000;
-		this.screenFilter.uniforms.camPos = [
-			this.camera.display.container.pivot.x,
-			-this.camera.display.container.pivot.y,
-		];
 
 		// depth sort
 		this.container.children.sort(depthCompare);
@@ -333,6 +328,11 @@ export class GameScene {
 
 		GameObject.update();
 		TweenManager.update();
+		this.screenFilter.uniforms.curTime = curTime / 1000;
+		this.screenFilter.uniforms.camPos = [
+			this.camera.display.container.pivot.x,
+			-this.camera.display.container.pivot.y,
+		];
 	}
 
 	take(gameObject: GameObject) {
