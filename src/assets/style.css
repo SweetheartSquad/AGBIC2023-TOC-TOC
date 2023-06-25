@@ -83,5 +83,5 @@ canvas {
 	font-family: 'font';
 	font-style: normal;
 	font-weight: normal;
-	src: url('./font/pixChicago.woff2') format('woff2');
+	src: url('./font/font.ttf') format('truetype');
 }
