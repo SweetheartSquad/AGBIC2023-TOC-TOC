@@ -74,47 +74,7 @@
 		return [prop, interrupt];
 	};
 
-
-	// blinking and lip flaps
-	this.blinking = false;
-	this.timeoutBlinking;
-	this.scene.dialogue.scripts.push({
-		gameObject: this.scene.dialogue,
-		update: () => {
-			if (!this.character) return;
-			if (!this.timeoutBlinking) {
-				this.timeoutBlinking = setTimeout(() => {
-					this.blinking = !this.blinking;
-					this.timeoutBlinking = null;
-				}, this.blinking ? 100 : 2000+Math.random()*4000);
-			};
-
-			const letter = this.scene.dialogue.strText[scene.dialogue.pos];
-			const isLetter = letter && letter.replace(/[^\w]/, '');
-			if (isLetter) {
-				this.scene.dialogue.toggler.active.setAnimation(`portrait_${this.character}_${this.face}_open`);
-			} else if (this.blinking && this.character !== 'tsade') {
-				this.scene.dialogue.toggler.active.setAnimation(`portrait_${this.character}_${this.face}_blink`);
-			} else {
-				this.scene.dialogue.toggler.active.setAnimation(`portrait_${this.character}_${this.face}`);
-			}
-		},
-	});
-
-	// portrait helper
-	this.portrait = (character, face, options) => {
-		this.character = character;
-		this.face = (face || 'normal')
-			.trim()
-			.replace(':)', 'normal')
-			.replace(':O', 'o')
-			.replace('>_>', 'side')
-			.replace(':(', 'sad');
-		const result = this.show(character ? `portrait_${this.character}_${this.face}` : character, { scale: 2, x: -128+47, y: 63, duration: 500, ...options });
-	};
-
-	// automatically hide portrait on close
-	// and stop roam during dialogues
+	// stop roam during dialogues
 	this.scene.dialogue.openo = this.scene.dialogue.open;
 	this.scene.dialogue.open = () => {
 		if (scene.areas.main) {
@@ -124,25 +84,10 @@
 	};
 	this.scene.dialogue.closeo = this.scene.dialogue.close;
 	this.scene.dialogue.close = () => {
-		this.portrait();
 		if (scene.areas.main) {
 			scene.areas.main.filter(i => i.roam).forEach(i => i.roam.active = true);
 		}
 		this.scene.dialogue.closeo();
-	};
-
-	// add syntax sugar for passages like `Daydiem :O : "Blah blah"`
-	const check = /(Daydiem|Rexty|Tsade|MC)\s*(.*?)\s*:\s*"/;
-	this.scene.dialogue.sayo = this.scene.dialogue.say;
-	this.scene.dialogue.say = (text, actions) => {
-		const match = check.exec(text);
-		if (match) {
-			this.portrait(match[1].toLowerCase(), match[2]);
-			requestAnimationFrame(() => this.scene.dialogue.pos = match[1].length+2);
-			this.scene.dialogue.sayo(`${match[1]}:\n"${text.substring(match[0].length)}`, actions);
-		} else {
-			this.scene.dialogue.sayo(text, actions);
-		}
 	};
 
 
@@ -161,7 +106,7 @@
 	this.Area('empty', []);
 	this.Area('intro', [
 		this.Prop({ texture: 'bg_ship', scale: 2, y: 110, offset: -1000000 }),
-		this.Poly({ width: 4, verts: [72,-108, -66,-109, -68,-93, -105,-92, -114,-82, -114,15, -105,27, -78,26, -70,40, -60,58, 62,59, 77,44, 79,17, 93,10, 109,-6, 110,-82, 100,-93, 80,-95, 72,-108] }),
+		// this.Poly({ width: 4, verts: [72,-108, -66,-109, -68,-93, -105,-92, -114,-82, -114,15, -105,27, -78,26, -70,40, -60,58, 62,59, 77,44, 79,17, 93,10, 109,-6, 110,-82, 100,-93, 80,-95, 72,-108] }),
 		this.Goto({ area: 'intro2' }, { x: 50, y: -104, width: 8, height: 5 }),
 
 		this.Npc({ body: 'npc', passage: 'supply-done', x: 40, y: 40, roam: 50 }),
@@ -236,29 +181,29 @@ talk
 
 
 ::The End
-Rexty :O : "Day, I think I heard your parents at the door?"
+"Day, I think I heard your parents at the door?"
 >
-Daydiem :O : "Okay okay gimme a sec... I'll shut it down..."
+"Okay okay gimme a sec... I'll shut it down..."
 >
-Tsade :( : "Will our game still be here next time?"
+"Will our game still be here next time?"
 >
-Daydiem :O : "Yeah don't worry it's all saved..."
+"Yeah don't worry it's all saved..."
 >
-Tsade :) : "Okay, because I have a few more ideas..."
+"Okay, because I have a few more ideas..."
 >
-Rexty :) : "Yeah me too, I think after our fight... we get even closer with the co-pilot..."
+"Yeah me too, I think after our fight... we get even closer with the co-pilot..."
 >
-MC :) : "When wolfy howls they bring you a whole pack of wolves!"
+"When wolfy howls they bring you a whole pack of wolves!"
 >
-Daydiem >_> : "Please I gotta focus on resetting the terminal..."
+"Please I gotta focus on resetting the terminal..."
 >
-Rexty :) : "Oh yeah Day they're definitely at the door, you should hurry."
+"Oh yeah Day they're definitely at the door, you should hurry."
 >
-Daydiem :( : "I'm trying!"
+"I'm trying!"
 >
-Tsade >_> : "I didn't get to say my idea though..."
+"I didn't get to say my idea though..."
 >
-Daydiem >_> : "No shush you gotta let me focus right now..."
+"No shush you gotta let me focus right now..."
 >
 <<do
 	this.character = '';
@@ -530,6 +475,7 @@ The End
 	} else {
 		this.scene.goto({ area: 'intro' });
 	}
+	this.scrim(0, 3000);
 	this.goto('close');
 >>
 
@@ -540,18 +486,18 @@ The End
 	<<do this.goto('out-of-bounds2')>>
 <<else>>
 <<do this.oob=true>>
-Daydiem :O : "No, you're doing it wrong!"
+"No, you're doing it wrong!"
 <<endif>>
 >
-Daydiem :O : "There's nothing out there yet."
+"There's nothing out there yet."
 >
-Daydiem :) : "Here, let me just restart..."
+"Here, let me just restart..."
 [[>main]]
 
 ::out-of-bounds2
-Daydiem :( : "No, you're going the wrong way again!"
+"No, you're going the wrong way again!"
 >
-Daydiem :O : "Here, let me just restart..."
+"Here, let me just restart..."
 [[>main]]
 
 
@@ -567,20 +513,20 @@ Daydiem :O : "Here, let me just restart..."
 
 ::skip2
 <<do this.skipped=true>>
-Tsade :( : "Can we skip this bit?"
+"Can we skip this bit?"
 >
-Tsade >_> : "...No offense."
-[[Rexty: "I don't mind reading it again."]]
-[[MC: "Yeah, let's skip."]]
+"...No offense."
+[["I don't mind reading it again."]]
+[["Yeah, let's skip."]]
 
-::MC: "Yeah, let's skip."
-Daydiem: "Sure, I added some debug stuff for that already."
+::"Yeah, let's skip."
+"Sure, I added some debug stuff for that already."
 >
-Daydiem :O : "Watch this!"
+"Watch this!"
 [[>main]]
 
-::Rexty: "I don't mind reading it again."
-Daydiem >_> : "Really? Okay..."
+::"I don't mind reading it again."
+"Really? Okay..."
 [[>close]]
 
 
@@ -608,27 +554,27 @@ Daydiem >_> : "Really? Okay..."
 
 ::supply-done
 <<do this.supplyrun=true>>
-Daydiem: "So that's what I've got so far."
+"So that's what I've got so far."
 >
-Daydiem: "You'll use the stuff to like, build buildings, and hunt for food-"
+"You'll use the stuff to like, build buildings, and hunt for food-"
 >
-Tsade: "Wow!! And your parents aren't mad at you for messing with their flight sim terminal?"
+"Wow!! And your parents aren't mad at you for messing with their flight sim terminal?"
 >
-Daydiem: "Uh, well..."
+"Uh, well..."
 >
-Rexty: "Haha nice. Can't get in trouble if you don't get caught."
+"Haha nice. Can't get in trouble if you don't get caught."
 >
-Rexty >_>: "Remember that, MC."
+"Remember that, MC."
 >
-MC: "Huh?"
+"Huh?"
 >
-Daydiem >_> : "MC, don't listen to Rexty."
+"MC, don't listen to Rexty."
 >
-MC: "Kay."
+"Kay."
 >
-[[Tsade: "What if there are also monsters on the planet!">add-monsters]]
-[[Rexty: "So are there... any other characters?">add-npc]]
-[[MC: "Put Wolfy on the screen!">add-wolfy]]
+[["What if there are also monsters on the planet!">add-monsters]]
+[["So are there... any other characters?">add-npc]]
+[["Put Wolfy on the screen!">add-wolfy]]
 
 
 
@@ -661,50 +607,50 @@ MC: "Kay."
 
 ::add-monsters1
 <<do this.monsters=true>>
-Daydiem: "No, but, the idea is the planet is empty-"
+"No, but, the idea is the planet is empty-"
 >
-Tsade: "Except for monsters!"
+"Except for monsters!"
 >
-Tsade :O : "Which you have to kick in the face or they'll eat you."
+"Which you have to kick in the face or they'll eat you."
 >
-Daydiem :( : "Okay, I guess... I can just make some of these blocks monsters...?"
+"Okay, I guess... I can just make some of these blocks monsters...?"
 [[>main]]
 
 ::add-monsters2
 <<do this.moremonsters=true>>
-Tsade :) : "They've got you surrounded!"
+"They've got you surrounded!"
 >
-Tsade :O : "And you have to fight a whole bunch of them at once!"
+"And you have to fight a whole bunch of them at once!"
 >
-Rexty >_> : "Why are the monsters teaming up?"
+"Why are the monsters teaming up?"
 >
-Tsade :O : "Because you stole their planet and you're kicking them in the face!"
+"Because you stole their planet and you're kicking them in the face!"
 >
-Daydiem :( : "That's why the planet was supposed to be empty..."
+"That's why the planet was supposed to be empty..."
 >
-Tsade :) : "Well you thought it was empty because all the monsters look like supplies, obviously."
+"Well you thought it was empty because all the monsters look like supplies, obviously."
 [[>main]]
 
 
 ::add-npc
 <<do this.npc=true>>
-Daydiem :) : "No, it's just the one."
+"No, it's just the one."
 >
-Rexty >_> : "Well that doesn't make sense. You just flew here all by yourself?"
+"Well that doesn't make sense. You just flew here all by yourself?"
 >
-Daydiem :) : "I guess you're right. You should have a co-pilot."
+"I guess you're right. You should have a co-pilot."
 [[>main]]
 
 
 ::add-wolfy
 <<do this.wolfy=true>>
-Tsade :( : "Who's Wolfy?"
+"Who's Wolfy?"
 >
-Daydiem :) : "Oh, that's their favorite wolf plush."
+"Oh, that's their favorite wolf plush."
 >
-Tsade >_> : "Well it sounds like you'd better add them to the game, Day."
+"Well it sounds like you'd better add them to the game, Day."
 >
-MC :O : "Yeah!"
+"Yeah!"
 [[>main]]
 
 
@@ -724,9 +670,9 @@ MC :O : "Yeah!"
 	this.PText('I love you MC.', 1000, 40);
 >>
 >
-MC :O : "Wow!!"
+"Wow!!"
 >
-MC :) : "I love you too Wolfy!"
+"I love you too Wolfy!"
 <<if !this.metwolfy>>
 [[>wolfy-done]]
 <<else>>
@@ -735,20 +681,20 @@ MC :) : "I love you too Wolfy!"
 
 ::wolfy-done
 <<do this.metwolfy=true>>
-Rexty :) : "They were right. That made the game better."
+"They were right. That made the game better."
 >
-Rexty >_> : "Nice job, Day."
+"Nice job, Day."
 >
 <<if !this.monsters>>
-[[Tsade: "You know what else would make the game better.... monsters!">add-monsters]]
+[["You know what else would make the game better.... monsters!">add-monsters]]
 <<elseif !this.moremonsters>>
-[[Tsade: "You know what else would make the game better.... more monsters!">add-monsters]]
+[["You know what else would make the game better.... more monsters!">add-monsters]]
 <<endif>>
 <<if !this.npc>>
-[[Rexty: "So where are the other characters?">add-npc]]
+[["So where are the other characters?">add-npc]]
 <<endif>>
 <<if this.moremonsters && this.npc>>
-MC :) : "Hee hee."
+"Hee hee."
 [[>close]]
 <<endif>>
 
@@ -789,154 +735,154 @@ MC :) : "Hee hee."
 
 ::flatnpcs
 <<do this.flatnpcs=true>>
-Rexty :( : "Hm."
+"Hm."
 >
-Daydiem >_> : "What?"
+"What?"
 >
-Rexty :( : "I don't know..."
+"I don't know..."
 >
-Daydiem >_> : "No, seriously, what?"
+"No, seriously, what?"
 >
-Rexty :( : "The characters just seem a little... flat."
+"The characters just seem a little... flat."
 >
 <<if !this.moremonsters>>
-[[Tsade: "They'll be flatter after they've been crushed by monsters!!"]]
+[["They'll be flatter after they've been crushed by monsters!!"]]
 <<endif>>
 <<if !this.wolfy>>
-[[MC: "On the planet... everyone gets a pet wolf."]]
+[["On the planet... everyone gets a pet wolf."]]
 <<endif>>
 <<if this.moremonsters && this.wolfy>>
-[[Rexty: "Can we add more dialogue?"]]
+[["Can we add more dialogue?"]]
 <<endif>>
 
-::Rexty: "Can we add more dialogue?"
-Rexty :) : "What if you had a proper conversation?"
+::"Can we add more dialogue?"
+"What if you had a proper conversation?"
 >
-Rexty :) : "Maybe you could ask them why they chose to follow you on this planet?"
+"Maybe you could ask them why they chose to follow you on this planet?"
 >
-Rexty :) : "And they could ask about your mysterious past?"
+"And they could ask about your mysterious past?"
 >
-Rexty >_> : "...Or something like that."
+"...Or something like that."
 >
-Daydiem :O : "I don't know if I know how to do that..."
+"I don't know if I know how to do that..."
 >
-Daydiem :) : "Maybe we can figure that one out later."
+"Maybe we can figure that one out later."
 [[>close]]
 
-::Tsade: "They'll be flatter after they've been crushed by monsters!!"
-Rexty :O : "Hey!"
+::"They'll be flatter after they've been crushed by monsters!!"
+"Hey!"
 >
-Tsade :) : "Hehehehe."
+"Hehehehe."
 >
-Rexty :O : "You can't just kill them."
+"You can't just kill them."
 >
-Rexty :O : "We have a chance to fight them off together!"
+"We have a chance to fight them off together!"
 [[>add-monsters]]
 
 
-::MC: "On the planet... everyone gets a pet wolf."
-MC :) : "That way they'll be happy and not flat!"
+::"On the planet... everyone gets a pet wolf."
+"That way they'll be happy and not flat!"
 >
-MC: "Like me and Wolfy!"
+"Like me and Wolfy!"
 [[>add-wolfy]]
 
 
 
 
 ::first-monster
-Daydiem: "There's one!"
+"There's one!"
 
-[[Tsade: "Kick it in the face!"]]
-[[MC: "Don't kick it!"]]
+[["Kick it in the face!"]]
+[["Don't kick it!"]]
 
-::Tsade: "Kick it in the face!"
+::"Kick it in the face!"
 <<do
 	this.PText('WHAM!');
 	this.PText('+1 monster corpse', 1000, 20);
 >>
 >
-Tsade :O : "YEAH!!"
+"YEAH!!"
 >
-Tsade :O : "That's so cool."
+"That's so cool."
 >
-Rexty >_> : "Does it really just die after being kicked once?"
+"Does it really just die after being kicked once?"
 >
-Tsade :) : "Your kicks are REALLY POWERFUL, because of the planet gravity!"
+"Your kicks are REALLY POWERFUL, because of the planet gravity!"
 [[>first-monster2]]
 
-::MC: "Don't kick it!"
+::"Don't kick it!"
 <<do
 	this.PText('CHOMP!', 0, -10);
 	this.PText('The monster ate you\nand you\'re dead.', 1000, 25);
 >>
 >
-Tsade :O : "YEAH!!"
+"YEAH!!"
 >
-Tsade :O : "That's so cool."
+"That's so cool."
 >
-Rexty >_> : "Do you really just die in one bite?"
+"Do you really just die in one bite?"
 >
-Tsade :) : "Its teeth are REALLY POWERFUL, because of the planet gravity!"
+"Its teeth are REALLY POWERFUL, because of the planet gravity!"
 [[>first-monster2]]
 
 ::first-monster2
-Daydiem >_> : "I'm not sure that's how it works..."
+"I'm not sure that's how it works..."
 >
-Tsade :) : "Yeah it is!! My mom's a scientist."
+"Yeah it is!! My mom's a scientist."
 >
-Daydiem >_> : "Okay, if you're sure."
+"Okay, if you're sure."
 >
-[[Tsade: "Now what if the monsters team up...">add-monsters]]
+[["Now what if the monsters team up...">add-monsters]]
 <<if !this.npc>>
-[[Rexty: "Maybe you meet someone else who's fighting monsters too."]]
+[["Maybe you meet someone else who's fighting monsters too."]]
 <<endif>>
 <<if !this.wolfy>>
-[[MC: "That's scary."]]
+[["That's scary."]]
 <<endif>>
 
-::Rexty: "Maybe you meet someone else who's fighting monsters too."
+::"Maybe you meet someone else who's fighting monsters too."
 <<do this.npc=true>>
-Rexty :O : "And they're really cool and powerful and you team up!"
+"And they're really cool and powerful and you team up!"
 >
-Daydiem >_> : "Wait, why's someone else here now?"
+"Wait, why's someone else here now?"
 >
-Rexty :) : "They... came on another ship. You're meeting them there."
+"They... came on another ship. You're meeting them there."
 >
-Rexty :O : "You haven't seen them in a long time, and you weren't sure they would make it."
+"You haven't seen them in a long time, and you weren't sure they would make it."
 >
-Rexty :O : "But then you find them again, fighting monsters."
+"But then you find them again, fighting monsters."
 [[>main]]
 
-::MC: "That's scary."
-MC :( : "Will there be monsters on the planet when we get there?"
+::"That's scary."
+"Will there be monsters on the planet when we get there?"
 >
-MC :( : "And they'll all attack us?"
+"And they'll all attack us?"
 >
-Tsade :( : "Oh, no... we're just pretending, I promise. There won't be monsters."
+"Oh, no... we're just pretending, I promise. There won't be monsters."
 >
-MC :( : "How do you know?"
+"How do you know?"
 >
-Daydiem :( : "Why don't you ask AMMT?"
+"Why don't you ask AMMT?"
 >
-MC :( : "AMMT? Will there be monsters on the planet when we get there?"
+"AMMT? Will there be monsters on the planet when we get there?"
 >
 <<do this.portrait('')>>
 AMMT: "..."
 >
 AMMT: "The chance of our destination planet being inhabited is less than one-one hundredth of a percent."
 >
-MC :( : "What does that mean?"
+"What does that mean?"
 >
 <<do this.portrait('')>>
 AMMT: "There will not be monsters on the planet."
 >
-Rexty :) : "Besides, even if there were, your wolf could howl at them and scare them away."
+"Besides, even if there were, your wolf could howl at them and scare them away."
 >
-MC :O : "Yeah! Wolfy could do that!"
+"Yeah! Wolfy could do that!"
 >
-MC :) : "Day, will you add Wolfy to chase the monsters away?"
+"Day, will you add Wolfy to chase the monsters away?"
 >
-Daydiem :) : "Sure, MC."
+"Sure, MC."
 [[>add-wolfy]]
 
 
@@ -947,26 +893,26 @@ Daydiem :) : "Sure, MC."
 
 
 ::more-monsters
-Daydiem: "Now what?"
+"Now what?"
 
-[[Tsade: "Kick them all!"]]
+[["Kick them all!"]]
 <<if this.npc>>
-[[Rexty: "Stand together with your partner!!"]]
+[["Stand together with your partner!!"]]
 <<endif>>
 <<if !this.wolfy>>
-[[MC: "No!! Don't kick it!"]]
+[["No!! Don't kick it!"]]
 <<else>>
-[[MC: "Scare them away, Wolfy!"]]
+[["Scare them away, Wolfy!"]]
 <<endif>>
 
-::MC: "No!! Don't kick it!"
+::"No!! Don't kick it!"
 <<do
 	this.PText('CHOMP!');
 	this.PText('The monster ate you\nand you\'re dead.', 1000, 20);
 >>
 [[>dead]]
 
-::Tsade: "Kick them all!"
+::"Kick them all!"
 <<do
 	this.PText('CHOMP!');
 	this.PText('The monster\'s friends\ntook vengeance\nand you\'re dead.', 1000, 20);
@@ -974,18 +920,18 @@ Daydiem: "Now what?"
 [[>dead]]
 
 ::dead
-Tsade :( : "Aw, they got us..."
+"Aw, they got us..."
 
-[[Tsade: "Let's try again!">main]]
+[["Let's try again!">main]]
 <<if !this.npc>>
-[[Rexty: "Maybe you meet someone else who's fighting monsters too."]]
+[["Maybe you meet someone else who's fighting monsters too."]]
 <<endif>>
 <<if !this.wolfy>>
-[[MC: "That's scary."]]
+[["That's scary."]]
 <<endif>>
 
 
-::Rexty: "Stand together with your partner!!"
+::"Stand together with your partner!!"
 <<do
 	this.sfx('voiceDefault');
 	this.PText('WHAM');
@@ -994,18 +940,18 @@ Tsade :( : "Aw, they got us..."
 	this.PText('Oh no! I\'m a monster and I\'m dead!', 2000, 60);
 >>
 >
-Tsade :) : "WOOO!!!"
+"WOOO!!!"
 >
-Rexty :) : "Hand in hand... Watching each other's backs..."
+"Hand in hand... Watching each other's backs..."
 >
-Daydiem :) : "This turned out pretty good, actually."
+"This turned out pretty good, actually."
 >
 <<if this.metwolfy>>
-MC :) : "And Wolfy's there!"
+"And Wolfy's there!"
 <<endif>>
 [[>The End]]
 
-::MC: "Scare them away, Wolfy!"
+::"Scare them away, Wolfy!"
 <<do
 	this.sfx('voiceDefault');
 	this.PText('Awooooo!');
@@ -1014,11 +960,11 @@ MC :) : "And Wolfy's there!"
 	this.PText('Oh no! Get me outta here!', 2000, 60);
 >>
 >
-MC :) : "Wolfy is the best!!"
+"Wolfy is the best!!"
 >
-MC :) : "Wolves can do anything because they have big teeth and also friends."
+"Wolves can do anything because they have big teeth and also friends."
 >
-Daydiem :) : "This turned out pretty good, actually."
+"This turned out pretty good, actually."
 >
-Tsade :) : "What do you mean actually? Of course it's good!"
+"What do you mean actually? Of course it's good!"
 [[>The End]]
