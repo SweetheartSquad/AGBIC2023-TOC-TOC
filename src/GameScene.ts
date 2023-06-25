@@ -13,9 +13,10 @@ import { StrandE } from './StrandE';
 import { TweenManager } from './Tweens';
 import { UIDialogue } from './UIDialogue';
 import { V, add } from './VMath';
+import { size } from './config';
 import { DEBUG } from './debug';
 import { getInput } from './main';
-import { delay, removeFromArray } from './utils';
+import { delay, relativeMouse, removeFromArray } from './utils';
 
 let player: Player;
 
@@ -27,6 +28,8 @@ export class GameScene {
 	container = new Container();
 
 	graphics = new Graphics();
+
+	camPoint = new Container();
 
 	camera = new Camera();
 
@@ -63,14 +66,10 @@ export class GameScene {
 	focusAmt = 0.8;
 
 	constructor() {
+		this.container.addChild(this.camPoint);
+		this.camera.setTarget(this.camPoint);
+
 		this.player = player = new Player({});
-		player.updateCamPoint = () => {
-			Player.prototype.updateCamPoint.call(player);
-			const p = this.dialogue.progress();
-			player.camPoint.y +=
-				(this.dialogue.height() / 2 / this.camera.display.container.scale.y) *
-				p;
-		};
 		this.container.addChild(player.display.container);
 		this.container.addChild(player.displayShadow.container);
 
@@ -171,7 +170,6 @@ export class GameScene {
 					await delay(300 * transition);
 				}
 				this.goto(goto.plugin.goto);
-				this.camera.setTarget(player.camPoint, true);
 				if (transition) {
 					this.dialogue.scrim(0, 100 * transition);
 					await delay(100 * transition);
@@ -237,7 +235,6 @@ export class GameScene {
 		this.screenFilter = new ScreenFilter();
 
 		this.camera.display.container.addChild(this.container);
-		this.camera.setTarget(player.camPoint);
 
 		this.strand.history.push('close');
 
@@ -276,7 +273,6 @@ export class GameScene {
 	}) {
 		this.gotoArea(area);
 		player.setPosition(x, y);
-		this.camera.setTarget(player.camPoint, true);
 	}
 
 	gotoArea(area?: string) {
@@ -300,6 +296,10 @@ export class GameScene {
 				this.strand.goto('debug menu');
 			}
 		}
+
+		const relativeMousePos = relativeMouse();
+		this.camPoint.x = (relativeMousePos.x - size.x / 2) * 0.1;
+		this.camPoint.y = (relativeMousePos.y - size.y / 2) * 0.1;
 
 		const curTime = game.app.ticker.lastTime;
 
