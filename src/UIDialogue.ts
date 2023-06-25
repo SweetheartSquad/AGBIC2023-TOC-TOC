@@ -133,7 +133,7 @@ export class UIDialogue extends GameObject {
 		this.strPrompt = '';
 		this.pos = 0;
 		this.posTime = 0;
-		this.posDelay = 2;
+		this.posDelay = 1;
 		this.selected = undefined;
 		this.textText = new Text(this.strText, { ...fontDialogue });
 		this.textPrompt = new Text(this.strPrompt, fontPrompt);
