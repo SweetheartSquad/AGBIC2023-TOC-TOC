@@ -20,7 +20,7 @@ export const fontPrompt: Partial<ITextStyle> = {
 	lineHeight: 24 * 1.25,
 	letterSpacing: 0,
 	stroke: 0,
-	strokeThickness: 2,
+	strokeThickness: 4,
 };
 export const fontIngame: Partial<ITextStyle> = {
 	fontFamily: 'font',

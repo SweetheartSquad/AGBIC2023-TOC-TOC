@@ -22,7 +22,7 @@ import { size } from './config';
 import { fontDialogue, fontPrompt } from './font';
 import { KEYS, keys } from './input-keys';
 import { getActiveScene, getInput, mouse } from './main';
-import { clamp, lerp, smartify, tex } from './utils';
+import { clamp, lerp, relativeMouse, smartify, tex } from './utils';
 
 const rateQuestionMultiplier = 1.4;
 const questionInflectionRange = 6;
@@ -32,10 +32,10 @@ const exclamationInflectionRange = 10;
 
 export class UIDialogue extends GameObject {
 	padding = {
-		top: 28,
-		bottom: 4,
-		left: 94,
-		right: 4,
+		top: 10,
+		bottom: 10,
+		left: 10,
+		right: 10,
 	};
 
 	sprScrim: Sprite;
@@ -93,7 +93,7 @@ export class UIDialogue extends GameObject {
 	}
 
 	closeY() {
-		return size.y + this.height();
+		return size.y * 1.01;
 	}
 
 	progress() {
@@ -141,11 +141,6 @@ export class UIDialogue extends GameObject {
 		this.textPrompt.x = size.x / 2;
 		this.textPrompt.y = 10;
 		this.textPrompt.anchor.x = 0.5;
-		this.textPrompt.accessible = true;
-		this.textPrompt.on('pointerdown', (event) => {
-			if (event && event.button !== mouse.LEFT) return;
-			if (!this.isOpen) this.fnPrompt?.();
-		});
 		this.display.container.addChild(this.textPrompt);
 		this.display.container.accessible = true;
 		this.display.container.on('pointerdown', (event) => {
@@ -202,12 +197,14 @@ export class UIDialogue extends GameObject {
 		this.textPrompt.alpha = lerp(
 			this.textPrompt.alpha,
 			shouldPrompt ? 1 : 0,
-			0.1
+			0.2
 		);
 		this.display.container.interactive = this.isOpen;
-		this.textPrompt.interactive = shouldPrompt;
-		this.textPrompt.cursor = shouldPrompt ? 'pointer' : 'auto';
-		this.textPrompt.tabIndex = shouldPrompt ? 0 : undefined;
+
+		const relativeMousePos = relativeMouse();
+		this.textPrompt.x = relativeMousePos.x;
+		this.textPrompt.y = relativeMousePos.y + this.textPrompt.height;
+
 		const input = getInput();
 
 		if (!this.isOpen && input.interact) {

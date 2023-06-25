@@ -1,6 +1,7 @@
 import { BLEND_MODES, Sprite } from 'pixi.js';
 import { GameObject } from './GameObject';
 import { Display } from './Scripts/Display';
+import { getActiveScene } from './main';
 import { tex } from './utils';
 
 export class Btn extends GameObject {
@@ -25,15 +26,15 @@ export class Btn extends GameObject {
 		spr.on('pointerdown', onClick);
 		spr.on('mouseover', () => {
 			spr.texture = tex(`glow`);
+			getActiveScene()?.dialogue.prompt(label, onClick);
 		});
 		spr.on('mousedown', () => {
 			spr.texture = tex(`blank`);
-			setTimeout(() => {
-				spr.texture = tex(`blank`);
-			}, 100);
+			getActiveScene()?.dialogue.prompt();
 		});
 		spr.on('mouseout', () => {
 			spr.texture = tex(`blank`);
+			getActiveScene()?.dialogue.prompt();
 		});
 	}
 }

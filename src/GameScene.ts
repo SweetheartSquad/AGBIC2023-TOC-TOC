@@ -166,21 +166,6 @@ export class GameScene {
 					await delay(100 * transition);
 					player.bodySensor.body.collisionFilter.mask = collidesWith;
 				}
-				return;
-			}
-			const top = interactions
-				.slice()
-				.reverse()
-				.find((i) => i.plugin.passage);
-			if (!top) {
-				this.dialogue.prompt();
-			} else {
-				if (this.dialogue.isOpen) return;
-				const { passage, label = 'talk', focus, gameObject } = top.plugin;
-				this.dialogue.prompt(this.t(label).toUpperCase(), () => {
-					this.strand.gameObject = gameObject;
-					this.strand.goto(passage);
-				});
 			}
 		};
 		Events.on(

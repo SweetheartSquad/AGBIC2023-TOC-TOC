@@ -47,12 +47,17 @@ export class NPC extends Character {
 		this.roam.speed.y *= 0.004;
 
 		if (passage) {
-			this.btn = new Btn(() => {
-				const scene = getActiveScene();
-				if (!scene) return;
-				scene.strand.gameObject = this;
-				scene.strand.goto(passage);
-			}, 'error');
+			this.btn = new Btn(
+				() => {
+					const scene = getActiveScene();
+					if (!scene) return;
+					scene.strand.gameObject = this;
+					scene.strand.goto(passage);
+				},
+				getActiveScene()
+					?.t('talk to {}')
+					.replace('{}', options.body || '') || ''
+			);
 			this.display.container.addChild(this.btn.display.container);
 			this.display.container.interactiveChildren = true;
 		}
