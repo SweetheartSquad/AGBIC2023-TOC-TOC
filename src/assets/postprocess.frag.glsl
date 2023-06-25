@@ -16,7 +16,7 @@ uniform vec3 bg;
 uniform vec3 fg;
 const vec2 ditherSize = vec2(64.0);
 const float scale = 1.0;
-const float posterize = 1.0;
+const float posterize = 3.0;
 const float brightness = 1.0;
 const float contrast = 1.0;
 
@@ -28,7 +28,9 @@ void main(void) {
 	vec2 coord = gl_FragCoord.xy;
 	coord -= mod(coord, scale);
 
-	vec2 uvDither = fract((coord + vec2(0.5)) / (ditherSize.xy * scale));
+	vec2 uvDither = fract(coord / (ditherSize.xy * scale));
+	uvDither += camPos/ditherSize.xy;
+	// uvDither += curTime*0.5;
 	vec2 uvPreview = uv;
 	vec3 orig = texture2D(uSampler, uvPreview).rgb;
 
