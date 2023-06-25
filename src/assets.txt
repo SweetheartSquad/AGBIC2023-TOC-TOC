@@ -28,3 +28,5 @@ textures/supply.png
 textures/bg_parallax.png
 textures/bg_ship.png
 textures/bg_ship2.png
+
+textures/glow.png

@@ -65,6 +65,7 @@ export class GameScene {
 	constructor() {
 		this.container.addChild(this.camPoint);
 		this.camera.setTarget(this.camPoint);
+		this.camera.display.container.interactiveChildren = true;
 
 		this.player = player = new Player({});
 		this.container.addChild(player.display.container);
