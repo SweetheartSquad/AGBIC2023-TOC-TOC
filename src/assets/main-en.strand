@@ -105,11 +105,11 @@
 
 	this.Area('empty', []);
 	this.Area('intro', [
-		this.Prop({ texture: 'bg_ship', scale: 2, y: 110, offset: -1000000 }),
+		this.Prop({ texture: 'bg_ship', y: 110, offset: -1000000 }),
 		// this.Poly({ width: 4, verts: [72,-108, -66,-109, -68,-93, -105,-92, -114,-82, -114,15, -105,27, -78,26, -70,40, -60,58, 62,59, 77,44, 79,17, 93,10, 109,-6, 110,-82, 100,-93, 80,-95, 72,-108] }),
 		this.Goto({ area: 'intro2' }, { x: 50, y: -104, width: 8, height: 5 }),
 
-		this.Npc({ body: 'npc', passage: 'supply-done', x: 40, y: 40, roam: 50 }),
+		this.Npc({ body: 'guy', passage: 'supply-done', x: 40, y: 40, roam: 50 }),
 	]);
 	this.Area('intro2', [
 		this.Prop({ texture: 'bg_ship2', scale: 2, y: 55, offset: -1000000 }),
@@ -556,7 +556,14 @@ The End
 >>
 
 ::supply-done
-<<do this.supplyrun=true>>
+"hello"
+>
+"No one lives here"
+>
+"or do they?"
+[[>close]]
+
+::test
 "So that's what I've got so far."
 >
 "You'll use the stuff to like, build buildings, and hunt for food-"
