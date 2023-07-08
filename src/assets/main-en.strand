@@ -136,7 +136,6 @@
 	this.scene.goto({ area: 'intro' });
 	requestAnimationFrame(() => {
 		this.scrim(1, 3000);
-		this.scene.dialogue.sprBg.alpha = 0;
 	});
 >>
 <<endif>>
@@ -155,7 +154,6 @@ LANDING SEQUENCE ON PLANET 54XE COMPLETE
 ::start2
 <<do
 	this.tween(this.scene.border.display.container, 'alpha', 1, 1000);
-	this.tween(this.scene.dialogue.sprBg, 'alpha', 1, 1000, 0);;
 	this.goto('main');
 >>
 
@@ -212,7 +210,6 @@ talk to {}
 	this.character = '';
 	this.show('black', { scale: 512 });
 	this.tween(this.scene.border.display.container, 'alpha', 0, 1000);
-	this.tween(this.scene.dialogue.sprBg, 'alpha', 0, 1000);
 	this.tween(scene.camera.display.container, 'alpha', 0, 1000);
 	
 >>

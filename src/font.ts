@@ -5,7 +5,7 @@ export const fontDialogue: Partial<ITextStyle> = {
 	fontSize: 24,
 	padding: 16,
 	fill: 0xffffff,
-	align: 'left',
+	align: 'center',
 	lineHeight: 24 * 1.25,
 	letterSpacing: 0,
 	stroke: 0,

@@ -1,13 +1,13 @@
-import { cubicIn, cubicOut } from 'eases';
-import type { utils } from 'pixi.js';
 import {
 	Container,
+	NineSlicePlane,
 	Rectangle,
 	Sprite,
 	Text,
 	TextMetrics,
 	TextStyle,
 	Texture,
+	utils,
 } from 'pixi.js';
 import Strand from 'strand-core';
 import { sfx } from './Audio';
@@ -22,7 +22,7 @@ import { size } from './config';
 import { fontDialogue, fontPrompt } from './font';
 import { KEYS, keys } from './input-keys';
 import { getActiveScene, getInput, mouse } from './main';
-import { clamp, lerp, relativeMouse, smartify, tex } from './utils';
+import { clamp, lerp, relativeMouse, smartify, tex, zero } from './utils';
 
 const rateQuestionMultiplier = 1.4;
 const questionInflectionRange = 6;
@@ -44,9 +44,7 @@ export class UIDialogue extends GameObject {
 
 	tweens: Tween[] = [];
 
-	sprBg: Sprite;
-
-	animatorBg: Animator;
+	sprBg: NineSlicePlane;
 
 	transform: Transform;
 
@@ -84,23 +82,8 @@ export class UIDialogue extends GameObject {
 
 	voice = 'Default' as string | undefined;
 
-	height() {
-		return this.sprBg.height;
-	}
-
-	openY() {
-		return size.y;
-	}
-
-	closeY() {
-		return size.y * 1.01;
-	}
-
 	progress() {
-		return (
-			Math.abs(this.sprBg.y - this.closeY()) /
-			Math.abs(this.openY() - this.closeY())
-		);
+		return this.sprBg.alpha;
 	}
 
 	constructor(strand: Strand) {
@@ -117,12 +100,15 @@ export class UIDialogue extends GameObject {
 		this.sprScrim.width = size.x;
 		this.sprScrim.height = size.y;
 		this.sprScrim.alpha = 1;
-		this.sprBg = new Sprite(tex('dialogueBg'));
-		this.sprScrim.name = 'dialogueBg';
-		this.sprBg.anchor.y = 1.0;
-		this.scripts.push(
-			(this.animatorBg = new Animator(this, { spr: this.sprBg, freq: 1 / 400 }))
+		const texBg = tex('dialogueBg');
+		this.sprBg = new NineSlicePlane(
+			texBg,
+			texBg.width / 2,
+			texBg.height / 2,
+			texBg.width / 2,
+			texBg.height / 2
 		);
+		this.sprScrim.name = 'dialogueBg';
 		this.transform.x = 0;
 
 		this.scripts.push((this.toggler = new Toggler(this)));
@@ -160,11 +146,15 @@ export class UIDialogue extends GameObject {
 		this.containerChoices.x = this.padding.left;
 		this.choices = [];
 		window.text = this.textText;
-		this.textText.y = -this.sprBg.height + this.padding.top;
-		this.textText.x = this.padding.left;
+		this.textText.y = 0;
+		this.textText.x = 0;
+		this.textText.anchor.x = this.textText.anchor.y = 0.5;
 		this.textText.style.wordWrap = true;
 		this.textText.style.wordWrapWidth =
-			this.sprBg.width - this.padding.left - this.padding.right;
+			size.x -
+			this.padding.right -
+			this.padding.left -
+			this.sprBg.texture.width;
 
 		this.display.container.addChild(this.sprScrim);
 		this.display.container.addChild(this.sprBg);
@@ -175,8 +165,6 @@ export class UIDialogue extends GameObject {
 		game.app.stage.addChild(this.display.container);
 
 		this.sprBg.alpha = 0;
-		this.sprBg.y = this.closeY();
-
 		this.init();
 	}
 
@@ -188,10 +176,6 @@ export class UIDialogue extends GameObject {
 
 	update(): void {
 		super.update();
-		this.textText.pivot.x = -this.sprBg.x;
-		this.textText.pivot.y = -this.sprBg.y;
-		this.containerChoices.pivot.x = -this.sprBg.x;
-		this.containerChoices.pivot.y = -this.sprBg.y;
 		this.textText.alpha = this.sprBg.alpha;
 		const shouldPrompt = !this.isOpen && !!this.fnPrompt;
 		this.textPrompt.alpha = lerp(
@@ -209,12 +193,6 @@ export class UIDialogue extends GameObject {
 
 		if (!this.isOpen && input.interact) {
 			this.textPrompt.emit('pointerdown');
-		}
-
-		if (this.isOpen) {
-			this.sprBg.alpha = this.progress();
-		} else {
-			this.sprBg.alpha = Math.max(0, this.progress() * 2 - 1);
 		}
 
 		this.containerChoices.alpha = lerp(
@@ -300,6 +278,37 @@ export class UIDialogue extends GameObject {
 			}
 			this.textText.text = Array.from(this.strText).slice(0, this.pos).join('');
 		}
+
+		// position text over active gameobject
+		const scene = getActiveScene();
+		const target = scene?.strand.gameObject?.getScript(Display);
+		const targetPos = target?.container.toGlobal(zero);
+		if (targetPos) {
+			const { x, y } = targetPos;
+			const w2 = this.textText.width / 2;
+			const h2 = this.textText.height / 2;
+			if (x + w2 > size.x - this.padding.right - this.sprBg.texture.width / 2) {
+				this.textText.x =
+					size.x - this.padding.right - this.sprBg.texture.width / 2 - w2;
+			} else if (x - w2 < this.padding.left + this.sprBg.texture.width / 2) {
+				this.textText.x = this.padding.left + this.sprBg.texture.width / 2 + w2;
+			} else {
+				this.textText.x = x;
+			}
+			if (y + h2 > size.y - this.padding.bottom) {
+				this.textText.y = size.y - this.padding.bottom - h2;
+			} else if (y - h2 < this.padding.top) {
+				this.textText.y = this.padding.top + h2;
+			} else {
+				this.textText.y = y;
+			}
+		}
+		this.sprBg.x =
+			this.textText.x - (this.textText.width + this.sprBg.texture.width) / 2;
+		this.sprBg.width = this.textText.width + this.sprBg.texture.width;
+		this.sprBg.y =
+			this.textText.y - (this.textText.height + this.sprBg.texture.height) / 2;
+		this.sprBg.height = this.textText.height + this.sprBg.texture.height;
 	}
 
 	say(text: string, actions?: { text: string; action: () => void }[]) {
@@ -445,17 +454,9 @@ export class UIDialogue extends GameObject {
 			this.isOpen = true;
 			this.tweens.forEach((t) => TweenManager.abort(t));
 			this.tweens.length = 0;
-			this.tweens.push(
-				TweenManager.tween(this.sprBg, 'alpha', 1, 500),
-				TweenManager.tween(
-					this.sprBg,
-					'y',
-					this.openY(),
-					500,
-					undefined,
-					cubicOut
-				)
-			);
+			this.sprBg.width = 0;
+			this.sprBg.height = 0;
+			this.sprBg.alpha = 1;
 		}
 	}
 
@@ -469,17 +470,7 @@ export class UIDialogue extends GameObject {
 			this.isOpen = false;
 			this.tweens.forEach((t) => TweenManager.abort(t));
 			this.tweens.length = 0;
-			this.tweens.push(
-				TweenManager.tween(this.sprBg, 'alpha', 0, 500),
-				TweenManager.tween(
-					this.sprBg,
-					'y',
-					this.closeY(),
-					500,
-					undefined,
-					cubicIn
-				)
-			);
+			this.tweens.push(TweenManager.tween(this.sprBg, 'alpha', 0, 300));
 		}
 	}
 
