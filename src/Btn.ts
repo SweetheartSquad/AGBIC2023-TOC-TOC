@@ -1,7 +1,7 @@
 import { BLEND_MODES, Sprite } from 'pixi.js';
 import { GameObject } from './GameObject';
 import { Display } from './Scripts/Display';
-import { getActiveScene } from './main';
+import { getActiveScene, mouse } from './main';
 import { tex } from './utils';
 
 export class Btn extends GameObject {
@@ -23,14 +23,16 @@ export class Btn extends GameObject {
 		spr.cursor = 'pointer';
 		spr.tabIndex = 0;
 		spr.blendMode = BLEND_MODES.ADD;
-		spr.on('pointerdown', onClick);
+		spr.on('pointerdown', (event) => {
+			if (event && event.button !== undefined && event.button !== mouse.LEFT)
+				return;
+			spr.texture = tex(`blank`);
+			getActiveScene()?.dialogue.prompt();
+			onClick();
+		});
 		spr.on('mouseover', () => {
 			spr.texture = tex(`glow`);
 			getActiveScene()?.dialogue.prompt(label, onClick);
-		});
-		spr.on('mousedown', () => {
-			spr.texture = tex(`blank`);
-			getActiveScene()?.dialogue.prompt();
 		});
 		spr.on('mouseout', () => {
 			spr.texture = tex(`blank`);
