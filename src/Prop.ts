@@ -6,6 +6,8 @@ import { Transform } from './Scripts/Transform';
 import { tex } from './utils';
 
 export class Prop extends GameObject {
+	texture: string;
+
 	spr: Sprite;
 
 	animator?: Animator;
@@ -44,6 +46,7 @@ export class Prop extends GameObject {
 		tint?: number;
 	}) {
 		super();
+		this.texture = texture;
 		this.offset = offset;
 
 		const t = tex(texture);
