@@ -124,9 +124,7 @@ export class UIDialogue extends GameObject {
 		this.textText = new Text(this.strText, { ...fontDialogue });
 		this.textPrompt = new Text(this.strPrompt, fontPrompt);
 		this.textPrompt.alpha = 0;
-		this.textPrompt.x = size.x / 2;
-		this.textPrompt.y = 10;
-		this.textPrompt.anchor.x = 0.5;
+		this.textPrompt.anchor.x = this.textPrompt.anchor.y = 0.5;
 		this.display.container.addChild(this.textPrompt);
 		this.display.container.accessible = true;
 		this.display.container.on('pointerdown', (event) => {
@@ -188,6 +186,32 @@ export class UIDialogue extends GameObject {
 		const relativeMousePos = relativeMouse();
 		this.textPrompt.x = relativeMousePos.x;
 		this.textPrompt.y = relativeMousePos.y + this.textPrompt.height;
+
+		// keep prompt inside screen
+		if (
+			this.textPrompt.x + this.textPrompt.width / 2 >
+			size.x - this.padding.right
+		) {
+			this.textPrompt.x =
+				size.x - this.padding.right - this.textPrompt.width / 2;
+		} else if (
+			this.textPrompt.x - this.textPrompt.width / 2 <
+			this.padding.left
+		) {
+			this.textPrompt.x = this.padding.left + this.textPrompt.width / 2;
+		}
+		if (
+			this.textPrompt.y + this.textPrompt.height / 2 >
+			size.y - this.padding.bottom
+		) {
+			this.textPrompt.y =
+				size.y - this.padding.bottom - this.textPrompt.height / 2;
+		} else if (
+			this.textPrompt.y - this.textPrompt.height / 2 <
+			this.padding.top
+		) {
+			this.textPrompt.y = this.padding.top + this.textPrompt.height / 2;
+		}
 
 		const input = getInput();
 
