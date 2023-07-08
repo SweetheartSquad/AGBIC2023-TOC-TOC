@@ -77,15 +77,15 @@
 	// stop roam during dialogues
 	this.scene.dialogue.openo = this.scene.dialogue.open;
 	this.scene.dialogue.open = () => {
-		if (scene.areas.main) {
-			scene.areas.main.filter(i => i.roam).forEach(i => i.roam.active = false);
+		if (scene.currentArea) {
+			scene.currentArea.filter(i => i.roam).forEach(i => i.roam.active = false);
 		}
 		this.scene.dialogue.openo();
 	};
 	this.scene.dialogue.closeo = this.scene.dialogue.close;
 	this.scene.dialogue.close = () => {
-		if (scene.areas.main) {
-			scene.areas.main.filter(i => i.roam).forEach(i => i.roam.active = true);
+		if (scene.currentArea) {
+			scene.currentArea.filter(i => i.roam).forEach(i => i.roam.active = true);
 		}
 		this.scene.dialogue.closeo();
 	};
