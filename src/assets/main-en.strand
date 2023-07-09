@@ -117,6 +117,8 @@
 <<do
 	this.scene.dialogue.textText.style.fill = 0xffd20a;
 	this.show('title2', { scale: 2, duration: 0 });
+	this.scene.dialogue.textText.x = this.size.x / 2;
+	this.scene.dialogue.textText.y = this.size.y / 2;
 >>
 TOC TOC
 >start
