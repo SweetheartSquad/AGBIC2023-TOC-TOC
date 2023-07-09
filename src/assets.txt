@@ -30,3 +30,8 @@ textures/bg_ship.png
 textures/bg_ship2.png
 
 textures/glow.png
+
+textures/coin.png
+textures/key.png
+textures/key_carrying.png
+textures/lock.png
