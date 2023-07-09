@@ -28,10 +28,20 @@ export class BtnItem extends Btn {
 			const item = scene.carrying?.name;
 			let key = `${item}`;
 			let say = this.use[key];
+
+			// nothing specific to say, so go to other
 			if (!say) {
 				key = 'other';
 				say = this.use.other;
 			}
+
+			// nothing to say, so go to global generic use
+			if (!say) {
+				scene.strand.goto('generic use');
+				scene.loseItem();
+				return;
+			}
+
 			const cycle = this.cycles[key] || 0;
 			this.cycles[key] = cycle + 1;
 			const currentSay = say[cycle % say.length];

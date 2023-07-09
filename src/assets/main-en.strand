@@ -88,7 +88,12 @@
 		// this.Poly({ width: 4, verts: [72,-108, -66,-109, -68,-93, -105,-92, -114,-82, -114,15, -105,27, -78,26, -70,40, -60,58, 62,59, 77,44, 79,17, 93,10, 109,-6, 110,-82, 100,-93, 80,-95, 72,-108] }),
 		this.Goto({ area: 'intro2' }, { x: 50, y: -104, width: 8, height: 5 }),
 
-		this.Npc({ body: 'guy', passage: 'supply-done', x: -40, y: 40, roam: 50 }),
+		this.Npc({ body: 'guy', x: -40, y: 40, roam: 50,
+			use: {
+				undefined: ['"hi"', '"hello"', 'goto:test npc passage'],
+				coin: ['"is that for me?"', '"no thank you"'],
+			},
+		}),
 
 		this.Item({ texture: 'coin', x: 50, y: 150 }),
 		this.Item({ texture: 'key', x: 150, y: 150 }),
@@ -139,6 +144,15 @@ talk to {}
 ::generic item
 <<do this.gameObject.pickup(); this.goto('close')>>
 
+::generic use
+<<do this.gameObject = this.scene.player>>
+<<print this.shuffle([
+	`"i don't think that will work"`,
+	`"i don't know about that..."`,
+	`"nah"`,
+])[0]>>
+[[>close]]
+
 ::unlock
 "i unlocked it!"
 <<do
@@ -147,6 +161,12 @@ talk to {}
 	this.scene.loseItem(true);
 	this.gameObject = this.scene.player;
 >>
+[[>close]]
+
+::test npc passage
+"howdy"
+>
+"do you need something?"
 [[>close]]
 
 

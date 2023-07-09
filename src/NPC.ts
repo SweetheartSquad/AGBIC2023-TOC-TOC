@@ -1,4 +1,5 @@
 import { Btn } from './Btn';
+import { BtnItem } from './BtnItem';
 import { Character } from './Character';
 import {
 	BODY_ENVIRONMENT,
@@ -15,11 +16,11 @@ export class NPC extends Character {
 	btn?: Btn;
 
 	constructor({
-		passage,
 		roam = 0,
+		use,
 		...options
 	}: ConstructorParameters<typeof Character>[0] & {
-		passage?: string;
+		use?: ConstructorParameters<typeof BtnItem>[0]['use'];
 		roam?: number;
 	}) {
 		super({
@@ -46,19 +47,15 @@ export class NPC extends Character {
 		this.roam.speed.x *= 0.004;
 		this.roam.speed.y *= 0.004;
 
-		if (passage) {
-			this.btn = new Btn(
-				() => {
-					const scene = getActiveScene();
-					if (!scene) return;
-					scene.player.canMove = false;
-					scene.strand.gameObject = this;
-					scene.strand.goto(passage);
-				},
-				getActiveScene()
-					?.t('talk to {}')
-					.replace('{}', options.body || '') || ''
-			);
+		if (use) {
+			this.btn = new BtnItem({
+				gameObject: this,
+				use,
+				label:
+					getActiveScene()
+						?.t('talk to {}')
+						.replace('{}', options.body || '') || '',
+			});
 			this.display.container.addChild(this.btn.display.container);
 			this.display.container.interactiveChildren = true;
 		}
