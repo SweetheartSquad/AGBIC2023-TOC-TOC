@@ -88,7 +88,17 @@
 		// this.Poly({ width: 4, verts: [72,-108, -66,-109, -68,-93, -105,-92, -114,-82, -114,15, -105,27, -78,26, -70,40, -60,58, 62,59, 77,44, 79,17, 93,10, 109,-6, 110,-82, 100,-93, 80,-95, 72,-108] }),
 		this.Goto({ area: 'intro2' }, { x: 50, y: -104, width: 8, height: 5 }),
 
-		this.Npc({ body: 'guy', passage: 'supply-done', x: 40, y: 40, roam: 50 }),
+		this.Npc({ body: 'guy', passage: 'supply-done', x: -40, y: 40, roam: 50 }),
+
+		this.Item({ texture: 'coin', x: 50, y: 150 }),
+		this.Item({ texture: 'key', x: 150, y: 150 }),
+		this.Hotspot({ texture: 'lock', x: 50, y: 50,
+			use: {
+				undefined: ["it's locked", "it's a lock", "locked isn't it"],
+				key: ["goto:unlock"],
+				other: ["that won't unlock it", "no good, it's locked"],
+			},
+		}),
 	]);
 
 	// start
@@ -126,13 +136,18 @@ continue
 ::talk to {}
 talk to {}
 
-::take-item
+::generic item
+<<do this.gameObject.pickup(); this.goto('close')>>
+
+::unlock
+"i unlocked it!"
 <<do
-	const p = this.gameObject.body.body.plugin.interrupt.itemPassage;
-	this.destroy(this.gameObject.body.body.plugin.interrupt.prop);
+	this.Poof({ texture: 'wolfyRun', scale: 4, freq: 50, time: 1000, x: this.gameObject.transform.x, y: this.gameObject.transform.y });
 	this.destroy(this.gameObject);
-	this.goto(p);
+	this.scene.loseItem(true);
+	this.gameObject = this.scene.player;
 >>
+[[>close]]
 
 
 ::The End

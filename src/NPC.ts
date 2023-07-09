@@ -51,6 +51,7 @@ export class NPC extends Character {
 				() => {
 					const scene = getActiveScene();
 					if (!scene) return;
+					scene.player.canMove = false;
 					scene.strand.gameObject = this;
 					scene.strand.goto(passage);
 				},

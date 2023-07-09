@@ -1,10 +1,11 @@
 import { Body, Events, Runner } from 'matter-js';
-import { Container, DisplayObject, Graphics } from 'pixi.js';
+import { Container, DisplayObject, Graphics, Sprite } from 'pixi.js';
 import { Area } from './Area';
 import { Border } from './Border';
 import { Camera } from './Camera';
 import { game, resource } from './Game';
 import { GameObject } from './GameObject';
+import { Item } from './Item';
 import { engine } from './Physics';
 import { PhysicsDebug } from './PhysicsDebug';
 import { Player } from './Player';
@@ -15,7 +16,7 @@ import { UIDialogue } from './UIDialogue';
 import { size } from './config';
 import { DEBUG } from './debug';
 import { getInput } from './main';
-import { delay, relativeMouse, removeFromArray } from './utils';
+import { delay, relativeMouse, removeFromArray, tex } from './utils';
 
 let player: Player;
 
@@ -62,6 +63,10 @@ export class GameScene {
 
 	focusAmt = 0.8;
 
+	carrying?: Item;
+
+	sprCarrying: Sprite;
+
 	constructor() {
 		this.container.addChild(this.camPoint);
 		this.camera.setTarget(this.camPoint);
@@ -70,6 +75,11 @@ export class GameScene {
 		this.player = player = new Player({});
 		this.container.addChild(player.display.container);
 		this.container.addChild(player.displayShadow.container);
+
+		this.sprCarrying = new Sprite(tex('blank'));
+		this.sprCarrying.anchor.x = 0.5;
+		this.sprCarrying.anchor.y = 1;
+		game.app.stage.addChild(this.sprCarrying);
 
 		this.strand = new StrandE({
 			source: resource<string>('main-en') || '',
@@ -84,18 +94,11 @@ export class GameScene {
 				displayPassage: (passage) => {
 					if (passage.title === 'close') {
 						this.dialogue.close();
-						// TODO: why is this two frames?
-						requestAnimationFrame(() => {
-							requestAnimationFrame(() => {
-								player.canMove = true;
-							});
-						});
 						player.followers.forEach((i) => {
 							i.roam.active = true;
 						});
 						return Promise.resolve();
 					}
-					player.canMove = false;
 					player.followers.forEach((i) => {
 						i.roam.active = false;
 					});
@@ -269,11 +272,14 @@ export class GameScene {
 			}
 		}
 
+		const relativeMousePos = relativeMouse();
 		if (!this.dialogue.isOpen) {
-			const relativeMousePos = relativeMouse();
 			this.camPoint.x = (relativeMousePos.x - size.x / 2) * 0.1;
 			this.camPoint.y = (relativeMousePos.y - size.y / 2) * 0.1;
 		}
+
+		this.sprCarrying.x = relativeMousePos.x;
+		this.sprCarrying.y = relativeMousePos.y;
 
 		const curTime = game.app.ticker.lastTime;
 
@@ -294,6 +300,7 @@ export class GameScene {
 			this.camera.display.container.pivot.x,
 			-this.camera.display.container.pivot.y,
 		];
+		this.player.canMove = !this.dialogue.isOpen && !this.carrying;
 	}
 
 	take(gameObject: GameObject) {
@@ -306,6 +313,27 @@ export class GameScene {
 		Area.remove(this.areas.root, gameObject);
 		const a = this.currentArea;
 		if (a) Area.add(a, gameObject);
+	}
+
+	pickupItem(item: Item) {
+		if (this.carrying === item) {
+			this.loseItem();
+			return;
+		}
+		let texT = tex(`${item.texture}_carrying`);
+		if (texT === tex('error')) texT = tex(item.texture);
+		this.sprCarrying.texture = texT;
+		this.carrying = item;
+		this.player.canMove = false;
+	}
+
+	loseItem(permanent = false) {
+		if (!this.carrying) return;
+		if (permanent) {
+			this.strand.destroy(this.carrying);
+		}
+		this.carrying = undefined;
+		this.sprCarrying.texture = tex('blank');
 	}
 
 	/**

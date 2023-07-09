@@ -13,7 +13,9 @@ import { resource, resources } from './Game';
 import { GameObject } from './GameObject';
 import { GameScene } from './GameScene';
 import { Goto } from './Goto';
+import { Hotspot } from './Hotspot';
 import { Interrupt } from './Interrupt';
+import { Item } from './Item';
 import { NPC } from './NPC';
 import { Poly } from './Poly';
 import { Poof } from './Poof';
@@ -182,6 +184,14 @@ export class StrandE extends Strand {
 
 	Npc(...args: ConstructorParameters<typeof NPC>) {
 		return new NPC(...args);
+	}
+
+	Hotspot(...args: ConstructorParameters<typeof Hotspot>) {
+		return new Hotspot(...args);
+	}
+
+	Item(...args: ConstructorParameters<typeof Item>) {
+		return new Item(...args);
 	}
 
 	Goto(...args: ConstructorParameters<typeof Goto>) {
