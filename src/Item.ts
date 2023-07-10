@@ -1,4 +1,5 @@
 import { Btn } from './Btn';
+import { BtnItem } from './BtnItem';
 import { getActiveScene } from './main';
 import { Prop } from './Prop';
 
@@ -8,24 +9,28 @@ export class Item extends Prop {
 	name: string;
 
 	constructor({
-		passage,
+		use,
 		label,
 		...options
-	}: ConstructorParameters<typeof Prop>[0] & {
-		label?: string;
-		passage?: string;
-	}) {
+	}: ConstructorParameters<typeof Prop>[0] &
+		Partial<ConstructorParameters<typeof BtnItem>[0]> & {
+			label?: string;
+		}) {
 		super({
 			...options,
 		});
 
 		this.name = label || options.texture;
-		this.btn = new Btn(() => {
-			const scene = getActiveScene();
-			if (!scene) return;
-			scene.strand.gameObject = this;
-			scene.strand.goto(passage || 'generic item');
-		}, this.name);
+		this.btn = new BtnItem({
+			gameObject: this,
+			use: {
+				undefined: ['goto:generic item'],
+				[this.name]: ['goto:generic item'],
+				other: ['goto:generic use'],
+				...use,
+			},
+			label: label || this.name,
+		});
 		this.display.container.addChild(this.btn.display.container);
 		this.display.container.interactiveChildren = true;
 	}

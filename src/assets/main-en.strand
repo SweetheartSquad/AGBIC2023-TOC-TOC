@@ -95,8 +95,16 @@
 			},
 		}),
 
-		this.Item({ texture: 'coin', x: 50, y: 150 }),
-		this.Item({ texture: 'key', x: 150, y: 150 }),
+		this.Item({ texture: 'coin', x: 50, y: 150,
+			use: {
+				key: ['key on coin'],
+			},
+		}),
+		this.Item({ texture: 'key', x: 150, y: 150,
+			use: {
+				coin: ['coin on key'],
+			},
+		}),
 		this.Hotspot({ texture: 'lock', x: 50, y: 50,
 			use: {
 				undefined: ["it's locked", "it's a lock", "locked isn't it"],
@@ -147,7 +155,7 @@ talk to {}
 <<do this.gameObject.pickup(); this.goto('close')>>
 
 ::generic use
-<<do this.gameObject = this.scene.player>>
+<<do this.gameObject = this.scene.player; this.scene.loseItem();>>
 <<print this.shuffle([
 	`"i don't think that will work"`,
 	`"i don't know about that..."`,
