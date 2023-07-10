@@ -2,6 +2,7 @@ import eases from 'eases';
 import { IChamferableBodyDefinition } from 'matter-js';
 import { Container, DisplayObject } from 'pixi.js';
 import { sfx } from './Audio';
+import { Btn } from './Btn';
 import { Character } from './Character';
 import { getFrameCount, resource } from './Game';
 import { GameScene } from './GameScene';
@@ -40,6 +41,8 @@ export class Player extends Character {
 	floor = 'Default';
 
 	expressionOverride = '';
+
+	btn?: Btn;
 
 	constructor({
 		bodyCollision,
@@ -80,6 +83,7 @@ export class Player extends Character {
 		this.display.container.addChild(this.camPoint);
 		this.canMove = true;
 		this.step = 0;
+		this.display.container.interactiveChildren = true;
 
 		window.player = this;
 	}
@@ -166,6 +170,10 @@ export class Player extends Character {
 			};
 		}
 		super.update();
+		if (this.btn) {
+			this.btn.display.container.width = this.spr.width;
+			this.btn.display.container.height = this.spr.height;
+		}
 	}
 
 	updateCamPoint() {

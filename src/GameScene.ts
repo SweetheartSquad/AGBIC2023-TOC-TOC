@@ -2,6 +2,7 @@ import { Body, Events, Runner } from 'matter-js';
 import { Container, DisplayObject, Graphics, Sprite } from 'pixi.js';
 import { Area } from './Area';
 import { Border } from './Border';
+import { BtnItem } from './BtnItem';
 import { Camera } from './Camera';
 import { game, resource } from './Game';
 import { GameObject } from './GameObject';
@@ -320,14 +321,29 @@ export class GameScene {
 			this.loseItem();
 			return;
 		}
+		this.loseItem();
 		let texT = tex(`${item.texture}_carrying`);
 		if (texT === tex('error')) texT = tex(item.texture);
 		this.sprCarrying.texture = texT;
 		this.carrying = item;
 		this.player.canMove = false;
+		this.player.btn = new BtnItem({
+			gameObject: this.player,
+			use: {
+				undefined: ['goto:close'],
+				other: ['goto:close'],
+				[item.name]: item?.btn?.use.player || ['goto:generic use'],
+			},
+			label: this.t('me') || '',
+		});
+		this.player.display.container.addChild(this.player.btn.display.container);
 	}
 
 	loseItem(permanent = false) {
+		if (this.player.btn) {
+			this.player.btn.destroy();
+			this.player.btn = undefined;
+		}
 		if (!this.carrying) return;
 		if (permanent) {
 			this.strand.destroy(this.carrying);

@@ -98,11 +98,13 @@
 		this.Item({ texture: 'coin', x: 50, y: 150,
 			use: {
 				key: ['key on coin'],
+				player: ['coin on player'],
 			},
 		}),
 		this.Item({ texture: 'key', x: 150, y: 150,
 			use: {
 				coin: ['coin on key'],
+				player: ['key on player'],
 			},
 		}),
 		this.Hotspot({ texture: 'lock', x: 50, y: 50,
@@ -150,6 +152,9 @@ continue
 
 ::talk to {}
 talk to {}
+
+::me
+me
 
 ::generic item
 <<do this.gameObject.pickup(); this.goto('close')>>

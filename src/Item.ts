@@ -1,10 +1,9 @@
-import { Btn } from './Btn';
 import { BtnItem } from './BtnItem';
 import { getActiveScene } from './main';
 import { Prop } from './Prop';
 
 export class Item extends Prop {
-	btn?: Btn;
+	btn?: BtnItem;
 
 	name: string;
 
