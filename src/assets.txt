@@ -19,7 +19,7 @@ textures/title2.png
 
 textures/guyIdle.x2.png
 textures/guyRun.x2.png
-textures/npcIdle.png
+textures/mouseIdle.png
 textures/npcRun.x2.png
 textures/wolfyIdle.x2.png
 textures/wolfyRun.x2.png

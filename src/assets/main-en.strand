@@ -84,11 +84,11 @@
 
 	this.Area('empty', []);
 	this.Area('intro', [
-		this.Prop({ texture: 'bg_ship', y: 110, offset: -1000000 }),
+		this.Prop({ texture: 'bg_ship', y: this.size.y/2, offset: -1000000 }),
 		// this.Poly({ width: 4, verts: [72,-108, -66,-109, -68,-93, -105,-92, -114,-82, -114,15, -105,27, -78,26, -70,40, -60,58, 62,59, 77,44, 79,17, 93,10, 109,-6, 110,-82, 100,-93, 80,-95, 72,-108] }),
 		this.Goto({ area: 'intro2' }, { x: 50, y: -104, width: 8, height: 5 }),
 
-		this.Npc({ body: 'guy', x: -40, y: 40, roam: 50,
+		this.Npc({ body: 'mouse', x: -40, y: 40, roam: 50,
 			use: {
 				undefined: ['"hi"', '"hello"', 'goto:test npc passage'],
 				coin: ['"is that for me?"', '"no thank you"'],
