@@ -84,6 +84,16 @@
 
 	this.Area('empty', []);
 	this.Area('intro', [
+		this.Text('mouse 1', { x: 50, y: -104 }),
+		this.Goto({ area: 'mouse 1' }, { x: 50, y: -104, width: 80, height: 50 }),
+		
+		this.Text('bunny 1', { x: 150, y: -104 }),
+		this.Goto({ area: 'bunny 1' }, { x: 150, y: -104, width: 80, height: 50 }),
+		
+		this.Text('gnome 1', { x: 250, y: -104 }),
+		this.Goto({ area: 'gnome 1' }, { x: 250, y: -104, width: 80, height: 50 }),
+	]);
+	this.Area('mouse 1', [
 		this.Prop({ texture: 'bg_ship', y: this.size.y/2, offset: -1000000 }),
 		// this.Poly({ width: 4, verts: [72,-108, -66,-109, -68,-93, -105,-92, -114,-82, -114,15, -105,27, -78,26, -70,40, -60,58, 62,59, 77,44, 79,17, 93,10, 109,-6, 110,-82, 100,-93, 80,-95, 72,-108] }),
 		this.Goto({ area: 'intro2' }, { x: 50, y: -104, width: 8, height: 5 }),
@@ -114,6 +124,16 @@
 				other: ["that won't unlock it", "no good, it's locked"],
 			},
 		}),
+	]);
+	this.Area('bunny 1', [
+		this.Text('nuttin here yet!', { x: 0, y: 0 }),
+		this.Text('back', { x: 50, y: -104 }),
+		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+	]);
+	this.Area('gnome 1', [
+		this.Text('nuttin here yet!', { x: 0, y: 0 }),
+		this.Text('back', { x: 50, y: -104 }),
+		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 	]);
 
 	// start
