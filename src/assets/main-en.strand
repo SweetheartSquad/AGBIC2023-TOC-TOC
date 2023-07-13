@@ -77,35 +77,49 @@
 		this.Text('gnome 1', { x: 250, y: -104 }),
 		this.Goto({ area: 'gnome 1' }, { x: 250, y: -104, width: 80, height: 50 }),
 	]);
+
+	this.horsePoly = this.Poly({ verts: [-317,10, 323,10] });
 	this.Area('mouse 1', [
 		this.Prop({ texture: 'bg_ship', y: this.size.y/2, offset: -1000000 }),
-		// this.Poly({ width: 4, verts: [72,-108, -66,-109, -68,-93, -105,-92, -114,-82, -114,15, -105,27, -78,26, -70,40, -60,58, 62,59, 77,44, 79,17, 93,10, 109,-6, 110,-82, 100,-93, 80,-95, 72,-108] }),
-		this.Goto({ area: 'intro2' }, { x: 50, y: -104, width: 8, height: 5 }),
 
-		this.Npc({ body: 'mouse', x: -40, y: 40, roam: 50,
+
+		this.Npc({ name: 'cheese farmer', body: 'mouse', x: -40, y: 40, roam: 50,
 			use: {
-				undefined: ['"hi"', '"hello"', 'goto:test npc passage'],
-				coin: ['"is that for me?"', '"no thank you"'],
+				undefined: [`"my horse.."`, `"it won't go..."`],
+				'wind-up key': [`"that looks familiar.."`, `"i know this..."`],
+				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
+			},
+		}),
+		this.Item({ texture: 'wind-up key', x: 50, y: 150,
+			use: {
+				player: [`"looks like a key of some sort"`],
+			},
+		}),
+		this.Item({ texture: 'appley slice', x: 150, y: 150,
+			use: {
+				player: [`"i am mildly allergic to apple"`],
+			},
+		}),
+		this.Item({ texture: 'trash', x: -150, y: 150,
+			use: {
 			},
 		}),
 
-		this.Item({ texture: 'coin', x: 50, y: 150,
+		this.horsePoly,
+		this.Hotspot({ texture: 'cart', x: 50, y: 50,
 			use: {
-				key: ['key on coin'],
-				player: ['coin on player'],
+				undefined: [`that cart is in the way`, `it is too big for my little hands to move`],
+				'wind-up key': [`i dont see a spot for that here`],
+				other: [`no, that won't move the cart`],
 			},
 		}),
-		this.Item({ texture: 'key', x: 150, y: 150,
+
+		this.Hotspot({ texture: 'horse', x: -50, y: 50,
 			use: {
-				coin: ['coin on key'],
-				player: ['key on player'],
-			},
-		}),
-		this.Hotspot({ texture: 'lock', x: 50, y: 50,
-			use: {
-				undefined: ["it's locked", "it's a lock", "locked isn't it"],
-				key: ["goto:unlock"],
-				other: ["that won't unlock it", "no good, it's locked"],
+				undefined: [`"*neigh*"`, `that's horse`, `"*whinny*"`],
+				'wind-up key': [`goto:windup horse`],
+				'appley slice': [`"probably shouldn't... farmer might get mad"`],
+				other: [`i do not think the horse would like that`],
 			},
 		}),
 	]);
@@ -169,21 +183,62 @@ me
 ])[0]>>
 [[>close]]
 
-::unlock
-"i unlocked it!"
+
+
+
+
+
+
+
+
+// 88d8b.d8b. .d8888b. dP    dP .d8888b. .d8888b.
+// 88'`88'`88 88'  `88 88    88 Y8ooooo. 88ooood8
+// 88  88  88 88.  .88 88.  .88       88 88.  ...
+// dP  dP  dP `88888P' `88888P' `88888P' `88888P'
+::windup horse
+<<do this.scene.loseItem(true);>>
+<<do this.gameObject = this.scene.player>>
+"here you go"
+>
+<<do this.gameObject = this.scene.find('horse')>>
+*wind*
+>
+*wind-wind*
+>
+"*whinny*"
 <<do
-	this.Poof({ texture: 'wolfyRun', scale: 4, freq: 50, time: 1000, x: this.gameObject.transform.x, y: this.gameObject.transform.y });
-	this.destroy(this.gameObject);
-	this.scene.loseItem(true);
-	this.gameObject = this.scene.player;
+	this.destroy(this.horsePoly);
+	this.horsePoly = null;
+	const horse = this.scene.find('horse');
+	const cart = this.scene.find('cart');
+	this.tween(horse.transform, 'x', horse.transform.x - this.size.x, 1000, undefined, this.ease.cubicIn);
+	this.tween(cart.transform, 'x', cart.transform.x - this.size.x, 1000, undefined, this.ease.cubicIn);
 >>
+>
+<<do
+	const farmer = this.scene.find('cheese farmer');
+	this.gameObject = farmer;
+	farmer.roam.target.x -= this.size.x;
+>>
+"h-hey, my horse!!"
+>
+<<do this.gameObject = this.scene.player>>
+"at least the horse is out of the way..."
 [[>close]]
 
-::test npc passage
-"howdy"
->
-"do you need something?"
-[[>close]]
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ::The End
