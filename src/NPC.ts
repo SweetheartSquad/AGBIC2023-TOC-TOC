@@ -10,6 +10,8 @@ import {
 import { Roam } from './Scripts/Roam';
 
 export class NPC extends Character {
+	name: string;
+
 	roam: Roam;
 
 	btn?: Btn;
@@ -48,11 +50,12 @@ export class NPC extends Character {
 		this.roam.speed.x *= 0.004;
 		this.roam.speed.y *= 0.004;
 
+		this.name = name || options.body || '';
 		if (use) {
 			this.btn = new BtnItem({
 				gameObject: this,
 				use,
-				label: name || options.body || '',
+				label: this.name,
 			});
 			this.display.container.addChild(this.btn.display.container);
 			this.display.container.interactiveChildren = true;

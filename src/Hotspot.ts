@@ -2,6 +2,8 @@ import { BtnItem } from './BtnItem';
 import { Prop } from './Prop';
 
 export class Hotspot extends Prop {
+	name: string;
+
 	btn?: BtnItem;
 
 	use: ConstructorParameters<typeof Hotspot>[0]['use'];
@@ -18,12 +20,13 @@ export class Hotspot extends Prop {
 			...options,
 		});
 
+		this.name = label || options.texture;
 		this.use = use;
 
 		this.btn = new BtnItem({
 			gameObject: this,
 			use,
-			label: label || options.texture,
+			label: this.name,
 		});
 		this.display.container.addChild(this.btn.display.container);
 		this.display.container.interactiveChildren = true;
