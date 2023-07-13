@@ -44,10 +44,15 @@ export class BtnItem extends Btn {
 
 			const cycle = this.cycles[key] || 0;
 			this.cycles[key] = cycle + 1;
-			const currentSay = say[cycle % say.length];
+			let currentSay = say[cycle % say.length];
 			if (currentSay.startsWith('goto:')) {
 				scene.strand.goto(currentSay.replace('goto:', ''));
 			} else {
+				// focus on player instead of target
+				if (currentSay.startsWith('p:')) {
+					currentSay = currentSay.substring(2);
+					scene.strand.gameObject = scene.player;
+				}
 				// just say the line and lose the item
 				scene.dialogue.say(currentSay, [
 					{ text: '', action: () => scene.dialogue.close() },
