@@ -134,7 +134,7 @@ TOC TOC
 >start
 <<do
 	this.scene.dialogue.textText.style.fill = 0xffffff;
-	this.music('bgm');
+	// this.music('bgm');
 	this.show('').then(() => {this.goto('start2')});
 >>
 
@@ -149,9 +149,6 @@ this should never render
 
 ::choiceDefault
 continue
-
-::talk to {}
-talk to {}
 
 ::me
 me

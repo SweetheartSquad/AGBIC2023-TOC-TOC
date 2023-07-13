@@ -7,7 +7,6 @@ import {
 	SENSOR_INTERACTION,
 	SENSOR_PLAYER,
 } from './collision';
-import { getActiveScene } from './main';
 import { Roam } from './Scripts/Roam';
 
 export class NPC extends Character {
@@ -51,10 +50,7 @@ export class NPC extends Character {
 			this.btn = new BtnItem({
 				gameObject: this,
 				use,
-				label:
-					getActiveScene()
-						?.t('talk to {}')
-						.replace('{}', options.body || '') || '',
+				label: options.body || '',
 			});
 			this.display.container.addChild(this.btn.display.container);
 			this.display.container.interactiveChildren = true;
