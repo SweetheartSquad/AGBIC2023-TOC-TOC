@@ -141,7 +141,7 @@ export class UIDialogue extends GameObject {
 		this.sprChoices.anchor.x = 0;
 		this.sprChoices.anchor.y = 0;
 		this.containerChoices.addChild(this.sprChoices);
-		this.containerChoices.x = this.padding.left;
+		this.containerChoices.x = 0;
 		this.choices = [];
 		window.text = this.textText;
 		this.textText.y = 0;
@@ -377,6 +377,7 @@ export class UIDialogue extends GameObject {
 			t.accessibleHint = strText;
 			if (a.length === 1) {
 				t.accessibleTitle = 'continue';
+				t.alpha = 0;
 			} else {
 				t.accessibleTitle = (idx + 1).toString(10);
 			}
@@ -385,19 +386,19 @@ export class UIDialogue extends GameObject {
 			t.tabIndex = 0;
 
 			t.on('pointerover', () => {
-				t.alpha = 0.75;
+				if (t.alpha) t.alpha = 0.75;
 				this.selected = idx;
 			});
 			t.on('mouseover', () => {
-				t.alpha = 0.75;
+				if (t.alpha) t.alpha = 0.75;
 				this.selected = idx;
 			});
 			t.on('pointerout', () => {
-				t.alpha = 1;
+				if (t.alpha) t.alpha = 1;
 				this.selected = undefined;
 			});
 			t.on('mouseout', () => {
-				t.alpha = 1;
+				if (t.alpha) t.alpha = 1;
 				this.selected = undefined;
 			});
 			t.on('click', (event) => {
@@ -430,8 +431,7 @@ export class UIDialogue extends GameObject {
 			this.containerChoices.addChild(t);
 			return t;
 		});
-		this.containerChoices.y =
-			this.textText.height - this.containerChoices.height;
+		this.containerChoices.y = 0;
 
 		this.containerChoices.alpha = 0.0;
 		if (this.choices.length > 0) {
