@@ -52,6 +52,12 @@ export class GameScene {
 		return this.areas[this.area || ''];
 	}
 
+	find(name: string) {
+		return this.currentArea?.find(
+			(i) => (i as { name?: string }).name === name
+		);
+	}
+
 	player: Player;
 
 	onCollisionStart: (e: Matter.IEventCollision<Matter.Engine>) => void;
