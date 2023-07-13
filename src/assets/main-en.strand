@@ -108,9 +108,9 @@
 		this.horsePoly,
 		this.Hotspot({ texture: 'cart', x: 50, y: 50,
 			use: {
-				undefined: [`that cart is in the way`, `it is too big for my little hands to move`],
+				undefined: [`there's a cart in the way`, `p:"it is too big for my little hands to move"`],
 				'wind-up key': [`i dont see a spot for that here`],
-				other: [`no, that won't move the cart`],
+				other: [`that won't move the cart`],
 			},
 		}),
 
@@ -118,7 +118,7 @@
 			use: {
 				undefined: [`"*neigh*"`, `that's horse`, `"*whinny*"`],
 				'wind-up key': [`goto:windup horse`],
-				'appley slice': [`"probably shouldn't... farmer might get mad"`],
+				'appley slice': [`p:"probably shouldn't... farmer might get mad"`],
 				other: [`i do not think the horse would like that`],
 			},
 		}),
