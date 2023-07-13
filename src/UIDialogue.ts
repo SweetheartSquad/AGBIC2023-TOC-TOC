@@ -267,8 +267,6 @@ export class UIDialogue extends GameObject {
 			}
 		}
 
-		// early return (animation complete)
-		if (this.pos > this.strText.length) return;
 		this.posTime += game.app.ticker.deltaTime;
 		const prevPos = this.pos;
 		while (this.posTime > this.posDelay) {
