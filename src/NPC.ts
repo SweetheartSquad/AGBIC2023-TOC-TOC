@@ -15,10 +15,12 @@ export class NPC extends Character {
 	btn?: Btn;
 
 	constructor({
+		name,
 		roam = 0,
 		use,
 		...options
 	}: ConstructorParameters<typeof Character>[0] & {
+		name?: string;
 		use?: ConstructorParameters<typeof BtnItem>[0]['use'];
 		roam?: number;
 	}) {
@@ -50,7 +52,7 @@ export class NPC extends Character {
 			this.btn = new BtnItem({
 				gameObject: this,
 				use,
-				label: options.body || '',
+				label: name || options.body || '',
 			});
 			this.display.container.addChild(this.btn.display.container);
 			this.display.container.interactiveChildren = true;
