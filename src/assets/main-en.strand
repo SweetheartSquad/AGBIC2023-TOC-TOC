@@ -66,22 +66,6 @@
 		return gameObject;
 	};
 
-	// stop roam during dialogues
-	this.scene.dialogue.openo = this.scene.dialogue.open;
-	this.scene.dialogue.open = () => {
-		if (scene.currentArea) {
-			scene.currentArea.filter(i => i.roam).forEach(i => i.roam.active = false);
-		}
-		this.scene.dialogue.openo();
-	};
-	this.scene.dialogue.closeo = this.scene.dialogue.close;
-	this.scene.dialogue.close = () => {
-		if (scene.currentArea) {
-			scene.currentArea.filter(i => i.roam).forEach(i => i.roam.active = true);
-		}
-		this.scene.dialogue.closeo();
-	};
-
 	this.Area('empty', []);
 	this.Area('intro', [
 		this.Text('mouse 1', { x: 50, y: -104 }),
