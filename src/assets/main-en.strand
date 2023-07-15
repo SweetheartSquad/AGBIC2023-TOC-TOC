@@ -80,7 +80,7 @@
 
 	this.horsePoly = this.Poly({ verts: [-317,10, 323,10] });
 	this.Area('mouse 1', [
-		this.Prop({ texture: 'bg_ship', y: this.size.y/2, offset: -1000000 }),
+		this.Prop({ texture: 'bg_ship', y: this.size.y*1.1/2, offset: -1000000 }),
 
 
 		this.Npc({ name: 'cheese farmer', body: 'mouse', x: -40, y: 40, roam: 50,
