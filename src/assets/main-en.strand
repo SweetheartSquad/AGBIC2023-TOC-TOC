@@ -131,6 +131,9 @@
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
+		this.Npc({ name: 'sitting', body: 'mouse_sitting', x: -132, y: -120, shadow: false, bodyCollision: { isStatic: true },
+			use: {},
+		}),
 		this.Npc({ name: 'cheese farmer', body: 'mouse', x: -68, y: 72, bodyCollision: { isStatic: true },
 			use: {
 				undefined: [`"my horse.."`, `"it won't go..."`],

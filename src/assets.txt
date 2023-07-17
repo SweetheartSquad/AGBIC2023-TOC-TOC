@@ -22,6 +22,7 @@ textures/guyRun.x2.png
 textures/guyUp.x1.png
 
 textures/mouseIdle.x2.png
+textures/mouse_sittingIdle.x2.png
 textures/mouse_guard_tallIdle.x2.png
 textures/mouse_guard_shortIdle.x2.png
 
