@@ -14,8 +14,6 @@ textures/walk_cursor.x7.png
 
 audio/stepDefault.mp3
 textures/footprintDefault.png
-textures/title.png
-textures/title2.png
 
 textures/guyIdle.x2.png
 textures/guyRun.x2.png
@@ -32,11 +30,6 @@ textures/mouse_guard_forkIdle.x2.png
 textures/gnome_topIdle.x2.png
 textures/gnome_bottomIdle.x2.png
 
-textures/npcRun.x2.png
-textures/wolfyIdle.x2.png
-textures/wolfyRun.x2.png
-textures/supply.png
-
 textures/bg_gnome_puzzle.png
 textures/bg_gnome_ruins.png
 textures/bg_dustbun_saloon.png
@@ -47,8 +40,3 @@ textures/bg_mouse_town_center.png
 textures/bg_mouse_passage.png
 
 textures/glow.png
-
-textures/coin.png
-textures/key.png
-textures/key_carrying.png
-textures/lock.png
