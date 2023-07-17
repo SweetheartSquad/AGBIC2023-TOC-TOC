@@ -7,8 +7,8 @@ import { Body } from './Scripts/Body';
 import { Display } from './Scripts/Display';
 import { Roam } from './Scripts/Roam';
 import { Transform } from './Scripts/Transform';
-import { lerp, tex } from './utils';
 import { distance } from './VMath';
+import { lerp, tex } from './utils';
 
 const FLIP_EPSILON = 0.01;
 
@@ -71,6 +71,7 @@ export class Character extends GameObject {
 		shadow = true,
 		freq = 1 / 200,
 		colliderSize = 1,
+		flip = false,
 	}: {
 		body?: string;
 		expression?: string;
@@ -83,6 +84,7 @@ export class Character extends GameObject {
 		freq?: number;
 		colliderSize?: number;
 		outline?: boolean;
+		flip?: boolean;
 	}) {
 		super();
 
@@ -98,7 +100,7 @@ export class Character extends GameObject {
 		this.offset = ++offset;
 		this.bounce = 1;
 		this.running = false;
-		this.flipped = false;
+		this.flipped = flip;
 
 		if (shadow) {
 			const s = (this.shadow = new Sprite(tex('shadows')));
