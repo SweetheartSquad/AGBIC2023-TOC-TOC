@@ -195,6 +195,10 @@
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+
+		this.Npc({ name: 'sleepy', body: 'mouse_guard_sleepy', x: -112, y: 48, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'sleepy', body: 'mouse_guard_tall', x: 182, y: 40, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'sleepy', body: 'mouse_guard_fork', x: 240, y: 50, bodyCollision: { isStatic: true }, use: {}, }),
 	]);
 
 
