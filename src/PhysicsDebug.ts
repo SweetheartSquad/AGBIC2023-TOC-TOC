@@ -36,7 +36,7 @@ export class PhysicsDebug extends GameObject {
 				this.lastStatic = staticBodies.length;
 				this.graphicsStatic.clear();
 				this.graphicsStatic.beginFill(0x0000ff, 0.1);
-				this.graphicsStatic.lineStyle(1, 0xffffff, 0.5);
+				this.graphicsStatic.lineStyle(1, 0x999999, 0.5);
 				staticBodies.forEach(this.debugDrawStatic);
 				this.graphicsStatic.endFill();
 				this.graphicsStatic.cacheAsBitmap = true;
@@ -62,9 +62,9 @@ export class PhysicsDebug extends GameObject {
 		if (body.isSensor) {
 			g.beginFill(0xff0000, 0.1);
 		} else {
-			g.beginFill(0xffffff, 0.2);
+			g.beginFill(0x999999, 0.2);
 		}
-		g.lineStyle(1, 0xffffff, 0.5);
+		g.lineStyle(1, 0x999999, 0.5);
 		g.moveTo(
 			body.vertices[body.vertices.length - 1].x,
 			body.vertices[body.vertices.length - 1].y
