@@ -72,6 +72,7 @@ export class Character extends GameObject {
 		freq = 1 / 200,
 		colliderSize = 1,
 		flip = false,
+		tint,
 	}: {
 		body?: string;
 		expression?: string;
@@ -85,6 +86,7 @@ export class Character extends GameObject {
 		colliderSize?: number;
 		outline?: boolean;
 		flip?: boolean;
+		tint?: number;
 	}) {
 		super();
 
@@ -121,6 +123,7 @@ export class Character extends GameObject {
 		this.animation = 'Idle';
 		this.spr = new Sprite(tex(`${body}Idle`));
 		this.spr.name = `character ${body}`;
+		this.spr.tint = tint ?? 0xa49484;
 
 		this.spr.anchor.x = 0.5;
 		this.spr.anchor.y = 1.0;
