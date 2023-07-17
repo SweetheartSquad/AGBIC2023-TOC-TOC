@@ -30,6 +30,13 @@ textures/mouse_guard_forkIdle.x2.png
 textures/gnome_topIdle.x2.png
 textures/gnome_bottomIdle.x2.png
 
+textures/dustbun_demolition_sittingIdle.x2.png
+textures/dustbun_demolitionIdle.x2.png
+textures/dustbun_bossIdle.x2.png
+textures/dustbun_mook1Idle.x2.png
+textures/dustbun_mook2Idle.x2.png
+textures/dustbun_shopIdle.x2.png
+
 textures/bg_gnome_puzzle.png
 textures/bg_gnome_ruins.png
 textures/bg_dustbun_saloon.png

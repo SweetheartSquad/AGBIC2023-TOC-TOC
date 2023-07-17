@@ -109,6 +109,12 @@
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+
+		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', x: -176, y: 117, shadow: false, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'boss', body: 'dustbun_boss', x: 66, y: 29, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: 4, y: 73, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: 68, y: 98, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'shop', body: 'dustbun_shop', x: 194, y: 257, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
 	]);
 
 	this.Area('dustbun tracks', [
@@ -117,6 +123,11 @@
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+
+		this.Npc({ name: 'demolition', body: 'dustbun_demolition', x: -233, y: 160, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'boss', body: 'dustbun_boss', x: -296, y: 249, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: -131, y: 261, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: -162, y: 204, bodyCollision: { isStatic: true }, use: {}, }),
 	]);
 
 	this.Area('dustbun tracks exploded', [
@@ -125,6 +136,11 @@
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+
+		this.Npc({ name: 'demolition', body: 'dustbun_demolition', x: -233, y: 160, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'boss', body: 'dustbun_boss', x: -296, y: 249, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: -131, y: 261, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: -162, y: 204, bodyCollision: { isStatic: true }, use: {}, }),
 	]);
 
 	this.horsePoly = this.Poly({ verts: [-232,38, 54,185] });
