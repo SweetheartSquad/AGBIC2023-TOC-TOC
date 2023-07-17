@@ -178,6 +178,12 @@
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+
+		this.Npc({ name: 'guard upper', body: 'mouse', x: 172, y: -71, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'guard lower', body: 'mouse', x: 274, y: -1, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'juicebox', body: 'mouse', x: -192, y: 0, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'right', body: 'mouse', x: 288, y: 94, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'mouse', x: 153, y: 207, bodyCollision: { isStatic: true }, use: {}, }),
 	]);
 
 	this.Area('mouse passage', [
