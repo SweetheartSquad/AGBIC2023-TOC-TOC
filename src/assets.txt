@@ -26,9 +26,14 @@ textures/wolfyIdle.x2.png
 textures/wolfyRun.x2.png
 textures/supply.png
 
-textures/bg_parallax.png
-textures/bg_ship.png
-textures/bg_ship2.png
+textures/bg_gnome_puzzle.png
+textures/bg_gnome_ruins.png
+textures/bg_dustbun_saloon.png
+textures/bg_dustbun_tracks.png
+textures/bg_dustbun_tracks_exploded.png
+textures/bg_mouse_cart.png
+textures/bg_mouse_town_center.png
+textures/bg_mouse_passage.png
 
 textures/glow.png
 

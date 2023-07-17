@@ -68,19 +68,73 @@
 
 	this.Area('empty', []);
 	this.Area('intro', [
-		this.Text('mouse 1', { x: 50, y: -104 }),
-		this.Goto({ area: 'mouse 1' }, { x: 50, y: -104, width: 80, height: 50 }),
-		
-		this.Text('bunny 1', { x: 150, y: -104 }),
-		this.Goto({ area: 'bunny 1' }, { x: 150, y: -104, width: 80, height: 50 }),
-		
-		this.Text('gnome 1', { x: 250, y: -104 }),
-		this.Goto({ area: 'gnome 1' }, { x: 250, y: -104, width: 80, height: 50 }),
+		...([
+			'gnome puzzle',
+			'gnome ruins',
+			'dustbun saloon',
+			'dustbun tracks',
+			'dustbun tracks exploded',
+			'mouse cart',
+			'mouse town center',
+			'mouse passage',
+		].flatMap((i, idx) => [
+			this.Prop({ texture: 'glow', x: 80, y: -225 + 50*idx + 50 }),
+			this.Text(i, { x: 80, y: -225 + 50*idx }),
+			this.Goto({ area: i }, { x: 80, y: -200 + 50*idx, width: 80, height: 50 }),
+		])),
+	]);
+
+	this.Area('gnome puzzle', [
+		this.Prop({ texture: 'bg_gnome_puzzle', y: this.size.y*1.1/2, offset: -1000000 }),
+
+		this.Text('nuttin here yet!', { x: 0, y: 0 }),
+		this.Text('back', { x: 50, y: -104 }),
+		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+	]);
+
+	this.Area('gnome ruins', [
+		this.Prop({ texture: 'bg_gnome_ruins', y: this.size.y*1.1/2, offset: -1000000 }),
+
+		this.Text('nuttin here yet!', { x: 0, y: 0 }),
+		this.Text('back', { x: 50, y: -104 }),
+		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+	]);
+
+	this.Area('dustbun saloon', [
+		this.Prop({ texture: 'bg_dustbun_saloon', y: this.size.y*1.1/2, offset: -1000000 }),
+
+		this.Text('nuttin here yet!', { x: 0, y: 0 }),
+		this.Text('back', { x: 50, y: -104 }),
+		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+	]);
+
+	this.Area('dustbun tracks', [
+		this.Prop({ texture: 'bg_dustbun_tracks', y: this.size.y*1.1/2, offset: -1000000 }),
+
+		this.Text('nuttin here yet!', { x: 0, y: 0 }),
+		this.Text('back', { x: 50, y: -104 }),
+		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+	]);
+
+	this.Area('dustbun tracks exploded', [
+		this.Prop({ texture: 'bg_dustbun_tracks_exploded', y: this.size.y*1.1/2, offset: -1000000 }),
+
+		this.Text('nuttin here yet!', { x: 0, y: 0 }),
+		this.Text('back', { x: 50, y: -104 }),
+		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+	]);
+
+	this.Area('mouse cart', [
+		this.Prop({ texture: 'bg_mouse_cart', y: this.size.y*1.1/2, offset: -1000000 }),
+
+		this.Text('nuttin here yet!', { x: 0, y: 0 }),
+		this.Text('back', { x: 50, y: -104 }),
+		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 	]);
 
 	this.horsePoly = this.Poly({ verts: [-317,10, 323,10] });
-	this.Area('mouse 1', [
-		this.Prop({ texture: 'bg_ship', y: this.size.y*1.1/2, offset: -1000000 }),
+	this.Area('mouse town center', [
+		this.Prop({ texture: 'bg_mouse_town_center', y: this.size.y*1.1/2, offset: -1000000 }),
 
 
 		this.Npc({ name: 'cheese farmer', body: 'mouse', x: -40, y: 40, roam: 50,
@@ -123,16 +177,16 @@
 			},
 		}),
 	]);
-	this.Area('bunny 1', [
+
+	this.Area('mouse passage', [
+		this.Prop({ texture: 'bg_mouse_passage', y: this.size.y*1.1/2, offset: -1000000 }),
+
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 	]);
-	this.Area('gnome 1', [
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
-	]);
+
+
 
 	// start
 	this.started=true;
