@@ -90,6 +90,9 @@
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+		
+		this.Npc({ name: 'top', body: 'gnome_top', x: -162, y: 40, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: 195, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
 	]);
 
 	this.Area('gnome ruins', [

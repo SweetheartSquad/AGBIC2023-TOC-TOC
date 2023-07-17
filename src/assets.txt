@@ -29,6 +29,9 @@ textures/mouse_guard_shortIdle.x2.png
 textures/mouse_guard_sleepyIdle.x2.png
 textures/mouse_guard_forkIdle.x2.png
 
+textures/gnome_topIdle.x2.png
+textures/gnome_bottomIdle.x2.png
+
 textures/npcRun.x2.png
 textures/wolfyIdle.x2.png
 textures/wolfyRun.x2.png
