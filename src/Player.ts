@@ -108,7 +108,7 @@ export class Player extends Character {
 							Math.abs(this.bodyCollision.body.velocity.x)
 								? 1
 								: 0),
-					y: this.transform.y + (step === 3 ? 5 : -5),
+					y: this.transform.y,
 					freq: 1 / 200,
 					flip: this.flipped,
 					offset: -1000,
