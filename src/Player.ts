@@ -211,14 +211,24 @@ export class Player extends Character {
 		).camera.display.container.toLocal(relativeMousePos);
 		this.walkTo(targetPos.x, targetPos.y);
 		this.clickMove = true;
-		// eslint-disable-next-line no-new
-		new Poof({
+		const p = new Poof({
 			texture: 'walk_cursor',
-			freq: 1 / 100,
+			freq: 1 / 200,
+			time: 1000,
 			x: targetPos.x,
 			y: targetPos.y,
 			offset: 1000000,
+			tint: 0xa49484,
 		});
+		TweenManager.tween(
+			p.transform,
+			'y',
+			p.transform.y + 10,
+			500,
+			undefined,
+			eases.cubicOut
+		);
+		TweenManager.tween(p.spr, 'alpha', 0, 500, 1, eases.cubicIn);
 	}
 
 	cancelWalkToMouse() {

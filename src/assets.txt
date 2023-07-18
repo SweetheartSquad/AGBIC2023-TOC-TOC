@@ -10,7 +10,7 @@ textures/shadows.png
 
 audio/bgm.mp3
 audio/voiceDefault.mp3
-textures/walk_cursor.x7.png
+textures/walk_cursor.x2.png
 
 audio/stepDefault.mp3
 textures/footprintDefault.png
