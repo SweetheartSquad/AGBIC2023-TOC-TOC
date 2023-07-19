@@ -197,7 +197,6 @@
 	this.Area('mouse town center', [
 		this.Prop({ texture: 'bg_mouse_town_center', y: this.size.y*1.1/2, offset: -1000000 }),
 
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
