@@ -17,7 +17,7 @@ textures/footprintDefault.png
 
 textures/guyIdle.x2.png
 textures/guyRun.x2.png
-textures/guy_up.x1.png
+textures/guy_up.x2.png
 
 textures/mouse_basicIdle.x2.png
 textures/mouse_nervousIdle.x2.png
