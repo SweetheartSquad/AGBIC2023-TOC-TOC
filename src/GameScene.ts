@@ -170,6 +170,7 @@ export class GameScene {
 					this.dialogue.scrim(1, 300 * transition);
 					await delay(300 * transition);
 				}
+				this.dialogue.prompt();
 				this.goto(goto.plugin.goto);
 				if (transition) {
 					this.dialogue.scrim(0, 100 * transition);
