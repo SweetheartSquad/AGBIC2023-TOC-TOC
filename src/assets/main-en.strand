@@ -70,13 +70,13 @@
 	this.Area('intro', [
 		...([
 			'gnome puzzle',
-			'gnome ruins',
+			// 'gnome ruins',
 			'dustbun saloon',
-			'dustbun tracks',
-			'dustbun tracks exploded',
-			'mouse cart',
+			// 'dustbun tracks',
+			// 'dustbun tracks exploded',
+			// 'mouse cart',
 			'mouse town center',
-			'mouse passage',
+			// 'mouse passage',
 		].flatMap((i, idx) => [
 			this.Prop({ texture: 'glow', x: 80, y: -225 + 50*idx + 50 }),
 			this.Text(i, { x: 80, y: -225 + 50*idx }),
