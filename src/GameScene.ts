@@ -328,6 +328,7 @@ export class GameScene {
 			return;
 		}
 		this.loseItem();
+		this.player.expression = 'up';
 		let texT = tex(`${item.texture}_carrying`);
 		if (texT === tex('error')) texT = tex(item.texture);
 		this.sprCarrying.texture = texT;
@@ -346,6 +347,7 @@ export class GameScene {
 	}
 
 	loseItem(permanent = false) {
+		this.player.expression = '';
 		if (this.player.btn) {
 			this.player.btn.destroy();
 			this.player.btn = undefined;
