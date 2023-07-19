@@ -16,7 +16,7 @@ uniform vec3 bg;
 uniform vec3 fg;
 const vec2 ditherSize = vec2(64.0);
 const float scale = 1.0;
-const float posterize = 3.0;
+const float posterize = 4.0;
 const float brightness = 1.0;
 const float contrast = 1.0;
 
