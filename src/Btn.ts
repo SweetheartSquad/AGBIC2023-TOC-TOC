@@ -7,11 +7,21 @@ import { tex } from './utils';
 export class Btn extends GameObject {
 	display: Display;
 
+	spr: Sprite;
+
+	get enabled() {
+		return this.spr.interactive;
+	}
+
+	set enabled(value: boolean) {
+		this.spr.interactive = value;
+	}
+
 	constructor(public onClick: () => void, label: string) {
 		super();
 		this.scripts.push((this.display = new Display(this)));
 
-		const spr = new Sprite(tex(`blank`));
+		const spr = (this.spr = new Sprite(tex(`blank`)));
 		spr.name = 'button';
 		this.display.container.addChild(spr);
 		this.display.container.interactiveChildren = true;
