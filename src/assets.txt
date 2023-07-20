@@ -43,7 +43,17 @@ textures/bg_dustbun_saloon.png
 textures/bg_dustbun_tracks.png
 textures/bg_dustbun_tracks_exploded.png
 textures/bg_mouse_cart.png
-textures/bg_mouse_town_center.png
 textures/bg_mouse_passage.png
+
+textures/townCenter/bgLayer.png
+textures/townCenter/boardWalkCrayonSLLayer.png
+textures/townCenter/boardWalkCrayonSRLayer.png
+textures/townCenter/boardwalkLayer.png
+textures/townCenter/canLayer.png
+textures/townCenter/fountainLayer.png
+textures/townCenter/gatehouseLayer.png
+textures/townCenter/juiceboxLayer.png
+textures/townCenter/matchboxLayer.png
+textures/townCenter/toothpickLayer.png
 
 textures/glow.png
