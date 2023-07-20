@@ -195,26 +195,42 @@
 	]);
 
 	this.Area('mouse town center', [
-		this.Prop({ texture: 'bg_mouse_town_center', y: this.size.y*1.1/2, offset: -1000000 }),
+		this.Prop({ texture: 'bgLayer',                offset: -1000000 }),
+		this.Prop({ texture: 'blueCrayonLayer',        offset: -276 }),
+		this.Prop({ texture: 'boardWalkCrayonSLLayer', offset: -434 }),
+		this.Prop({ texture: 'boardWalkCrayonSRLayer', offset: -233 }),
+		this.Prop({ texture: 'boardwalkLayer',         offset: -0 }),
+		this.Prop({ texture: 'canBackLayer',           offset: -400 }),
+		this.Prop({ texture: 'canFrontLayer',          offset: -350 }),
+		this.Prop({ texture: 'fountainLayer',          offset: -229 }),
+		this.Prop({ texture: 'gatehouseLayer',         offset: -379 }),
+		this.Prop({ texture: 'toothpickLayer',         offset: -334 }),
 
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
+		this.Prop({ texture: 'matchboxLayer',          offset: -186 }),
+		
+		this.Prop({ texture: 'greenCrayonLayer',       offset: -339 }),
+		this.Prop({ texture: 'purpleCrayonLayer',      offset: -228 }),
+		this.Prop({ texture: 'redCrayonLayer',         offset: -292 }),
+		this.Prop({ texture: 'tinfoilRoomLayer',       offset: -0 }),
+		this.Prop({ texture: 'juiceboxLayer',          offset: -272 }),
+
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
-		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -68, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: 5, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -14, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'right', body: 'mouse_basic', x: 288, y: 94, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'bottom', body: 'mouse_basic', x: 153, y: 207, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -68-264, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: 5-264, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -14-264, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'right', body: 'mouse_basic', x: 288, y: 94-264, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'mouse_basic', x: 153, y: 207-264, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
 		
-		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -192, y: 92, bodyCollision: { isStatic: true },
+		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -192, y: 92-264, bodyCollision: { isStatic: true },
 			use: {
 				undefined: [`"my horse.."`, `"it won't go..."`],
 				'wind-up key': [`"that looks familiar.."`, `"i know this..."`],
 				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
 			},
 		}),
-		this.Npc({ name: 'sitting', body: 'mouse_sitting', x: 200, y: -110, shadow: false, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'sitting', body: 'mouse_sitting', x: 200, y: -110-264, shadow: false, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
 	]);
 
 	this.Area('mouse passage', [

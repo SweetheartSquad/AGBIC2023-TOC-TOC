@@ -1,10 +1,10 @@
 import { DisplayObject } from 'pixi.js';
-import { size } from './config';
 import { game } from './Game';
 import { GameObject } from './GameObject';
 import { Display } from './Scripts/Display';
-import { randRange, zero } from './utils';
 import * as VMath from './VMath';
+import { size } from './config';
+import { randRange, zero } from './utils';
 
 export class Camera extends GameObject {
 	display: Display;
@@ -22,7 +22,7 @@ export class Camera extends GameObject {
 		this.scripts.push((this.display = new Display(this)));
 		this.display.container.position.set(
 			Math.floor(size.x / 2),
-			Math.floor(size.y / 2)
+			Math.floor(size.y * 1.05)
 		);
 	}
 
