@@ -120,10 +120,6 @@
 		Rockspot({ spot: '31', x: -30, y: -89, }),
 		Rockspot({ spot: '32', x: 2, y: -130, }),
 		Rockspot({ spot: '33', x: 50, y: -155, }),
-
-		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: -69, flip: true, use: {
-			undefined: [`goto:remove-hat`],
-		}, }),
 	]);
 
 	this.Area('dustbun saloon', [
