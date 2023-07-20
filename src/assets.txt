@@ -29,6 +29,7 @@ textures/mouse_guard_forkIdle.x2.png
 
 textures/gnome_topIdle.x2.png
 textures/gnome_bottomIdle.x2.png
+textures/gnome_bottom_hatless.x2.png
 
 textures/dustbun_demolition_sittingIdle.x2.png
 textures/dustbun_demolitionIdle.x2.png
