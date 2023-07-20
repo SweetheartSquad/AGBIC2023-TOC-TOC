@@ -79,6 +79,16 @@
 		])),
 	]);
 
+	const Rockspot = ({ spot, x, y }) => {
+		const h = this.Hotspot({ label: 'spot', texture: 'rock spot', offset: -1, x, y, use: {
+			undefined: [`p:"looks like something could go here"`],
+			'big rock': ['goto:place big rock'],
+			'medium rock': ['goto:place medium rock'],
+			'little rock': ['goto:place little rock'],
+		}, });
+		h.spot = spot;
+		return h;
+	};
 	this.Area('gnome puzzle', [
 		this.Prop({ texture: 'bg_gnome_puzzle', offset: -1000000 }),
 
@@ -87,6 +97,30 @@
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 		
 		this.Npc({ name: 'top', body: 'gnome_top', x: -162, y: -224, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: -69, flip: true, use: {
+			undefined: [`goto:remove-hat`],
+		}, }),
+
+		this.Item({ texture: 'big rock', x: -81, y: -237, use: {
+			player: [`"it's a rock"`],
+		}, }),
+		this.Item({ texture: 'medium rock', x: -99, y: -213, use: {
+			player: [`"it's a rock"`],
+		}, }),
+		this.Item({ texture: 'little rock', x: -61, y: -319, use: {
+			player: [`"it's a rock"`],
+		}, }),
+		
+		Rockspot({ spot: '11', x: -135, y: -150, }),
+		Rockspot({ spot: '12', x: -84, y: -179, }),
+		Rockspot({ spot: '13', x: -45, y: -201, }),
+		Rockspot({ spot: '21', x: -87, y: -127, }),
+		Rockspot({ spot: '22', x: -38, y: -154, }),
+		Rockspot({ spot: '23', x: 8, y: -176, }),
+		Rockspot({ spot: '31', x: -30, y: -89, }),
+		Rockspot({ spot: '32', x: 2, y: -130, }),
+		Rockspot({ spot: '33', x: 50, y: -155, }),
+
 		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: -69, flip: true, use: {
 			undefined: [`goto:remove-hat`],
 		}, }),
@@ -216,6 +250,62 @@ me
 // `8888P88 dP    dP `88888P' dP  dP  dP `88888P'
 //      .88
 //  d8888P
+
+::place big rock
+<<do this.spot = this.gameObject; this.rock = this.scene.find('big rock');this.goto(this.gameObject.rock ? 'rock occupied' : 'place rock');>>
+
+::place medium rock
+<<do this.spot = this.gameObject; this.rock = this.scene.find('medium rock');this.goto(this.gameObject.rock ? 'rock occupied' : 'place rock');>>
+
+::place little rock
+<<do this.spot = this.gameObject; this.rock = this.scene.find('little rock');this.goto(this.gameObject.rock ? 'rock occupied' : 'place rock');>>
+
+::rock occupied
+<<do this.scene.loseItem(); >>
+<<do this.gameObject = this.scene.player>>
+<<if this.spot.rock === this.rock>>
+"i already put it there"
+<<else>>
+"there's already a rock there"
+<<endif>>
+[[>close]]
+
+::place rock
+<<do
+	const oldSpot = this.scene.findAll('spot').find(i => i.rock === this.rock);
+	if (oldSpot) oldSpot.rock = undefined;
+	this.spot.rock = this.rock;
+	this.scene.loseItem();
+	this.rock.transform.x = this.spot.transform.x;
+	this.rock.transform.y = this.spot.transform.y;
+>>
+<<do this.gameObject = this.scene.player>>
+"how about this?"
+>
+<<do this.gameObject = this.scene.find('top')>>
+<<if ['11','12','13'].includes(this.spot.spot)>>
+"<<print this.shuffle(['yes!', 'absolutely!'])[0]>>"
+<<else>>
+"<<print this.shuffle(['no way!', 'nuh uh!'])[0]>>"
+<<endif>>
+>
+<<do this.gameObject = this.scene.find('bottom')>>
+<<if ['21','22','23'].includes(this.spot.spot)>>
+"<<print this.shuffle(['right!', 'correct!'])[0]>>"
+<<else>>
+"<<print this.shuffle(['wrong!', 'incorrect!'])[0]>>"
+<<endif>>
+<<if this.scene.findAll('spot').filter(i => i.rock).map(i => i.spot).sort().join(',') === '31,32,33'>>
+[[>rock solved]]
+<<else>>
+[[>close]]
+<<endif>>
+
+::rock solved
+<<do this.scene.findAll('spot').forEach(i => { i.btn.enabled = false; })>>
+wow you did it gj
+[[>close]]
+
 ::remove-hat
 "oh thank you"
 >
