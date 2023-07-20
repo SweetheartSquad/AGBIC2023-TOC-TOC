@@ -195,16 +195,24 @@
 	]);
 
 	this.Area('mouse town center', [
-		this.Prop({ texture: 'bgLayer', y: 0, offset: -1000000 }),
-		this.Prop({ texture: 'boardWalkCrayonSLLayer', y: 0, offset: -434 }),
-		this.Prop({ texture: 'boardWalkCrayonSRLayer', y: 0, offset: -233 }),
-		this.Prop({ texture: 'canLayer', y: 0, offset: -350 }),
-		this.Prop({ texture: 'fountainLayer', y: 0, offset: -229 }),
-		this.Prop({ texture: 'gatehouseLayer', y: 0, offset: -379 }),
-		this.Prop({ texture: 'juiceboxLayer', y: 0, offset: -272 }),
-		this.Prop({ texture: 'matchboxLayer', y: 0, offset: -186 }),
-		this.Prop({ texture: 'toothpickLayer', y: 0, offset: -334 }),
-		this.Prop({ texture: 'boardwalkLayer', y: 0, offset: -289 }),
+		this.Prop({ texture: 'bgLayer',                offset: -1000000 }),
+		this.Prop({ texture: 'blueCrayonLayer',        offset: -276 }),
+		this.Prop({ texture: 'boardWalkCrayonSLLayer', offset: -434 }),
+		this.Prop({ texture: 'boardWalkCrayonSRLayer', offset: -233 }),
+		this.Prop({ texture: 'boardwalkLayer',         offset: -0 }),
+		this.Prop({ texture: 'canBackLayer',           offset: -400 }),
+		this.Prop({ texture: 'canFrontLayer',          offset: -350 }),
+		this.Prop({ texture: 'fountainLayer',          offset: -229 }),
+		this.Prop({ texture: 'gatehouseLayer',         offset: -379 }),
+		this.Prop({ texture: 'toothpickLayer',         offset: -334 }),
+
+		this.Prop({ texture: 'matchboxLayer',          offset: -186 }),
+		
+		this.Prop({ texture: 'greenCrayonLayer',       offset: -339 }),
+		this.Prop({ texture: 'purpleCrayonLayer',      offset: -228 }),
+		this.Prop({ texture: 'redCrayonLayer',         offset: -292 }),
+		this.Prop({ texture: 'tinfoilRoomLayer',       offset: -0 }),
+		this.Prop({ texture: 'juiceboxLayer',          offset: -272 }),
 
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),

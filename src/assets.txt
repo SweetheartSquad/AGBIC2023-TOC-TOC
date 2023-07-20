@@ -46,14 +46,20 @@ textures/bg_mouse_cart.png
 textures/bg_mouse_passage.png
 
 textures/townCenter/bgLayer.png
+textures/townCenter/blueCrayonLayer.png
 textures/townCenter/boardWalkCrayonSLLayer.png
 textures/townCenter/boardWalkCrayonSRLayer.png
 textures/townCenter/boardwalkLayer.png
-textures/townCenter/canLayer.png
+textures/townCenter/canBackLayer.png
+textures/townCenter/canFrontLayer.png
 textures/townCenter/fountainLayer.png
 textures/townCenter/gatehouseLayer.png
+textures/townCenter/greenCrayonLayer.png
 textures/townCenter/juiceboxLayer.png
 textures/townCenter/matchboxLayer.png
+textures/townCenter/purpleCrayonLayer.png
+textures/townCenter/redCrayonLayer.png
+textures/townCenter/tinfoilRoomLayer.png
 textures/townCenter/toothpickLayer.png
 
 textures/glow.png
