@@ -70,13 +70,8 @@
 	this.Area('intro', [
 		...([
 			'gnome puzzle',
-			// 'gnome ruins',
 			'dustbun saloon',
-			// 'dustbun tracks',
-			// 'dustbun tracks exploded',
-			// 'mouse cart',
 			'mouse town center',
-			// 'mouse passage',
 		].flatMap((i, idx) => [
 			this.Prop({ texture: 'glow', x: 80, y: -225 + 50*idx + 50 }),
 			this.Text(i, { x: 80, y: -225 + 50*idx }),
@@ -85,113 +80,28 @@
 	]);
 
 	this.Area('gnome puzzle', [
-		this.Prop({ texture: 'bg_gnome_puzzle', y: this.size.y*1.1/2, offset: -1000000 }),
+		this.Prop({ texture: 'bg_gnome_puzzle', offset: -1000000 }),
 
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 		
-		this.Npc({ name: 'top', body: 'gnome_top', x: -162, y: 40, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: 195, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-	]);
-
-	this.Area('gnome ruins', [
-		this.Prop({ texture: 'bg_gnome_ruins', y: this.size.y*1.1/2, offset: -1000000 }),
-
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+		this.Npc({ name: 'top', body: 'gnome_top', x: -162, y: -224, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: -69, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
 	]);
 
 	this.Area('dustbun saloon', [
-		this.Prop({ texture: 'bg_dustbun_saloon', y: this.size.y*1.1/2, offset: -1000000 }),
+		this.Prop({ texture: 'bg_dustbun_saloon', offset: -1000000 }),
 
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
-		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', x: -176, y: 117, shadow: false, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'boss', body: 'dustbun_boss', x: 66, y: 29, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: 4, y: 73, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: 68, y: 98, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'shop', body: 'dustbun_shop', x: 194, y: 257, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-	]);
-
-	this.Area('dustbun tracks', [
-		this.Prop({ texture: 'bg_dustbun_tracks', y: this.size.y*1.1/2, offset: -1000000 }),
-
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
-
-		this.Npc({ name: 'demolition', body: 'dustbun_demolition', x: -233, y: 160, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'boss', body: 'dustbun_boss', x: -296, y: 249, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: -131, y: 261, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: -162, y: 204, bodyCollision: { isStatic: true }, use: {}, }),
-	]);
-
-	this.Area('dustbun tracks exploded', [
-		this.Prop({ texture: 'bg_dustbun_tracks_exploded', y: this.size.y*1.1/2, offset: -1000000 }),
-
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
-
-		this.Npc({ name: 'demolition', body: 'dustbun_demolition', x: -233, y: 160, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'boss', body: 'dustbun_boss', x: -296, y: 249, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: -131, y: 261, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: -162, y: 204, bodyCollision: { isStatic: true }, use: {}, }),
-	]);
-
-	this.horsePoly = this.Poly({ verts: [-232,38, 54,185] });
-	this.Area('mouse cart', [
-		this.Prop({ texture: 'bg_mouse_cart', y: this.size.y*1.1/2, offset: -1000000 }),
-
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
-
-		this.Npc({ name: 'sitting', body: 'mouse_sitting', x: -132, y: -120, shadow: false, bodyCollision: { isStatic: true },
-			use: {},
-		}),
-		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -68, y: 72, bodyCollision: { isStatic: true },
-			use: {
-				undefined: [`"my horse.."`, `"it won't go..."`],
-				'wind-up key': [`"that looks familiar.."`, `"i know this..."`],
-				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
-			},
-		}),
-		this.Item({ texture: 'wind-up key', x: 50, y: 150,
-			use: {
-				player: [`"looks like a key of some sort"`],
-			},
-		}),
-		this.Item({ texture: 'appley slice', x: 150, y: 150,
-			use: {
-				player: [`"i am mildly allergic to apple"`],
-			},
-		}),
-		this.Item({ texture: 'trash', x: -150, y: 150,
-			use: {
-			},
-		}),
-
-		this.horsePoly,
-		this.Hotspot({ texture: 'cart', x: 50, y: 50,
-			use: {
-				undefined: [`there's a cart in the way`, `p:"it is too big for my little hands to move"`],
-				'wind-up key': [`i dont see a spot for that here`],
-				other: [`that won't move the cart`],
-			},
-		}),
-
-		this.Hotspot({ texture: 'horse', x: -50, y: 50,
-			use: {
-				undefined: [`"*neigh*"`, `that's horse`, `"*whinny*"`],
-				'wind-up key': [`goto:windup horse`],
-				'appley slice': [`p:"probably shouldn't... farmer might get mad"`],
-				other: [`i do not think the horse would like that`],
-			},
-		}),
+		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', x: -176, y: -147, shadow: false, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'boss', body: 'dustbun_boss', x: 66, y: -235, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: 4, y: -191, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: 68, y: -166, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'shop', body: 'dustbun_shop', x: 194, y: -7, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
 	]);
 
 	this.Area('mouse town center', [
