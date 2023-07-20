@@ -87,7 +87,9 @@
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 		
 		this.Npc({ name: 'top', body: 'gnome_top', x: -162, y: -224, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: -69, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: -69, flip: true, bodyCollision: { isStatic: true }, use: {
+			undefined: [`goto:remove-hat`],
+		}, }),
 	]);
 
 	this.Area('dustbun saloon', [
@@ -208,8 +210,18 @@ me
 
 
 
-
-
+// .d8888b. 88d888b. .d8888b. 88d8b.d8b. .d8888b.
+// 88'  `88 88'  `88 88'  `88 88'`88'`88 88ooood8
+// 88.  .88 88    88 88.  .88 88  88  88 88.  ...
+// `8888P88 dP    dP `88888P' dP  dP  dP `88888P'
+//      .88
+//  d8888P
+::remove-hat
+"oh thank you"
+>
+<<do this.gameObject.expression = 'hatless'>>
+"dont need this anymore"
+[[>close]]
 
 
 
