@@ -230,7 +230,7 @@
 				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
 			},
 		}),
-		this.Npc({ name: 'sitting', body: 'mouse_sitting', x: 200, y: -110-264, shadow: false, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'sitting', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
 	]);
 
 	this.Area('mouse passage', [
