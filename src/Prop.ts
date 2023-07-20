@@ -84,8 +84,8 @@ export class Prop extends GameObject {
 		this.transform.y = y;
 
 		if (offset) {
-			this.spr.y -= offset;
-			this.transform.y += offset;
+			// @ts-ignore
+			this.display.container.offset = offset;
 		}
 
 		this.display.updatePosition();

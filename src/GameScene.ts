@@ -21,8 +21,11 @@ import { delay, relativeMouse, removeFromArray, tex } from './utils';
 
 let player: Player;
 
-function depthCompare(a: DisplayObject, b: DisplayObject): number {
-	return a.y - b.y;
+function depthCompare(
+	a: DisplayObject & { offset?: number },
+	b: DisplayObject & { offset?: number }
+): number {
+	return a.y + (a.offset || 0) - (b.y + (b.offset || 0));
 }
 
 export class GameScene {
