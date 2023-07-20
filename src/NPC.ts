@@ -31,6 +31,7 @@ export class NPC extends Character {
 		super({
 			...options,
 			bodyCollision: {
+				isStatic: true,
 				...options.bodyCollision,
 				collisionFilter: {
 					category: BODY_ENVIRONMENT,

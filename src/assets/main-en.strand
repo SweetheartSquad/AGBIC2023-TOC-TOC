@@ -86,8 +86,8 @@
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 		
-		this.Npc({ name: 'top', body: 'gnome_top', x: -162, y: -224, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: -69, flip: true, bodyCollision: { isStatic: true }, use: {
+		this.Npc({ name: 'top', body: 'gnome_top', x: -162, y: -224, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: -69, flip: true, use: {
 			undefined: [`goto:remove-hat`],
 		}, }),
 	]);
@@ -99,11 +99,11 @@
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
-		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', x: -176, y: -147, shadow: false, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'boss', body: 'dustbun_boss', x: 66, y: -235, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: 4, y: -191, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: 68, y: -166, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'shop', body: 'dustbun_shop', x: 194, y: -7, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', x: -176, y: -147, shadow: false, flip: true, use: {}, }),
+		this.Npc({ name: 'boss', body: 'dustbun_boss', x: 66, y: -235, flip: true, use: {}, }),
+		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: 4, y: -191, use: {}, }),
+		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: 68, y: -166, use: {}, }),
+		this.Npc({ name: 'shop', body: 'dustbun_shop', x: 194, y: -7, flip: true, use: {}, }),
 	]);
 
 	this.Area('mouse town center', [
@@ -129,11 +129,11 @@
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
-		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -332, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -278, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'right', body: 'mouse_basic', x: 288, y: -170, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'bottom', body: 'mouse_basic', x: 153, y: -57, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -332, flip: true, use: {}, }),
+		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
+		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -278, use: {}, }),
+		this.Npc({ name: 'right', body: 'mouse_basic', x: 288, y: -170, flip: true, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'mouse_basic', x: 153, y: -57, flip: true, use: {}, }),
 		
 		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -192, y: -172, bodyCollision: { isStatic: true },
 			use: {
@@ -142,7 +142,7 @@
 				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
 			},
 		}),
-		this.Npc({ name: 'sitting', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'sitting', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, use: {}, }),
 	]);
 
 	this.Area('mouse passage', [
@@ -152,9 +152,9 @@
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
-		this.Npc({ name: 'sleepy', body: 'mouse_guard_sleepy', x: -112, y: 48, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'sleepy', body: 'mouse_guard_tall', x: 182, y: 40, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'sleepy', body: 'mouse_guard_fork', x: 240, y: 50, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'sleepy', body: 'mouse_guard_sleepy', x: -112, y: 48, use: {}, }),
+		this.Npc({ name: 'sleepy', body: 'mouse_guard_tall', x: 182, y: 40, use: {}, }),
+		this.Npc({ name: 'sleepy', body: 'mouse_guard_fork', x: 240, y: 50, use: {}, }),
 	]);
 
 
