@@ -127,17 +127,19 @@
 	]);
 
 	this.Area('dustbun saloon', [
-		this.Prop({ texture: 'bg_dustbun_saloon', offset: -1000000 }),
-
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
-		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', x: -176, y: -147, shadow: false, flip: true, use: {}, }),
-		this.Npc({ name: 'boss', body: 'dustbun_boss', x: 66, y: -235, flip: true, use: {}, }),
-		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: 4, y: -191, use: {}, }),
-		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: 68, y: -166, use: {}, }),
-		this.Npc({ name: 'shop', body: 'dustbun_shop', x: 194, y: -7, flip: true, use: {}, }),
+		this.Prop({ texture: 'heist_bg', scale: 0.5,     offset: -1000000 }),
+		this.Prop({ texture: 'heist_vault', scale: 0.5,  offset: -454/2 }),
+		this.Prop({ texture: 'heist_window', scale: 0.5, offset: -554/2 }),
+		this.Prop({ texture: 'heist_fg', scale: 0.5,     offset: 1000000 }),
+
+		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', x: -55, y: -185, shadow: false, flip: true, use: {}, }),
+		this.Npc({ name: 'boss', body: 'dustbun_boss', x: 166, y: -235, flip: true, use: {}, }),
+		this.Npc({ name: 'mook 1', body: 'dustbun_mook1', x: 84, y: -186, use: {}, }),
+		this.Npc({ name: 'mook 2', body: 'dustbun_mook2', x: -139, y: -115, use: {}, }),
+		this.Npc({ name: 'shop', body: 'dustbun_shop', offset: -100, x: 94, y: -247, use: {}, }),
 	]);
 
 	this.Area('mouse town center', [

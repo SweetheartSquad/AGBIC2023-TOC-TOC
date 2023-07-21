@@ -50,6 +50,11 @@ textures/dustbun_mook1Idle.x2.png
 textures/dustbun_mook2Idle.x2.png
 textures/dustbun_shopIdle.x2.png
 
+textures/heist/heist_bg.png
+textures/heist/heist_fg.png
+textures/heist/heist_vault.png
+textures/heist/heist_window.png
+
 textures/bg_gnome_ruins.png
 textures/bg_dustbun_saloon.png
 textures/bg_dustbun_tracks.png
