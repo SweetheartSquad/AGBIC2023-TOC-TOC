@@ -101,7 +101,7 @@
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 		
 		this.Npc({ name: 'top', body: 'gnome_top', x: -162, y: -224, use: {}, }),
-		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: -69, flip: true, use: {
+		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 180, y: -100, flip: true, use: {
 			undefined: [`goto:remove-hat`],
 		}, }),
 
