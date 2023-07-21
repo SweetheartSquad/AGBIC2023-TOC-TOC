@@ -53,6 +53,7 @@ textures/dustbun_shopIdle.x2.png
 textures/heist/heist_bg.png
 textures/heist/heist_fg.png
 textures/heist/heist_vault.png
+textures/heist/heist_vault_door.png
 textures/heist/heist_window.png
 
 textures/bg_gnome_ruins.png

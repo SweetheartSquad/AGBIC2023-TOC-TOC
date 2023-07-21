@@ -131,9 +131,15 @@
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
 		this.Prop({ texture: 'heist_bg', scale: 0.5,     offset: -1000000 }),
-		this.Prop({ texture: 'heist_vault', scale: 0.5,  offset: -454/2 }),
+		this.Prop({ texture: 'heist_vault', scale: 0.5,  offset: -504/2 }),
 		this.Prop({ texture: 'heist_window', scale: 0.5, offset: -554/2 }),
 		this.Prop({ texture: 'heist_fg', scale: 0.5,     offset: 1000000 }),
+		
+		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',
+			x: -340/2,
+			y: -304/2,
+			scale: 0.5,  offset: (-454+304)/2, use: {
+		}, }),
 
 		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', x: -55, y: -185, shadow: false, flip: true, use: {}, }),
 		this.Npc({ name: 'boss', body: 'dustbun_boss', x: 166, y: -235, flip: true, use: {}, }),
