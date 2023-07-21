@@ -56,13 +56,6 @@ textures/heist/heist_vault.png
 textures/heist/heist_vault_door.png
 textures/heist/heist_window.png
 
-textures/bg_gnome_ruins.png
-textures/bg_dustbun_saloon.png
-textures/bg_dustbun_tracks.png
-textures/bg_dustbun_tracks_exploded.png
-textures/bg_mouse_cart.png
-textures/bg_mouse_passage.png
-
 textures/townCenter/bgLayer.png
 textures/townCenter/blueCrayonLayer.png
 textures/townCenter/boardWalkCrayonSLLayer.png
