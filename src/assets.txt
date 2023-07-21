@@ -27,6 +27,14 @@ textures/mouse_guard_shortIdle.x2.png
 textures/mouse_guard_sleepyIdle.x2.png
 textures/mouse_guard_forkIdle.x2.png
 
+
+textures/gnomePuzzle/bg_gnome_puzzle_closed_BACK.png
+textures/gnomePuzzle/bg_gnome_puzzle_FORE.png
+textures/gnomePuzzle/bg_gnome_puzzle_open_BACK.png
+textures/gnomePuzzle/bg_gnome_puzzle_worm.png
+textures/gnomePuzzle/bg_gnome_puzzle_worm_gone.png
+textures/gnomePuzzle/stone_tile.png
+
 textures/gnome_topIdle.x2.png
 textures/gnome_bottomIdle.x2.png
 textures/gnome_bottom_hatless.x2.png
@@ -34,7 +42,6 @@ textures/gnome_bottom_hatless.x2.png
 textures/big rock.png
 textures/medium rock.png
 textures/little rock.png
-textures/rock spot.png
 
 textures/dustbun_demolition_sittingIdle.x2.png
 textures/dustbun_demolitionIdle.x2.png
@@ -43,7 +50,6 @@ textures/dustbun_mook1Idle.x2.png
 textures/dustbun_mook2Idle.x2.png
 textures/dustbun_shopIdle.x2.png
 
-textures/bg_gnome_puzzle.png
 textures/bg_gnome_ruins.png
 textures/bg_dustbun_saloon.png
 textures/bg_dustbun_tracks.png

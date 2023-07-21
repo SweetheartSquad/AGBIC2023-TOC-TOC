@@ -80,7 +80,7 @@
 	]);
 
 	const Rockspot = ({ spot, x, y }) => {
-		const h = this.Hotspot({ label: 'spot', texture: 'rock spot', offset: -1, x, y, use: {
+		const h = this.Hotspot({ label: 'spot', texture: 'stone_tile', offset: -100, x, y, use: {
 			undefined: [`p:"looks like something could go here"`],
 			'big rock': ['goto:place big rock'],
 			'medium rock': ['goto:place medium rock'],
@@ -90,7 +90,11 @@
 		return h;
 	};
 	this.Area('gnome puzzle', [
-		this.Prop({ texture: 'bg_gnome_puzzle', offset: -1000000 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_closed_BACK', offset: -1000000 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_FORE', offset: 1000000 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_open_BACK', offset: -1000000 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_worm', offset: 0 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_worm_gone', offset: 0 }),
 
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
@@ -111,15 +115,15 @@
 			player: [`"it's a rock"`],
 		}, }),
 		
-		Rockspot({ spot: '11', x: -135, y: -150, }),
-		Rockspot({ spot: '12', x: -84, y: -179, }),
-		Rockspot({ spot: '13', x: -45, y: -201, }),
-		Rockspot({ spot: '21', x: -87, y: -127, }),
-		Rockspot({ spot: '22', x: -38, y: -154, }),
-		Rockspot({ spot: '23', x: 8, y: -176, }),
-		Rockspot({ spot: '31', x: -30, y: -89, }),
-		Rockspot({ spot: '32', x: 2, y: -130, }),
-		Rockspot({ spot: '33', x: 50, y: -155, }),
+		Rockspot({ spot: '11', x: -110, y: -125, }),
+		Rockspot({ spot: '12', x: -64,  y: -149, }),
+		Rockspot({ spot: '13', x: -25,  y: -171, }),
+		Rockspot({ spot: '21', x: -67,  y: -97, }),
+		Rockspot({ spot: '22', x: -23,  y: -121, }),
+		Rockspot({ spot: '23', x: 23,   y: -146, }),
+		Rockspot({ spot: '31', x: -20,  y: -69, }),
+		Rockspot({ spot: '32', x: 27,   y: -95, }),
+		Rockspot({ spot: '33', x: 70,   y: -120, }),
 	]);
 
 	this.Area('dustbun saloon', [
