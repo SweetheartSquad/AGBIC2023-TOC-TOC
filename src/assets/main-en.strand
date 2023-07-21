@@ -139,6 +139,7 @@
 			x: -340/2,
 			y: -304/2,
 			scale: 0.5,  offset: (-454+304)/2, use: {
+			undefined: ['goto:open vault'],
 		}, }),
 
 		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', x: -55, y: -185, shadow: false, flip: true, use: {}, }),
@@ -319,6 +320,24 @@ wow you did it gj
 >
 <<do this.gameObject.expression = 'hatless'>>
 "dont need this anymore"
+[[>close]]
+
+
+
+
+//       dP                     dP   dP
+//       88                     88   88
+// .d888b88 dP    dP .d8888b. d8888P 88d888b. dP    dP 88d888b.
+// 88'  `88 88    88 Y8ooooo.   88   88'  `88 88    88 88'  `88
+// 88.  .88 88.  .88       88   88   88.  .88 88.  .88 88    88
+// `88888P8 `88888P' `88888P'   dP   88Y8888' `88888P' dP    dP
+
+::open vault
+<<do
+	this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 50, 1500, undefined, this.ease.cubicInOut);
+	this.tween(this.gameObject.transform, 'y', this.gameObject.transform.y - 25, 1500, undefined, this.ease.cubicInOut);
+>>
+open
 [[>close]]
 
 
