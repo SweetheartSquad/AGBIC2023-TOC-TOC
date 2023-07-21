@@ -100,8 +100,8 @@
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 		
-		this.Npc({ name: 'top', body: 'gnome_top', x: -162, y: -224, use: {}, }),
-		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 180, y: -100, flip: true, use: {
+		this.Npc({ name: 'top', body: 'gnome_top', tint: 0xcd836f, x: -162, y: -224, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'gnome_bottom', tint: 0x6f79cd, x: 180, y: -100, flip: true, use: {
 			undefined: [`goto:remove-hat`],
 		}, }),
 
