@@ -70,13 +70,8 @@
 	this.Area('intro', [
 		...([
 			'gnome puzzle',
-			// 'gnome ruins',
 			'dustbun saloon',
-			// 'dustbun tracks',
-			// 'dustbun tracks exploded',
-			// 'mouse cart',
 			'mouse town center',
-			// 'mouse passage',
 		].flatMap((i, idx) => [
 			this.Prop({ texture: 'glow', x: 80, y: -225 + 50*idx + 50 }),
 			this.Text(i, { x: 80, y: -225 + 50*idx }),
@@ -84,114 +79,74 @@
 		])),
 	]);
 
+	const Rockspot = ({ spot, x, y }) => {
+		const h = this.Hotspot({ label: 'spot', texture: 'stone_tile', offset: -100, x, y, use: {
+			undefined: [`p:"looks like something could go here"`],
+			'big rock': ['goto:place big rock'],
+			'medium rock': ['goto:place medium rock'],
+			'little rock': ['goto:place little rock'],
+		}, });
+		h.spot = spot;
+		return h;
+	};
 	this.Area('gnome puzzle', [
-		this.Prop({ texture: 'bg_gnome_puzzle', y: this.size.y*1.1/2, offset: -1000000 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_closed_BACK', offset: -1000000 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_FORE', offset: 1000000 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_open_BACK', offset: -1000000 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_worm', offset: 0 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_worm_gone', offset: 0 }),
 
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 		
-		this.Npc({ name: 'top', body: 'gnome_top', x: -162, y: 40, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'bottom', body: 'gnome_bottom', x: 234, y: 195, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-	]);
+		this.Npc({ name: 'top', body: 'gnome_top', tint: 0xcd836f, x: -162, y: -224, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'gnome_bottom', tint: 0x6f79cd, x: 180, y: -100, flip: true, use: {
+			undefined: [`goto:remove-hat`],
+		}, }),
 
-	this.Area('gnome ruins', [
-		this.Prop({ texture: 'bg_gnome_ruins', y: this.size.y*1.1/2, offset: -1000000 }),
-
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+		this.Item({ texture: 'big rock', x: -81, y: -237, use: {
+			player: [`"it's a rock"`],
+		}, }),
+		this.Item({ texture: 'medium rock', x: -99, y: -213, use: {
+			player: [`"it's a rock"`],
+		}, }),
+		this.Item({ texture: 'little rock', x: -61, y: -319, use: {
+			player: [`"it's a rock"`],
+		}, }),
+		
+		Rockspot({ spot: '11', x: -110, y: -125, }),
+		Rockspot({ spot: '12', x: -64,  y: -149, }),
+		Rockspot({ spot: '13', x: -25,  y: -171, }),
+		Rockspot({ spot: '21', x: -67,  y: -97, }),
+		Rockspot({ spot: '22', x: -23,  y: -121, }),
+		Rockspot({ spot: '23', x: 23,   y: -146, }),
+		Rockspot({ spot: '31', x: -20,  y: -69, }),
+		Rockspot({ spot: '32', x: 27,   y: -95, }),
+		Rockspot({ spot: '33', x: 70,   y: -120, }),
 	]);
 
 	this.Area('dustbun saloon', [
-		this.Prop({ texture: 'bg_dustbun_saloon', y: this.size.y*1.1/2, offset: -1000000 }),
-
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
-		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', x: -176, y: 117, shadow: false, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'boss', body: 'dustbun_boss', x: 66, y: 29, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: 4, y: 73, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: 68, y: 98, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'shop', body: 'dustbun_shop', x: 194, y: 257, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-	]);
+		this.Prop({ texture: 'heist_bg', scale: 0.5,     offset: -1000000 }),
+		this.Prop({ texture: 'heist_vault', scale: 0.5,  offset: -504/2 }),
+		this.Prop({ texture: 'heist_window', scale: 0.5, offset: -554/2 }),
+		this.Prop({ texture: 'heist_fg', scale: 0.5,     offset: 1000000 }),
+		
+		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',
+			x: -340/2,
+			y: -304/2,
+			scale: 0.5,  offset: (-454+304)/2, use: {
+			undefined: ['goto:open vault'],
+		}, }),
 
-	this.Area('dustbun tracks', [
-		this.Prop({ texture: 'bg_dustbun_tracks', y: this.size.y*1.1/2, offset: -1000000 }),
-
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
-
-		this.Npc({ name: 'demolition', body: 'dustbun_demolition', x: -233, y: 160, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'boss', body: 'dustbun_boss', x: -296, y: 249, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: -131, y: 261, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: -162, y: 204, bodyCollision: { isStatic: true }, use: {}, }),
-	]);
-
-	this.Area('dustbun tracks exploded', [
-		this.Prop({ texture: 'bg_dustbun_tracks_exploded', y: this.size.y*1.1/2, offset: -1000000 }),
-
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
-
-		this.Npc({ name: 'demolition', body: 'dustbun_demolition', x: -233, y: 160, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'boss', body: 'dustbun_boss', x: -296, y: 249, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook1', body: 'dustbun_mook1', x: -131, y: 261, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'mook2', body: 'dustbun_mook2', x: -162, y: 204, bodyCollision: { isStatic: true }, use: {}, }),
-	]);
-
-	this.horsePoly = this.Poly({ verts: [-232,38, 54,185] });
-	this.Area('mouse cart', [
-		this.Prop({ texture: 'bg_mouse_cart', y: this.size.y*1.1/2, offset: -1000000 }),
-
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
-
-		this.Npc({ name: 'sitting', body: 'mouse_sitting', x: -132, y: -120, shadow: false, bodyCollision: { isStatic: true },
-			use: {},
-		}),
-		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -68, y: 72, bodyCollision: { isStatic: true },
-			use: {
-				undefined: [`"my horse.."`, `"it won't go..."`],
-				'wind-up key': [`"that looks familiar.."`, `"i know this..."`],
-				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
-			},
-		}),
-		this.Item({ texture: 'wind-up key', x: 50, y: 150,
-			use: {
-				player: [`"looks like a key of some sort"`],
-			},
-		}),
-		this.Item({ texture: 'appley slice', x: 150, y: 150,
-			use: {
-				player: [`"i am mildly allergic to apple"`],
-			},
-		}),
-		this.Item({ texture: 'trash', x: -150, y: 150,
-			use: {
-			},
-		}),
-
-		this.horsePoly,
-		this.Hotspot({ texture: 'cart', x: 50, y: 50,
-			use: {
-				undefined: [`there's a cart in the way`, `p:"it is too big for my little hands to move"`],
-				'wind-up key': [`i dont see a spot for that here`],
-				other: [`that won't move the cart`],
-			},
-		}),
-
-		this.Hotspot({ texture: 'horse', x: -50, y: 50,
-			use: {
-				undefined: [`"*neigh*"`, `that's horse`, `"*whinny*"`],
-				'wind-up key': [`goto:windup horse`],
-				'appley slice': [`p:"probably shouldn't... farmer might get mad"`],
-				other: [`i do not think the horse would like that`],
-			},
-		}),
+		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', x: -55, y: -185, shadow: false, flip: true, use: {}, }),
+		this.Npc({ name: 'boss', body: 'dustbun_boss', x: 166, y: -235, flip: true, use: {}, }),
+		this.Npc({ name: 'mook 1', body: 'dustbun_mook1', x: 84, y: -186, use: {}, }),
+		this.Npc({ name: 'mook 2', body: 'dustbun_mook2', x: -139, y: -115, use: {}, }),
+		this.Npc({ name: 'shop', body: 'dustbun_shop', offset: -100, x: 94, y: -247, use: {}, }),
 	]);
 
 	this.Area('mouse town center', [
@@ -217,20 +172,20 @@
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
-		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -68-264, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: 5-264, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -14-264, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'right', body: 'mouse_basic', x: 288, y: 94-264, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'bottom', body: 'mouse_basic', x: 153, y: 207-264, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -332, flip: true, use: {}, }),
+		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
+		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -278, use: {}, }),
+		this.Npc({ name: 'right', body: 'mouse_basic', x: 288, y: -170, flip: true, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'mouse_basic', x: 153, y: -57, flip: true, use: {}, }),
 		
-		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -192, y: 92-264, bodyCollision: { isStatic: true },
+		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -192, y: -172, bodyCollision: { isStatic: true },
 			use: {
 				undefined: [`"my horse.."`, `"it won't go..."`],
 				'wind-up key': [`"that looks familiar.."`, `"i know this..."`],
 				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
 			},
 		}),
-		this.Npc({ name: 'sitting', body: 'mouse_sitting', x: 200, y: -110-264, shadow: false, flip: true, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'sitting', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, use: {}, }),
 	]);
 
 	this.Area('mouse passage', [
@@ -240,9 +195,9 @@
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
-		this.Npc({ name: 'sleepy', body: 'mouse_guard_sleepy', x: -112, y: 48, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'sleepy', body: 'mouse_guard_tall', x: 182, y: 40, bodyCollision: { isStatic: true }, use: {}, }),
-		this.Npc({ name: 'sleepy', body: 'mouse_guard_fork', x: 240, y: 50, bodyCollision: { isStatic: true }, use: {}, }),
+		this.Npc({ name: 'sleepy', body: 'mouse_guard_sleepy', x: -112, y: 48, use: {}, }),
+		this.Npc({ name: 'sleepy', body: 'mouse_guard_tall', x: 182, y: 40, use: {}, }),
+		this.Npc({ name: 'sleepy', body: 'mouse_guard_fork', x: 240, y: 50, use: {}, }),
 	]);
 
 
@@ -298,8 +253,99 @@ me
 
 
 
+// .d8888b. 88d888b. .d8888b. 88d8b.d8b. .d8888b.
+// 88'  `88 88'  `88 88'  `88 88'`88'`88 88ooood8
+// 88.  .88 88    88 88.  .88 88  88  88 88.  ...
+// `8888P88 dP    dP `88888P' dP  dP  dP `88888P'
+//      .88
+//  d8888P
+
+::place big rock
+<<do this.spot = this.gameObject; this.rock = this.scene.find('big rock');this.goto(this.gameObject.rock ? 'rock occupied' : 'place rock');>>
+
+::place medium rock
+<<do this.spot = this.gameObject; this.rock = this.scene.find('medium rock');this.goto(this.gameObject.rock ? 'rock occupied' : 'place rock');>>
+
+::place little rock
+<<do this.spot = this.gameObject; this.rock = this.scene.find('little rock');this.goto(this.gameObject.rock ? 'rock occupied' : 'place rock');>>
+
+::rock occupied
+<<do this.scene.loseItem(); >>
+<<do this.gameObject = this.scene.player>>
+<<if this.spot.rock === this.rock>>
+"i already put it there"
+<<else>>
+"there's already a rock there"
+<<endif>>
+[[>close]]
+
+::place rock
+<<do
+	const oldSpot = this.scene.findAll('spot').find(i => i.rock === this.rock);
+	if (oldSpot) oldSpot.rock = undefined;
+	this.spot.rock = this.rock;
+	this.scene.loseItem();
+	this.rock.transform.x = this.spot.transform.x;
+	this.rock.transform.y = this.spot.transform.y;
+>>
+<<do this.gameObject = this.scene.player>>
+"how about this?"
+>
+<<do this.gameObject = this.scene.find('top')>>
+<<if ['11','12','13'].includes(this.spot.spot)>>
+"<<print this.shuffle(['yes!', 'absolutely!'])[0]>>"
+<<else>>
+"<<print this.shuffle(['no way!', 'nuh uh!'])[0]>>"
+<<endif>>
+>
+<<do this.gameObject = this.scene.find('bottom')>>
+<<if ['21','22','23'].includes(this.spot.spot)>>
+"<<print this.shuffle(['right!', 'correct!'])[0]>>"
+<<else>>
+"<<print this.shuffle(['wrong!', 'incorrect!'])[0]>>"
+<<endif>>
+<<if this.scene.findAll('spot').filter(i => i.rock).map(i => i.spot).sort().join(',') === '31,32,33'>>
+[[>rock solved]]
+<<else>>
+[[>close]]
+<<endif>>
+
+::rock solved
+<<do this.scene.findAll('spot').forEach(i => { i.btn.enabled = false; })>>
+wow you did it gj
+[[>close]]
+
+::remove-hat
+"oh thank you"
+>
+<<do this.gameObject.expression = 'hatless'>>
+"dont need this anymore"
+[[>close]]
 
 
+
+
+//       dP                     dP   dP
+//       88                     88   88
+// .d888b88 dP    dP .d8888b. d8888P 88d888b. dP    dP 88d888b.
+// 88'  `88 88    88 Y8ooooo.   88   88'  `88 88    88 88'  `88
+// 88.  .88 88.  .88       88   88   88.  .88 88.  .88 88    88
+// `88888P8 `88888P' `88888P'   dP   88Y8888' `88888P' dP    dP
+
+::open vault
+<<do
+	if (this.gameObject.open) {
+		this.gameObject.open = false;
+		this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x - 50, 1500, undefined, this.ease.cubicInOut);
+		this.tween(this.gameObject.transform, 'y', this.gameObject.transform.y + 25, 1500, undefined, this.ease.cubicInOut);
+	} else {
+		this.gameObject.open = true;
+		this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 50, 1500, undefined, this.ease.cubicInOut);
+		this.tween(this.gameObject.transform, 'y', this.gameObject.transform.y - 25, 1500, undefined, this.ease.cubicInOut);
+	}
+>>
+open
+[[>close]]
 
 
 

@@ -20,15 +20,18 @@ export class NPC extends Character {
 		name,
 		roam = 0,
 		use,
+		offset = 0,
 		...options
 	}: ConstructorParameters<typeof Character>[0] & {
 		name?: string;
 		use?: ConstructorParameters<typeof BtnItem>[0]['use'];
 		roam?: number;
+		offset?: number;
 	}) {
 		super({
 			...options,
 			bodyCollision: {
+				isStatic: true,
 				...options.bodyCollision,
 				collisionFilter: {
 					category: BODY_ENVIRONMENT,
@@ -49,6 +52,11 @@ export class NPC extends Character {
 		this.roam.target.y = this.transform.y;
 		this.roam.speed.x *= 0.004;
 		this.roam.speed.y *= 0.004;
+
+		if (offset) {
+			// @ts-ignore
+			this.display.container.offset = offset;
+		}
 
 		this.name = name || options.body || '';
 		if (use) {
