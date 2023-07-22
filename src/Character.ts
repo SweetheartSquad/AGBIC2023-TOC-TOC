@@ -296,4 +296,20 @@ export class Character extends GameObject {
 		this.bodyCollision.setPosition(x, y);
 		this.updatePosition();
 	}
+
+	get x() {
+		return this.transform.x;
+	}
+
+	set x(value: number) {
+		this.setPosition(value, this.transform.y);
+	}
+
+	get y() {
+		return this.transform.y;
+	}
+
+	set y(value: number) {
+		this.setPosition(this.transform.x, value);
+	}
 }
