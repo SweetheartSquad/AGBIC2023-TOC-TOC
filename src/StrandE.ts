@@ -23,6 +23,7 @@ import { Prop } from './Prop';
 import { PropParallax } from './PropParallax';
 import { Display } from './Scripts/Display';
 import { Transform } from './Scripts/Transform';
+import { Updater } from './Scripts/Updater';
 import { storage } from './Storage';
 import { TweenManager } from './Tweens';
 import { size } from './config';
@@ -308,6 +309,12 @@ export class StrandE extends Strand {
 
 	Audio(...args: ConstructorParameters<typeof AudioSpatial>) {
 		return new AudioSpatial(...args);
+	}
+
+	Updater(cb: ConstructorParameters<typeof Updater>[1]) {
+		const go = new GameObject();
+		go.scripts.push(new Updater(go, cb));
+		return go;
 	}
 
 	async prompt(options: ConstructorParameters<typeof Prompt>[2]) {

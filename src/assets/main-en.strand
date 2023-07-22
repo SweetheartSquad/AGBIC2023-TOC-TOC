@@ -68,6 +68,19 @@
 
 	this.Area('empty', []);
 	this.Area('intro', [
+		this.Prop({ texture: 'plateNoSandwhich', offset: -1000000 }),
+		this.Hotspot({ label: 'half-eaten tuna fish sandwich', texture: 'sandwhich', offset: -1000000, use: {
+			undefined: ['sandwich'],
+		} }),
+		this.slGodRay = this.Prop({ texture: 'slGodRay', offset: 1000000 }),
+		this.scGodRay = this.Prop({ texture: 'scGodRay', offset: 1000000 }),
+		this.srGodRay = this.Prop({ texture: 'srGodRay', offset: 1000000 }),
+		this.Updater(() => {
+			this.slGodRay.display.container.alpha = Math.sin(game.app.ticker.lastTime*0.0015 + 1.0)*0.12 + 0.3;
+			this.scGodRay.display.container.alpha = Math.sin(game.app.ticker.lastTime*0.0015 + 0.5)*0.12 + 0.3;
+			this.srGodRay.display.container.alpha = Math.sin(game.app.ticker.lastTime*0.0015 + 0.0)*0.12 + 0.3;
+		}),
+
 		...([
 			'gnome puzzle',
 			'dustbun saloon',

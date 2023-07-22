@@ -19,6 +19,12 @@ textures/guyIdle.x2.png
 textures/guyRun.x2.png
 textures/guy_up.x2.png
 
+textures/sandwhichRoom/plateNoSandwhich.png
+textures/sandwhichRoom/sandwhich.png
+textures/sandwhichRoom/scGodRay.png
+textures/sandwhichRoom/slGodRay.png
+textures/sandwhichRoom/srGodRay.png
+
 textures/mouse_basicIdle.x2.png
 textures/mouse_nervousIdle.x2.png
 textures/mouse_sittingIdle.x2.png
@@ -55,13 +61,6 @@ textures/heist/heist_fg.png
 textures/heist/heist_vault.png
 textures/heist/heist_vault_door.png
 textures/heist/heist_window.png
-
-textures/bg_gnome_ruins.png
-textures/bg_dustbun_saloon.png
-textures/bg_dustbun_tracks.png
-textures/bg_dustbun_tracks_exploded.png
-textures/bg_mouse_cart.png
-textures/bg_mouse_passage.png
 
 textures/townCenter/bgLayer.png
 textures/townCenter/blueCrayonLayer.png
