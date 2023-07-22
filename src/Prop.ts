@@ -18,7 +18,10 @@ export class Prop extends GameObject {
 
 	offset: number;
 
+	name: string;
+
 	constructor({
+		name,
 		texture,
 		x = 0,
 		y = 0,
@@ -32,6 +35,7 @@ export class Prop extends GameObject {
 		freq = 1 / 400,
 		tint,
 	}: {
+		name?: string;
 		texture: string;
 		x?: number;
 		y?: number;
@@ -46,6 +50,7 @@ export class Prop extends GameObject {
 		tint?: number;
 	}) {
 		super();
+		this.name = name || texture;
 		this.texture = texture;
 		this.offset = offset;
 
