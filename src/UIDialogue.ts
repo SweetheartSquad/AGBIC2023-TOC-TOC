@@ -329,10 +329,14 @@ export class UIDialogue extends GameObject {
 		}
 		this.sprBg.x =
 			this.textText.x - (this.textText.width + this.sprBg.texture.width) / 2;
-		this.sprBg.width = this.textText.width + this.sprBg.texture.width;
+		this.sprBg.width = this.strText
+			? this.textText.width + this.sprBg.texture.width
+			: 0;
 		this.sprBg.y =
 			this.textText.y - (this.textText.height + this.sprBg.texture.height) / 2;
-		this.sprBg.height = this.textText.height + this.sprBg.texture.height;
+		this.sprBg.height = this.strText
+			? this.textText.height + this.sprBg.texture.height
+			: 0;
 	}
 
 	say(text: string, actions?: { text: string; action: () => void }[]) {
