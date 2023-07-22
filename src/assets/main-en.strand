@@ -83,7 +83,7 @@
 
 		...([
 			'gnome puzzle',
-			'dustbun saloon',
+			'dustbun heist',
 			'mouse town center',
 		].flatMap((i, idx) => [
 			this.Prop({ texture: 'glow', x: 80, y: -225 + 50*idx + 50 }),
@@ -139,7 +139,7 @@
 		Rockspot({ spot: '33', x: 70,   y: -120, }),
 	]);
 
-	this.Area('dustbun saloon', [
+	this.Area('dustbun heist', [
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
