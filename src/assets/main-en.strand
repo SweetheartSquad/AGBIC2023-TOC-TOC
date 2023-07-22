@@ -146,6 +146,7 @@
 		this.Prop({ texture: 'heist_bg', scale: 0.5,     offset: -1000000 }),
 		this.Prop({ texture: 'heist_vault', scale: 0.5,  offset: -504/2 }),
 		this.Prop({ texture: 'heist_window', scale: 0.5, offset: -554/2 }),
+		this.Prop({ texture: 'heist_tubes', scale: 0.5,  offset: -238 }),
 		this.Prop({ texture: 'heist_fg', scale: 0.5,     offset: 1000000 }),
 		
 		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',

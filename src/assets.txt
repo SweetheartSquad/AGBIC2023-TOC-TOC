@@ -61,6 +61,7 @@ textures/heist/heist_fg.png
 textures/heist/heist_vault.png
 textures/heist/heist_vault_door.png
 textures/heist/heist_window.png
+textures/heist/heist_tubes.png
 
 textures/townCenter/bgLayer.png
 textures/townCenter/blueCrayonLayer.png
