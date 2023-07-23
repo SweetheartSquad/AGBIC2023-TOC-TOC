@@ -69,7 +69,7 @@
 	this.Area('empty', []);
 	this.Area('intro', [
 		this.Prop({ texture: 'plateNoSandwhich', offset: -1000000 }),
-		this.Hotspot({ label: 'half-eaten tuna fish sandwich', texture: 'sandwhich', offset: -1000000, use: {
+		this.Hotspot({ label: 'half-eaten tuna fish sandwich', texture: 'sandwhich', x: 100, y: -261, offset: -100000, use: {
 			undefined: ['sandwich'],
 		} }),
 		this.slGodRay = this.Prop({ texture: 'slGodRay', offset: 1000000 }),
