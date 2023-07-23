@@ -163,11 +163,11 @@ export class StrandE extends Strand {
 		gameObject.destroy();
 	}
 
-	add(obj: GameObject) {
+	add(...objs: GameObject[]) {
 		const a = this.scene.currentArea;
 		if (!a) return;
-		Area.add(a, obj);
-		Area.mount([obj], this.scene.container);
+		Area.add(a, ...objs);
+		Area.mount([...objs], this.scene.container);
 	}
 
 	remove(obj: GameObject) {
