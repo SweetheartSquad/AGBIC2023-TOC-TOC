@@ -1,5 +1,5 @@
 import Matter, { IChamferableBodyDefinition } from 'matter-js';
-import { Sprite } from 'pixi.js';
+import { SCALE_MODES, Sprite } from 'pixi.js';
 import { game } from './Game';
 import { GameObject } from './GameObject';
 import { Animator } from './Scripts/Animator';
@@ -106,6 +106,7 @@ export class Character extends GameObject {
 
 		if (shadow) {
 			const s = (this.shadow = new Sprite(tex('shadows')));
+			s.texture.baseTexture.scaleMode = SCALE_MODES.LINEAR;
 			this.shadow.name = 'shadow';
 			const sh = s.texture.height;
 			s.anchor.x = 0.5;

@@ -1,4 +1,4 @@
-import { BLEND_MODES, Sprite } from 'pixi.js';
+import { BLEND_MODES, SCALE_MODES, Sprite } from 'pixi.js';
 import { GameObject } from './GameObject';
 import { Display } from './Scripts/Display';
 import { getActiveScene, mouse } from './main';
@@ -33,6 +33,7 @@ export class Btn extends GameObject {
 		spr.cursor = 'pointer';
 		spr.tabIndex = 0;
 		spr.blendMode = BLEND_MODES.ADD;
+		tex(`glow`).baseTexture.scaleMode = SCALE_MODES.LINEAR;
 		spr.on('pointerdown', (event) => {
 			if (event && event.button !== undefined && event.button !== mouse.LEFT)
 				return;
