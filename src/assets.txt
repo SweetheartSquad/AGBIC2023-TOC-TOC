@@ -70,6 +70,7 @@ textures/heist/chandelier.x2.png
 textures/heist/dropped chandelier.png
 textures/heist/candle.x2.png
 textures/heist/spark.x3.png
+textures/heist/oil.png
 
 textures/townCenter/bgLayer.png
 textures/townCenter/blueCrayonLayer.png

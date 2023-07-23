@@ -159,7 +159,13 @@
 			undefined: [`p:"it's a fuse"`],
 			candle: ['goto:light fuse'],
 		}, }),
-		
+
+		// oil
+		this.Poly({ verts: [221,-114, 253,-120, 233,-133] }),
+		this.Item({ texture: 'oil', x: 235, y: -114, offset: 0, use: {
+			undefined: [`p:"oil"`],
+		}, }),
+
 
 		this.Poly({ verts: [-214,-117, -193,-140] }), // tnt
 		this.Prop({ texture: 'tnt', x: -202, y: -109, offset: -25 }),
