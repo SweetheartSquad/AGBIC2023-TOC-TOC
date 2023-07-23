@@ -62,4 +62,8 @@ export class BtnItem extends Btn {
 		}, label);
 		this.use = use;
 	}
+
+	resetCycles() {
+		this.cycles = {};
+	}
 }
