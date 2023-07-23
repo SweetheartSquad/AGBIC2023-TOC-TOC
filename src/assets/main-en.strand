@@ -142,6 +142,9 @@
 	this.Area('dustbun heist', [
 		// main walls
 		this.Poly({ verts: [-247,-132, -74,-239, 58,-241, 162,-283, 348,-153, -2,-4, -249,-122] }),
+		// shelf
+		this.Poly({ verts: [-44,-39, 18,-13] }),
+
 		this.Prop({ texture: 'heist_bg', scale: 0.5,     offset: -1000000 }),
 		this.Prop({ texture: 'heist_vault', scale: 0.5,  offset: -504/2 }),
 		this.Prop({ texture: 'heist_window', scale: 0.5, offset: -554/2 }),
