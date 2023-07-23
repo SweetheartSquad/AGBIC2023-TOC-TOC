@@ -140,9 +140,6 @@
 	]);
 
 	this.Area('dustbun heist', [
-		this.Text('back', { x: 160, y: -14 }),
-		this.Goto({ area: 'intro' }, { x: 160, y: -14, width: 80, height: 50 }),
-
 		// main walls
 		this.Poly({ verts: [-247,-132, -74,-239, 58,-241, 162,-283, 348,-153, -2,-4, -249,-122] }),
 		this.Prop({ texture: 'heist_bg', scale: 0.5,     offset: -1000000 }),
