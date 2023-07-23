@@ -35,6 +35,7 @@ void main(void) {
 	vec3 orig = texture2D(uSampler, uvPreview).rgb;
 
 	vec3 col = (orig - 0.5 + (brightness - 1.0)) * contrast + 0.5;
+	col = mix(col, vec3(1.0), whiteout);
 	vec3 limit = texture2D(ditherGridMap, uvDither).rgb;
 
 	// posterization
@@ -45,7 +46,6 @@ void main(void) {
 	// output
 	col = posterized + dither;
 
-	col = mix(col, vec3(1.0), whiteout);
 	col = mix(col, vec3(1.0) - col, invert);
 
 	vec3 rgb = mix(bg, fg, col) / 255.0;
