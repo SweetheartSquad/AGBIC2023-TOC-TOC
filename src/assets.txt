@@ -62,6 +62,14 @@ textures/heist/heist_vault.png
 textures/heist/heist_vault_door.png
 textures/heist/heist_window.png
 textures/heist/heist_tubes.png
+textures/heist/fuse.png
+textures/heist/tnt.png
+textures/heist/poster.png
+textures/heist/button.png
+textures/heist/chandelier.x2.png
+textures/heist/dropped chandelier.png
+textures/heist/candle.x2.png
+textures/heist/spark.x3.png
 
 textures/townCenter/bgLayer.png
 textures/townCenter/blueCrayonLayer.png

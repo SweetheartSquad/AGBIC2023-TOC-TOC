@@ -140,13 +140,30 @@
 	]);
 
 	this.Area('dustbun heist', [
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+		this.Text('back', { x: 160, y: -14 }),
+		this.Goto({ area: 'intro' }, { x: 160, y: -14, width: 80, height: 50 }),
 
+		// main walls
+		this.Poly({ verts: [-247,-132, -74,-239, 58,-241, 162,-283, 348,-153, -2,-4, -249,-122] }),
 		this.Prop({ texture: 'heist_bg', scale: 0.5,     offset: -1000000 }),
 		this.Prop({ texture: 'heist_vault', scale: 0.5,  offset: -504/2 }),
 		this.Prop({ texture: 'heist_window', scale: 0.5, offset: -554/2 }),
+		this.Hotspot({ texture: 'button', scale: 0.5, x: -73, y: -282,    offset: 20, use: {
+			undefined: ['goto:drop chandelier'],
+		}, }),
 		this.Prop({ texture: 'heist_tubes', scale: 0.5,  offset: -238 }),
+		this.Prop({ texture: 'chandelier', scale: 0.5,   offset: 1000 }),
+		this.Item({ texture: 'poster', x: 294, y: -263,       offset: 1000 }),
+		this.Prop({ texture: 'fuse', scale: 0.5,         offset: -140 }),
+		this.Hotspot({ label: 'fuse', texture: 'spark', freq: 1/50, alpha: 0, x: -73, y: -80, offset: -5, use: {
+			undefined: [`p:"it's a fuse"`],
+			candle: ['goto:light fuse'],
+		}, }),
+		
+
+		this.Poly({ verts: [-214,-117, -193,-140] }), // tnt
+		this.Prop({ texture: 'tnt', x: -202, y: -109, offset: -25 }),
+
 		this.Prop({ texture: 'heist_fg', scale: 0.5,     offset: 1000000 }),
 		
 		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',
@@ -160,7 +177,8 @@
 		this.Npc({ name: 'demolition2', body: 'dustbun_demolition', tint: 0x746568, x: -30, y: -215, flip: true, use: {}, }),
 		this.Npc({ name: 'boss', body: 'dustbun_boss', tint: 0x9485A2, x: 170, y: -245, flip: true, use: {}, }),
 		this.Npc({ name: 'mook 1', body: 'dustbun_mook1', tint: 0x87947F, x: 95, y: -190, use: {}, }),
-		this.Npc({ name: 'mook 2', body: 'dustbun_mook2', tint: 0xE6E2A4, x: -139, y: -115, use: {}, }),
+		this.Npc({ name: 'mook 2', body: 'dustbun_mook2', tint: 0xE6E2A4, x: -139, y: -115, use: {
+		}, }),
 		this.Npc({ name: 'shop', body: 'dustbun_shop', tint: 0xC6A89D, offset: -100, x: 94, y: -247, use: {}, }),
 	]);
 
@@ -215,6 +233,15 @@
 		this.Npc({ name: 'sleepy', body: 'mouse_guard_fork', x: 240, y: 50, use: {}, }),
 	]);
 
+
+
+	this.shock = (target, duration = 500) => {
+		const d = duration;
+		const p = d * 0.02;
+		const t1 = this.tween(target.spr, 'y', 0, d, -20, t => 1-Math.abs(Math.cos(t*p))*(1-t));
+		const t2 = this.tween(target.spr, 'angle', 0, d, -10, t => 1-Math.cos(t*p)*(1-t));
+		return [t1, t2];
+	};
 
 
 	// start
@@ -339,13 +366,101 @@ wow you did it gj
 
 
 
-
 //       dP                     dP   dP
 //       88                     88   88
 // .d888b88 dP    dP .d8888b. d8888P 88d888b. dP    dP 88d888b.
 // 88'  `88 88    88 Y8ooooo.   88   88'  `88 88    88 88'  `88
 // 88.  .88 88.  .88       88   88   88.  .88 88.  .88 88    88
 // `88888P8 `88888P' `88888P'   dP   88Y8888' `88888P' dP    dP
+
+
+::drop chandelier
+<<do
+	this.gameObject.btn.enabled = false;
+	const chandelier = this.scene.find('chandelier');
+	chandelier.transform.y = 0;
+	this.tween(chandelier.transform, 'x', chandelier.transform.x, 1200, chandelier.transform.x + 10, (t) => 1-Math.random()*(1-t));
+	// TODO: rumble sfx
+	setTimeout(() => {
+		this.tween(chandelier.transform, 'y', /*chandelier.transform.y + */170, 400, 0, this.ease.cubicIn);
+		// TODO: chain sfx
+
+
+		setTimeout(() => {
+			this.scene.screenFilter.uniforms.whiteout = 1.0;
+			this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, undefined, this.ease.cubicOut);
+			this.destroy(chandelier);
+			this.add(
+				this.Item({ texture: 'candle', scale: 0.5, x: -67/2, y: -272/2,    offset: 0, use: {
+					player: ['p:"it is a candle"'],
+				}, }),
+				this.Prop({ texture: 'dropped chandelier', scale: 0.5,   offset: -323/2 }),
+				this.Poly({ verts: [-78,-163, -111,-162] }),
+			);
+			// TODO: crash sfx
+
+			this.goto('drop chandelier1');
+		}, 400);
+	}, 800);
+>>
+::drop chandelier1
+<<do
+	this.gameObject = this.scene.find('mook 2');
+	this.shock(this.gameObject, 500);
+>>
+"geez louwheeze!!"
+[[>close]]
+
+::light fuse
+<<do
+	this.scene.loseItem(true);
+	this.scene.find('fuse');
+	this.gameObject.spr.alpha = 1;
+	this.gameObject.use.undefined = ['p:"must be one of those slow burning fuses"', 'p:"very, very slow burning..."'];
+	this.gameObject.btn.resetCycles();
+	// TODO: fuse sfx
+	setTimeout(() => {
+		this.goto('light fuse1');
+	}, 1000);
+>>
+::light fuse1
+<<do this.gameObject = this.scene.find('mook 2');>>
+"uh..."
+<<do
+	const mook = this.scene.find('mook 2');
+	(async () => {
+		await this.delay(800);
+		mook.flipped = true;
+		this.shock(mook, 200);
+		await this.delay(800);
+		mook.flipped = false;
+		this.shock(mook, 200);
+		await this.delay(800);
+		this.goto('light fuse2');
+	})();
+>>
+::light fuse2
+"i'm outta here!"
+<<do
+	const mook = this.scene.find('mook 2');
+	(async () => {
+		const [t1, t2] = this.shock(this.scene.find('mook 2'), 1200);
+
+		await this.delay(1200-800);
+		const t3 = this.tween(mook, 'x', 102, 800, undefined, this.ease.backIn);
+		const t4 = this.tween(mook, 'y', -57, 800, undefined, this.ease.backIn);
+		const t5 = this.tween(mook.display.container, 'alpha', 0, 800, undefined, this.ease.cubicIn);
+		await this.delay(800);
+		this.destroy(mook);
+		this.tweenAbort(t1);
+		this.tweenAbort(t2);
+		this.tweenAbort(t3);
+		this.tweenAbort(t4);
+		this.tweenAbort(t5);
+		this.gameObject = undefined;
+		this.goto('close');
+	})();
+>>
 
 ::open vault
 <<do
