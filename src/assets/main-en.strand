@@ -230,18 +230,6 @@
 		this.Npc({ name: 'sitting', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, use: {}, }),
 	]);
 
-	this.Area('mouse passage', [
-		this.Prop({ texture: 'bg_mouse_passage', y: this.size.y*1.1/2, offset: -1000000 }),
-
-		this.Text('nuttin here yet!', { x: 0, y: 0 }),
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
-
-		this.Npc({ name: 'sleepy', body: 'mouse_guard_sleepy', x: -112, y: 48, use: {}, }),
-		this.Npc({ name: 'sleepy', body: 'mouse_guard_tall', x: 182, y: 40, use: {}, }),
-		this.Npc({ name: 'sleepy', body: 'mouse_guard_fork', x: 240, y: 50, use: {}, }),
-	]);
-
 
 
 	this.shock = (target, duration = 500) => {
