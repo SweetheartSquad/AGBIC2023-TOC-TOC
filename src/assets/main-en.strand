@@ -106,12 +106,14 @@
 		return h;
 	};
 	this.Area('gnome puzzle', [
-		this.Prop({ texture: 'bg_gnome_puzzle_closed_BACK', offset: -1000000 }),
-		this.Prop({ texture: 'bg_gnome_puzzle_FORE', offset: 1000000 }),
 		this.Prop({ texture: 'bg_gnome_puzzle_open_BACK', offset: -1000000 }),
-		this.Prop({ texture: 'bg_gnome_puzzle_worm', offset: 0 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_FORE', offset: 1000000 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_closed_BACK', offset: -1000000 }),
 		this.Prop({ texture: 'bg_gnome_puzzle_worm_gone', offset: 0 }),
-
+		this.Prop({ texture: 'bg_gnome_puzzle_worm', offset: 0 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_flower_gone', offset: 0 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_flower', offset: 0 }),
+		
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
 		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
@@ -127,8 +129,11 @@
 		this.Item({ texture: 'medium rock', x: -99, y: -213, use: {
 			player: [`"it's a rock"`],
 		}, }),
-		this.Item({ texture: 'little rock', x: -61, y: -319, use: {
+		this.Item({ texture: 'little rock', x: -101, y: -290, use: {
 			player: [`"it's a rock"`],
+		}, }),
+		this.Item({ texture: 'glass', x: -190, y: -50, use: {
+			player: [`"it's a piece of glass"`],
 		}, }),
 		
 		Rockspot({ spot: '11', x: -110, y: -125, }),
