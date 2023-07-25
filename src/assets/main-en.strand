@@ -149,7 +149,7 @@
 
 	this.Area('tomato', [
 		this.Prop({ texture: 'tomatoRoomNoTomato', offset: -1000000 }),
-		this.Hotspot({ label: 'moon-dried tomato', texture: 'tomatoItem', x: 119, y: -304, use: {
+		this.Hotspot({ label: 'moon-dried tomato', texture: 'tomatoItem', x: 119, y: -341, use: {
 			undefined: ['moon-dried tomato'],
 		} }),
 		...rays(),
@@ -208,7 +208,7 @@
 
 	this.Area('soap', [
 		this.Prop({ texture: 'noItemSoap', offset: -1000000 }),
-		this.Hotspot({ label: 'soap', texture: 'soapItem', x: 54, y: -304, offset: -100000, use: {
+		this.Hotspot({ label: 'soap', texture: 'soapItem', x: 54, y: -304, use: {
 			undefined: ['soap'],
 		} }),
 		...rays(),
