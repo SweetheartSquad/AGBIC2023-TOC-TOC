@@ -68,19 +68,6 @@
 
 	this.Area('empty', []);
 	this.Area('intro', [
-		this.Prop({ texture: 'plateNoSandwhich', offset: -1000000 }),
-		this.Hotspot({ label: 'half-eaten tuna fish sandwich', texture: 'sandwhich', x: 100, y: -261, offset: -100000, use: {
-			undefined: ['sandwich'],
-		} }),
-		this.slGodRay = this.Prop({ texture: 'slGodRay', offset: 1000000 }),
-		this.scGodRay = this.Prop({ texture: 'scGodRay', offset: 1000000 }),
-		this.srGodRay = this.Prop({ texture: 'srGodRay', offset: 1000000 }),
-		this.Updater(() => {
-			this.slGodRay.display.container.alpha = Math.sin(game.app.ticker.lastTime*0.0015 + 1.0)*0.1 + 0.25;
-			this.scGodRay.display.container.alpha = Math.sin(game.app.ticker.lastTime*0.0015 + 0.5)*0.1 + 0.25;
-			this.srGodRay.display.container.alpha = Math.sin(game.app.ticker.lastTime*0.0015 + 0.0)*0.1 + 0.25;
-		}),
-
 		...([
 			'gnome puzzle',
 			'dustbun heist',
@@ -91,6 +78,22 @@
 			this.Goto({ area: i }, { x: 80, y: -200 + 50*idx, width: 80, height: 50 }),
 		])),
 	]);
+
+	const rays = () => {
+		let slGodRay = this.Prop({ texture: 'slGodRay', offset: 1000000 });
+		let scGodRay = this.Prop({ texture: 'scGodRay', offset: 1000000 });
+		let srGodRay = this.Prop({ texture: 'srGodRay', offset: 1000000 });
+		return [
+			slGodRay,
+			scGodRay,
+			srGodRay,
+			this.Updater(() => {
+				slGodRay.display.container.alpha = Math.sin(game.app.ticker.lastTime*0.0015 + 1.0)*0.1 + 0.25;
+				scGodRay.display.container.alpha = Math.sin(game.app.ticker.lastTime*0.0015 + 0.5)*0.1 + 0.25;
+				srGodRay.display.container.alpha = Math.sin(game.app.ticker.lastTime*0.0015 + 0.0)*0.1 + 0.25;
+			}),
+		];
+	};
 
 	const Rockspot = ({ spot, x, y }) => {
 		const h = this.Hotspot({ label: 'spot', texture: 'stone_tile', offset: -100, x, y, use: {
@@ -190,6 +193,14 @@
 		this.Npc({ name: 'shop', body: 'dustbun_shop', tint: 0xC6A89D, offset: -100, x: 94, y: -247, use: {}, }),
 	]);
 
+	this.Area('soap', [
+		this.Prop({ texture: 'noItemSoap', offset: -1000000 }),
+		this.Hotspot({ label: 'soap', texture: 'soapItem', x: 54, y: -304, offset: -100000, use: {
+			undefined: ['soap'],
+		} }),
+		...rays(),
+	]);
+
 	this.Area('mouse town center', [
 		this.Prop({ texture: 'bgLayer',                offset: -1000000 }),
 		this.Prop({ texture: 'blueCrayonLayer',        offset: -276 }),
@@ -228,6 +239,14 @@
 			},
 		}),
 		this.Npc({ name: 'sitting', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, use: {}, }),
+	]);
+
+	this.Area('sandwich', [
+		this.Prop({ texture: 'plateNoSandwhich', offset: -1000000 }),
+		this.Hotspot({ label: 'half-eaten tuna fish sandwich', texture: 'sandwhich', x: 100, y: -261, offset: -100000, use: {
+			undefined: ['sandwich'],
+		} }),
+		...rays(),
 	]);
 
 

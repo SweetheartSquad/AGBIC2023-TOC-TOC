@@ -25,6 +25,9 @@ textures/sandwhichRoom/scGodRay.png
 textures/sandwhichRoom/slGodRay.png
 textures/sandwhichRoom/srGodRay.png
 
+textures/soapRoom/noItemSoap.png 
+textures/soapRoom/soapItem.png
+
 textures/mouse_basicIdle.x2.png
 textures/mouse_nervousIdle.x2.png
 textures/mouse_sittingIdle.x2.png
