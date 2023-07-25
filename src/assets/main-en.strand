@@ -121,7 +121,7 @@
 		
 		this.Npc({ name: 'top', body: 'gnome_top', tint: 0xcd836f, x: -162, y: -224, use: {}, }),
 		this.Npc({ name: 'bottom', body: 'gnome_bottom', tint: 0x6f79cd, x: 180, y: -100, flip: true, use: {
-			undefined: [`goto:remove-hat`],
+			'cut flower': [`goto:remove-hat`],
 		}, }),
 
 		this.Item({ texture: 'big rock', x: -81, y: -237, use: {
@@ -406,7 +406,17 @@ wow you did it gj
 ::remove-hat
 "oh thank you"
 >
-<<do this.gameObject.expression = 'hatless'>>
+<<do
+	this.scene.loseItem(true);
+	this.gameObject.expression = 'hatless';
+	const spr = new this.PIXI.Sprite(this.tex('flower_head'));
+	spr.anchor.x = spr.anchor.y = 0.5;
+	spr.scale.x = spr.scale.y = 0.5;
+	spr.scale.x *= -1;
+	spr.y -= 74;
+	spr.x = 5;
+	this.scene.find('bottom').spr.addChild(spr);
+>>
 "dont need this anymore"
 [[>close]]
 
