@@ -29,6 +29,9 @@ textures/sandwhichRoom/sandwhich.png
 textures/soapRoom/noItemSoap.png 
 textures/soapRoom/soapItem.png
 
+textures/tomatoRoom/tomatoRoomNoTomato.png
+textures/tomatoRoom/tomatoItem.png
+
 textures/mouse_basicIdle.x2.png
 textures/mouse_nervousIdle.x2.png
 textures/mouse_sittingIdle.x2.png

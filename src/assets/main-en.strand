@@ -147,6 +147,14 @@
 		Rockspot({ spot: '33', x: 70,   y: -120, }),
 	]);
 
+	this.Area('tomato', [
+		this.Prop({ texture: 'tomatoRoomNoTomato', offset: -1000000 }),
+		this.Hotspot({ label: 'moon-dried tomato', texture: 'tomatoItem', x: 119, y: -304, use: {
+			undefined: ['moon-dried tomato'],
+		} }),
+		...rays(),
+	]);
+
 	this.Area('dustbun heist', [
 		// main walls
 		this.Poly({ verts: [-247,-132, -74,-239, 58,-241, 162,-283, 348,-153, -2,-4, -249,-122] }),
