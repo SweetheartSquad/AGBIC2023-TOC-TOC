@@ -148,7 +148,7 @@
 	]);
 
 	this.Area('tomato', [
-		this.Prop({ texture: 'tomatoRoomNoTomato', offset: -1000000 }),
+		this.Prop({ texture: 'tomatoRoom', offset: -1000000 }),
 		this.Hotspot({ label: 'moon-dried tomato', texture: 'tomatoItem', x: 119, y: -341, use: {
 			undefined: ['moon-dried tomato'],
 		} }),

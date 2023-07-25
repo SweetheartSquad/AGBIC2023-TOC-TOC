@@ -29,6 +29,7 @@ textures/sandwhichRoom/sandwhich.png
 textures/soapRoom/noItemSoap.png 
 textures/soapRoom/soapItem.png
 
+textures/tomatoRoom/tomatoRoom.png
 textures/tomatoRoom/tomatoRoomNoTomato.png
 textures/tomatoRoom/tomatoItem.png
 
