@@ -342,6 +342,7 @@ export class GameScene {
 		let texT = tex(`${item.texture}_carrying`);
 		if (texT === tex('error')) texT = tex(item.texture);
 		this.sprCarrying.texture = texT;
+		this.sprCarrying.tint = item.spr.tint;
 		this.carrying = item;
 		this.player.canMove = false;
 		this.player.btn = new BtnItem({
