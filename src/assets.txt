@@ -54,6 +54,7 @@ textures/gnomePuzzle/stone_tile.png
 textures/gnome_topIdle.x2.png
 textures/gnome_bottomIdle.x2.png
 textures/gnome_bottom_hatless.x2.png
+textures/hat.x2.png
 
 textures/big rock.png
 textures/medium rock.png

@@ -416,6 +416,12 @@ wow you did it gj
 	spr.y -= 74;
 	spr.x = 5;
 	this.scene.find('bottom').spr.addChild(spr);
+
+	this.add(
+		this.Item({ texture: 'hat', x: 128, y: -83, tint: 0x6f79cd, use: {
+			player: ['p:"it is a gnome hat"'],
+		}, }),
+	);
 >>
 "dont need this anymore"
 [[>close]]
