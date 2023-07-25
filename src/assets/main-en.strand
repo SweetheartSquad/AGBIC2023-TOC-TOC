@@ -111,8 +111,9 @@
 		this.Prop({ texture: 'bg_gnome_puzzle_closed_BACK', offset: -1000000 }),
 		this.Prop({ texture: 'bg_gnome_puzzle_worm_gone', offset: 0 }),
 		this.Prop({ texture: 'bg_gnome_puzzle_worm', offset: 0 }),
-		this.Prop({ texture: 'bg_gnome_puzzle_flower_gone', offset: 0 }),
-		this.Prop({ texture: 'bg_gnome_puzzle_flower', offset: 0 }),
+		this.Hotspot({ label: 'flower', texture: 'bg_gnome_puzzle_flower', x: -57, y: -266, use: {
+			glass: ['goto:cut flower'],
+		}, }),
 		
 		this.Text('nuttin here yet!', { x: 0, y: 0 }),
 		this.Text('back', { x: 50, y: -104 }),
@@ -332,6 +333,20 @@ me
 // `8888P88 dP    dP `88888P' dP  dP  dP `88888P'
 //      .88
 //  d8888P
+::cut flower
+<<do 
+	this.scene.loseItem(true);
+	this.destroy(this.gameObject);
+	this.gameObject = this.scene.player;
+	this.add(
+		this.Prop({ texture: 'bg_gnome_puzzle_flower_gone', x: -58, y: -266, offset: 0 }),
+		this.Item({ label: 'cut flower', texture: 'flower_head', x: -25, y: -266, offset: 0, use: {
+			player: [`p:"it's a flower"`],
+		}, }),
+	);
+>>
+"snip snip!"
+[[>close]]
 
 ::place big rock
 <<do this.spot = this.gameObject; this.rock = this.scene.find('big rock');this.goto(this.gameObject.rock ? 'rock occupied' : 'place rock');>>
