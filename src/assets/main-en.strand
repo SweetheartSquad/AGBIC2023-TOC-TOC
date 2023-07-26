@@ -119,7 +119,8 @@
 		this.Hotspot({ label: 'worm', texture: 'bg_gnome_puzzle_worm', x: -286, y: -159, offset: 0, use: {
 			hat: ['goto:worm hat'],
 		}, }),
-		this.Hotspot({ label: 'flower', texture: 'bg_gnome_puzzle_flower', x: -57, y: -266, use: {
+
+		this.Hotspot({ label: 'flower', texture: 'bg_gnome_puzzle_flower', x: -57, y: -266, offset: -10, use: {
 			glass: ['goto:cut flower'],
 		}, }),
 		
@@ -355,7 +356,7 @@ me
 	this.destroy(this.gameObject);
 	this.gameObject = this.scene.player;
 	this.add(
-		this.Prop({ texture: 'bg_gnome_puzzle_flower_gone', x: -58, y: -266, offset: 0 }),
+		this.Prop({ texture: 'bg_gnome_puzzle_flower_gone', x: -58, y: -266, offset: -10 }),
 		this.Item({ label: 'cut flower', texture: 'flower_head', x: -25, y: -266, offset: 0, use: {
 			player: [`p:"it's a flower"`],
 		}, }),
