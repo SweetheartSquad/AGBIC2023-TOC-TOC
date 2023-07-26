@@ -419,14 +419,14 @@ me
 <<do this.gameObject = this.scene.player>>
 "how about this?"
 >
-<<do this.gameObject = this.scene.find('top')>>
+<<do this.gameObject = this.scene.find('top'); this.shock(this.gameObject, 250);>>
 <<if ['11','12','13'].includes(this.spot.spot)>>
 "<<print this.shuffle(['yes!', 'absolutely!'])[0]>>"
 <<else>>
 "<<print this.shuffle(['no way!', 'nuh uh!'])[0]>>"
 <<endif>>
 >
-<<do this.gameObject = this.scene.find('bottom')>>
+<<do this.gameObject = this.scene.find('bottom'); this.shock(this.gameObject, 250);>>
 <<if ['21','22','23'].includes(this.spot.spot)>>
 "<<print this.shuffle(['right!', 'correct!'])[0]>>"
 <<else>>
