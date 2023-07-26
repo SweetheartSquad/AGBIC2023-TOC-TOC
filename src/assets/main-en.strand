@@ -105,7 +105,13 @@
 		h.spot = spot;
 		return h;
 	};
+
+	this.flamingoMouthPoly = this.Poly({ verts: [37,-319, 18,-261, 40,-234, 75,-257, 131,-264, 209,-272, 239,-286] });
 	this.Area('gnome puzzle', [
+		// border
+		this.Poly({ verts: [205,-275, 17,-290, -90,-287, -217,-247, -292,-175, -328,-93, -296,-38, -121,-14, 93,-11, 238,-55, 253,-98, 268,-184, 242,-238, 201,-276] }),
+		this.flamingoMouthPoly,
+
 		this.Prop({ texture: 'bg_gnome_puzzle_open_BACK', offset: -1000000 }),
 		this.Prop({ texture: 'bg_gnome_puzzle_FORE', offset: 1000000 }),
 		this.Prop({ texture: 'bg_gnome_puzzle_closed_BACK', offset: -1000000 }),
