@@ -473,6 +473,12 @@ me
 	this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, 1, this.ease.cubicOut);
 	this.tween(this.scene.camera, 'shake', 0, 1500, 2, this.ease.cubicIn);
 	this.tween(this.scene.find('bg_gnome_puzzle_closed_BACK').display.container, 'alpha', 0, 1000);
+
+	this.destroy(this.flamingoMouthPoly);
+	this.scene.drop(
+		this.Poly({ verts: [18,-292, 13,-263, 35,-234, 60,-263, 166,-324, 187,-237, 216,-166, 212,-247] }),
+	);
+
 	setTimeout(() => {
 		this.goto('rock solved1');
 	}, 2000);
@@ -490,11 +496,7 @@ me
 	}, });
 	h.spr.width = 100;
 	h.spr.height = 100;
-	this.destroy(this.flamingoMouthPoly);
-	this.add(
-		h,
-		this.Poly({ verts: [18,-292, 13,-263, 35,-234, 60,-263, 166,-324, 187,-237, 216,-166, 212,-247] }),
-	);
+	this.add(h);
 >>
 wow you did it gj
 [[>close]]
