@@ -377,7 +377,7 @@ me
 <<do
 	this.scene.loseItem(true);
 	this.add(
-		this.Prop({ texture: 'hat', x: -245, y: -185, tint: 0x6f79cd, offset: 50, }),
+		this.Prop({ texture: 'hat', x: -250, y: -180, tint: 0x6f79cd, offset: 50, }),
 	);
 >>
 "oh worm"
