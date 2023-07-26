@@ -110,7 +110,9 @@
 		this.Prop({ texture: 'bg_gnome_puzzle_FORE', offset: 1000000 }),
 		this.Prop({ texture: 'bg_gnome_puzzle_closed_BACK', offset: -1000000 }),
 		this.Prop({ texture: 'bg_gnome_puzzle_worm_gone', x: -303, y: -182, offset: 0 }),
-		this.Prop({ texture: 'bg_gnome_puzzle_worm', x: -286, y: -159, offset: 0 }),
+		this.Hotspot({ label: 'worm', texture: 'bg_gnome_puzzle_worm', x: -286, y: -159, offset: 0, use: {
+			hat: ['goto:worm hat'],
+		}, }),
 		this.Hotspot({ label: 'flower', texture: 'bg_gnome_puzzle_flower', x: -57, y: -266, use: {
 			glass: ['goto:cut flower'],
 		}, }),
@@ -348,6 +350,48 @@ me
 "snip snip!"
 [[>close]]
 
+::remove-hat
+"oh thank you"
+>
+<<do
+	this.scene.loseItem(true);
+	this.gameObject.expression = 'hatless';
+	const spr = new this.PIXI.Sprite(this.tex('flower_head'));
+	spr.anchor.x = spr.anchor.y = 0.5;
+	spr.scale.x = spr.scale.y = 0.5;
+	spr.scale.x *= -1;
+	spr.y -= 74;
+	spr.x = 5;
+	this.scene.find('bottom').spr.addChild(spr);
+
+	this.add(
+		this.Item({ texture: 'hat', x: 128, y: -83, tint: 0x6f79cd, use: {
+			player: ['p:"it is a gnome hat"'],
+		}, }),
+	);
+>>
+"dont need this anymore"
+[[>close]]
+
+::worm hat
+<<do
+	this.scene.loseItem(true);
+	this.add(
+		this.Prop({ texture: 'hat', x: -245, y: -185, tint: 0x6f79cd, offset: 50, }),
+	);
+>>
+"oh worm"
+>
+<<do
+	const hat = this.scene.find('hat');
+	const worm = this.scene.find('worm');
+	this.tween(hat.display.container, 'alpha', 0, 1000);
+	this.tween(worm.display.container, 'alpha', 0, 1000);
+	worm.btn.enabled = false;
+>>
+"peace"
+[[>close]]
+
 ::place big rock
 <<do this.spot = this.gameObject; this.rock = this.scene.find('big rock');this.goto(this.gameObject.rock ? 'rock occupied' : 'place rock');>>
 
@@ -401,29 +445,6 @@ me
 ::rock solved
 <<do this.scene.findAll('spot').forEach(i => { i.btn.enabled = false; })>>
 wow you did it gj
-[[>close]]
-
-::remove-hat
-"oh thank you"
->
-<<do
-	this.scene.loseItem(true);
-	this.gameObject.expression = 'hatless';
-	const spr = new this.PIXI.Sprite(this.tex('flower_head'));
-	spr.anchor.x = spr.anchor.y = 0.5;
-	spr.scale.x = spr.scale.y = 0.5;
-	spr.scale.x *= -1;
-	spr.y -= 74;
-	spr.x = 5;
-	this.scene.find('bottom').spr.addChild(spr);
-
-	this.add(
-		this.Item({ texture: 'hat', x: 128, y: -83, tint: 0x6f79cd, use: {
-			player: ['p:"it is a gnome hat"'],
-		}, }),
-	);
->>
-"dont need this anymore"
 [[>close]]
 
 
