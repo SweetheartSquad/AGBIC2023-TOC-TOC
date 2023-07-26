@@ -138,7 +138,8 @@
 		this.Item({ texture: 'little rock', x: -101, y: -290, use: {
 			player: [`"it's a rock"`],
 		}, }),
-		this.Item({ texture: 'glass', x: -190, y: -50, use: {
+		this.glassPoly = this.Poly({ verts: [-179,-82, -209,-84, -205,-66, -179,-84], width: 10 }),
+		this.Item({ texture: 'glass', x: -190, y: -50, offset: -35, use: {
 			player: [`"it's a piece of glass"`],
 		}, }),
 		
@@ -354,6 +355,7 @@ me
 <<do 
 	this.scene.loseItem(true);
 	this.destroy(this.gameObject);
+	this.destroy(this.glassPoly);
 	this.gameObject = this.scene.player;
 	this.add(
 		this.Prop({ texture: 'bg_gnome_puzzle_flower_gone', x: -58, y: -266, offset: -10 }),
