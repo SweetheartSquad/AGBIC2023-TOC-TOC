@@ -357,11 +357,17 @@ me
 	this.destroy(this.gameObject);
 	this.destroy(this.glassPoly);
 	this.gameObject = this.scene.player;
+
+	const cutFlower = this.Item({ label: 'cut flower', texture: 'flower_head', x: -55, y: -321, offset: 0, use: {
+		player: [`p:"it's a flower"`],
+	}, });
+	this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, 0.5, this.ease.cubicOut);
+	this.tween(cutFlower.transform, 'y', -266, 2000, -321, this.ease.backIn);
+	this.tween(cutFlower.transform, 'x', -25, 2000, -55, (t) => this.ease.sineInOut(t) + this.ease.sineInOut(t*4));
+	this.tween(cutFlower.spr, 'angle', 0, 2000, 30, (t) => this.ease.sineInOut(t) + this.ease.sineInOut(t*4));
 	this.add(
 		this.Prop({ texture: 'bg_gnome_puzzle_flower_gone', x: -58, y: -266, offset: -10 }),
-		this.Item({ label: 'cut flower', texture: 'flower_head', x: -25, y: -266, offset: 0, use: {
-			player: [`p:"it's a flower"`],
-		}, }),
+		cutFlower,
 	);
 >>
 "snip snip!"
