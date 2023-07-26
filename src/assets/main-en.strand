@@ -359,6 +359,7 @@ me
 	spr.y -= 74;
 	spr.x = 5;
 	this.scene.find('bottom').spr.addChild(spr);
+	this.shock(this.scene.find('bottom'), 300);
 
 	this.add(
 		this.Item({ texture: 'hat', x: 128, y: -83, tint: 0x6f79cd, use: {
