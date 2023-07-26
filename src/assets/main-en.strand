@@ -280,6 +280,18 @@
 	};
 
 
+	this.gotoItemRoom = async (pos, area) => {
+		this.scrim(1, 400);
+		this.scene.player.walkBy(pos.x, pos.y);
+		await this.delay(500);
+		this.scene.goto({ area, x: -277 - 100, y: -108 + 100 });
+		this.scrim(0, 1500);
+		this.scene.player.walkTo(-277, -108);
+		await this.delay(1600);
+		this.goto('close');
+	};
+
+
 	// start
 	this.started=true;
 	this.scene.goto({ area: 'intro' });
@@ -464,13 +476,22 @@ me
 >>
 ::rock solved1
 <<do
+	const h = this.Hotspot({ label: 'entrance', texture: 'blank', x: 134, y: -240, use: {
+		undefined: [`goto:goto tomato`],
+	}, });
+	h.spr.width = 100;
+	h.spr.height = 100;
 	this.destroy(this.flamingoMouthPoly);
 	this.add(
+		h,
 		this.Poly({ verts: [18,-292, 13,-263, 35,-234, 60,-263, 166,-324, 187,-237, 216,-166, 212,-247] }),
 	);
 >>
 wow you did it gj
 [[>close]]
+
+::goto tomato
+<<do this.gotoItemRoom({ x: 125, y: -240 }, 'tomato');>>
 
 
 
