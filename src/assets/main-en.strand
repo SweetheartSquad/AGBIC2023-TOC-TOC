@@ -446,7 +446,29 @@ me
 <<endif>>
 
 ::rock solved
-<<do this.scene.findAll('spot').forEach(i => { i.btn.enabled = false; })>>
+<<do
+	this.scene.findAll('spot').forEach(i => { i.btn.enabled = false; });
+	this.scene.camera.shake = 2;
+	this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, 1, this.ease.cubicOut);
+	this.tween(this.scene.camera, 'shake', 0, 1500, 2, this.ease.cubicIn);
+	this.tween(this.scene.find('bg_gnome_puzzle_closed_BACK').display.container, 'alpha', 0, 1000);
+	setTimeout(() => {
+		this.goto('rock solved1');
+	}, 2000);
+	setTimeout(() => {
+		this.scene.strand.shock(this.scene.find('top'), 1500);
+	}, 60);
+	setTimeout(() => {
+		this.scene.strand.shock(this.scene.find('bottom'), 1500);
+	}, 120);
+>>
+::rock solved1
+<<do
+	this.destroy(this.flamingoMouthPoly);
+	this.add(
+		this.Poly({ verts: [18,-292, 13,-263, 35,-234, 60,-263, 166,-324, 187,-237, 216,-166, 212,-247] }),
+	);
+>>
 wow you did it gj
 [[>close]]
 
