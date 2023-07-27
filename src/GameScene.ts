@@ -17,7 +17,7 @@ import { UIDialogue } from './UIDialogue';
 import { size } from './config';
 import { DEBUG } from './debug';
 import { getInput } from './main';
-import { delay, relativeMouse, removeFromArray, tex } from './utils';
+import { clamp, delay, relativeMouse, removeFromArray, tex } from './utils';
 
 let player: Player;
 
@@ -293,7 +293,12 @@ export class GameScene {
 		if (!this.dialogue.isOpen) {
 			this.camPoint.x = (relativeMousePos.x - size.x / 2) * 0.1;
 			this.camPoint.y = (relativeMousePos.y - size.y / 2) * 0.1;
+		} else if (this.strand.camPoint) {
+			this.camPoint.x = (this.strand.camPoint.x ?? 0) * 0.1;
+			this.camPoint.y = (this.strand.camPoint.y ?? 0) * 0.1;
 		}
+		this.camPoint.x = clamp(-size.x * 0.05, this.camPoint.x, size.x * 0.05);
+		this.camPoint.y = clamp(-size.y * 0.05, this.camPoint.y, size.y * 0.05);
 
 		this.sprCarrying.x = relativeMousePos.x;
 		this.sprCarrying.y = relativeMousePos.y;

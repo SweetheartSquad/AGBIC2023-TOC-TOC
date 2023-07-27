@@ -78,12 +78,17 @@ textures/heist/heist_tubes.png
 textures/heist/fuse.png
 textures/heist/tnt.png
 textures/heist/poster.png
-textures/heist/button.png
 textures/heist/chandelier.x2.png
 textures/heist/dropped chandelier.png
 textures/heist/candle.x2.png
 textures/heist/spark.x3.png
 textures/heist/oil.png
+textures/heist/peanut.png
+textures/heist/peanut smashed.png
+textures/heist/beetle.png
+
+textures/miteIdle.x2.png
+textures/miteRun.x2.png
 
 textures/townCenter/bgLayer.png
 textures/townCenter/blueCrayonLayer.png
