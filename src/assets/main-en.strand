@@ -198,9 +198,6 @@
 		this.Poly({ verts: [-214,-117, -193,-140] }), // tnt
 		this.Prop({ texture: 'tnt', x: -202, y: -109, offset: -25 }),
 
-		this.Item({ texture: 'bread slice', x: -74, y: -45, offset: -50, use: {
-			player: [`p:"bread"`],
-		}, }),
 		this.Prop({ texture: 'shelf', scale: 0.5,     offset: 9000 }),
 		this.Hotspot({ texture: 'bread', x: -20, y: -95, offset: 10000, use: {
 			undefined: [`p:"oh noo it's too high up :("`],
@@ -545,7 +542,7 @@ wow you did it gj
 		await this.delay(200);
 
 		// left branch
-		if (false) {
+		if (false) { // TODO: real check
 			await this.mite.walkTo(3, -193);
 			await this.delay(200);
 			await this.mite.walkTo(-312, -338);
@@ -559,7 +556,7 @@ wow you did it gj
 			}
 		} else {
 			// right branch
-			if (false) {
+			if (false) { // TODO: real check
 				await this.mite.walkTo(5, -126);
 				await this.delay(200);
 				await this.mite.walkTo(335, -250);
@@ -579,7 +576,11 @@ wow you did it gj
 				await this.mite.walkTo(-1, -102);
 				await this.mite.walkTo(-53, -116);
 				await this.delay(500);
-				this.goto('close');
+				if (!this.knockedBread) {
+					this.goto('knock bread');
+				} else {
+					this.goto('knock bread again');
+				}
 			}
 		}
 		this.resetMite();
@@ -722,6 +723,29 @@ wow you did it gj
 >>
 "i don't think it likes peanuts"
 [[>close]]
+
+
+::knock bread
+<<do
+	// TODO: animate
+	this.add(
+		this.Item({ texture: 'bread slice', x: -74, y: -45, offset: -50, use: {
+			player: [`p:"bread"`],
+		}, }),
+	);
+	this.goto('close');
+	this.camPoint = undefined;
+>>
+
+::knock bread again
+<<do
+	this.gameObject = this.scene.player;
+	this.camPoint = undefined;
+>>
+"i don't think it's hungry"
+[[>close]]
+
+
 
 
 ::open vault
