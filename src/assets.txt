@@ -85,6 +85,9 @@ textures/heist/candle.x2.png
 textures/heist/spark.x3.png
 textures/heist/oil.png
 
+textures/miteIdle.x2.png
+textures/miteRun.x2.png
+
 textures/townCenter/bgLayer.png
 textures/townCenter/blueCrayonLayer.png
 textures/townCenter/boardWalkCrayonSLLayer.png

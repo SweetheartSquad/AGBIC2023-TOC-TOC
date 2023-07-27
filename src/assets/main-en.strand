@@ -193,7 +193,7 @@
 		this.Poly({ verts: [-214,-117, -193,-140] }), // tnt
 		this.Prop({ texture: 'tnt', x: -202, y: -109, offset: -25 }),
 
-		this.Prop({ texture: 'heist_fg', scale: 0.5,     offset: 1000000 }),
+		this.Prop({ texture: 'heist_fg', scale: 0.5,     offset: 10000 }),
 		
 		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',
 			x: -340/2,
@@ -211,6 +211,10 @@
 		this.Npc({ name: 'mook 2', body: 'dustbun_mook2', tint: 0xE6E2A4, x: -139, y: -115, use: {
 		}, }),
 		this.Npc({ name: 'shop', body: 'dustbun_shop', tint: 0xC6A89D, offset: -100, x: 94, y: -247, use: {}, }),
+
+		this.mite = this.Npc({ name: 'dust mite', body: 'mite', x: 3, y: -448, offset: 100000, bodyCollision: { isStatic: false, isSensor: true }, use: {
+			undefined: ['goto:mite run'],
+		}, }),
 	]);
 
 	this.Area('soap', [
@@ -512,7 +516,25 @@ wow you did it gj
 // 88'  `88 88    88 Y8ooooo.   88   88'  `88 88    88 88'  `88
 // 88.  .88 88.  .88       88   88   88.  .88 88.  .88 88    88
 // `88888P8 `88888P' `88888P'   dP   88Y8888' `88888P' dP    dP
+::mite run
+<<do
+	(async () => {
+		await this.mite.walkTo(5, -380);
+		await this.delay(200);
+		await this.mite.walkTo(3, -193);
 
+		await this.delay(1000);
+
+		// reset
+		this.tween(this.mite.display.container, 'alpha', 0, 400);
+		this.mite.walkBy(0, 1000);
+		await this.delay(500);
+		this.mite.setPosition(3, -448-50);
+		this.tween(this.mite.display.container, 'alpha', 1, 1000, 0, this.ease.cubicOut);
+		this.mite.walkTo(3, -448);
+	})();
+>>
+[[>close]]
 
 ::drop chandelier
 <<do
