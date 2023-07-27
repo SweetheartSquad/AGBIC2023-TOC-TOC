@@ -78,7 +78,6 @@ textures/heist/heist_tubes.png
 textures/heist/fuse.png
 textures/heist/tnt.png
 textures/heist/poster.png
-textures/heist/button.png
 textures/heist/chandelier.x2.png
 textures/heist/dropped chandelier.png
 textures/heist/candle.x2.png
