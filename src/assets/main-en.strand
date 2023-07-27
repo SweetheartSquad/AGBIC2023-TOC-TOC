@@ -186,6 +186,10 @@
 			undefined: [`p:"oil"`],
 		}, }),
 
+		this.Hotspot({ texture: 'peanut', x: 168, y: -239, offset: -5, use: {
+			undefined: [`p:"it is a peanut"`, `p:"it looks kinda mushy..."`],
+		}, }),
+
 
 		this.Poly({ verts: [-214,-117, -193,-140] }), // tnt
 		this.Prop({ texture: 'tnt', x: -202, y: -109, offset: -25 }),
@@ -519,6 +523,7 @@ wow you did it gj
 		this.tween(this.mite.display.container, 'alpha', 0, 400);
 		this.mite.walkBy(0, 1000);
 		await this.delay(500);
+		this.mite.display.container.offset = 100000;
 		this.mite.setPosition(3, -448-50);
 		this.tween(this.mite.display.container, 'alpha', 1, 1000, 0, this.ease.cubicOut);
 		this.mite.walkTo(3, -448);
@@ -527,11 +532,11 @@ wow you did it gj
 		this.camPoint = this.mite.transform;
 		await this.mite.walkTo(5, -380);
 		await this.delay(200);
-		await this.mite.walkTo(3, -193);
 
-		await this.delay(200);
-
-		if (true) {
+		// left branch
+		if (false) {
+			await this.mite.walkTo(3, -193);
+			await this.delay(200);
 			await this.mite.walkTo(-312, -338);
 			await this.delay(500);
 			await this.mite.walkTo(-305, -368);
@@ -541,8 +546,30 @@ wow you did it gj
 			} else {
 				this.goto('drop chandelier again');
 			}
-			this.resetMite();
+		} else {
+			// right branch
+			if (false) {
+				await this.mite.walkTo(5, -126);
+				await this.delay(200);
+				await this.mite.walkTo(335, -250);
+				await this.mite.walkTo(333, -325);
+				this.mite.display.container.offset = 0;
+				await this.mite.walkTo(177, -394);
+				await this.delay(500);
+				if (this.scene.find('peanut')) {
+					this.goto('smash peanut');
+				} else {
+					this.goto('smash peanut again');
+				}
+			} else {
+				// down branch
+				await this.mite.walkTo(-1, -102);
+				await this.mite.walkTo(-53, -116);
+				await this.delay(500);
+				this.goto('close');
+			}
 		}
+		this.resetMite();
 	})();
 >>
 
@@ -642,6 +669,28 @@ wow you did it gj
 		this.goto('close');
 	})();
 >>
+
+::smash peanut
+<<do
+	this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, 0.5, this.ease.cubicOut);
+	this.tween(this.scene.camera, 'shake', 0, 200, 1, this.ease.cubicOut);
+	this.destroy(this.scene.find('peanut'));
+	this.add(
+		this.gameObject = this.Hotspot({ texture: 'peanut smashed', x: 166, y: -228, offset: -15, use: {
+			undefined: [`p:"it used to be a peanut"`],
+		}, }),
+	);
+	this.goto('close');
+>>
+
+::smash peanut again
+<<do
+	this.gameObject = this.scene.player;
+	this.camPoint = null;
+>>
+"i don't think it likes peanuts"
+[[>close]]
+
 
 ::open vault
 <<do
