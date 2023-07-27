@@ -703,6 +703,7 @@ wow you did it gj
 			);
 
 			this.goto('close');
+			this.camPoint = undefined;
 		}, 400);
 	}, 800);
 >>
@@ -710,7 +711,7 @@ wow you did it gj
 ::smash peanut again
 <<do
 	this.gameObject = this.scene.player;
-	this.camPoint = null;
+	this.camPoint = undefined;
 >>
 "i don't think it likes peanuts"
 [[>close]]
