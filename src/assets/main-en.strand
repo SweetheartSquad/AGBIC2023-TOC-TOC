@@ -463,7 +463,7 @@ me
 	this.spot.rock = this.rock;
 	this.scene.loseItem();
 	this.rock.transform.x = this.spot.transform.x;
-	this.rock.transform.y = this.spot.transform.y;
+	this.rock.transform.y = this.spot.transform.y - 20;
 >>
 <<do this.gameObject = this.scene.player>>
 "how about this?"
