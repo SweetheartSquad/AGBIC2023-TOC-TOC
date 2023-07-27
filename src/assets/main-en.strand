@@ -186,6 +186,10 @@
 			undefined: [`p:"oil"`],
 		}, }),
 
+		this.Hotspot({ label: 'elephant beetle', texture: 'beetle', x: 184, y: -317, use: {
+			undefined: [`p:"beetle head"`],
+		}, }),
+
 		this.Hotspot({ texture: 'peanut', x: 168, y: -239, offset: -5, use: {
 			undefined: [`p:"it is a peanut"`, `p:"it looks kinda mushy..."`],
 		}, }),
@@ -555,12 +559,14 @@ wow you did it gj
 				await this.mite.walkTo(333, -325);
 				this.mite.display.container.offset = 0;
 				await this.mite.walkTo(177, -394);
-				await this.delay(500);
-				if (this.scene.find('peanut')) {
+				if (!this.smashedPeanut) {
+					this.smashedPeanut = true;
 					this.goto('smash peanut');
 				} else {
 					this.goto('smash peanut again');
 				}
+				await this.mite.walkTo(57, -447);
+				await this.delay(500);
 			} else {
 				// down branch
 				await this.mite.walkTo(-1, -102);
@@ -673,15 +679,32 @@ wow you did it gj
 
 ::smash peanut
 <<do
-	this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, 0.5, this.ease.cubicOut);
-	this.tween(this.scene.camera, 'shake', 0, 200, 1, this.ease.cubicOut);
-	this.destroy(this.scene.find('peanut'));
-	this.add(
-		this.gameObject = this.Hotspot({ texture: 'peanut smashed', x: 166, y: -228, offset: -15, use: {
-			undefined: [`p:"it used to be a peanut"`],
-		}, }),
-	);
-	this.goto('close');
+	const beetle = this.scene.find('elephant beetle');
+	this.camPoint = beetle.transform;
+	this.tween(beetle.transform, 'x', beetle.transform.x, 1200, beetle.transform.x + 10, (t) => 1-Math.random()*(1-t));
+	// TODO: rumble sfx
+	setTimeout(() => {
+		this.tween(beetle.transform, 'y', -247, 400, undefined, this.ease.cubicIn);
+		// TODO: sfx?
+
+
+		setTimeout(() => {
+			this.scene.screenFilter.uniforms.whiteout = 1.0;
+			this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, undefined, this.ease.cubicOut);
+			this.tween(this.scene.camera, 'shake', 0, 1000, 4, this.ease.cubicOut);
+			beetle.btn.enabled = false;
+			beetle.spr.angle = -10;
+			// TODO: crash sfx
+			this.destroy(this.scene.find('peanut'));
+			this.add(
+				this.gameObject = this.Hotspot({ texture: 'peanut smashed', x: 166, y: -228, offset: -15, use: {
+					undefined: [`p:"it used to be a peanut"`],
+				}, }),
+			);
+
+			this.goto('close');
+		}, 400);
+	}, 800);
 >>
 
 ::smash peanut again

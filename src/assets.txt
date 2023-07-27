@@ -85,6 +85,7 @@ textures/heist/spark.x3.png
 textures/heist/oil.png
 textures/heist/peanut.png
 textures/heist/peanut smashed.png
+textures/heist/beetle.png
 
 textures/miteIdle.x2.png
 textures/miteRun.x2.png
