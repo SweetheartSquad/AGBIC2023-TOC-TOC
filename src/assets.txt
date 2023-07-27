@@ -86,6 +86,9 @@ textures/heist/oil.png
 textures/heist/peanut.png
 textures/heist/peanut smashed.png
 textures/heist/beetle.png
+textures/heist/shelf.png
+textures/heist/bread.png
+textures/heist/bread slice.png
 
 textures/miteIdle.x2.png
 textures/miteRun.x2.png

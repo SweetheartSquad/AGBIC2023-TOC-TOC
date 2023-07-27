@@ -198,6 +198,13 @@
 		this.Poly({ verts: [-214,-117, -193,-140] }), // tnt
 		this.Prop({ texture: 'tnt', x: -202, y: -109, offset: -25 }),
 
+		this.Item({ texture: 'bread slice', x: -74, y: -45, offset: -50, use: {
+			player: [`p:"bread"`],
+		}, }),
+		this.Prop({ texture: 'shelf', scale: 0.5,     offset: 9000 }),
+		this.Hotspot({ texture: 'bread', x: -20, y: -95, offset: 10000, use: {
+			undefined: [`p:"oh noo it's too high up :("`],
+		}, }),
 		this.Prop({ texture: 'heist_fg', scale: 0.5,     offset: 10000 }),
 		
 		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',
