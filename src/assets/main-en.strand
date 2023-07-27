@@ -588,6 +588,7 @@ wow you did it gj
 		setTimeout(() => {
 			this.scene.screenFilter.uniforms.whiteout = 1.0;
 			this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, undefined, this.ease.cubicOut);
+			this.tween(this.scene.camera, 'shake', 0, 1000, 4, this.ease.cubicOut);
 			this.destroy(chandelier);
 			this.add(
 				this.Item({ texture: 'candle', scale: 0.5, x: -67/2, y: -272/2,    offset: 0, use: {
