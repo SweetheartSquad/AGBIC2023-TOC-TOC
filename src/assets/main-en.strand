@@ -140,6 +140,7 @@
 			player: [`"it's a rock"`],
 		}, }),
 		this.Item({ texture: 'little rock', x: 127, y: -112, use: {
+			undefined: ['goto:take little rock'],
 			player: [`"it's a rock"`],
 		}, }),
 		this.glassPoly = this.Poly({ verts: [-179,-82, -209,-84, -205,-66, -179,-84], width: 10 }),
@@ -397,6 +398,15 @@ me
 >>
 "oh! a rock!"
 [[>close]]
+
+::take little rock
+<<if this.scene.find('bottom').expression === 'hatless'>>
+<<do this.goto('generic item')>>
+<<else>>
+<<do this.gameObject = this.scene.find('bottom')>>
+"hey! that's my rock ya jerk"
+[[>close]]
+<<endif>>
 
 ::remove-hat
 "oh thank you"
