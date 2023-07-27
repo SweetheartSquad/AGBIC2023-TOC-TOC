@@ -134,6 +134,7 @@
 		}, }),
 
 		this.Item({ texture: 'big rock', x: -109, y: -219, use: {
+			undefined: ['goto:take big rock'],
 			player: [`"it's a rock"`],
 		}, }),
 		this.Item({ texture: 'medium rock', x: 132, y: -185, use: {
@@ -398,6 +399,15 @@ me
 >>
 "oh! a rock!"
 [[>close]]
+
+::take big rock
+<<if this.scene.find('worm').display.container.alpha <= 0>>
+<<do this.goto('generic item')>>
+<<else>>
+<<do this.gameObject = this.scene.find('top')>>
+"hands off my rock!!"
+[[>close]]
+<<endif>>
 
 ::take little rock
 <<if this.scene.find('bottom').expression === 'hatless'>>
