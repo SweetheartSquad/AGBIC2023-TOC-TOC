@@ -59,6 +59,8 @@ export class StrandE extends Strand {
 
 	mousePos = mousePos;
 
+	camPoint?: { x?: number; y?: number };
+
 	setSource(src: string) {
 		super.setSource(
 			src
