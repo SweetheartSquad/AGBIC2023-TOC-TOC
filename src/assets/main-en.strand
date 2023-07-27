@@ -123,19 +123,23 @@
 		this.Hotspot({ label: 'flower', texture: 'bg_gnome_puzzle_flower', x: -57, y: -266, offset: -10, use: {
 			glass: ['goto:cut flower'],
 		}, }),
+
+		this.Hotspot({ label: 'leaf', texture: 'leaf', x: 122, y: -175, offset: 10, use: {
+			undefined: ['goto:move leaf'],
+		}, }),
 		
 		this.Npc({ name: 'top', body: 'gnome_top', tint: 0xcd836f, x: -162, y: -224, use: {}, }),
 		this.Npc({ name: 'bottom', body: 'gnome_bottom', tint: 0x6f79cd, x: 180, y: -100, flip: true, use: {
 			'cut flower': [`goto:remove-hat`],
 		}, }),
 
-		this.Item({ texture: 'big rock', x: -81, y: -237, use: {
+		this.Item({ texture: 'big rock', x: -109, y: -219, use: {
 			player: [`"it's a rock"`],
 		}, }),
-		this.Item({ texture: 'medium rock', x: -99, y: -213, use: {
+		this.Item({ texture: 'medium rock', x: 132, y: -185, use: {
 			player: [`"it's a rock"`],
 		}, }),
-		this.Item({ texture: 'little rock', x: -101, y: -290, use: {
+		this.Item({ texture: 'little rock', x: 127, y: -112, use: {
 			player: [`"it's a rock"`],
 		}, }),
 		this.glassPoly = this.Poly({ verts: [-179,-82, -209,-84, -205,-66, -179,-84], width: 10 }),
@@ -384,6 +388,10 @@ me
 	);
 >>
 "snip snip!"
+[[>close]]
+
+::move leaf
+"oh! a rock!"
 [[>close]]
 
 ::remove-hat

@@ -50,6 +50,7 @@ textures/gnomePuzzle/bg_gnome_puzzle_worm_gone.png
 textures/gnomePuzzle/bg_gnome_puzzle_flower.png
 textures/gnomePuzzle/bg_gnome_puzzle_flower_gone.png
 textures/gnomePuzzle/stone_tile.png
+textures/gnomePuzzle/leaf.png
 
 textures/gnome_topIdle.x2.png
 textures/gnome_bottomIdle.x2.png
