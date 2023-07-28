@@ -206,6 +206,10 @@
 			undefined: [`p:"oh noo it's too high up :("`],
 		}, }),
 		this.Prop({ texture: 'heist_fg', scale: 0.5,     offset: 10000 }),
+
+		this.Hotspot({ label: 'route', texture: 'hat', offset: 100000, x: 3, y: -164, use: {
+			undefined: ['goto:route switch'],
+		}, }),
 		
 		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',
 			x: -340/2,
@@ -560,6 +564,13 @@ wow you did it gj
 // 88'  `88 88    88 Y8ooooo.   88   88'  `88 88    88 88'  `88
 // 88.  .88 88.  .88       88   88   88.  .88 88.  .88 88    88
 // `88888P8 `88888P' `88888P'   dP   88Y8888' `88888P' dP    dP
+::route switch
+<<do
+	this.gameObject.spr.angle += 90;
+	this.route = ((this.route || 0) + 1) % 4;
+	this.goto('close');
+>>
+
 ::mite run
 <<do
 	this.resetMite = async () => {
@@ -577,7 +588,7 @@ wow you did it gj
 		await this.delay(200);
 
 		// left branch
-		if (false) { // TODO: real check
+		if (this.route === 3) { // TODO: real check
 			await this.mite.walkTo(3, -193);
 			await this.delay(200);
 			await this.mite.walkTo(-312, -338);
@@ -591,7 +602,7 @@ wow you did it gj
 			}
 		} else {
 			// right branch
-			if (false) { // TODO: real check
+			if (this.route === 1) { // TODO: real check
 				await this.mite.walkTo(5, -126);
 				await this.delay(200);
 				await this.mite.walkTo(335, -250);
@@ -606,7 +617,7 @@ wow you did it gj
 				}
 				await this.mite.walkTo(57, -447);
 				await this.delay(500);
-			} else {
+			} else if(this.route === 2) {
 				// down branch
 				await this.mite.walkTo(-1, -102);
 				await this.mite.walkTo(-53, -116);
@@ -616,6 +627,8 @@ wow you did it gj
 				} else {
 					this.goto('knock bread again');
 				}
+			} else {
+				this.goto('close');
 			}
 		}
 		this.resetMite();
