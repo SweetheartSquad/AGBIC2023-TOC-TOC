@@ -177,7 +177,7 @@
 		this.Prop({ texture: 'heist_tubes',   offset: -238 }),
 		this.Prop({ texture: 'chandelier', x: -94, y: -320,    offset: 1000 }),
 		this.Item({ texture: 'poster', x: 294, y: -263,       offset: 1000 }),
-		this.Prop({ texture: 'fuse',          offset: -140 }),
+		this.Prop({ texture: 'fuse', x: -146, y: -80,          offset: -60 }),
 		this.Hotspot({ label: 'fuse', texture: 'spark', freq: 1/50, alpha: 0, x: -73, y: -80, offset: -5, use: {
 			undefined: [`p:"it's a fuse"`],
 			candle: ['goto:light fuse'],
