@@ -216,10 +216,10 @@
 
 		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', tint: 0x746568, x: 290, y: -130, shadow: false, flip: true, use: {}, }),
 		this.Npc({ name: 'demolition2', body: 'dustbun_demolition', tint: 0x746568, x: -30, y: -215, flip: true, use: {}, }),
-		this.Npc({ name: 'boss', body: 'dustbun_boss', tint: 0x9485A2, x: 170, y: -245, flip: true, use: {
+		this.Npc({ name: 'boss', body: 'dustbun_boss', tint: 0x9485A2, x: 130, y: -215, flip: true, use: {
 			poster: [`"Not a bad likeness, really."`, `"What about it?"`, `"Gonna try to claim that reward?"`],
 		}, }),
-		this.Npc({ name: 'mook 1', body: 'dustbun_mook1', tint: 0x87947F, x: 95, y: -190, use: {}, }),
+		this.Npc({ name: 'mook 1', body: 'dustbun_mook1', tint: 0x87947F, x: 65, y: -180, use: {}, }),
 		this.Npc({ name: 'mook 2', body: 'dustbun_mook2', tint: 0xE6E2A4, x: -139, y: -115, use: {
 		}, }),
 		this.Npc({ name: 'shop', body: 'dustbun_shop', tint: 0xC6A89D, shadow: false, offset: -100, x: 94, y: -247, use: {}, }),
