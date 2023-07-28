@@ -632,6 +632,7 @@ wow you did it gj
 					this.goto('knock bread again');
 				}
 			} else {
+				this.camPoint = undefined;
 				this.goto('close');
 			}
 		}
