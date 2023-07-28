@@ -627,6 +627,7 @@ wow you did it gj
 				await this.mite.walkTo(-53, -116);
 				await this.delay(500);
 				if (!this.knockedBread) {
+					this.knockedBread = true;
 					this.goto('knock bread');
 				} else {
 					this.goto('knock bread again');
