@@ -104,7 +104,7 @@ textures/townCenter/boardWalkCrayonSRLayer.png
 textures/townCenter/boardwalkLayer.png
 textures/townCenter/canBackLayer.png
 textures/townCenter/canFrontLayer.png
-textures/townCenter/fountainLayer.png
+textures/fountainFullAnim/fountainWaterAnim.x4.png
 textures/townCenter/gatehouseLayer.png
 textures/townCenter/greenCrayonLayer.png
 textures/townCenter/juiceboxLayer.png
