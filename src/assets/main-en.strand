@@ -171,13 +171,13 @@
 		// shelf
 		this.Poly({ verts: [-44,-39, 18,-13] }),
 
-		this.Prop({ texture: 'heist_bg', scale: 0.5,     offset: -1000000 }),
-		this.Prop({ texture: 'heist_vault', scale: 0.5,  offset: -504/2 }),
-		this.Prop({ texture: 'heist_window', scale: 0.5, offset: -554/2 }),
-		this.Prop({ texture: 'heist_tubes', scale: 0.5,  offset: -238 }),
-		this.Prop({ texture: 'chandelier', scale: 0.5,   offset: 1000 }),
+		this.Prop({ texture: 'heist_bg',      offset: -1000000 }),
+		this.Prop({ texture: 'heist_vault', x: -212, y: -84, offset: -168 }),
+		this.Prop({ texture: 'heist_window', x: 0, y: -211, offset: -66 }),
+		this.Prop({ texture: 'heist_tubes', x: 237, y: -198,  offset: -40 }),
+		this.Prop({ texture: 'chandelier', x: -94, y: -320,    offset: 1000 }),
 		this.Item({ texture: 'poster', x: 294, y: -263,       offset: 1000 }),
-		this.Prop({ texture: 'fuse', scale: 0.5,         offset: -140 }),
+		this.Prop({ texture: 'fuse', x: -146, y: -80,          offset: -60 }),
 		this.Hotspot({ label: 'fuse', texture: 'spark', freq: 1/50, alpha: 0, x: -73, y: -80, offset: -5, use: {
 			undefined: [`p:"it's a fuse"`],
 			candle: ['goto:light fuse'],
@@ -201,11 +201,11 @@
 		this.Poly({ verts: [-214,-117, -193,-140] }), // tnt
 		this.Prop({ texture: 'tnt', x: -202, y: -109, offset: -25 }),
 
-		this.Prop({ texture: 'shelf', scale: 0.5,     offset: 9000 }),
+		this.Prop({ texture: 'shelf',      offset: 9000 }),
 		this.Hotspot({ texture: 'bread', x: -20, y: -95, offset: 10000, use: {
 			undefined: [`p:"oh noo it's too high up :("`],
 		}, }),
-		this.Prop({ texture: 'heist_fg', scale: 0.5,     offset: 10000 }),
+		this.Prop({ texture: 'heist_fg',      offset: 10000 }),
 
 		this.Hotspot({ label: 'route', texture: 'hat', offset: 100000, x: 3, y: -164, use: {
 			undefined: ['goto:route switch'],
@@ -214,7 +214,7 @@
 		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',
 			x: -340/2,
 			y: -304/2,
-			scale: 0.5,  offset: (-454+304)/2, use: {
+			offset: (-454+304)/2, use: {
 			undefined: ['goto:open vault'],
 			oil: ['goto:oil vault'],
 		}, }),
@@ -646,11 +646,10 @@ wow you did it gj
 <<do
 	const chandelier = this.scene.find('chandelier');
 	this.camPoint = chandelier.transform;
-	chandelier.transform.y = 0;
 	this.tween(chandelier.transform, 'x', chandelier.transform.x, 1200, chandelier.transform.x + 10, (t) => 1-Math.random()*(1-t));
 	// TODO: rumble sfx
 	setTimeout(() => {
-		this.tween(chandelier.transform, 'y', /*chandelier.transform.y + */170, 400, 0, this.ease.cubicIn);
+		this.tween(chandelier.transform, 'y', chandelier.transform.y + 170, 400, undefined, this.ease.cubicIn);
 		// TODO: chain sfx
 
 
@@ -660,10 +659,10 @@ wow you did it gj
 			this.tween(this.scene.camera, 'shake', 0, 1000, 4, this.ease.cubicOut);
 			this.destroy(chandelier);
 			this.add(
-				this.Item({ texture: 'candle', scale: 0.5, x: -53, y: -177, offset: 0, use: {
+				this.Item({ texture: 'candle', x: -53, y: -177, offset: 0, use: {
 					player: ['p:"it is a candle"'],
 				}, }),
-				this.Prop({ texture: 'dropped chandelier', scale: 0.5,   offset: -323/2 }),
+				this.Prop({ texture: 'dropped chandelier', x: -92, y: -144, offset: -17 }),
 				this.Poly({ verts: [-78,-163, -111,-162] }),
 			);
 			// TODO: crash sfx
