@@ -174,7 +174,7 @@
 		this.Prop({ texture: 'heist_bg',      offset: -1000000 }),
 		this.Prop({ texture: 'heist_vault',   offset: -504/2 }),
 		this.Prop({ texture: 'heist_window',  offset: -554/2 }),
-		this.Prop({ texture: 'heist_tubes',   offset: -238 }),
+		this.Prop({ texture: 'heist_tubes', x: 237, y: -198,  offset: -40 }),
 		this.Prop({ texture: 'chandelier', x: -94, y: -320,    offset: 1000 }),
 		this.Item({ texture: 'poster', x: 294, y: -263,       offset: 1000 }),
 		this.Prop({ texture: 'fuse', x: -146, y: -80,          offset: -60 }),
