@@ -391,6 +391,7 @@ me
 
 ::move leaf
 <<do
+	this.gameObject.btn.enabled = false;
 	this.add(
 		this.Item({ texture: 'medium rock', x: 132, y: -185, use: {
 			player: [`"it's a rock"`],
