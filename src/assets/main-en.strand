@@ -224,11 +224,11 @@
 			'bread slice': ['goto:give bread'],
 		}, }),
 		this.Npc({ name: 'demolition2', body: 'dustbun_demolition', tint: 0x746568, x: -30, y: -215, flip: true, use: {}, }),
-		this.Npc({ name: 'boss', body: 'dustbun_boss', tint: 0x9485A2, x: 130, y: -215, flip: true, use: {
+		this.Npc({ name: 'crook', body: 'dustbun_boss', tint: 0x9485A2, x: 125, y: -215, flip: true, use: {
 			poster: [`"Not a bad likeness, really."`, `"What about it?"`, `"Gonna try to claim that reward?"`],
 		}, }),
-		this.Npc({ name: 'mook 1', body: 'dustbun_mook1', tint: 0x87947F, x: 65, y: -180, use: {}, }),
-		this.Npc({ name: 'mook 2', body: 'dustbun_mook2', tint: 0xE6E2A4, x: -139, y: -115, use: {
+		this.Npc({ name: 'mook', body: 'dustbun_mook2', tint: 0xE6E2A4, x: -139, y: -115, use: {
+			undefined: [`"ey step back kiddo"`, `"dis stuff's dangerous"`],
 		}, }),
 		this.Npc({ name: 'shop', body: 'dustbun_shop', tint: 0xC6A89D, shadow: false, offset: -100, x: 94, y: -247, use: {}, }),
 
@@ -672,7 +672,7 @@ wow you did it gj
 >>
 ::drop chandelier1
 <<do
-	this.gameObject = this.scene.find('mook 2');
+	this.gameObject = this.scene.find('mook');
 	this.shock(this.gameObject, 500);
 	this.camPoint = undefined;
 >>
@@ -700,10 +700,10 @@ wow you did it gj
 	}, 1000);
 >>
 ::light fuse1
-<<do this.gameObject = this.scene.find('mook 2');>>
+<<do this.gameObject = this.scene.find('mook');>>
 "uh..."
 <<do
-	const mook = this.scene.find('mook 2');
+	const mook = this.scene.find('mook');
 	(async () => {
 		await this.delay(800);
 		mook.flipped = true;
@@ -718,9 +718,9 @@ wow you did it gj
 ::light fuse2
 "i'm outta here!"
 <<do
-	const mook = this.scene.find('mook 2');
+	const mook = this.scene.find('mook');
 	(async () => {
-		const [t1, t2] = this.shock(this.scene.find('mook 2'), 1200);
+		const [t1, t2] = this.shock(this.scene.find('mook'), 1200);
 
 		await this.delay(1200-800);
 		const t3 = this.tween(mook, 'x', 102, 800, undefined, this.ease.backIn);
@@ -758,17 +758,39 @@ wow you did it gj
 			// TODO: crash sfx
 			this.destroy(this.scene.find('peanut'));
 			this.add(
-				this.gameObject = this.Hotspot({ texture: 'peanut smashed', x: 166, y: -228, offset: -15, use: {
+				this.gameObject = this.Hotspot({ label: 'peanut', texture: 'peanut smashed', x: 166, y: -228, offset: -15, use: {
 					undefined: [`p:"it used to be a peanut"`, `p:"it looks very mushy..."`],
 					'bread slice': ['goto:butter bread'],
 				}, }),
 			);
 
-			this.goto('close');
+			this.goto('smash peanut2');
 			this.camPoint = undefined;
 		}, 400);
 	}, 800);
 >>
+
+::smash peanut2
+<<do
+	const crook = this.scene.find('crook');
+	crook.flipped = false;
+	this.shock(crook, 500);
+	const shop = this.scene.find('shop');
+	this.shock(shop, 600);
+	this.gameObject = shop;
+>>
+"gadzooks!!"
+>
+<<do
+	this.gameObject = this.scene.find('crook');
+	this.shock(this.gameObject, 250);
+	this.gameObject.btn.use.undefined = [`"swear i saw sumtin move over dere"`, `"back off kid, yer distractin' me"`];
+	this.gameObject.btn.resetCycles();
+>>
+"this place is fallin' apart..."
+>
+"all da more reason to clean house"
+[[>close]]
 
 ::smash peanut again
 <<do
@@ -871,9 +893,14 @@ can't live on bread alone"
 		h.spr.width = 50;
 		h.spr.height = 100;
 		this.add(h);
+		// TODO: sfx
 		this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 50, 1500, undefined, this.ease.cubicInOut);
 		this.tween(this.gameObject.transform, 'y', this.gameObject.transform.y - 25, 1500, undefined, this.ease.cubicInOut);
 		this.camPoint = this.gameObject.transform;
+		const mook = this.scene.find('mook');
+		if (mook) {
+			mook.btn.use.undefined = [`"thanks for da door help kid"`, `"but still. back off"`];
+		}
 		setTimeout(() => {
 			this.camPoint = undefined;
 			this.goto('close');
@@ -885,9 +912,19 @@ can't live on bread alone"
 [[>close]]
 <<endif>>
 
-::goto soap
-<<do this.gotoItemRoom({ x: -190, y: -160 }, 'soap');>>
+::vault blocked
+<<do this.gameObject = this.scene.find('mook'); this.shock(this.gameObject, 250);>>
+"woah woah hold your horses"
+>
+"no one but da big boss is steppin' in dere"
+[[>close]]
 
+::goto soap
+<<if this.scene.find('mook')>>
+	<<do this.goto('vault blocked')>>
+<<else>>
+	<<do this.gotoItemRoom({ x: -190, y: -160 }, 'soap');>>
+<<endif>>
 
 
 
