@@ -933,7 +933,7 @@ The End
 [[place props|
 	const canvas = window.game.app.renderer.context.gl.canvas;
 
-	const textures = () => Array.from(resources._cache.entries()).filter(([k,r]) => !k.match(/\.[2-9]\d*?$/) && !k.match(/^https?:/) && r?.baseTexture);
+	const textures = () => Object.entries(resources).filter(([k,r]) => !k.match(/\.[2-9]\d*?$/) && !k.match(/^https?:/) && r?.baseTexture);
 
 	let tex = 0;
 	const spr = new this.PIXI.Sprite();
