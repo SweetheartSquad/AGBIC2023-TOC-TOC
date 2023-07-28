@@ -175,7 +175,7 @@
 		this.Prop({ texture: 'heist_vault',   offset: -504/2 }),
 		this.Prop({ texture: 'heist_window',  offset: -554/2 }),
 		this.Prop({ texture: 'heist_tubes',   offset: -238 }),
-		this.Prop({ texture: 'chandelier',    offset: 1000 }),
+		this.Prop({ texture: 'chandelier', x: -94, y: -320,    offset: 1000 }),
 		this.Item({ texture: 'poster', x: 294, y: -263,       offset: 1000 }),
 		this.Prop({ texture: 'fuse',          offset: -140 }),
 		this.Hotspot({ label: 'fuse', texture: 'spark', freq: 1/50, alpha: 0, x: -73, y: -80, offset: -5, use: {
@@ -646,11 +646,10 @@ wow you did it gj
 <<do
 	const chandelier = this.scene.find('chandelier');
 	this.camPoint = chandelier.transform;
-	chandelier.transform.y = 0;
 	this.tween(chandelier.transform, 'x', chandelier.transform.x, 1200, chandelier.transform.x + 10, (t) => 1-Math.random()*(1-t));
 	// TODO: rumble sfx
 	setTimeout(() => {
-		this.tween(chandelier.transform, 'y', /*chandelier.transform.y + */170, 400, 0, this.ease.cubicIn);
+		this.tween(chandelier.transform, 'y', chandelier.transform.y + 170, 400, undefined, this.ease.cubicIn);
 		// TODO: chain sfx
 
 
