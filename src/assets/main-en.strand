@@ -253,7 +253,7 @@
 		this.Prop({ texture: 'boardwalkLayer',         offset: -0 }),
 		this.Prop({ texture: 'canBackLayer',           offset: -400 }),
 		this.Prop({ texture: 'canFrontLayer',          offset: -350 }),
-		this.Prop({ texture: 'fountainLayer',          offset: -229 }),
+		this.Prop({ texture: 'fountainWaterAnim', freq: 1/100, offset: -229 }),
 		this.Prop({ texture: 'gatehouseLayer',         offset: -379 }),
 		this.Prop({ texture: 'toothpickLayer',         offset: -334 }),
 
