@@ -306,7 +306,7 @@ export class GameScene {
 		const curTime = game.app.ticker.lastTime;
 
 		// depth sort
-		this.container.children.sort(depthCompare);
+		this.sortScene();
 		if (window.debugPhysics) {
 			if (!this.physicsDebug) this.physicsDebug = new PhysicsDebug();
 			this.container.addChild(this.physicsDebug.display.container);
@@ -323,6 +323,10 @@ export class GameScene {
 			-this.camera.display.container.pivot.y,
 		];
 		this.player.canMove = !this.dialogue.isOpen && !this.carrying;
+	}
+
+	sortScene() {
+		this.container.children.sort(depthCompare);
 	}
 
 	take(gameObject: GameObject) {

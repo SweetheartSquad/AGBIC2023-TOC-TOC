@@ -170,6 +170,10 @@ export class StrandE extends Strand {
 		if (!a) return;
 		Area.add(a, ...objs);
 		Area.mount([...objs], this.scene.container);
+		objs.forEach((i) => {
+			i.getScript(Display)?.updatePosition();
+		});
+		this.scene.sortScene();
 	}
 
 	remove(obj: GameObject) {
