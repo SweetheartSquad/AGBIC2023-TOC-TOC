@@ -90,6 +90,7 @@ textures/heist/peanut smashed.png
 textures/heist/beetle.png
 textures/heist/shelf.png
 textures/heist/bread.png
+textures/heist/busted bread.png
 textures/heist/bread slice.png
 textures/heist/bread slice buttered.png
 

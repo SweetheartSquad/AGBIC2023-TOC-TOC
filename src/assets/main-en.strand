@@ -202,7 +202,7 @@
 		this.Prop({ texture: 'tnt', x: -202, y: -109, offset: -25 }),
 
 		this.Prop({ texture: 'shelf',      offset: 9000 }),
-		this.Hotspot({ texture: 'bread', x: -20, y: -95, offset: 10000, use: {
+		this.Hotspot({ texture: 'bread', x: -30, y: -100, offset: 10000, use: {
 			undefined: [`p:"oh noo it's too high up :("`],
 		}, }),
 		this.Prop({ texture: 'heist_fg',      offset: 10000 }),
@@ -625,12 +625,16 @@ wow you did it gj
 			} else if(this.route === 2) {
 				// down branch
 				await this.mite.walkTo(-1, -102);
-				await this.mite.walkTo(-53, -116);
-				await this.delay(500);
+				this.mite.display.container.offset = 9500;
+				await this.mite.walkTo(-11, -112);
 				if (!this.knockedBread) {
 					this.knockedBread = true;
 					this.goto('knock bread');
+					await this.delay(500);
+					await this.mite.walkTo(-53, -116);
+					await this.delay(500);
 				} else {
+					await this.mite.walkTo(-53, -116);
 					this.goto('knock bread again');
 				}
 			} else {
@@ -804,14 +808,34 @@ wow you did it gj
 
 ::knock bread
 <<do
-	// TODO: animate
-	this.add(
-		this.Item({ texture: 'bread slice', x: -74, y: -45, offset: -50, use: {
-			player: [`p:"bread"`],
-		}, }),
-	);
-	this.goto('close');
-	this.camPoint = undefined;
+	const bread = this.scene.find('bread');
+	this.tween(bread.transform, 'x', bread.transform.x, 1600, bread.transform.x + 10, (t) => 1-Math.random()*(1-t));
+	// TODO: rumble sfx
+	setTimeout(() => {
+		bread.display.container.offset = 0;
+		this.tween(bread.transform, 'y', bread.transform.y + 170, 400, undefined, this.ease.cubicIn);
+		// TODO: chain sfx
+
+
+		setTimeout(() => {
+			this.scene.screenFilter.uniforms.whiteout = 1.0;
+			this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, undefined, this.ease.cubicOut);
+			this.tween(this.scene.camera, 'shake', 0, 1000, 4, this.ease.cubicOut);
+			this.destroy(bread);
+			this.add(
+				this.Prop({ texture: 'busted bread', x: -40, y: -27, offset: -17 }),
+			);
+			// TODO: crash sfx
+			this.add(
+				this.Item({ texture: 'bread slice', x: -74, y: -45, offset: -50, use: {
+					player: [`p:"bread"`],
+				}, }),
+			);
+			this.goto('close');
+			this.camPoint = undefined;
+		}, 400);
+	}, 1200);
+
 >>
 
 ::knock bread again
