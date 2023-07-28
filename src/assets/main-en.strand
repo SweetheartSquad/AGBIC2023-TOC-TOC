@@ -172,7 +172,7 @@
 		this.Poly({ verts: [-44,-39, 18,-13] }),
 
 		this.Prop({ texture: 'heist_bg',      offset: -1000000 }),
-		this.Prop({ texture: 'heist_vault',   offset: -504/2 }),
+		this.Prop({ texture: 'heist_vault', x: -212, y: -84, offset: -168 }),
 		this.Prop({ texture: 'heist_window', x: 0, y: -211, offset: -66 }),
 		this.Prop({ texture: 'heist_tubes', x: 237, y: -198,  offset: -40 }),
 		this.Prop({ texture: 'chandelier', x: -94, y: -320,    offset: 1000 }),
