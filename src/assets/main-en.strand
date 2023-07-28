@@ -186,7 +186,7 @@
 		// oil
 		this.Poly({ verts: [221,-114, 253,-120, 233,-133] }),
 		this.Item({ texture: 'oil', x: 235, y: -114, offset: 0, use: {
-			undefined: [`p:"oil"`],
+			undefined: ['goto:take oil'],
 		}, }),
 
 		this.Hotspot({ label: 'elephant beetle', texture: 'beetle', x: 184, y: -317, use: {
@@ -216,9 +216,13 @@
 			y: -304/2,
 			scale: 0.5,  offset: (-454+304)/2, use: {
 			undefined: ['goto:open vault'],
+			oil: ['goto:oil vault'],
 		}, }),
 
-		this.Npc({ name: 'demolition', body: 'dustbun_demolition_sitting', tint: 0x746568, x: 290, y: -130, shadow: false, flip: true, use: {}, }),
+		this.Npc({ name: 'snake oil\nsalesman', body: 'dustbun_demolition_sitting', tint: 0x746568, x: 290, y: -130, shadow: false, flip: true, use: {
+			undefined: [`"can't believe this..."`, `"past noon already..."`, `"never woulda happened with my oil..."`],
+			'bread slice': ['goto:give bread'],
+		}, }),
 		this.Npc({ name: 'demolition2', body: 'dustbun_demolition', tint: 0x746568, x: -30, y: -215, flip: true, use: {}, }),
 		this.Npc({ name: 'boss', body: 'dustbun_boss', tint: 0x9485A2, x: 130, y: -215, flip: true, use: {
 			poster: [`"Not a bad likeness, really."`, `"What about it?"`, `"Gonna try to claim that reward?"`],
@@ -754,7 +758,8 @@ wow you did it gj
 			this.destroy(this.scene.find('peanut'));
 			this.add(
 				this.gameObject = this.Hotspot({ texture: 'peanut smashed', x: 166, y: -228, offset: -15, use: {
-					undefined: [`p:"it used to be a peanut"`],
+					undefined: [`p:"it used to be a peanut"`, `p:"it looks very mushy..."`],
+					'bread slice': ['goto:butter bread'],
 				}, }),
 			);
 
@@ -793,26 +798,91 @@ wow you did it gj
 "i don't think it's hungry"
 [[>close]]
 
+::butter bread
+<<if !this.buttered>>
+<<do
+	this.buttered = true;
+	this.scene.sprCarrying.texture = this.tex('bread slice buttered');
+	const slice = this.scene.find('bread slice');
+	slice.texture = 'bread slice buttered';
+	slice.spr.texture = this.tex('bread slice buttered');
+>>
+*plaf* *smear* *plap* smush*
+[[>close]]
+<<else>>
+<<do this.gameObject = this.scene.player>>
+"i think it's peanutty enough"
+[[>close]]
+<<endif>>
+
+::give bread
+<<if this.buttered>>
+"oh yum yum"
+<<do
+	this.fed = true;
+	this.scene.loseItem(true);
+>>
+[[>give bread2]]
+<<else>>
+<<do this.scene.loseItem();>>
+"bread? alone???"
+[[>close]]
+<<endif>>
+
+::give bread2
+"take my oil i dont care anymore"
+[[>close]]
 
 
+::take oil
+<<if this.fed>>
+<<do this.goto('generic item')>>
+<<else>>
+<<do this.gameObject = this.scene.find('snake oil\nsalesman')>>
+<<do this.goto('take oil hint')>>
+<<endif>>
+
+::take oil hint
+<<do this.oilhint = !this.oilhint>>
+<<if this.oilhint>>
+"no free samples bucko"
+<<else>>
+"gotta pay for that.
+can't live on bread alone"
+<<endif>>
+[[>close]]
+
+::oil vault
+<<do
+	this.oiled = true;
+	this.scene.loseItem();
+>>
+*oil* *oil* *oil* *oil*
+[[>close]]
 
 ::open vault
-<<do
-	this.gameObject.btn.enabled = false;
-	const h = this.Hotspot({ label: 'entrance', texture: 'blank', x: -190, y: -160, use: {
-		undefined: [`goto:goto soap`],
-	}, });
-	h.spr.width = 50;
-	h.spr.height = 100;
-	this.add(h);
-	this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 50, 1500, undefined, this.ease.cubicInOut);
-	this.tween(this.gameObject.transform, 'y', this.gameObject.transform.y - 25, 1500, undefined, this.ease.cubicInOut);
-	this.camPoint = this.gameObject.transform;
-	setTimeout(() => {
-		this.camPoint = undefined;
-		this.goto('close');
-	}, 1500);
->>
+<<if this.oiled>>
+	<<do
+		this.gameObject.btn.enabled = false;
+		const h = this.Hotspot({ label: 'entrance', texture: 'blank', x: -190, y: -160, use: {
+			undefined: [`goto:goto soap`],
+		}, });
+		h.spr.width = 50;
+		h.spr.height = 100;
+		this.add(h);
+		this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 50, 1500, undefined, this.ease.cubicInOut);
+		this.tween(this.gameObject.transform, 'y', this.gameObject.transform.y - 25, 1500, undefined, this.ease.cubicInOut);
+		this.camPoint = this.gameObject.transform;
+		setTimeout(() => {
+			this.camPoint = undefined;
+			this.goto('close');
+		}, 1500);
+	>>
+<<else>>
+<<do this.gameObject = this.scene.player>>
+"it's stuck"
+[[>close]]
+<<endif>>
 
 ::goto soap
 <<do this.gotoItemRoom({ x: -190, y: -160 }, 'soap');>>
