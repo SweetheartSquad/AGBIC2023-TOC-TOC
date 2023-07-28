@@ -137,9 +137,6 @@
 			undefined: ['goto:take big rock'],
 			player: [`"it's a rock"`],
 		}, }),
-		this.Item({ texture: 'medium rock', x: 132, y: -185, use: {
-			player: [`"it's a rock"`],
-		}, }),
 		this.Item({ texture: 'little rock', x: 127, y: -112, use: {
 			undefined: ['goto:take little rock'],
 			player: [`"it's a rock"`],
@@ -394,6 +391,11 @@ me
 
 ::move leaf
 <<do
+	this.add(
+		this.Item({ texture: 'medium rock', x: 132, y: -185, use: {
+			player: [`"it's a rock"`],
+		}, }),
+	);
 	this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 100, 500, undefined, this.ease.cubicInOut);
 	this.gameObject = this.scene.player;
 >>
