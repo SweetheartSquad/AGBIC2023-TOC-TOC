@@ -232,7 +232,7 @@
 		}, }),
 		this.Npc({ name: 'shop', body: 'dustbun_shop', tint: 0xC6A89D, shadow: false, offset: -100, x: 94, y: -247, use: {}, }),
 
-		this.mite = this.Npc({ name: 'dust mite', body: 'mite', x: 3, y: -448, offset: 100000, bodyCollision: { isStatic: false, isSensor: true }, use: {
+		this.mite = this.Npc({ name: 'dust mite', body: 'mite', x: 3, y: -448, roam: 50, offset: 100000, bodyCollision: { isStatic: false, isSensor: true }, use: {
 			undefined: ['goto:mite run'],
 		}, }),
 	]);
@@ -584,7 +584,8 @@ wow you did it gj
 		this.mite.display.container.offset = 100000;
 		this.mite.setPosition(3, -448-50);
 		this.tween(this.mite.display.container, 'alpha', 1, 1000, 0, this.ease.cubicOut);
-		this.mite.walkTo(3, -448);
+		await this.mite.walkTo(3, -448);
+		this.mite.roam.range = [0, 50];
 	};
 	(async () => {
 		this.camPoint = this.mite.transform;
