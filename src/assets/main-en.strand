@@ -137,7 +137,7 @@
 			undefined: ['goto:take big rock'],
 			player: [`"it's a rock"`],
 		}, }),
-		this.Item({ texture: 'little rock', x: 127, y: -112, use: {
+		this.Item({ texture: 'little rock', x: 100, y: -110, use: {
 			undefined: ['goto:take little rock'],
 			player: [`"it's a rock"`],
 		}, }),
