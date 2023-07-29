@@ -265,8 +265,6 @@
 		this.Prop({ texture: 'tinfoilRoomLayer',       offset: -0 }),
 		this.Prop({ texture: 'juiceboxLayer',          offset: -272 }),
 
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -332, flip: true, use: {}, }),
 		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
