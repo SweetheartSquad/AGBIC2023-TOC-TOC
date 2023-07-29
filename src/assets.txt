@@ -63,6 +63,11 @@ textures/little rock.png
 textures/glass.png
 textures/flower_head.png
 
+textures/gnomePuzzle/thimble.png
+textures/gnomePuzzle/die.png
+textures/gnomePuzzle/safety pin.png
+textures/gnomePuzzle/dragonfly.png
+
 textures/dustbun_demolition_sittingIdle.x2.png
 textures/dustbun_demolitionIdle.x2.png
 textures/dustbun_bossIdle.x2.png

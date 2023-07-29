@@ -118,19 +118,31 @@
 		this.Prop({ texture: 'bg_gnome_puzzle_worm_gone', x: -303, y: -182, offset: 0 }),
 		this.Hotspot({ label: 'worm', texture: 'bg_gnome_puzzle_worm', x: -286, y: -159, offset: 0, use: {
 			hat: ['goto:worm hat'],
+			undefined: [`"wish i had a hat to go out in."`, `"i wanna look good before i head out"`],
+			die: [`"i dont have hands..."`],
 		}, }),
 
 		this.Hotspot({ label: 'flower', texture: 'bg_gnome_puzzle_flower', x: -57, y: -266, offset: -10, use: {
 			glass: ['goto:cut flower'],
+			undefined: ['cute flower!'],
 		}, }),
 
 		this.Hotspot({ label: 'leaf', texture: 'leaf', x: 122, y: -175, offset: 10, use: {
 			undefined: ['goto:move leaf'],
 		}, }),
 		
-		this.Npc({ name: 'top', body: 'gnome_top', tint: 0xcd836f, x: -162, y: -224, use: {}, }),
+		this.Npc({ name: 'top', body: 'gnome_top', tint: 0xcd836f, x: -162, y: -224, use: {
+			'die': [`"no time for games!"`],
+			'glass': [`"hey! watch where you swing that!"`],
+			undefined: [`"i know where the rocks go!"`,`"don't listen to the other guy."`, `"we'll never get into the temple..."`, `"ugh, that worm creeps me out..."`],
+		}, }),
 		this.Npc({ name: 'bottom', body: 'gnome_bottom', tint: 0x6f79cd, x: 180, y: -100, flip: true, use: {
 			'cut flower': [`goto:remove-hat`],
+			'die': [`"don't wanna play dice right now."`],
+			'thimble': [`"cute hat! too big for me though..."`],
+			'glass': [`"careful with that thing!!"`],
+			'safety pin': [`"hmm, not really a hat..."`],
+			undefined: [`"he won't put his rock on that tile!"`,`"I'M the one who knows the solution!"`,`"i hope there's a cute hat in there..."`],
 		}, }),
 
 		this.Item({ texture: 'big rock', x: -109, y: -219, use: {
@@ -145,6 +157,23 @@
 		this.Item({ texture: 'glass', x: -190, y: -50, offset: -35, use: {
 			player: [`"it's a piece of glass"`],
 		}, }),
+
+		//junk
+		this.Item({ texture: 'thimble', x: 290, y: -20, offset: 10000000, use: {
+			player: [`"it's a thimble"`],
+		}, }),
+		this.Item({ texture: 'die', x: -304, y: -103, offset: 100000000, use: {
+			player: [`"it's a six-sided die"`],
+		}, }),
+		this.Item({ texture: 'safety pin', x: 50, y: -50, offset: -35, use: {
+			player: [`"it's a safety pin"`],
+		}, }),
+		this.Hotspot({ label: 'dragonfly', texture: 'dragonfly', x: 261, y:-290, offset: 100000000, use: {
+			undefined: ['what a pretty dragonfly...'],
+		}, }),
+		
+		
+		
 		
 		Rockspot({ spot: '11', x: -110, y: -125, }),
 		Rockspot({ spot: '12', x: -64,  y: -149, }),
@@ -541,12 +570,12 @@ me
 <<do this.goto('generic item')>>
 <<else>>
 <<do this.gameObject = this.scene.find('bottom')>>
-"hey! that's my rock ya jerk"
+"hey! that's my rock ya jerk."
 [[>close]]
 <<endif>>
 
 ::remove-hat
-"oh thank you"
+"oh, this is so pretty! thank you!"
 >
 <<do
 	this.scene.loseItem(true);
@@ -566,7 +595,7 @@ me
 		}, }),
 	);
 >>
-"dont need this anymore"
+"guess i don't need this anymore"
 [[>close]]
 
 ::worm hat
@@ -576,7 +605,9 @@ me
 		this.Prop({ texture: 'hat', x: -250, y: -180, tint: 0x6f79cd, offset: 50, }),
 	);
 >>
-"oh worm"
+"for me? thanks buddy"
+>
+"now i can go out and look cute..."
 >
 <<do
 	const hat = this.scene.find('hat');
@@ -670,14 +701,16 @@ me
 	h.spr.height = 100;
 	this.add(h);
 >>
-wow you did it gj
+"you opened the temple!"
+>
+"incredible..."
 [[>close]]
 
 ::goto tomato
 <<do this.gotoItemRoom({ x: 125, y: -240 }, 'tomato');>>
 
 ::moon-dried tomato
-moon-dried tomato
+you got the moon-dried tomato.
 >
 <<do
 	this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
