@@ -165,6 +165,44 @@
 		...rays(),
 	]);
 
+	this.HookItem = (props) => {
+		const i = this.Item({ ...props, offset: 100000 - props.hookY });
+		i.hookY = props.hookY;
+		i.scripts.push({
+			gameObject: i,
+			update() {
+				this.gameObject.spr.scale.x = Math.abs(this.gameObject.spr.scale.x) * ((this.gameObject.transform.x > 0 && this.gameObject.transform.x < 290) ? 1 : -1);
+			},
+		});
+		return i;
+	};
+
+	this.HookSpot = (props, item) => {
+		const h = this.Hotspot({ texture: 'hook', x: props.x, y: props.y + 15, offset: 100000, use: {
+			undefined: [`p:"looks like it could hold something"`],
+			'cowboy hat': ['goto:place on hook'],
+			'poster': ['goto:place on hook'],
+			'horseshoe': ['goto:place on hook'],
+			'rope': ['goto:place on hook'],
+			'wheel': ['goto:place on hook'],
+		}, });
+		h.spot = props.spot;
+		h.scripts.push({
+			gameObject: h,
+			update() {
+				this.gameObject.spr.scale.x = Math.abs(this.gameObject.spr.scale.x) * ((this.gameObject.transform.x > 0 && this.gameObject.transform.x < 290) ? 1 : -1);
+			},
+		});
+		if (item) {
+			item.transform.x = h.transform.x;
+			item.transform.y = h.transform.y - 15 + item.hookY;
+			item.hookspot = h;
+			h.btn.enabled = false;
+			return [h, item];
+		}
+		return [h];
+	};
+
 	this.Area('dustbun heist', [
 		// main walls
 		this.Poly({ verts: [-247,-132, -74,-239, 58,-241, 162,-283, 348,-153, -2,-4, -249,-122] }),
@@ -176,7 +214,6 @@
 		this.Prop({ texture: 'heist_window', x: 0, y: -211, offset: -66 }),
 		this.Prop({ texture: 'heist_tubes', x: 237, y: -198,  offset: -40 }),
 		this.Prop({ texture: 'chandelier', x: -94, y: -320,    offset: 1000 }),
-		this.Item({ texture: 'poster', x: 294, y: -263,       offset: 1000 }),
 		this.Prop({ texture: 'fuse', x: -146, y: -80,          offset: -60 }),
 		this.Hotspot({ label: 'fuse', texture: 'spark', freq: 1/50, alpha: 0, x: -73, y: -80, offset: -5, use: {
 			undefined: [`p:"it's a fuse"`],
@@ -231,6 +268,36 @@
 			undefined: [`"ey step back kiddo"`, `"dis stuff's dangerous"`],
 		}, }),
 		this.Npc({ name: 'shop', body: 'dustbun_shop', tint: 0xC6A89D, shadow: false, offset: -100, x: 94, y: -247, use: {}, }),
+
+		this.Hotspot({ texture: 'ladder',     x: 45, y: -36, offset: 1000, use: {
+		},  }),
+
+		...this.HookSpot({ spot: 'r1', x: 45, y: -144 },
+			// empty
+		),
+		...this.HookSpot({ spot: 'r2', x: 177, y: -190 },
+			this.HookItem({ texture: 'rope', hookY: 128, use: {
+			}, }),
+		),
+		...this.HookSpot({ spot: 'r3', x: 287, y: -231 },
+			this.HookItem({ texture: 'horseshoe', hookY: 30, use: {
+			}, }),
+		),
+		...this.HookSpot({ spot: 'r4', x: 299, y: -335 },
+			this.HookItem({ texture: 'poster', hookY: 37, use: {
+			}, }),
+		),
+		...this.HookSpot({ spot: 'l1', x: -33, y: -209 },
+			this.HookItem({ texture: 'wheel', hookY: 103, use: {
+			}, }),
+		),
+		...this.HookSpot({ spot: 'l2', x: -132, y: -250 },
+			// empty
+		),
+		...this.HookSpot({ spot: 'l3', x: -259, y: -298 },
+			this.HookItem({ texture: 'cowboy hat', hookY: 58, use: {
+			}, }),
+		),
 
 		this.mite = this.Npc({ name: 'dust mite', body: 'mite', x: 3, y: -448, roam: 50, offset: 100000, bodyCollision: { isStatic: false, isSensor: true }, use: {
 			undefined: ['goto:mite run'],
@@ -629,6 +696,20 @@ moon-dried tomato
 <<do
 	this.gameObject.spr.angle += 90;
 	this.route = ((this.route || 0) + 1) % 4;
+	this.goto('close');
+>>
+
+::place on hook
+<<do
+	const item = this.scene.carrying;
+	const spot = this.gameObject;
+	item.hookspot.btn.enabled = true;
+	item.transform.x = spot.transform.x;
+	item.transform.y = spot.transform.y - 15 + item.hookY;
+	item.display.container.offset = spot.spot === 'r4' ? 0 : 100000 - item.hookY;
+	item.hookspot = spot;
+	spot.btn.enabled = false;
+	this.scene.loseItem();
 	this.goto('close');
 >>
 
