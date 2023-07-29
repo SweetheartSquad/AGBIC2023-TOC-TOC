@@ -253,6 +253,8 @@
 		this.Prop({ texture: 'boardwalkLayer',         offset: -0 }),
 		this.Prop({ texture: 'canBackLayer',           offset: -400 }),
 		this.Prop({ texture: 'canFrontLayer',          offset: -350 }),
+
+		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
 		this.Prop({ texture: 'fountainWaterAnim', freq: 1/100, offset: -229 }),
 		this.Prop({ texture: 'gatehouseLayer',         offset: -379 }),
 		this.Prop({ texture: 'toothpickLayer',         offset: -334 }),
