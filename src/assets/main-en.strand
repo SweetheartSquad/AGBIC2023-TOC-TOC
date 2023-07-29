@@ -179,7 +179,7 @@
 	};
 
 	this.HookSpot = (props, item) => {
-		const h = this.Hotspot({ texture: 'hook', x: props.x, y: props.y + 15, offset: 100000, use: {
+		const h = this.Hotspot({ texture: 'hook', x: props.x, y: props.y, offset: 100000, use: {
 			undefined: [`p:"looks like it could hold something"`],
 			'cowboy hat': ['goto:place on hook'],
 			'poster': ['goto:place on hook'],
@@ -187,6 +187,7 @@
 			'rope': ['goto:place on hook'],
 			'wheel': ['goto:place on hook'],
 		}, });
+		h.display.container.pivot.y = -15;
 		h.spot = props.spot;
 		h.scripts.push({
 			gameObject: h,
@@ -197,7 +198,7 @@
 		if (item) {
 			h.item = item.name;
 			item.transform.x = h.transform.x;
-			item.transform.y = h.transform.y - 15;
+			item.transform.y = h.transform.y;
 			item.hookspot = h;
 			h.btn.enabled = false;
 			return [h, item];
@@ -705,7 +706,7 @@ moon-dried tomato
 	item.hookspot.btn.enabled = true;
 	item.hookspot.item = undefined;
 	item.transform.x = spot.transform.x;
-	item.transform.y = spot.transform.y - 15;
+	item.transform.y = spot.transform.y;
 	item.display.container.offset = spot.spot === 'r4' ? 0 : 100000 - item.hookY;
 	item.hookspot = spot;
 	spot.item = item.name;
