@@ -167,6 +167,7 @@
 
 	this.HookItem = (props) => {
 		const i = this.Item({ ...props, offset: 100000 - props.hookY });
+		i.display.container.pivot.y = -props.hookY;
 		i.hookY = props.hookY;
 		i.scripts.push({
 			gameObject: i,
@@ -196,7 +197,7 @@
 		if (item) {
 			h.item = item.name;
 			item.transform.x = h.transform.x;
-			item.transform.y = h.transform.y - 15 + item.hookY;
+			item.transform.y = h.transform.y - 15;
 			item.hookspot = h;
 			h.btn.enabled = false;
 			return [h, item];
@@ -704,7 +705,7 @@ moon-dried tomato
 	item.hookspot.btn.enabled = true;
 	item.hookspot.item = undefined;
 	item.transform.x = spot.transform.x;
-	item.transform.y = spot.transform.y - 15 + item.hookY;
+	item.transform.y = spot.transform.y - 15;
 	item.display.container.offset = spot.spot === 'r4' ? 0 : 100000 - item.hookY;
 	item.hookspot = spot;
 	spot.item = item.name;
