@@ -249,9 +249,9 @@
 
 		
 		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',
-			x: -340/2,
-			y: -304/2,
-			offset: (-454+304)/2, use: {
+			x: -170,
+			y: -152,
+			offset: -75, use: {
 			undefined: ['goto:open vault'],
 			oil: ['goto:oil vault'],
 		}, }),
