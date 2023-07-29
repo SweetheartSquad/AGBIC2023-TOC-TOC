@@ -428,6 +428,7 @@ me
 	const cutFlower = this.Item({ label: 'cut flower', texture: 'flower_head', x: -55, y: -321, offset: 0, use: {
 		player: [`p:"it's a flower"`],
 	}, });
+	cutFlower.btn.enabled = false;
 	this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, 0.5, this.ease.cubicOut);
 	this.tween(cutFlower.transform, 'y', -266, 2000, -321, this.ease.backIn);
 	this.tween(cutFlower.transform, 'x', -25, 2000, -55, (t) => this.ease.sineInOut(t) + this.ease.sineInOut(t*4));
@@ -436,6 +437,9 @@ me
 		this.Prop({ texture: 'bg_gnome_puzzle_flower_gone', x: -58, y: -266, offset: -10 }),
 		cutFlower,
 	);
+	setTimeout(() => {
+		cutFlower.btn.enabled = true;
+	}, 2000);
 >>
 "snip snip!"
 [[>close]]
