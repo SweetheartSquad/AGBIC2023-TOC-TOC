@@ -160,7 +160,7 @@
 	this.Area('tomato', [
 		this.Prop({ texture: 'tomatoRoom', offset: -1000000 }),
 		this.Hotspot({ label: 'moon-dried tomato', texture: 'tomatoItem', x: 119, y: -341, use: {
-			undefined: ['moon-dried tomato'],
+			undefined: ['goto:moon-dried tomato'],
 		} }),
 		...rays(),
 	]);
@@ -606,6 +606,14 @@ wow you did it gj
 
 ::goto tomato
 <<do this.gotoItemRoom({ x: 125, y: -240 }, 'tomato');>>
+
+::moon-dried tomato
+moon-dried tomato
+>
+<<do
+	this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
+	this.goto('close');
+>>
 
 
 
