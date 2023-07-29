@@ -194,7 +194,7 @@
 			},
 		});
 		if (item) {
-			h.item = item;
+			h.item = item.name;
 			item.transform.x = h.transform.x;
 			item.transform.y = h.transform.y - 15 + item.hookY;
 			item.hookspot = h;
@@ -245,9 +245,6 @@
 		}, }),
 		this.Prop({ texture: 'heist_fg',      offset: 10000 }),
 
-		this.Hotspot({ label: 'route', texture: 'hat', offset: 100000, x: 3, y: -164, use: {
-			undefined: ['goto:route switch'],
-		}, }),
 		
 		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',
 			x: -340/2,
@@ -300,7 +297,7 @@
 			}, }),
 		),
 
-		this.mite = this.Npc({ name: 'dust mite', body: 'mite', x: 3, y: -448, roam: 50, offset: 100000, bodyCollision: { isStatic: false, isSensor: true }, use: {
+		this.mite = this.Npc({ name: 'dust mite', body: 'mite', x: 3, y: -448, roam: 50, offset: 90000, bodyCollision: { isStatic: false, isSensor: true }, use: {
 			undefined: ['goto:mite run'],
 		}, }),
 	]);
@@ -710,7 +707,7 @@ moon-dried tomato
 	item.transform.y = spot.transform.y - 15 + item.hookY;
 	item.display.container.offset = spot.spot === 'r4' ? 0 : 100000 - item.hookY;
 	item.hookspot = spot;
-	spot.item = item;
+	spot.item = item.name;
 	spot.btn.enabled = false;
 	this.scene.loseItem();
 	this.goto('close');
@@ -722,66 +719,112 @@ moon-dried tomato
 		this.tween(this.mite.display.container, 'alpha', 0, 400);
 		this.mite.walkBy(0, 1000);
 		await this.delay(500);
-		this.mite.display.container.offset = 100000;
+		this.mite.display.container.offset = 90000;
 		this.mite.setPosition(3, -448-50);
 		this.tween(this.mite.display.container, 'alpha', 1, 1000, 0, this.ease.cubicOut);
 		await this.mite.walkTo(3, -448);
 		this.mite.roam.range = [0, 50];
 	};
+
+	const middleBeamUpper = [5, -380];
+	const middleBeamLower = [5, -126];
+	const rightBeamLower = [335, -250];
+	const rightBeamUpper = [333, -310];
+	const beetleHook = [184, -383];
+	const pastWall = [57, -447];
+	const middleBeamCenter = [3, -193];
+	const chandelierHook = [-305, -368];
+
+	const isRope = (spot) => {
+		return spot.item === 'rope';
+	};
+	const ropeExit = () => {
+		this.resetMite();
+		this.camPoint = undefined;
+		this.goto('close');
+	};
+	const isWheel = (spot) => {
+		return spot.item === 'wheel';
+	};
+	const wheelExit = async (...spots) => {
+		await spots.reduce(async (p, spot) => {
+			await p;
+			await this.mite.walkTo(...(spot.transform ? [spot.transform.x, spot.transform.y] : spot));
+		}, Promise.resolve());
+		this.resetMite();
+		this.camPoint = undefined;
+		this.goto('close');
+	};
+
 	(async () => {
 		this.camPoint = this.mite.transform;
-		await this.mite.walkTo(5, -380);
+		await this.mite.walkTo(...middleBeamUpper);
 		await this.delay(200);
 
-		// left branch
-		if (this.route === 3) { // TODO: real check
-			await this.mite.walkTo(3, -193);
+		const hookspots = this.scene.findAll('hook').reduce((acc, i) => {
+			acc[i.spot] = i;
+			return acc;
+		}, {});
+
+		if (!hookspots.r1.item || isWheel(hookspots.l1)) { // right branch
+			await this.mite.walkTo(...middleBeamLower);
 			await this.delay(200);
-			await this.mite.walkTo(-312, -338);
-			await this.delay(500);
-			await this.mite.walkTo(-305, -368);
+			await this.mite.walkTo(hookspots.r1.transform.x, hookspots.r1.transform.y);
+			if (isRope(hookspots.r1)) return ropeExit();
+			if (isWheel(hookspots.r1)) return wheelExit(middleBeamLower);
+			await this.mite.walkTo(hookspots.r2.transform.x, hookspots.r2.transform.y);
+			if (isRope(hookspots.r2)) return ropeExit();
+			if (isWheel(hookspots.r2)) return wheelExit(hookspots.r1, middleBeamLower);
+			await this.mite.walkTo(hookspots.r3.transform.x, hookspots.r3.transform.y);
+			if (isRope(hookspots.r3)) return ropeExit();
+			if (isWheel(hookspots.r3)) return wheelExit(hookspots.r2, hookspots.r1, middleBeamLower);
+			await this.mite.walkTo(...rightBeamLower);
+			this.mite.display.container.offset = 0;
+			await this.mite.walkTo(...rightBeamUpper);
+			await this.mite.walkTo(hookspots.r4.transform.x, hookspots.r4.transform.y);
+			if (isRope(hookspots.r4)) return ropeExit();
+			if (isWheel(hookspots.r4)) return wheelExit(rightBeamUpper);
+			await this.mite.walkTo(...beetleHook);
+			if (!this.smashedPeanut) {
+				this.smashedPeanut = true;
+				this.goto('smash peanut');
+			} else {
+				this.goto('smash peanut again');
+			}
+			await this.mite.walkTo(...pastWall);
+		} else { // left branch
+			await this.mite.walkTo(...middleBeamCenter);
+			await this.mite.walkTo(hookspots.l1.transform.x, hookspots.l1.transform.y);
+			if (isRope(hookspots.l1)) { // bread branch
+				this.mite.display.container.offset = 9500;
+				await this.mite.walkTo(-53, -116);
+				if (!this.knockedBread) {
+					this.knockedBread = true;
+					this.goto('knock bread');
+					await this.delay(500);
+					await this.mite.walkTo(-11, -112);
+					await this.delay(500);
+				} else {
+					await this.mite.walkTo(-11, -112);
+					this.goto('knock bread again');
+				}
+				this.resetMite();
+				return;
+			}
+			if (isWheel(hookspots.l1)) return wheelExit(middleBeamCenter);
+			await this.mite.walkTo(hookspots.l2.transform.x, hookspots.l2.transform.y);
+			if (isRope(hookspots.l2)) return ropeExit();
+			if (isWheel(hookspots.l2)) return wheelExit(hookspots.l1, middleBeamCenter);
+			await this.mite.walkTo(hookspots.l3.transform.x, hookspots.l3.transform.y);
+			if (isRope(hookspots.l3)) return ropeExit();
+			if (isWheel(hookspots.l3)) return wheelExit(hookspots.l2, hookspots.l1, middleBeamCenter);
+			await this.mite.walkTo(...chandelierHook);
 			await this.delay(500);
 			if (this.scene.find('chandelier')) {
 				this.goto('drop chandelier');
 			} else {
 				this.goto('drop chandelier again');
-			}
-		} else {
-			// right branch
-			if (this.route === 1) { // TODO: real check
-				await this.mite.walkTo(5, -126);
-				await this.delay(200);
-				await this.mite.walkTo(335, -250);
-				await this.mite.walkTo(333, -325);
-				this.mite.display.container.offset = 0;
-				await this.mite.walkTo(177, -394);
-				if (!this.smashedPeanut) {
-					this.smashedPeanut = true;
-					this.goto('smash peanut');
-				} else {
-					this.goto('smash peanut again');
-				}
-				await this.mite.walkTo(57, -447);
-				await this.delay(500);
-			} else if(this.route === 2) {
-				// down branch
-				await this.mite.walkTo(-1, -102);
-				this.mite.display.container.offset = 9500;
-				await this.mite.walkTo(-11, -112);
-				if (!this.knockedBread) {
-					this.knockedBread = true;
-					this.goto('knock bread');
-					await this.delay(500);
-					await this.mite.walkTo(-53, -116);
-					await this.delay(500);
-				} else {
-					await this.mite.walkTo(-53, -116);
-					this.goto('knock bread again');
-				}
-			} else {
-				this.camPoint = undefined;
-				this.goto('close');
-			}
+			};
 		}
 		this.resetMite();
 	})();
