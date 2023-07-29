@@ -194,6 +194,7 @@
 			},
 		});
 		if (item) {
+			h.item = item;
 			item.transform.x = h.transform.x;
 			item.transform.y = h.transform.y - 15 + item.hookY;
 			item.hookspot = h;
@@ -704,10 +705,12 @@ moon-dried tomato
 	const item = this.scene.carrying;
 	const spot = this.gameObject;
 	item.hookspot.btn.enabled = true;
+	item.hookspot.item = undefined;
 	item.transform.x = spot.transform.x;
 	item.transform.y = spot.transform.y - 15 + item.hookY;
 	item.display.container.offset = spot.spot === 'r4' ? 0 : 100000 - item.hookY;
 	item.hookspot = spot;
+	spot.item = item;
 	spot.btn.enabled = false;
 	this.scene.loseItem();
 	this.goto('close');
