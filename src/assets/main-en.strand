@@ -241,7 +241,7 @@
 		this.Poly({ verts: [-214,-117, -193,-140] }), // tnt
 		this.Prop({ texture: 'tnt', x: -202, y: -109, offset: -25 }),
 
-		this.Prop({ texture: 'shelf',      offset: 9000 }),
+		this.Prop({ texture: 'shelf', y: -11, offset: 9000 + 11 }),
 		this.Hotspot({ texture: 'bread', x: -30, y: -100, offset: 10000, use: {
 			undefined: [`p:"oh noo it's too high up :("`],
 		}, }),
