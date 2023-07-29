@@ -240,7 +240,7 @@
 	this.Area('soap', [
 		this.Prop({ texture: 'noItemSoap', offset: -1000000 }),
 		this.Hotspot({ label: 'soap', texture: 'soapItem', x: 54, y: -304, use: {
-			undefined: ['soap'],
+			undefined: ['goto:soap'],
 		} }),
 		...rays(),
 	]);
@@ -1005,6 +1005,14 @@ can't live on bread alone"
 <<else>>
 	<<do this.gotoItemRoom({ x: -190, y: -160 }, 'soap');>>
 <<endif>>
+
+::soap
+soap
+>
+<<do
+	this.scene.goto({ area: 'mouse town center', x: 50, y: -100 });
+	this.goto('close');
+>>
 
 
 
