@@ -740,6 +740,8 @@ moon-dried tomato
 		return spot.item === 'rope';
 	};
 	const ropeExit = () => {
+		// TODO: rope sfx
+		this.tween(this.scene.find('rope').display.container.scale, 'y', 1, 250, 1.1, t => 1-Math.cos(t*250*0.02)*(1-t));
 		this.resetMite();
 		this.camPoint = undefined;
 		this.goto('close');
@@ -748,6 +750,8 @@ moon-dried tomato
 		return spot.item === 'wheel';
 	};
 	const wheelExit = async (...spots) => {
+		// TODO: wheel sfx
+		this.tween(this.scene.find('wheel').display.container, 'angle', 0, 250, -10, t => 1-Math.cos(t*250*0.02)*(1-t));
 		await spots.reduce(async (p, spot) => {
 			await p;
 			await this.mite.walkTo(...(spot.transform ? [spot.transform.x, spot.transform.y] : spot));
@@ -797,6 +801,8 @@ moon-dried tomato
 			await this.mite.walkTo(...middleBeamCenter);
 			await this.mite.walkTo(hookspots.l1.transform.x, hookspots.l1.transform.y);
 			if (isRope(hookspots.l1)) { // bread branch
+				// TODO: rope sfx
+				this.tween(this.scene.find('rope').display.container.scale, 'y', 1, 250, 1.1, t => 1-Math.cos(t*250*0.02)*(1-t));
 				this.mite.display.container.offset = 9500;
 				await this.mite.walkTo(-53, -116);
 				if (!this.knockedBread) {
