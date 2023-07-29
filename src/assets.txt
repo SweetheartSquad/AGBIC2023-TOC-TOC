@@ -114,4 +114,14 @@ textures/townCenter/redCrayonLayer.png
 textures/townCenter/tinfoilRoomLayer.png
 textures/townCenter/toothpickLayer.png
 
+textures/cookieCutters/snowmanPos1.png
+textures/cookieCutters/snowmanPos2.png
+textures/cookieCutters/snowmanPos3.png
+textures/cookieCutters/starPos1.png
+textures/cookieCutters/starPos2.png
+textures/cookieCutters/starPos3.png
+textures/cookieCutters/treePos1.png
+textures/cookieCutters/treePos2.png
+textures/cookieCutters/treePos3.png
+
 textures/glow.png

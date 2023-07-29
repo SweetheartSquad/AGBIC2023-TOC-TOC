@@ -265,6 +265,48 @@
 		this.Prop({ texture: 'tinfoilRoomLayer',       offset: -0 }),
 		this.Prop({ texture: 'juiceboxLayer',          offset: -272 }),
 
+		this.Prop({ texture: 'snowmanPos1', alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'starPos1',    alpha: 1, offset: 0 }),
+		this.Prop({ texture: 'treePos1',    alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'snowmanPos2', alpha: 1, offset: 0 }),
+		this.Prop({ texture: 'starPos2',    alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'treePos2',    alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'snowmanPos3', alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'starPos3',    alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'treePos3',    alpha: 1, offset: 0 }),
+		(() => {
+			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 311, y: -145, offset: 1000, use: {
+				player: [`p:"it's a cookie cutter"`],
+				'cookie cutter': ['goto:swap cutter'],
+			}, });
+			h.pos = 1;
+			h.cookie = 'star';
+			h.spr.width = 100;
+			h.spr.height = 100;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: -314, y: -214, offset: 1000, use: {
+				player: [`p:"it's a cookie cutter"`],
+				'cookie cutter': ['goto:swap cutter'],
+			}, });
+			h.pos = 2;
+			h.cookie = 'snowman';
+			h.spr.width = 100;
+			h.spr.height = 100;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 299, y: -316, offset: 1000, use: {
+				player: [`p:"it's a cookie cutter"`],
+				'cookie cutter': ['goto:swap cutter'],
+			}, });
+			h.pos = 3;
+			h.cookie = 'tree';
+			h.spr.width = 100;
+			h.spr.height = 100;
+			return h;
+		})(),
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -332, flip: true, use: {}, }),
 		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
@@ -996,7 +1038,18 @@ can't live on bread alone"
 
 
 
-
+::swap cutter
+<<do
+	const a = this.gameObject;
+	const b = this.scene.carrying;
+	this.scene.find(`${a.cookie}Pos${a.pos}`).spr.alpha = 0;
+	this.scene.find(`${b.cookie}Pos${b.pos}`).spr.alpha = 0;
+	[a.cookie, b.cookie] = [b.cookie, a.cookie];
+	this.scene.find(`${a.cookie}Pos${a.pos}`).spr.alpha = 1;
+	this.scene.find(`${b.cookie}Pos${b.pos}`).spr.alpha = 1;
+	this.scene.loseItem();
+	this.goto('close');
+>>
 
 
 
