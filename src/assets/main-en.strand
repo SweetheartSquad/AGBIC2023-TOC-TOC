@@ -405,7 +405,7 @@
 		this.Poly({ verts: [349,-265, -23,-499, -350,-301, -350,15, 350,15, 350,-266] }), // walls
 
 		this.Prop({ texture: 'bg',                  offset: -1000000 }),
-		this.Prop({ texture: 'floorButtons',        offset: -1000000 }),
+		this.Prop({ texture: 'floorButtons', x: 44, y: -339,        offset: -30 }),
 		this.Poly({ verts: [-23,-472] }), // egg
 		this.Prop({ texture: 'easterEgg', x: -23, y: -463,          offset: -10 }),
 		this.Poly({ verts: [-24,-105, 42,-111], width: 5, }), // knife
