@@ -414,6 +414,7 @@
 		this.Poly({ verts: [15,-390, 4,-395, 15,-398, 24,-395, 16,-390] }), // bottle cap
 		this.Item({ texture: 'bottle cap', x: 15, y: -378,     offset: -10 }),
 
+		this.Interrupt({ passage: 'gatehouse reject', type: 'poly', verts: [84,-324, 141,-283, 178,-298, 236,-342, 162,-384] }),
 		this.Poly({ verts: [286,-306, 221,-271, 172,-299, 237,-345, 166,-385, 98,-347, 39,-382, 111,-423] }), // gate
 		this.Prop({ texture: 'gatehouse', x: 164, y: -259,        offset: -120 }),
 		this.Prop({ texture: 'pushPins', x: 62, y: -420,          offset: 41 }),
@@ -1351,7 +1352,26 @@ soap
 
 
 
-
+::gatehouse reject
+<<do this.gameObject = this.scene.find('guard upper')>>
+"hrghrh.. not allowed..."
+>
+<<do
+	const spots = [
+		{x: 59, y: -340},
+		{x: 112, y: -269},
+	];
+	let spot;
+	let d1 = Infinity;
+	for (let i = 0; i < spots.length; ++i) {
+		const d2 = Math.abs(spots[i].x - this.scene.player.transform.x) + Math.abs(spots[i].y - this.scene.player.transform.y);
+		if (d2 < d1) {
+			d1 = d2;
+			spot = spots[i];
+		}
+	}
+	this.scene.player.walkTo(spot.x, spot.y).then(() => this.goto('close'))
+>>
 
 
 
