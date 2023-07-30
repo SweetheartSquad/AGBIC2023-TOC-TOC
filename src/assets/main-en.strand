@@ -463,13 +463,13 @@
 		
 
 		this.Prop({ texture: 'snowmanPos1', x: 274, y: -102, alpha: 0, offset: 202 }),
-		this.Prop({ texture: 'starPos1',    x: 0, y: 0, alpha: 1, offset: 100 }),
+		this.Prop({ texture: 'starPos1',    x: 274, y: -101, alpha: 1, offset: 201 }),
 		this.Prop({ texture: 'treePos1',    x: 0, y: 0, alpha: 0, offset: 100 }),
 		this.Prop({ texture: 'snowmanPos2', x: -298, y: -129, alpha: 1, offset: 129 }),
-		this.Prop({ texture: 'starPos2',    x: 0, y: 0, alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'starPos2',    x: -286, y: -126, alpha: 0, offset: 126 }),
 		this.Prop({ texture: 'treePos2',    x: 0, y: 0, alpha: 0, offset: 0 }),
 		this.Prop({ texture: 'snowmanPos3', x: 267, y: -300, alpha: 0, offset: 300 }),
-		this.Prop({ texture: 'starPos3',    x: 0, y: 0, alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'starPos3',    x: 281, y: -314, alpha: 0, offset: 314 }),
 		this.Prop({ texture: 'treePos3',    x: 0, y: 0, alpha: 1, offset: 0 }),
 		(() => {
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 311, y: -145, offset: 1000, use: {
