@@ -502,6 +502,7 @@
 			return h;
 		})(),
 
+		this.Poly({ verts: [348,-187, 47,-3] }), // stove ledge
 		this.Prop({ texture: 'stoveFloorLayer', x: 175, y: 0, offset: 0 }),
 		this.Prop({ texture: 'stoveHobLayer', x: 310, y: 0,   offset: 0 }),
 		this.Prop({ texture: 'spoonForkStoveProngLayer',      offset: 0 }),
