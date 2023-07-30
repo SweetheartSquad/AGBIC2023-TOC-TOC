@@ -179,15 +179,15 @@ textures/cookieCutters/treePos3.png
 textures/townCenterItems/cutter snowman carrying.png
 textures/townCenterItems/cutter star carrying.png
 textures/townCenterItems/cutter tree carrying.png
-textures/townCenterItems/pillItem.png
-textures/townCenterItems/spoonItem.png
-textures/townCenterItems/toothpickItem.png
-textures/townCenterItems/unlitMatchItem.png
-textures/townCenterItems/bottleCapItem.png
-textures/townCenterItems/coinItem.png
-textures/townCenterItems/easterEggItem.png
-textures/townCenterItems/forkItem.png
-textures/townCenterItems/horseKeyItem.png
-textures/townCenterItems/litMatchItem.png
+textures/townCenterItems/pill_carrying.png
+textures/townCenterItems/spoon_carrying.png
+textures/townCenterItems/toothpick_carrying.png
+textures/townCenterItems/unlitMatch_carrying.png
+textures/townCenterItems/bottleCap_carrying.png
+textures/townCenterItems/coin_carrying.png
+textures/townCenterItems/easterEgg_carrying.png
+textures/townCenterItems/fork_carrying.png
+textures/townCenterItems/horseKey_carrying.png
+textures/townCenterItems/litMatch_carrying.png
 
 textures/glow.png
