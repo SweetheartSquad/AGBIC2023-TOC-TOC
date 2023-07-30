@@ -511,7 +511,7 @@
 		this.Poly({ verts: [348,-187, 37,7] }), // stove ledge
 		this.Prop({ texture: 'stoveFloor', x: 175, y: 0, offset: 0 }),
 		this.Prop({ texture: 'stoveHob', x: 310, y: 0,   offset: 0 }),
-		this.Prop({ texture: 'spoonForkStoveProng',      offset: 0 }),
+		this.Prop({ texture: 'spoonForkStoveProng', x: 218, y: 0,      offset: 0 }),
 		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 45 }),
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 71, y: -302, flip: true, use: {}, }),
