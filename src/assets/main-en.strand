@@ -407,7 +407,7 @@
 		this.Prop({ texture: 'bgLayer',                  offset: -1000000 }),
 		this.Prop({ texture: 'floorButtonsLayer',        offset: -1000000 }),
 		this.Poly({ verts: [-23,-472] }), // egg
-		this.Prop({ texture: 'easterEggLayer',           offset: -1000000 }),
+		this.Prop({ texture: 'easterEggLayer', x: -23, y: -463,          offset: -10 }),
 		this.Poly({ verts: [-24,-105, 154,-120], width: 5, }), // knife
 		this.Prop({ texture: 'butterKnifeLayer', x: 66, y: -94,        offset: -20 }),
 		this.Prop({ texture: 'chapstickLayerLayer',      offset: -1000000 }),
