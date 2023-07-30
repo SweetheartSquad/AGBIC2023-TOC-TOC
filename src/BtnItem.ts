@@ -3,7 +3,7 @@ import { GameObject } from './GameObject';
 import { getActiveScene } from './main';
 
 export class BtnItem extends Btn {
-	private cycles: { [key: string]: number } = {};
+	cycles: { [key: string]: number } = {};
 
 	use: {
 		undefined: string[];

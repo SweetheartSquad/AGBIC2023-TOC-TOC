@@ -364,12 +364,16 @@ export class GameScene {
 			},
 			label: this.t('me') || '',
 		});
+		// @ts-ignore
+		this.player.btn.cycles = this.player.cycles || {};
 		this.player.display.container.addChild(this.player.btn.display.container);
 	}
 
 	loseItem(permanent = false) {
 		this.player.expression = '';
 		if (this.player.btn) {
+			// @ts-ignore
+			this.player.cycles = { ...this.player.cycles, ...this.player.btn.cycles };
 			this.player.btn.destroy();
 			this.player.btn = undefined;
 		}
