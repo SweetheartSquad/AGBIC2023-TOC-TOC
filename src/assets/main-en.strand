@@ -1559,13 +1559,21 @@ The End
 			this.destroy(poly);
 		}
 		if (verts.length > 0) {
-			poly = this.Poly({ verts: verts.flat() }, { plugin: { interactive: true }});
+			poly = this.Poly({ verts: verts.flat(), width }, { plugin: { interactive: true }});
 			// this.add(poly);
 		} else {
 			poly = null;
 		}
 	};
 
+	let width = 20;
+	const onWheel = (event) => {
+		if (!event.deltaY) return;
+		const d = Math.sign(event.deltaY);
+		width += d;
+		width = Math.max(1, width);
+		makePoly();
+	};
 	const onMove = (event) => {
 		if (event.ctrlKey) return;
 		event.preventDefault();
@@ -1593,16 +1601,18 @@ The End
 	};
 	const onContextMenu = (event) => {
 		event.preventDefault();
+		canvas.removeEventListener('wheel', onWheel);
 		canvas.removeEventListener('pointerdown', onClick);
 		canvas.removeEventListener('pointermove', onMove);
 		canvas.parentElement.style.cursor = 'inherit';
 		if (poly) {
-			navigator.clipboard.writeText(`this.Poly({ verts: [${verts.map(i => i.join(',')).join(', ')}] }),`);
-			console.log(`this.Poly({ verts: [${verts.map(i => i.join(',')).join(', ')}] }),`);
+			navigator.clipboard.writeText(`this.Poly({ verts: [${verts.map(i => i.join(',')).join(', ')}]${width === 20 ? '' : `, width: ${width}`} }),`);
+			console.log(`this.Poly({ verts: [${verts.map(i => i.join(',')).join(', ')}]${width === 20 ? '' : `, width: ${width}`} }),`);
 			this.scene.drop(poly);
 		}
 	};
 	requestAnimationFrame(() => {
+		canvas.addEventListener('wheel', onWheel);
 		canvas.addEventListener('pointerdown', onClick);
 		canvas.addEventListener('contextmenu', onContextMenu, { once: true });
 	});
