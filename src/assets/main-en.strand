@@ -446,7 +446,7 @@
 		this.Prop({ texture: 'greenCandleColumn',       offset: -339 }),
 		this.Prop({ texture: 'purpleCandleColumn',      offset: -228 }),
 		this.Prop({ texture: 'redCandleColumn',         offset: -292 }),
-		this.Prop({ texture: 'aluminumPackets',   offset: -272 }),
+		this.Prop({ texture: 'aluminumPackets', x: -253, y: -274,  offset: 0 }),
 		this.Prop({ texture: 'juicebox',          offset: -272 }),
 		this.Prop({ texture: 'crayonVendorTop',   offset: -0 }),
 
