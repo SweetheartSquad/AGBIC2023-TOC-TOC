@@ -166,15 +166,15 @@ textures/townCenter/wax star.png
 textures/townCenter/wax tree.png
 textures/townCenter/wax wad.png
 
-textures/cookieCutters/snowmanPos1.png
-textures/cookieCutters/snowmanPos2.png
-textures/cookieCutters/snowmanPos3.png
-textures/cookieCutters/starPos1.png
-textures/cookieCutters/starPos2.png
-textures/cookieCutters/starPos3.png
-textures/cookieCutters/treePos1.png
-textures/cookieCutters/treePos2.png
-textures/cookieCutters/treePos3.png
+textures/townCenter/cutter snowman 1.png
+textures/townCenter/cutter snowman 2.png
+textures/townCenter/cutter snowman 3.png
+textures/townCenter/cutter star 1.png
+textures/townCenter/cutter star 2.png
+textures/townCenter/cutter star 3.png
+textures/townCenter/cutter tree 1.png
+textures/townCenter/cutter tree 2.png
+textures/townCenter/cutter tree 3.png
 
 textures/townCenterItems/cutter snowman carrying.png
 textures/townCenterItems/cutter star carrying.png
