@@ -420,6 +420,7 @@
 		this.Prop({ texture: 'pushPins', x: 62, y: -420,          offset: 41 }),
 		this.Poly({ verts: [258,-268, 293,-282], width: 10 }), // toothpicks
 		this.Item({ texture: 'toothpicks', x: 273, y: -247,    offset: -87 }),
+		this.Poly({ verts: [321,-245, 333,-245] }), // salt shaker
 		this.Prop({ texture: 'salt shaker', x: 328, y: -232,        offset: -10 }),
 
 		this.Block({ type: 'circle', x: -10, y: -435, radius: 2, }), // crayon SL
