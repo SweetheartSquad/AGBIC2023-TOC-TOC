@@ -181,7 +181,7 @@ textures/townCenterItems/cutter star carrying.png
 textures/townCenterItems/cutter tree carrying.png
 textures/townCenterItems/spoon_carrying.png
 textures/townCenterItems/toothpicks_carrying.png
-textures/townCenterItems/unlitMatch_carrying.png
+textures/townCenterItems/matchbox_carrying.png
 textures/townCenterItems/coin_carrying.png
 textures/townCenterItems/fork_carrying.png
 textures/townCenterItems/horseKey_carrying.png

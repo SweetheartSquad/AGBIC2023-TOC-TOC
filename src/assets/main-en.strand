@@ -448,7 +448,7 @@
 		this.Prop({ texture: 'cheeseAltar', x: -80, y: -202,       offset: 6 }),
 
 		this.Poly({ verts: [218,-166, 192,-184, 271,-237, 298,-218, 219,-166], width: 5 }), // matchbox
-		this.Prop({ texture: 'matchbox', x: 246, y: -161,         offset: -25 }),
+		this.Item({ texture: 'matchbox', x: 246, y: -161,         offset: -25 }),
 
 		this.Block({ type: 'circle', x: -219, y: -339, radius: 2, }), // candle green
 		this.Block({ type: 'circle', x: -321, y: -278, radius: 2, }), // candle blue
