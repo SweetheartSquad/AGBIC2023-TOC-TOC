@@ -185,7 +185,6 @@ textures/townCenterItems/toothpick_carrying.png
 textures/townCenterItems/unlitMatch_carrying.png
 textures/townCenterItems/bottleCap_carrying.png
 textures/townCenterItems/coin_carrying.png
-textures/townCenterItems/easter egg_carrying.png
 textures/townCenterItems/fork_carrying.png
 textures/townCenterItems/horseKey_carrying.png
 textures/townCenterItems/litMatch_carrying.png
