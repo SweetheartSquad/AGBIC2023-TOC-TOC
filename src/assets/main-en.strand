@@ -503,7 +503,7 @@
 		})(),
 
 		this.Prop({ texture: 'stoveFloorLayer', x: 175, y: 0,          offset: -1000000 }),
-		this.Prop({ texture: 'stoveHobLayer',            offset: -1000000 }),
+		this.Prop({ texture: 'stoveHobLayer', x: 310, y: 0,           offset: -1000000 }),
 		this.Prop({ texture: 'spoonForkStoveProngLayer', offset: -1000000 }),
 		this.Prop({ texture: 'anvilStoveProngLayer', offset: -1000000 }),
 
