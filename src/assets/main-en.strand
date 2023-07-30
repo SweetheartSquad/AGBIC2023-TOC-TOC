@@ -416,7 +416,7 @@
 
 		this.Poly({ verts: [286,-306, 221,-271, 172,-299, 237,-345, 166,-385, 98,-347, 39,-382, 111,-423] }), // gate
 		this.Prop({ texture: 'gatehouse', x: 164, y: -259,        offset: -120 }),
-		this.Prop({ texture: 'pushPins',          offset: -379 }),
+		this.Prop({ texture: 'pushPins', x: 62, y: -420,          offset: 41 }),
 		this.Prop({ texture: 'toothpickPile',     offset: -334 }),
 		this.Prop({ texture: 'saltShaker',        offset: -1000000 }),
 
