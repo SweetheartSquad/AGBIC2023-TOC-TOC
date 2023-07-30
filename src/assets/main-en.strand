@@ -209,12 +209,13 @@
 
 	this.HookSpot = (props, item) => {
 		const h = this.Hotspot({ texture: 'hook', x: props.x, y: props.y, offset: 100000, use: {
-			undefined: [`p:"looks like it could hold something"`],
+			undefined: [`p:"it's hook on the wall"`, `p:"looks like it could hold something"`, `p:"there's a bunch of these hooks here"`],
 			'cowboy hat': ['goto:place on hook'],
 			'poster': ['goto:place on hook'],
 			'horseshoe': ['goto:place on hook'],
 			'rope': ['goto:place on hook'],
 			'wheel': ['goto:place on hook'],
+			other: [`p:"i don't see how to hook it up"`],
 		}, });
 		h.display.container.pivot.y = -15;
 		h.spot = props.spot;
@@ -238,86 +239,140 @@
 	this.Area('dustbun heist', [
 		// main walls
 		this.Poly({ verts: [-247,-132, -74,-239, 58,-241, 162,-283, 348,-153, -2,-4, -249,-122] }),
-		// shelf
-		this.Poly({ verts: [-44,-39, 18,-13] }),
 
-		this.Prop({ texture: 'heist_bg',      offset: -1000000 }),
+		this.Prop({ texture: 'heist_bg', offset: -1000000 }),
 		this.Prop({ texture: 'heist_vault', x: -212, y: -84, offset: -168 }),
 		this.Prop({ texture: 'heist_window', x: 0, y: -211, offset: -66 }),
-		this.Prop({ texture: 'heist_tubes', x: 237, y: -198,  offset: -40 }),
-		this.Prop({ texture: 'chandelier', x: -94, y: -320,    offset: 1000 }),
-		this.Prop({ texture: 'fuse', x: -146, y: -80,          offset: -60 }),
+		this.Prop({ texture: 'heist_tubes', x: 237, y: -198, offset: -40 }),
+		this.Prop({ texture: 'chandelier', x: -94, y: -320, offset: 1000 }),
+		this.Poly({ verts: [-214,-117, -193,-140] }), // tnt
+		this.Hotspot({ texture: 'tnt', x: -202, y: -109, offset: -25, use: {
+			undefined: [`p:"are they gonna blow the door?"`, `p:"high-power explosives really change a room's energy"`, `p:"i'm having a blast, how about you?"`, `p:"...sorry, that one was a dud"`],
+			candle: [`p:"um!!! bad idea"`, `p:"i'd rather not blow up!!"`, `p:"if only there was a way to do that remotely..."`],
+			oil: [`p:"tnt doesn't need more grease"`],
+			rope: [`p:"that's what the fuse is for"`],
+			'cowboy hat': [`p:"it's out of style to wear a hat with bangs"`],
+			'bread slice': [`p:"there are better ways to make toast"`],
+		}, }),
+		this.Prop({ texture: 'fuse', x: -146, y: -80, offset: -60 }),
 		this.Hotspot({ label: 'fuse', texture: 'spark', freq: 1/50, alpha: 0, x: -73, y: -80, offset: -5, use: {
-			undefined: [`p:"it's a fuse"`],
+			undefined: [`p:"it's a fuse"`, `p:"it's definitely a fuse"`, `p:"i'm not confused"`, `p:"...my fuse is shorter than this"`],
 			candle: ['goto:light fuse'],
+			oil: [`p:"i dunno if that would make it burn better or worse"`, `p:"either way, not gonna try it"`],
+			rope: [`p:"i think the fuse is long enough"`],
+			other: [`p:"that's not gonna light it"`, `p:"fusing those won't do anything"`],
 		}, }),
 
-		// oil
-		this.Poly({ verts: [221,-114, 253,-120, 233,-133] }),
+		this.Poly({ verts: [221,-114, 253,-120, 233,-133] }), // oil
 		this.Item({ texture: 'oil', x: 235, y: -114, offset: 0, use: {
+			player: [`p:"smells like... paint thinner?"`, `p:"really hope i don't run into a snake"`],
 			undefined: ['goto:take oil'],
+			other: [`goto:use on oil`],
+			otherTarget: [`p:"that doesn't need oiling"`],
 		}, }),
 
-		this.Hotspot({ label: 'elephant beetle', texture: 'beetle', x: 184, y: -317, use: {
-			undefined: [`p:"beetle head"`],
+		this.Hotspot({ label: 'trophy mount', texture: 'beetle', x: 184, y: -317, use: {
+			undefined: [`p:"gross..."`, `p:"there's a little plaque near the bottom"`, `p:"says 'Megasoma Elephas'"`],
+			candle: [`p:"bit late for a pyre"`],
+			'cowboy hat': [`p:"the horn would get in the way"`],
+			rope: [`p:"someone already caught it"`],
+			horseshoe: [`p:"it'd need feet for that"`],
 		}, }),
 
 		this.Hotspot({ texture: 'peanut', x: 168, y: -239, offset: -5, use: {
-			undefined: [`p:"it is a peanut"`, `p:"it looks kinda mushy..."`],
+			undefined: [`p:"that's a lotta nut!"`, `p:"it is a peanut"`, `p:"it looks kinda mushy..."`],
+			candle: [`p:"a hot nut never helped anyone"`],
+			rope: [`p:"why would i tie up someone's nut?"`],
+			wheel: [`p:"maybe a whole wagon could crush it... oh well"`],
+			horseshoe: [`p:"i'm not heavy enough to just step on it"`],
 		}, }),
 
-
-		this.Poly({ verts: [-214,-117, -193,-140] }), // tnt
-		this.Prop({ texture: 'tnt', x: -202, y: -109, offset: -25 }),
-
+		this.Poly({ verts: [-44,-39, 18,-13] }), // shelf
 		this.Prop({ texture: 'shelf', y: -11, offset: 9000 + 11 }),
 		this.Hotspot({ texture: 'bread', x: -30, y: -100, offset: 10000, use: {
-			undefined: [`p:"oh noo it's too high up :("`],
+			undefined: [`p:"it's a bread box"`, `p:"it's shut tight"`, `p:"i thought this was a bank, not a bakery..."`],
+			other: [`p:"that won't help get that bread"`],
 		}, }),
-		this.Prop({ texture: 'heist_fg',      offset: 10000 }),
 
-		
-		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',
-			x: -170,
-			y: -152,
-			offset: -75, use: {
+		this.Hotspot({ label: 'vault', texture: 'heist_vault_door', x: -170, y: -152, offset: -75, use: {
 			undefined: ['goto:open vault'],
 			oil: ['goto:oil vault'],
+			wheel: [`p:"yep. they're both circles."`, `p:"i see zero other connection here"`],
+			candle: [`p:"it'd need to be much hotter to burn that"`],
+			other: [`p:"that's not gonna open it"`],
 		}, }),
 
-		this.Npc({ name: 'snake oil\nsalesman', body: 'dustbun_oil', tint: 0x746568, x: 290, y: -130, shadow: false, flip: true, use: {
-			undefined: [`"can't believe this..."`, `"past noon already..."`, `"never woulda happened with my oil..."`],
+		this.Npc({ name: 'snake oil\nsalesbun', body: 'dustbun_oil', tint: 0x746568, x: 290, y: -130, shadow: false, flip: true, use: {
+			undefined: [`"can't believe dis..."`, `"past lunch already..."`, `"s'posed to be makin' deals today"`, `"got me waitin' on steals..."`],
 			'bread slice': ['goto:give bread'],
+			poster: [`"dat reward's nuddin ta sneeze at"`, `"nah... let da sheriff deal with dat"`],
+			candle: [`"ey watch it, dat's hot!!"`],
+			rope: [`p:"they probably wouldn't appreciate being tied up"`],
+			'cowboy hat': [`"no thanks, i prefer oiling my tufts up"`],
+			other: [`"get outta here with dat junk!"`, `"dis trash ain't worth dust..."`, `"more trash? where's da dough?!"`],
 		}, }),
-		this.Npc({ name: 'demolition2', body: 'dustbun_demolition', tint: 0x746568, x: -30, y: -215, flip: true, use: {}, }),
+		this.Npc({ name: 'scared hare', body: 'dustbun_scared', tint: 0x746568, x: -30, y: -215, flip: true, use: {
+			other: [`"oh golly gee oh no oh no"`, `"ohh dear betsy buggy sue protect me"`, `"ohhhhh nooooo"`, `p:"...they seem a bit pre-occupied"`],
+		}, }),
 		this.Npc({ name: 'crook', body: 'dustbun_boss', tint: 0x9485A2, x: 125, y: -215, flip: true, use: {
-			poster: [`"Not a bad likeness, really."`, `"What about it?"`, `"Gonna try to claim that reward?"`],
+			undefined: [`"if dat vault ain't open on da count of five..."`, `"one..."`, `"two..."`, `"tree....."`, `"fohhh......."`, `"...you tink ahm kiddin' around!?"`, `"ah won't say it again!"`],
+			poster: [`"not a bad likeness"`, `"gonna try ta claim dat reward?"`, `"hehehe, don't make me laugh"`],
+			rope: [`p:"i think they'd overpower me..."`, `p:"better knot risk it"`],
+			'cowboy hat': [`"'preciate da gesture, but not mah colour"`],
+			candle: [`"pa never tell ya not ta play with fire?"`, `"mine neither, heh"`],
+			oil: [`"gotta respect da classics"`, `"ah go for bigger scores dese days"`],
+			'bread slice': [`"no thanks, ah ate before we came"`, `"nevah do a heist on an empty stomach"`],
 		}, }),
 		this.Npc({ name: 'mook', body: 'dustbun_mook2', tint: 0xE6E2A4, x: -139, y: -115, use: {
 			undefined: [`"ey step back kiddo"`, `"dis stuff's dangerous"`],
+			rope: [`p:"i think they'd overpower me..."`, `p:"better knot risk it"`],
+			'cowboy hat': [`"hats're more da boss's style"`],
+			candle: [`"uh. c-careful with dat."`, `"s-seriously..."`],
+			'bread slice': [`"da boss don't let me eat on da job"`],
+			poster: [`"how come da boss gets all da credit..."`],
 		}, }),
-		this.Npc({ name: 'shop', body: 'dustbun_shop', tint: 0xC6A89D, shadow: false, offset: -100, x: 94, y: -247, use: {}, }),
+		this.Npc({ name: 'teller', body: 'dustbun_shop', tint: 0xC6A89D, shadow: false, offset: -100, x: 94, y: -247, use: {
+			undefined: [`"i told ya, da door's stuck!"`, `"already unlocked, nuddin else ta do!"`, `"arghh won't anybunny help me??"`],
+			other: [`p:"nah, they're pretty locked up in there"`],
+		}, }),
 
-		this.Hotspot({ texture: 'ladder',     x: 45, y: -36, offset: 1000, use: {
-		},  }),
+		this.Hotspot({ texture: 'ladder', x: 45, y: -36, offset: 1000, use: {
+			undefined: [`p:"a rickety, rotten ladder"`, `"i'm not gonna step on that"`],
+			rope: [`p:"that's not how you make a rope ladder"`],
+			other: [`p:"that won't work... i gotta step it up"`],
+		}, }),
 
 		...this.HookSpot({ spot: 'r1', x: 45, y: -144 },
 			// empty
 		),
 		...this.HookSpot({ spot: 'r2', x: 177, y: -190 },
 			this.HookItem({ texture: 'rope', hookY: 128, use: {
+				player: [`p:"nice rope"`, `p:"probably strong enough for a tightrope act"`, `p:"it's rope"`],
+				'cowboy hat': [`p:"just missing the cow"`],
+				candle: [`p:"bit overkill for a wick"`],
+				horseshoe: [`p:"those shoes don't need laces"`],
+				wheel: [`p:"uhh... reel wope? no, that's nothing"`],
 			}, }),
 		),
 		...this.HookSpot({ spot: 'r3', x: 287, y: -231 },
 			this.HookItem({ texture: 'horseshoe', hookY: 30, use: {
+				player: [`p:"do they even have horses here?"`, `p:"it's a lucky horseshoe!"`],
+				rope: [`p:"those shoes don't need laces"`],
+				other: [`p:"nah, might be bad luck"`],
+				otherTarget: [`p:"nah, might be bad luck"`],
 			}, }),
 		),
 		...this.HookSpot({ spot: 'r4', x: 299, y: -335 },
 			this.HookItem({ texture: 'poster', hookY: 37, use: {
+				player: [`p:"says 'WANTED - REWARD 100 BARS'"`, `p:"now where have i seen that face before..."`],
+				candle: [`p:"got a feeling that would also be a crime"`],
 			}, }),
 		),
 		...this.HookSpot({ spot: 'l1', x: -33, y: -209 },
 			this.HookItem({ texture: 'wheel', hookY: 103, use: {
+				player: [`p:"it's a big ol' wheel"`],
+				rope: [`p:"uhh... reel wope? no, that's nothing"`],
+				otherTarget: [`p:"that wheely won't work"`, `p:"try again, i'm on a roll"`, `p:"feel like i'm going in circles with this idea"`],
 			}, }),
 		),
 		...this.HookSpot({ spot: 'l2', x: -132, y: -250 },
@@ -325,12 +380,17 @@
 		),
 		...this.HookSpot({ spot: 'l3', x: -259, y: -298 },
 			this.HookItem({ texture: 'cowboy hat', hookY: 58, use: {
+				player: [`p:"yeehaw"`, `p:"oh it doesn't fit me... yeenaw"`],
+				rope: [`p:"just missing the cow"`],
 			}, }),
 		),
 
 		this.mite = this.Npc({ name: 'dust mite', body: 'mite', x: 3, y: -448, roam: 50, offset: 90000, bodyCollision: { isStatic: false, isSensor: true }, use: {
 			undefined: ['goto:mite run'],
+			other: [`p:"it seems content to ignore that"`, `p:"got its own priorities"`, `p:"it doesn't get it"`],
 		}, }),
+
+		this.Prop({ texture: 'heist_fg', offset: 10000 }),
 	]);
 
 	this.Area('soap', [
@@ -882,10 +942,11 @@ you got the moon-dried tomato.
 			this.destroy(chandelier);
 			this.add(
 				this.Item({ texture: 'candle', x: -53, y: -177, offset: 0, use: {
-					player: ['p:"it is a candle"'],
+					player: [`p:"ouch! that's hot"`],
+					rope: [`p:"bit overkill for a wick"`],
+					poster: [`p:"got a feeling that would also be a crime"`],
 				}, }),
 				this.Prop({ texture: 'dropped chandelier', x: -92, y: -144, offset: -17 }),
-				
 			);
 			this.scene.drop(
 				this.Poly({ verts: [-78,-163, -111,-162] }),
@@ -903,6 +964,8 @@ you got the moon-dried tomato.
 	this.camPoint = undefined;
 >>
 "geez louwheeze!!"
+>
+"ya tryin' ta scare me ta death!?"
 [[>close]]
 
 ::drop chandelier again
@@ -919,6 +982,7 @@ you got the moon-dried tomato.
 	this.scene.find('fuse');
 	this.gameObject.spr.alpha = 1;
 	this.gameObject.use.undefined = ['p:"must be one of those slow burning fuses"', 'p:"very, very slow burning..."'];
+	this.gameObject.use.other = [`p:"fusing those won't do anything"`, `p:"it's already lit"`];
 	this.gameObject.btn.resetCycles();
 	// TODO: fuse sfx
 	setTimeout(() => {
@@ -966,7 +1030,7 @@ you got the moon-dried tomato.
 
 ::smash peanut
 <<do
-	const beetle = this.scene.find('elephant beetle');
+	const beetle = this.scene.find('trophy mount');
 	this.camPoint = beetle.transform;
 	this.tween(beetle.transform, 'x', beetle.transform.x, 1200, beetle.transform.x + 10, (t) => 1-Math.random()*(1-t));
 	// TODO: rumble sfx
@@ -987,6 +1051,7 @@ you got the moon-dried tomato.
 				this.gameObject = this.Hotspot({ label: 'peanut', texture: 'peanut smashed', x: 166, y: -228, offset: -15, use: {
 					undefined: [`p:"it used to be a peanut"`, `p:"it looks very mushy..."`],
 					'bread slice': ['goto:butter bread'],
+					other: [`p:"i don't want to slather that in peanut"`],
 				}, }),
 			);
 
@@ -1010,7 +1075,7 @@ you got the moon-dried tomato.
 <<do
 	this.gameObject = this.scene.find('crook');
 	this.shock(this.gameObject, 250);
-	this.gameObject.btn.use.undefined = [`"swear i saw sumtin move over dere"`, `"back off kid, yer distractin' me"`];
+	this.gameObject.btn.use.undefined = [`"swear ah saw sumtin move over dere"`, `"back off kid, yer distractin' me"`];
 	this.gameObject.btn.resetCycles();
 >>
 "this place is fallin' apart..."
@@ -1049,7 +1114,7 @@ you got the moon-dried tomato.
 			// TODO: crash sfx
 			this.add(
 				this.Item({ texture: 'bread slice', x: -74, y: -45, offset: -50, use: {
-					player: [`p:"bread"`],
+					player: [`p:"i'm not eating that"`, `p:"maybe someone else'll eat it though"`],
 				}, }),
 			);
 			this.goto('close');
@@ -1064,7 +1129,7 @@ you got the moon-dried tomato.
 	this.gameObject = this.scene.player;
 	this.camPoint = undefined;
 >>
-"i don't think it's hungry"
+"don't think it wants anything else on that shelf"
 [[>close]]
 
 ::butter bread
@@ -1086,7 +1151,7 @@ you got the moon-dried tomato.
 
 ::give bread
 <<if this.buttered>>
-"oh yum yum"
+"hm... well i am pretty hungry"
 <<do
 	this.fed = true;
 	this.scene.loseItem(true);
@@ -1099,7 +1164,11 @@ you got the moon-dried tomato.
 <<endif>>
 
 ::give bread2
-"take my oil i dont care anymore"
+*munch* *monch* *mounch* *muonch*
+>
+"yum yum"
+>
+"fine take my oil i don't care anymore"
 [[>close]]
 
 
@@ -1107,18 +1176,29 @@ you got the moon-dried tomato.
 <<if this.fed>>
 <<do this.goto('generic item')>>
 <<else>>
-<<do this.gameObject = this.scene.find('snake oil\nsalesman')>>
+<<do this.gameObject = this.scene.find('snake oil\nsalesbun')>>
+<<do this.goto('take oil hint')>>
+<<endif>>
+
+::use on oil
+<<if this.fed>>
+<<do this.gameObject = this.scene.player>>
+<<do this.scene.loseItem()>>
+"that doesn't need oiling"
+[[>close]]
+<<else>>
+<<do this.gameObject = this.scene.find('snake oil\nsalesbun')>>
+<<do this.scene.loseItem();>>
 <<do this.goto('take oil hint')>>
 <<endif>>
 
 ::take oil hint
-<<do this.oilhint = !this.oilhint>>
-<<if this.oilhint>>
-"no free samples bucko"
-<<else>>
-"gotta pay for that.
-can't live on bread alone"
-<<endif>>
+<<do this.oilhint = ((this.oilhint || 3) + 1) % 3;>>
+<<print [
+	`"no free samples bucko"`,
+	`"gotta pay for that"`,
+	`"can't live on bread alone"`,
+][this.oilhint]>>
 [[>close]]
 
 ::oil vault
@@ -1147,6 +1227,7 @@ can't live on bread alone"
 		if (mook) {
 			mook.btn.use.undefined = [`"thanks for da door help kid"`, `"but still. back off"`];
 		}
+		this.scene.find('teller').use.undefined = [`"oh, you fixed da door?"`, `"coulda maybe picked a better time..."`, `"sigh"`];
 		setTimeout(() => {
 			this.camPoint = undefined;
 			this.goto('close');
