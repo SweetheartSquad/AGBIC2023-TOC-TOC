@@ -408,8 +408,8 @@
 		this.Prop({ texture: 'floorButtonsLayer',        offset: -1000000 }),
 		this.Poly({ verts: [-23,-472] }), // egg
 		this.Prop({ texture: 'easterEggLayer', x: -23, y: -463,          offset: -10 }),
-		this.Poly({ verts: [-24,-105, 154,-120], width: 5, }), // knife
-		this.Prop({ texture: 'butterKnifeLayer', x: 66, y: -94,        offset: -20 }),
+		this.Poly({ verts: [-24,-105, 42,-111], width: 5, }), // knife
+		this.Prop({ texture: 'butterKnifeLayer', x: 66, y: -94,        offset: -30 }),
 		this.Prop({ texture: 'chapstickLayerLayer',      offset: -1000000 }),
 		this.Poly({ verts: [15,-390, 4,-395, 15,-398, 24,-395, 16,-390] }), // bottle cap
 		this.Prop({ texture: 'pillBottleCapLayer', x: 15, y: -378,     offset: -10 }),
