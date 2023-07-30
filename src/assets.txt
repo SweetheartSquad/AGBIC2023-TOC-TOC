@@ -135,7 +135,7 @@ textures/townCenter/candleColumnPurple.png
 textures/townCenter/candleColumnRed.png
 textures/townCenter/aluminumPackets.png
 textures/townCenter/juicebox.png
-textures/townCenter/crayonVendorTop.png
+textures/townCenter/candle foil top.png
 
 textures/townCenter/cheeseCart.png
 textures/townCenter/cheeseFloor.png
