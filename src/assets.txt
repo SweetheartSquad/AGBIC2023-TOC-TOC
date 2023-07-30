@@ -112,7 +112,7 @@ textures/miteRun.x2.png
 
 textures/townCenter/bg.png
 textures/townCenter/floorButtons.png
-textures/townCenter/easterEgg.png
+textures/townCenter/easter egg.png
 textures/townCenter/butterKnife.png
 textures/townCenter/chapstick.png
 textures/townCenter/pillBottleCap.png
@@ -185,7 +185,7 @@ textures/townCenterItems/toothpick_carrying.png
 textures/townCenterItems/unlitMatch_carrying.png
 textures/townCenterItems/bottleCap_carrying.png
 textures/townCenterItems/coin_carrying.png
-textures/townCenterItems/easterEgg_carrying.png
+textures/townCenterItems/easter egg_carrying.png
 textures/townCenterItems/fork_carrying.png
 textures/townCenterItems/horseKey_carrying.png
 textures/townCenterItems/litMatch_carrying.png
