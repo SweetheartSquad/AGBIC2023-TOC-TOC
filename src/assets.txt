@@ -179,7 +179,6 @@ textures/cookieCutters/treePos3.png
 textures/townCenterItems/cutter snowman carrying.png
 textures/townCenterItems/cutter star carrying.png
 textures/townCenterItems/cutter tree carrying.png
-textures/townCenterItems/pill_carrying.png
 textures/townCenterItems/spoon_carrying.png
 textures/townCenterItems/toothpick_carrying.png
 textures/townCenterItems/unlitMatch_carrying.png
