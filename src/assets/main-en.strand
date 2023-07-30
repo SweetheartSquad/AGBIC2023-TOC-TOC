@@ -512,7 +512,7 @@
 		this.Prop({ texture: 'spoonForkStoveProngLayer',      offset: 0 }),
 		this.Prop({ texture: 'anvilStoveProngLayer',          offset: 0 }),
 
-		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -332, flip: true, use: {}, }),
+		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 71, y: -302, flip: true, use: {}, }),
 		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
 		this.Npc({ name: 'can', body: 'mouse_basic', x: -78, y: -354, use: {}, }),
 		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -278, use: {}, }),
