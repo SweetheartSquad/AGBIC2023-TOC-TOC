@@ -402,26 +402,59 @@
 	]);
 
 	this.Area('mouse town center', [
-		this.Prop({ texture: 'bgLayer',                offset: -1000000 }),
-		this.Prop({ texture: 'blueCrayonLayer',        offset: -276 }),
-		this.Prop({ texture: 'boardWalkCrayonSLLayer', offset: -434 }),
-		this.Prop({ texture: 'boardWalkCrayonSRLayer', offset: -233 }),
-		this.Prop({ texture: 'boardwalkLayer',         offset: -0 }),
+		this.Prop({ texture: 'bgLayer',                  offset: -1000000 }),
+		this.Prop({ texture: 'floorButtonsLayer',        offset: -1000000 }),
+		this.Prop({ texture: 'easterEggLayer',           offset: -1000000 }),
+		this.Prop({ texture: 'butterKnifeLayer',         offset: -1000000 }),
+		this.Prop({ texture: 'chapstickLayerLayer',      offset: -1000000 }),
+		this.Prop({ texture: 'pillBottleCapLayer',      offset: 0 }),
+
+		this.Prop({ texture: 'gatehouseLayer',         offset: -379 }),
+		this.Prop({ texture: 'pushPinsLayer',          offset: -379 }),
+		this.Prop({ texture: 'toothpickPileLayer',     offset: -334 }),
+		this.Prop({ texture: 'saltShakerLayer',        offset: -1000000 }),
+
+		this.Prop({ texture: 'shelfCrayonSLLayer',     offset: -434 }),
+		this.Prop({ texture: 'shelfCrayonSRLayer',     offset: -233 }),
+		this.Prop({ texture: 'shelfLayer',             offset: -0 }),
+		this.Prop({ texture: 'pepperShakerLayer',      offset: 0 }),
+		this.Prop({ texture: 'pillBottleLayer',      offset: 0 }),
+		this.Prop({ texture: 'pillItemLayer',      offset: 0 }),
+
+
 		this.Prop({ texture: 'canBackLayer',           offset: -400 }),
 		this.Prop({ texture: 'canFrontLayer',          offset: -350 }),
+		this.Prop({ texture: 'keyCounterLayer',        offset: -350 }),
 
 		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
 		this.Prop({ texture: 'fountainWaterAnim', freq: 1/100, offset: -229 }),
-		this.Prop({ texture: 'gatehouseLayer',         offset: -379 }),
-		this.Prop({ texture: 'toothpickLayer',         offset: -334 }),
+		this.Prop({ texture: 'fountainNoWaterLayer',   offset: -229 }),
+		this.Prop({ texture: 'pizzaTableSLLayer',      offset: -229 }),
+		this.Prop({ texture: 'pizzaTableSRLayer',      offset: -229 }),
+		this.Prop({ texture: 'starAltarLayer',         offset: -229 }),
+		this.Prop({ texture: 'cheeseAlterLayer',         offset: -229 }),
 
 		this.Prop({ texture: 'matchboxLayer',          offset: -186 }),
 		
-		this.Prop({ texture: 'greenCrayonLayer',       offset: -339 }),
-		this.Prop({ texture: 'purpleCrayonLayer',      offset: -228 }),
-		this.Prop({ texture: 'redCrayonLayer',         offset: -292 }),
-		this.Prop({ texture: 'tinfoilRoomLayer',       offset: -0 }),
+		this.Prop({ texture: 'blueCandleColumnLayer',  offset: -276 }),
+		this.Prop({ texture: 'greenCandleColumnLayer',       offset: -339 }),
+		this.Prop({ texture: 'purpleCandleColumnLayer',      offset: -228 }),
+		this.Prop({ texture: 'redCandleColumnLayer',         offset: -292 }),
+		this.Prop({ texture: 'aluminumPacketsLayer',   offset: -272 }),
 		this.Prop({ texture: 'juiceboxLayer',          offset: -272 }),
+		this.Prop({ texture: 'crayonVendorTopLayer',   offset: -0 }),
+
+		this.Prop({ texture: 'cheeseCartLayer',   offset: -0 }),
+		this.Prop({ texture: 'cheeseFloorLayer',   offset: -0 }),
+		this.Prop({ texture: 'horseNoKeyLayer',   offset: -0 }),
+		this.Prop({ texture: 'horseWithKeyLayer',   offset: -0 }),
+
+		this.Prop({ texture: 'candlePileLayer',        offset: 0 }),
+		this.Prop({ texture: 'waxSnowmanLayer',        offset: 0 }),
+		this.Prop({ texture: 'waxStarLayer',           offset: 0 }),
+		this.Prop({ texture: 'waxTreeLayer',           offset: 0 }),
+		this.Prop({ texture: 'waxWadLayer',            offset: 0 }),
+		
 
 		this.Prop({ texture: 'snowmanPos1', alpha: 0, offset: 0 }),
 		this.Prop({ texture: 'starPos1',    alpha: 1, offset: 0 }),
@@ -468,6 +501,11 @@
 			h.spr.height = 100;
 			return h;
 		})(),
+
+		this.Prop({ texture: 'stoveFloorLayer',          offset: -1000000 }),
+		this.Prop({ texture: 'stoveHobLayer',            offset: -1000000 }),
+		this.Prop({ texture: 'spoonForkStoveProngLayer', offset: -1000000 }),
+		this.Prop({ texture: 'anvilStoveProngLayer', offset: -1000000 }),
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -332, flip: true, use: {}, }),
 		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),

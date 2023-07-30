@@ -109,22 +109,62 @@ textures/heist/hook.png
 textures/miteIdle.x2.png
 textures/miteRun.x2.png
 
-// textures/townCenter/bgLayer.png
-// textures/townCenter/blueCrayonLayer.png
-// textures/townCenter/boardWalkCrayonSLLayer.png
-// textures/townCenter/boardWalkCrayonSRLayer.png
-// textures/townCenter/boardwalkLayer.png
-// textures/townCenter/canBackLayer.png
-// textures/townCenter/canFrontLayer.png
-// textures/fountainFullAnim/fountainWaterAnim.x4.png
-// textures/townCenter/gatehouseLayer.png
-// textures/townCenter/greenCrayonLayer.png
-// textures/townCenter/juiceboxLayer.png
-// textures/townCenter/matchboxLayer.png
-// textures/townCenter/purpleCrayonLayer.png
-// textures/townCenter/redCrayonLayer.png
-// textures/townCenter/tinfoilRoomLayer.png
-// textures/townCenter/toothpickLayer.png
+
+textures/townCenter/bgLayer.png
+textures/townCenter/floorButtonsLayer.png
+textures/townCenter/easterEggLayer.png
+textures/townCenter/butterKnifeLayer.png
+textures/townCenter/chapstickLayerLayer.png
+textures/townCenter/pillBottleCapLayer.png
+
+textures/townCenter/gatehouseLayer.png
+textures/townCenter/pushPinsLayer.png
+textures/townCenter/toothpickPileLayer.png
+textures/townCenter/saltShakerLayer.png
+textures/townCenter/pillBottleLayer.png
+textures/townCenter/pillItemLayer.png
+
+textures/townCenter/shelfCrayonSLLayer.png
+textures/townCenter/shelfCrayonSRLayer.png
+textures/townCenter/shelfLayer.png
+textures/townCenter/pepperShakerLayer.png
+
+textures/townCenter/blueCandleColumnLayer.png
+textures/townCenter/greenCandleColumnLayer.png
+textures/townCenter/purpleCandleColumnLayer.png
+textures/townCenter/redCandleColumnLayer.png
+textures/townCenter/aluminumPacketsLayer.png
+textures/townCenter/juiceboxLayer.png
+textures/townCenter/crayonVendorTopLayer.png
+
+textures/townCenter/cheeseCartLayer.png
+textures/townCenter/cheeseFloorLayer.png
+textures/townCenter/horseNoKeyLayer.png
+textures/townCenter/horseWithKeyLayer.png
+
+textures/townCenter/canBackLayer.png
+textures/townCenter/canFrontLayer.png
+textures/townCenter/keyCounterLayer.png
+
+textures/fountainFullAnim/fountainWaterAnim.x4.png
+textures/townCenter/fountainNoWaterLayer.png
+textures/townCenter/pizzaTableSLLayer.png
+textures/townCenter/pizzaTableSRLayer.png
+textures/townCenter/starAltarLayer.png
+textures/townCenter/cheeseAlterLayer.png
+
+textures/townCenter/matchboxLayer.png
+
+textures/townCenter/stoveFloorLayer.png
+textures/townCenter/stoveHobLayer.png
+textures/townCenter/spoonForkStoveProngLayer.png
+textures/townCenter/anvilStoveProngLayer.png
+
+textures/townCenter/candlePileLayer.png
+textures/townCenter/waxSnowmanLayer.png
+textures/townCenter/waxStarLayer.png
+textures/townCenter/waxTreeLayer.png
+textures/townCenter/waxWadLayer.png
 
 textures/cookieCutters/snowmanPos1.png
 textures/cookieCutters/snowmanPos2.png
