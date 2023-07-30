@@ -160,7 +160,7 @@ textures/townCenter/stoveHob.png
 textures/townCenter/spoonForkStoveProng.png
 textures/townCenter/anvilStoveProng.png
 
-textures/townCenter/candlePile.png
+textures/townCenter/birthday candles.png
 textures/townCenter/waxSnowman.png
 textures/townCenter/waxStar.png
 textures/townCenter/waxTree.png
