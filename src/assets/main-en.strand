@@ -420,8 +420,8 @@
 		this.Prop({ texture: 'toothpickPile', x: 273, y: -247,    offset: -87 }),
 		this.Prop({ texture: 'saltShaker', x: 328, y: -232,        offset: -10 }),
 
-		this.Prop({ texture: 'shelfCrayonSL',     offset: -434 }),
 		this.Prop({ texture: 'shelfCrayonSR',     offset: -233 }),
+		this.Prop({ texture: 'shelfCrayonSL', x: -9, y: -430,    offset: -4 }),
 		this.Prop({ texture: 'shelf', x: 157, y: -288,            offset: -0 }),
 		this.Prop({ texture: 'pepperShaker',      offset: 0 }),
 		this.Prop({ texture: 'pillBottle',      offset: 0 }),
