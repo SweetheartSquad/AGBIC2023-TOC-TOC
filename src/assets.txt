@@ -113,7 +113,7 @@ textures/miteRun.x2.png
 textures/townCenter/bg.png
 textures/townCenter/floorButtons.png
 textures/townCenter/easter egg.png
-textures/townCenter/butterKnife.png
+textures/townCenter/butter knife.png
 textures/townCenter/chapstick.png
 textures/townCenter/pillBottleCap.png
 
