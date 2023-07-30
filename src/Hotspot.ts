@@ -21,11 +21,11 @@ export class Hotspot extends Prop {
 		});
 
 		this.name = label || options.texture;
-		this.use = use;
+		this.use = use || {};
 
 		this.btn = new BtnItem({
 			gameObject: this,
-			use,
+			use: this.use,
 			label: this.name,
 		});
 		this.display.container.addChild(this.btn.display.container);
