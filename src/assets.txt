@@ -161,10 +161,10 @@ textures/townCenter/spoonForkStoveProng.png
 textures/townCenter/anvilStoveProng.png
 
 textures/townCenter/birthday candles.png
-textures/townCenter/waxSnowman.png
-textures/townCenter/waxStar.png
-textures/townCenter/waxTree.png
-textures/townCenter/waxWad.png
+textures/townCenter/wax snowman.png
+textures/townCenter/wax star.png
+textures/townCenter/wax tree.png
+textures/townCenter/wax wad.png
 
 textures/cookieCutters/snowmanPos1.png
 textures/cookieCutters/snowmanPos2.png
