@@ -402,13 +402,17 @@
 	]);
 
 	this.Area('mouse town center', [
+		this.Poly({ verts: [349,-265, -23,-499, -350,-301, -350,15, 350,15, 350,-266] }), // walls
+
 		this.Prop({ texture: 'bgLayer',                  offset: -1000000 }),
 		this.Prop({ texture: 'floorButtonsLayer',        offset: -1000000 }),
 		this.Prop({ texture: 'easterEggLayer',           offset: -1000000 }),
-		this.Prop({ texture: 'butterKnifeLayer',         offset: -1000000 }),
+		this.Poly({ verts: [-24,-105, 154,-120], width: 5, }), // knife
+		this.Prop({ texture: 'butterKnifeLayer', x: 66, y: -94,        offset: -20 }),
 		this.Prop({ texture: 'chapstickLayerLayer',      offset: -1000000 }),
 		this.Prop({ texture: 'pillBottleCapLayer',      offset: 0 }),
 
+		this.Poly({ verts: [286,-306, 221,-271, 172,-299, 237,-345, 166,-385, 98,-347, 39,-382, 111,-423] }), // gate
 		this.Prop({ texture: 'gatehouseLayer',         offset: -379 }),
 		this.Prop({ texture: 'pushPinsLayer',          offset: -379 }),
 		this.Prop({ texture: 'toothpickPileLayer',     offset: -334 }),
@@ -456,9 +460,9 @@
 		this.Prop({ texture: 'waxWadLayer',            offset: 0 }),
 		
 
-		this.Prop({ texture: 'snowmanPos1', alpha: 0, offset: 0 }),
-		this.Prop({ texture: 'starPos1',    alpha: 1, offset: 0 }),
-		this.Prop({ texture: 'treePos1',    alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'snowmanPos1', alpha: 0, offset: 100 }),
+		this.Prop({ texture: 'starPos1',    alpha: 1, offset: 100 }),
+		this.Prop({ texture: 'treePos1',    alpha: 0, offset: 100 }),
 		this.Prop({ texture: 'snowmanPos2', alpha: 1, offset: 0 }),
 		this.Prop({ texture: 'starPos2',    alpha: 0, offset: 0 }),
 		this.Prop({ texture: 'treePos2',    alpha: 0, offset: 0 }),
@@ -502,17 +506,18 @@
 			return h;
 		})(),
 
-		this.Prop({ texture: 'stoveFloorLayer',          offset: -1000000 }),
-		this.Prop({ texture: 'stoveHobLayer',            offset: -1000000 }),
-		this.Prop({ texture: 'spoonForkStoveProngLayer', offset: -1000000 }),
-		this.Prop({ texture: 'anvilStoveProngLayer', offset: -1000000 }),
+		this.Poly({ verts: [348,-187, 47,-3] }), // stove ledge
+		this.Prop({ texture: 'stoveFloorLayer', x: 175, y: 0, offset: 0 }),
+		this.Prop({ texture: 'stoveHobLayer', x: 310, y: 0,   offset: 0 }),
+		this.Prop({ texture: 'spoonForkStoveProngLayer',      offset: 0 }),
+		this.Prop({ texture: 'anvilStoveProngLayer',          offset: 0 }),
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -332, flip: true, use: {}, }),
 		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
 		this.Npc({ name: 'can', body: 'mouse_basic', x: -78, y: -354, use: {}, }),
 		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -278, use: {}, }),
 		this.Npc({ name: 'right', body: 'mouse_basic', x: 288, y: -170, flip: true, use: {}, }),
-		this.Npc({ name: 'bottom', body: 'mouse_basic', x: 153, y: -57, flip: true, use: {}, }),
+		this.Npc({ name: 'bottom', body: 'mouse_basic', x: 153, y: -57, flip: true, offset: 100, use: {}, }),
 		
 		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -192, y: -172, bodyCollision: { isStatic: true },
 			use: {
