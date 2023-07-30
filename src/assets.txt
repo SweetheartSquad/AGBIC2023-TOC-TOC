@@ -185,6 +185,6 @@ textures/townCenterItems/matchbox_carrying.png
 textures/townCenterItems/coin_carrying.png
 textures/townCenterItems/fork_carrying.png
 textures/townCenterItems/horseKey_carrying.png
-textures/townCenterItems/litMatch_carrying.png
+textures/townCenterItems/lit match.png
 
 textures/glow.png
