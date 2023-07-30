@@ -725,13 +725,6 @@ you got the moon-dried tomato.
 // 88'  `88 88    88 Y8ooooo.   88   88'  `88 88    88 88'  `88
 // 88.  .88 88.  .88       88   88   88.  .88 88.  .88 88    88
 // `88888P8 `88888P' `88888P'   dP   88Y8888' `88888P' dP    dP
-::route switch
-<<do
-	this.gameObject.spr.angle += 90;
-	this.route = ((this.route || 0) + 1) % 4;
-	this.goto('close');
->>
-
 ::place on hook
 <<do
 	const item = this.scene.carrying;
