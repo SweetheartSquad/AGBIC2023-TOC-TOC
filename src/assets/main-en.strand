@@ -433,8 +433,9 @@
 		this.Item({ texture: 'pill', x: 151, y: -423,     offset: 200 }),
 
 
-		this.Prop({ texture: 'can back', x: -83, y: -372,           offset: -28 }),
-		this.Prop({ texture: 'can front', x: -81, y: -334,          offset: -16 }),
+		this.Poly({ verts: [-105,-368, -56,-368], width: 55 }), // can
+		this.Prop({ texture: 'can back', x: -83, y: -372,           offset: -10 }),
+		this.Prop({ texture: 'can front', x: -81, y: -334,          offset: -25 }),
 		this.Item({ texture: 'key', x: -59, y: -354,       offset: 50 }),
 
 		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
@@ -528,7 +529,7 @@
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 71, y: -302, flip: true, use: {}, }),
 		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
-		this.Npc({ name: 'can', body: 'mouse_basic', x: -78, y: -354, use: {}, }),
+		this.Npc({ name: 'can', body: 'mouse_basic', x: -78, y: -354, offset: -5, use: {}, }),
 		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -278, use: {}, }),
 		this.Npc({ name: 'right', body: 'mouse_basic', x: 288, y: -170, flip: true, use: {}, }),
 		this.Npc({ name: 'bottom', body: 'mouse_basic', x: 153, y: -57, flip: true, offset: 100, use: {}, }),
