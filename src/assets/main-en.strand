@@ -428,8 +428,8 @@
 		this.Prop({ texture: 'pillItemLayer',      offset: 0 }),
 
 
-		this.Prop({ texture: 'canBackLayer',           offset: -400 }),
-		this.Prop({ texture: 'canFrontLayer',          offset: -350 }),
+		this.Prop({ texture: 'canBackLayer', x: -83, y: -372,           offset: -28 }),
+		this.Prop({ texture: 'canFrontLayer', x: -81, y: -334,          offset: -16 }),
 		this.Prop({ texture: 'keyCounterLayer',        offset: -350 }),
 
 		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
