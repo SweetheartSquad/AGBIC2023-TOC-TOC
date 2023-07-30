@@ -459,7 +459,7 @@
 		this.Prop({ texture: 'waxSnowman', x: -103, y: -303,       offset: 0 }),
 		this.Prop({ texture: 'waxStar', x: -108, y: -302,          offset: 0 }),
 		this.Prop({ texture: 'waxTree', x: -111, y: -305,          offset: 0 }),
-		this.Prop({ texture: 'waxWad',            offset: 0 }),
+		this.Prop({ texture: 'waxWad', x: -121, y: -298,           offset: 0 }),
 		
 
 		this.Prop({ texture: 'snowmanPos1', alpha: 0, offset: 100 }),
