@@ -442,8 +442,8 @@
 		this.Poly({ verts: [-79,-199, 111,-234], width: 15 }), // altars
 		this.Prop({ texture: 'fountainWater', x: 15, y: -164, freq: 1/100, offset: -45 }),
 		this.Prop({ texture: 'fountainNoWater',   x: 15, y: -164, offset: -45 }),
-		this.Prop({ texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7 }),
-		this.Prop({ texture: 'pizzaTableSR', x: 110, y: -222,      offset: -7 }),
+		this.Hotspot({ label: 'left altar', texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7 }),
+		this.Hotspot({ label: 'right altar', texture: 'pizzaTableSR', x: 110, y: -222,      offset: -7 }),
 		this.Prop({ texture: 'starAltar', x: 110, y: -237,         offset: 8 }),
 		this.Prop({ texture: 'cheeseAltar', x: -80, y: -202,       offset: 6 }),
 
