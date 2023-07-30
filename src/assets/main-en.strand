@@ -512,7 +512,7 @@
 		this.Prop({ texture: 'stoveFloor', x: 175, y: 0, offset: 0 }),
 		this.Prop({ texture: 'stoveHob', x: 310, y: 0,   offset: 0 }),
 		this.Prop({ texture: 'spoonForkStoveProng',      offset: 0 }),
-		this.Prop({ texture: 'anvilStoveProng',          offset: 0 }),
+		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 45 }),
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 71, y: -302, flip: true, use: {}, }),
 		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
