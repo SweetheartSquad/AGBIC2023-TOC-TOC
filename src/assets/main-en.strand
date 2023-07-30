@@ -444,7 +444,11 @@
 		this.Prop({ texture: 'cheeseAltar', x: -80, y: -202,       offset: 6 }),
 
 		this.Prop({ texture: 'matchbox', x: 246, y: -161,         offset: -25 }),
-		
+
+		this.Block({ type: 'circle', x: -219, y: -339, radius: 2, }), // candle green
+		this.Block({ type: 'circle', x: -321, y: -278, radius: 2, }), // candle blue
+		this.Block({ type: 'circle', x: -245, y: -229, radius: 2, }), // candle purple
+		this.Block({ type: 'circle', x: -142, y: -292, radius: 2, }), // candle red
 		this.Prop({ texture: 'candleColumnBlue', x: -320, y: -272,  offset: -4 }),
 		this.Prop({ texture: 'candleColumnGreen', x: -218, y: -335,      offset: -4 }),
 		this.Prop({ texture: 'candleColumnPurple', x: -244, y: -225,     offset: -4 }),
