@@ -405,26 +405,26 @@
 		this.Poly({ verts: [349,-265, -23,-499, -350,-301, -350,15, 350,15, 350,-266] }), // walls
 
 		this.Prop({ texture: 'bg',                  offset: -1000000 }),
-		this.Prop({ texture: 'floorButtons', x: 44, y: -339,        offset: -30 }),
+		this.Prop({ texture: 'buttons', x: 44, y: -339,        offset: -30 }),
 		this.Poly({ verts: [-23,-472] }), // egg
 		this.Item({ texture: 'easter egg', x: -23, y: -463,          offset: -10 }),
 		this.Poly({ verts: [-24,-105, 42,-111], width: 5, }), // knife
 		this.Prop({ texture: 'butter knife', x: 66, y: -94,        offset: -30 }),
 		this.Prop({ texture: 'chapstick', x: -284, y: -10,     offset: 0 }),
 		this.Poly({ verts: [15,-390, 4,-395, 15,-398, 24,-395, 16,-390] }), // bottle cap
-		this.Prop({ texture: 'pillBottleCap', x: 15, y: -378,     offset: -10 }),
+		this.Prop({ texture: 'bottle cap', x: 15, y: -378,     offset: -10 }),
 
 		this.Poly({ verts: [286,-306, 221,-271, 172,-299, 237,-345, 166,-385, 98,-347, 39,-382, 111,-423] }), // gate
 		this.Prop({ texture: 'gatehouse', x: 164, y: -259,        offset: -120 }),
 		this.Prop({ texture: 'pushPins', x: 62, y: -420,          offset: 41 }),
 		this.Prop({ texture: 'toothpickPile', x: 273, y: -247,    offset: -87 }),
-		this.Prop({ texture: 'saltShaker', x: 328, y: -232,        offset: -10 }),
+		this.Prop({ texture: 'salt shaker', x: 328, y: -232,        offset: -10 }),
 
 		this.Prop({ texture: 'shelfCrayonSL', x: -9, y: -430,    offset: -4 }),
 		this.Prop({ texture: 'shelfCrayonSR', x: 312, y: -230,    offset: -4 }),
 		this.Prop({ texture: 'shelf', x: 157, y: -288,            offset: -0 }),
-		this.Prop({ texture: 'pepperShaker', x: 192, y: -456,     offset: 200 }),
-		this.Prop({ texture: 'pillBottle', x: 100, y: -437,     offset: 200 }),
+		this.Prop({ texture: 'pepper shaker', x: 192, y: -456,     offset: 200 }),
+		this.Prop({ texture: 'pill bottle', x: 100, y: -437,     offset: 200 }),
 		this.Item({ texture: 'pill', x: 151, y: -423,     offset: 200 }),
 
 

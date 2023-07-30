@@ -111,23 +111,23 @@ textures/miteRun.x2.png
 
 
 textures/townCenter/bg.png
-textures/townCenter/floorButtons.png
+textures/townCenter/buttons.png
 textures/townCenter/easter egg.png
 textures/townCenter/butter knife.png
 textures/townCenter/chapstick.png
-textures/townCenter/pillBottleCap.png
+textures/townCenter/bottle cap.png
 
 textures/townCenter/gatehouse.png
 textures/townCenter/pushPins.png
 textures/townCenter/toothpickPile.png
-textures/townCenter/saltShaker.png
-textures/townCenter/pillBottle.png
+textures/townCenter/salt shaker.png
+textures/townCenter/pill bottle.png
 textures/townCenter/pill.png
 
 textures/townCenter/shelfCrayonSL.png
 textures/townCenter/shelfCrayonSR.png
 textures/townCenter/shelf.png
-textures/townCenter/pepperShaker.png
+textures/townCenter/pepper shaker.png
 
 textures/townCenter/candleColumnBlue.png
 textures/townCenter/candleColumnGreen.png
