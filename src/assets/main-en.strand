@@ -455,7 +455,7 @@
 		this.Prop({ texture: 'horseNoKey', x: -128, y: 0,   offset: 0 }),
 		this.Prop({ texture: 'horseWithKey', x: -128, y: 0,   offset: -0 }),
 
-		this.Prop({ texture: 'candlePile',        offset: 0 }),
+		this.Prop({ texture: 'candlePile', x: -127, y: -288,        offset: 0 }),
 		this.Prop({ texture: 'waxSnowman',        offset: 0 }),
 		this.Prop({ texture: 'waxStar',           offset: 0 }),
 		this.Prop({ texture: 'waxTree',           offset: 0 }),
