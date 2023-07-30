@@ -119,7 +119,7 @@ textures/townCenter/bottle cap.png
 
 textures/townCenter/gatehouse.png
 textures/townCenter/pushPins.png
-textures/townCenter/toothpickPile.png
+textures/townCenter/toothpicks.png
 textures/townCenter/salt shaker.png
 textures/townCenter/pill bottle.png
 textures/townCenter/pill.png
@@ -180,7 +180,7 @@ textures/townCenterItems/cutter snowman carrying.png
 textures/townCenterItems/cutter star carrying.png
 textures/townCenterItems/cutter tree carrying.png
 textures/townCenterItems/spoon_carrying.png
-textures/townCenterItems/toothpick_carrying.png
+textures/townCenterItems/toothpicks_carrying.png
 textures/townCenterItems/unlitMatch_carrying.png
 textures/townCenterItems/coin_carrying.png
 textures/townCenterItems/fork_carrying.png

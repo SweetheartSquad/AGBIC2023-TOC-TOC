@@ -418,7 +418,7 @@
 		this.Prop({ texture: 'gatehouse', x: 164, y: -259,        offset: -120 }),
 		this.Prop({ texture: 'pushPins', x: 62, y: -420,          offset: 41 }),
 		this.Poly({ verts: [258,-268, 293,-282], width: 10 }), // toothpicks
-		this.Prop({ texture: 'toothpickPile', x: 273, y: -247,    offset: -87 }),
+		this.Item({ texture: 'toothpicks', x: 273, y: -247,    offset: -87 }),
 		this.Prop({ texture: 'salt shaker', x: 328, y: -232,        offset: -10 }),
 
 		this.Prop({ texture: 'shelfCrayonSL', x: -9, y: -430,    offset: -4 }),
