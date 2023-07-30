@@ -449,6 +449,7 @@
 		this.Block({ type: 'circle', x: -321, y: -278, radius: 2, }), // candle blue
 		this.Block({ type: 'circle', x: -245, y: -229, radius: 2, }), // candle purple
 		this.Block({ type: 'circle', x: -142, y: -292, radius: 2, }), // candle red
+		this.Poly({ verts: [-184,-230, -119,-272, -149,-287, -218,-249, -185,-231], width: 5 }), // juicebox
 		this.Prop({ texture: 'candleColumnBlue', x: -320, y: -272,  offset: -4 }),
 		this.Prop({ texture: 'candleColumnGreen', x: -218, y: -335,      offset: -4 }),
 		this.Prop({ texture: 'candleColumnPurple', x: -244, y: -225,     offset: -4 }),
