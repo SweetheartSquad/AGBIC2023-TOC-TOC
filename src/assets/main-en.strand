@@ -412,7 +412,7 @@
 		this.Prop({ texture: 'butter knife', x: 66, y: -94,        offset: -30 }),
 		this.Prop({ texture: 'chapstick', x: -284, y: -10,     offset: 0 }),
 		this.Poly({ verts: [15,-390, 4,-395, 15,-398, 24,-395, 16,-390] }), // bottle cap
-		this.Prop({ texture: 'bottle cap', x: 15, y: -378,     offset: -10 }),
+		this.Item({ texture: 'bottle cap', x: 15, y: -378,     offset: -10 }),
 
 		this.Poly({ verts: [286,-306, 221,-271, 172,-299, 237,-345, 166,-385, 98,-347, 39,-382, 111,-423] }), // gate
 		this.Prop({ texture: 'gatehouse', x: 164, y: -259,        offset: -120 }),
