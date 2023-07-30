@@ -146,7 +146,7 @@ textures/townCenter/canBack.png
 textures/townCenter/canFront.png
 textures/townCenter/keyCounter.png
 
-textures/townCenter/fountainWaterAnim.x4.png
+textures/townCenter/fountainWater.x4.png
 textures/townCenter/fountainNoWater.png
 textures/townCenter/pizzaTableSL.png
 textures/townCenter/pizzaTableSR.png
