@@ -430,7 +430,7 @@
 
 		this.Prop({ texture: 'can back', x: -83, y: -372,           offset: -28 }),
 		this.Prop({ texture: 'can front', x: -81, y: -334,          offset: -16 }),
-		this.Prop({ texture: 'keyCounter', x: -59, y: -354,       offset: 50 }),
+		this.Item({ texture: 'keyCounter', x: -59, y: -354,       offset: 50 }),
 
 		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
 		this.Prop({ texture: 'fountainWater', x: 15, y: -164, freq: 1/100, offset: -45 }),
