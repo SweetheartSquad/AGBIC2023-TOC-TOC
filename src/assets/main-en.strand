@@ -402,6 +402,8 @@
 	]);
 
 	this.Area('mouse town center', [
+		this.Poly({ verts: [349,-265, -23,-499, -350,-301, -350,15, 350,15, 350,-266] }), // walls
+
 		this.Prop({ texture: 'bgLayer',                  offset: -1000000 }),
 		this.Prop({ texture: 'floorButtonsLayer',        offset: -1000000 }),
 		this.Prop({ texture: 'easterEggLayer',           offset: -1000000 }),
