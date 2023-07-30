@@ -1363,14 +1363,14 @@ soap
 
 
 ::light match
-<<if this.scene.sprCarrying.texture === this.tex('lit match')>>
+<<if this.scene.sprCarrying.texture === this.tex('matchbox_lit')>>
 <<do
 	this.scene.loseItem();
 	this.goto('close');
 >>
 <<else>>
 <<do
-	this.scene.sprCarrying.texture = this.tex('lit match');
+	this.scene.sprCarrying.texture = this.tex('matchbox_lit');
 	this.goto('close');
 >>
 <<endif>>
