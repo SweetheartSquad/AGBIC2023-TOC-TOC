@@ -352,6 +352,7 @@ export class GameScene {
 		if (texT === tex('error')) texT = tex(item.texture);
 		this.sprCarrying.texture = texT;
 		this.sprCarrying.tint = item.spr.tint;
+		this.sprCarrying.scale.x = Math.sign(item.spr.scale.x);
 		this.carrying = item;
 		this.player.canMove = false;
 		this.player.btn = new BtnItem({
