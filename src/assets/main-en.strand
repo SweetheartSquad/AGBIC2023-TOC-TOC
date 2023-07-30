@@ -410,7 +410,7 @@
 		this.Poly({ verts: [-24,-105, 154,-120], width: 5, }), // knife
 		this.Prop({ texture: 'butterKnifeLayer', x: 66, y: -94,        offset: -20 }),
 		this.Prop({ texture: 'chapstickLayerLayer',      offset: -1000000 }),
-		this.Prop({ texture: 'pillBottleCapLayer',      offset: 0 }),
+		this.Prop({ texture: 'pillBottleCapLayer', x: 15, y: -378,     offset: -10 }),
 
 		this.Poly({ verts: [286,-306, 221,-271, 172,-299, 237,-345, 166,-385, 98,-347, 39,-382, 111,-423] }), // gate
 		this.Prop({ texture: 'gatehouseLayer',         offset: -379 }),
