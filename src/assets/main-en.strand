@@ -118,19 +118,31 @@
 		this.Prop({ texture: 'bg_gnome_puzzle_worm_gone', x: -303, y: -182, offset: 0 }),
 		this.Hotspot({ label: 'worm', texture: 'bg_gnome_puzzle_worm', x: -286, y: -159, offset: 0, use: {
 			hat: ['goto:worm hat'],
+			undefined: [`"wish i had a hat to go out in."`, `"i wanna look good before i head out"`],
+			die: [`"i dont have hands..."`],
 		}, }),
 
 		this.Hotspot({ label: 'flower', texture: 'bg_gnome_puzzle_flower', x: -57, y: -266, offset: -10, use: {
 			glass: ['goto:cut flower'],
+			undefined: ['cute flower!'],
 		}, }),
 
 		this.Hotspot({ label: 'leaf', texture: 'leaf', x: 122, y: -175, offset: 10, use: {
 			undefined: ['goto:move leaf'],
 		}, }),
 		
-		this.Npc({ name: 'top', body: 'gnome_top', tint: 0xcd836f, x: -162, y: -224, use: {}, }),
+		this.Npc({ name: 'top', body: 'gnome_top', tint: 0xcd836f, x: -162, y: -224, use: {
+			'die': [`"no time for games!"`],
+			'glass': [`"hey! watch where you swing that!"`],
+			undefined: [`"i know where the rocks go!"`,`"don't listen to the other guy."`, `"we'll never get into the temple..."`, `"ugh, that worm creeps me out..."`],
+		}, }),
 		this.Npc({ name: 'bottom', body: 'gnome_bottom', tint: 0x6f79cd, x: 180, y: -100, flip: true, use: {
 			'cut flower': [`goto:remove-hat`],
+			'die': [`"don't wanna play dice right now."`],
+			'thimble': [`"cute hat! too big for me though..."`],
+			'glass': [`"careful with that thing!!"`],
+			'safety pin': [`"hmm, not really a hat..."`],
+			undefined: [`"he won't put his rock on that tile!"`,`"I'M the one who knows the solution!"`,`"i hope there's a cute hat in there..."`],
 		}, }),
 
 		this.Item({ texture: 'big rock', x: -109, y: -219, use: {
@@ -145,6 +157,23 @@
 		this.Item({ texture: 'glass', x: -190, y: -50, offset: -35, use: {
 			player: [`"it's a piece of glass"`],
 		}, }),
+
+		//junk
+		this.Item({ texture: 'thimble', x: 290, y: -20, offset: 10000000, use: {
+			player: [`"it's a thimble"`],
+		}, }),
+		this.Item({ texture: 'die', x: -304, y: -103, offset: 100000000, use: {
+			player: [`"it's a six-sided die"`],
+		}, }),
+		this.Item({ texture: 'safety pin', x: 50, y: -50, offset: -35, use: {
+			player: [`"it's a safety pin"`],
+		}, }),
+		this.Hotspot({ label: 'dragonfly', texture: 'dragonfly', x: 261, y:-290, offset: 100000000, use: {
+			undefined: ['what a pretty dragonfly...'],
+		}, }),
+		
+		
+		
 		
 		Rockspot({ spot: '11', x: -110, y: -125, }),
 		Rockspot({ spot: '12', x: -64,  y: -149, }),
@@ -160,10 +189,51 @@
 	this.Area('tomato', [
 		this.Prop({ texture: 'tomatoRoom', offset: -1000000 }),
 		this.Hotspot({ label: 'moon-dried tomato', texture: 'tomatoItem', x: 119, y: -341, use: {
-			undefined: ['moon-dried tomato'],
+			undefined: ['goto:moon-dried tomato'],
 		} }),
 		...rays(),
 	]);
+
+	this.HookItem = (props) => {
+		const i = this.Item({ ...props, offset: 100000 - props.hookY });
+		i.display.container.pivot.y = -props.hookY;
+		i.hookY = props.hookY;
+		i.scripts.push({
+			gameObject: i,
+			update() {
+				this.gameObject.spr.scale.x = Math.abs(this.gameObject.spr.scale.x) * ((this.gameObject.transform.x > 0 && this.gameObject.transform.x < 290) ? 1 : -1);
+			},
+		});
+		return i;
+	};
+
+	this.HookSpot = (props, item) => {
+		const h = this.Hotspot({ texture: 'hook', x: props.x, y: props.y, offset: 100000, use: {
+			undefined: [`p:"looks like it could hold something"`],
+			'cowboy hat': ['goto:place on hook'],
+			'poster': ['goto:place on hook'],
+			'horseshoe': ['goto:place on hook'],
+			'rope': ['goto:place on hook'],
+			'wheel': ['goto:place on hook'],
+		}, });
+		h.display.container.pivot.y = -15;
+		h.spot = props.spot;
+		h.scripts.push({
+			gameObject: h,
+			update() {
+				this.gameObject.spr.scale.x = Math.abs(this.gameObject.spr.scale.x) * ((this.gameObject.transform.x > 0 && this.gameObject.transform.x < 290) ? 1 : -1);
+			},
+		});
+		if (item) {
+			h.item = item.name;
+			item.transform.x = h.transform.x;
+			item.transform.y = h.transform.y;
+			item.hookspot = h;
+			h.btn.enabled = false;
+			return [h, item];
+		}
+		return [h];
+	};
 
 	this.Area('dustbun heist', [
 		// main walls
@@ -176,7 +246,6 @@
 		this.Prop({ texture: 'heist_window', x: 0, y: -211, offset: -66 }),
 		this.Prop({ texture: 'heist_tubes', x: 237, y: -198,  offset: -40 }),
 		this.Prop({ texture: 'chandelier', x: -94, y: -320,    offset: 1000 }),
-		this.Item({ texture: 'poster', x: 294, y: -263,       offset: 1000 }),
 		this.Prop({ texture: 'fuse', x: -146, y: -80,          offset: -60 }),
 		this.Hotspot({ label: 'fuse', texture: 'spark', freq: 1/50, alpha: 0, x: -73, y: -80, offset: -5, use: {
 			undefined: [`p:"it's a fuse"`],
@@ -201,20 +270,17 @@
 		this.Poly({ verts: [-214,-117, -193,-140] }), // tnt
 		this.Prop({ texture: 'tnt', x: -202, y: -109, offset: -25 }),
 
-		this.Prop({ texture: 'shelf',      offset: 9000 }),
+		this.Prop({ texture: 'shelf', y: -11, offset: 9000 + 11 }),
 		this.Hotspot({ texture: 'bread', x: -30, y: -100, offset: 10000, use: {
 			undefined: [`p:"oh noo it's too high up :("`],
 		}, }),
 		this.Prop({ texture: 'heist_fg',      offset: 10000 }),
 
-		this.Hotspot({ label: 'route', texture: 'hat', offset: 100000, x: 3, y: -164, use: {
-			undefined: ['goto:route switch'],
-		}, }),
 		
 		this.Hotspot({ label: 'vault', texture: 'heist_vault_door',
-			x: -340/2,
-			y: -304/2,
-			offset: (-454+304)/2, use: {
+			x: -170,
+			y: -152,
+			offset: -75, use: {
 			undefined: ['goto:open vault'],
 			oil: ['goto:oil vault'],
 		}, }),
@@ -232,7 +298,37 @@
 		}, }),
 		this.Npc({ name: 'shop', body: 'dustbun_shop', tint: 0xC6A89D, shadow: false, offset: -100, x: 94, y: -247, use: {}, }),
 
-		this.mite = this.Npc({ name: 'dust mite', body: 'mite', x: 3, y: -448, roam: 50, offset: 100000, bodyCollision: { isStatic: false, isSensor: true }, use: {
+		this.Hotspot({ texture: 'ladder',     x: 45, y: -36, offset: 1000, use: {
+		},  }),
+
+		...this.HookSpot({ spot: 'r1', x: 45, y: -144 },
+			// empty
+		),
+		...this.HookSpot({ spot: 'r2', x: 177, y: -190 },
+			this.HookItem({ texture: 'rope', hookY: 128, use: {
+			}, }),
+		),
+		...this.HookSpot({ spot: 'r3', x: 287, y: -231 },
+			this.HookItem({ texture: 'horseshoe', hookY: 30, use: {
+			}, }),
+		),
+		...this.HookSpot({ spot: 'r4', x: 299, y: -335 },
+			this.HookItem({ texture: 'poster', hookY: 37, use: {
+			}, }),
+		),
+		...this.HookSpot({ spot: 'l1', x: -33, y: -209 },
+			this.HookItem({ texture: 'wheel', hookY: 103, use: {
+			}, }),
+		),
+		...this.HookSpot({ spot: 'l2', x: -132, y: -250 },
+			// empty
+		),
+		...this.HookSpot({ spot: 'l3', x: -259, y: -298 },
+			this.HookItem({ texture: 'cowboy hat', hookY: 58, use: {
+			}, }),
+		),
+
+		this.mite = this.Npc({ name: 'dust mite', body: 'mite', x: 3, y: -448, roam: 50, offset: 90000, bodyCollision: { isStatic: false, isSensor: true }, use: {
 			undefined: ['goto:mite run'],
 		}, }),
 	]);
@@ -240,7 +336,7 @@
 	this.Area('soap', [
 		this.Prop({ texture: 'noItemSoap', offset: -1000000 }),
 		this.Hotspot({ label: 'soap', texture: 'soapItem', x: 54, y: -304, use: {
-			undefined: ['soap'],
+			undefined: ['goto:soap'],
 		} }),
 		...rays(),
 	]);
@@ -253,6 +349,8 @@
 		this.Prop({ texture: 'boardwalkLayer',         offset: -0 }),
 		this.Prop({ texture: 'canBackLayer',           offset: -400 }),
 		this.Prop({ texture: 'canFrontLayer',          offset: -350 }),
+
+		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
 		this.Prop({ texture: 'fountainWaterAnim', freq: 1/100, offset: -229 }),
 		this.Prop({ texture: 'gatehouseLayer',         offset: -379 }),
 		this.Prop({ texture: 'toothpickLayer',         offset: -334 }),
@@ -265,8 +363,51 @@
 		this.Prop({ texture: 'tinfoilRoomLayer',       offset: -0 }),
 		this.Prop({ texture: 'juiceboxLayer',          offset: -272 }),
 
-		this.Text('back', { x: 50, y: -104 }),
-		this.Goto({ area: 'intro' }, { x: 50, y: -104, width: 80, height: 50 }),
+		this.Prop({ texture: 'snowmanPos1', alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'starPos1',    alpha: 1, offset: 0 }),
+		this.Prop({ texture: 'treePos1',    alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'snowmanPos2', alpha: 1, offset: 0 }),
+		this.Prop({ texture: 'starPos2',    alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'treePos2',    alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'snowmanPos3', alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'starPos3',    alpha: 0, offset: 0 }),
+		this.Prop({ texture: 'treePos3',    alpha: 1, offset: 0 }),
+		(() => {
+			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 311, y: -145, offset: 1000, use: {
+				player: [`p:"it's a cookie cutter"`],
+				'cookie cutter': ['goto:swap cutter'],
+			}, });
+			h.pos = 1;
+			h.cookie = 'star';
+			h.carrying = 'cutter star carrying';
+			h.spr.width = 100;
+			h.spr.height = 100;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: -314, y: -214, offset: 1000, use: {
+				player: [`p:"it's a cookie cutter"`],
+				'cookie cutter': ['goto:swap cutter'],
+			}, });
+			h.pos = 2;
+			h.cookie = 'snowman';
+			h.carrying = 'cutter snowman carrying';
+			h.spr.width = 100;
+			h.spr.height = 100;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 299, y: -316, offset: 1000, use: {
+				player: [`p:"it's a cookie cutter"`],
+				'cookie cutter': ['goto:swap cutter'],
+			}, });
+			h.pos = 3;
+			h.cookie = 'tree';
+			h.carrying = 'cutter tree carrying';
+			h.spr.width = 100;
+			h.spr.height = 100;
+			return h;
+		})(),
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 51, y: -332, flip: true, use: {}, }),
 		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
@@ -385,6 +526,7 @@ me
 	const cutFlower = this.Item({ label: 'cut flower', texture: 'flower_head', x: -55, y: -321, offset: 0, use: {
 		player: [`p:"it's a flower"`],
 	}, });
+	cutFlower.btn.enabled = false;
 	this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, 0.5, this.ease.cubicOut);
 	this.tween(cutFlower.transform, 'y', -266, 2000, -321, this.ease.backIn);
 	this.tween(cutFlower.transform, 'x', -25, 2000, -55, (t) => this.ease.sineInOut(t) + this.ease.sineInOut(t*4));
@@ -393,6 +535,9 @@ me
 		this.Prop({ texture: 'bg_gnome_puzzle_flower_gone', x: -58, y: -266, offset: -10 }),
 		cutFlower,
 	);
+	setTimeout(() => {
+		cutFlower.btn.enabled = true;
+	}, 2000);
 >>
 "snip snip!"
 [[>close]]
@@ -425,12 +570,12 @@ me
 <<do this.goto('generic item')>>
 <<else>>
 <<do this.gameObject = this.scene.find('bottom')>>
-"hey! that's my rock ya jerk"
+"hey! that's my rock ya jerk."
 [[>close]]
 <<endif>>
 
 ::remove-hat
-"oh thank you"
+"oh, this is so pretty! thank you!"
 >
 <<do
 	this.scene.loseItem(true);
@@ -450,7 +595,7 @@ me
 		}, }),
 	);
 >>
-"dont need this anymore"
+"guess i don't need this anymore"
 [[>close]]
 
 ::worm hat
@@ -460,7 +605,9 @@ me
 		this.Prop({ texture: 'hat', x: -250, y: -180, tint: 0x6f79cd, offset: 50, }),
 	);
 >>
-"oh worm"
+"for me? thanks buddy"
+>
+"now i can go out and look cute..."
 >
 <<do
 	const hat = this.scene.find('hat');
@@ -554,11 +701,21 @@ me
 	h.spr.height = 100;
 	this.add(h);
 >>
-wow you did it gj
+"you opened the temple!"
+>
+"incredible..."
 [[>close]]
 
 ::goto tomato
 <<do this.gotoItemRoom({ x: 125, y: -240 }, 'tomato');>>
+
+::moon-dried tomato
+you got the moon-dried tomato.
+>
+<<do
+	this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
+	this.goto('close');
+>>
 
 
 
@@ -575,72 +732,140 @@ wow you did it gj
 	this.goto('close');
 >>
 
+::place on hook
+<<do
+	const item = this.scene.carrying;
+	const spot = this.gameObject;
+	item.hookspot.btn.enabled = true;
+	item.hookspot.item = undefined;
+	item.transform.x = spot.transform.x;
+	item.transform.y = spot.transform.y;
+	item.display.container.offset = spot.spot === 'r4' ? 0 : 100000 - item.hookY;
+	item.hookspot = spot;
+	spot.item = item.name;
+	spot.btn.enabled = false;
+	this.scene.loseItem();
+	this.goto('close');
+>>
+
 ::mite run
 <<do
 	this.resetMite = async () => {
 		this.tween(this.mite.display.container, 'alpha', 0, 400);
 		this.mite.walkBy(0, 1000);
 		await this.delay(500);
-		this.mite.display.container.offset = 100000;
+		this.mite.display.container.offset = 90000;
 		this.mite.setPosition(3, -448-50);
 		this.tween(this.mite.display.container, 'alpha', 1, 1000, 0, this.ease.cubicOut);
 		await this.mite.walkTo(3, -448);
 		this.mite.roam.range = [0, 50];
 	};
+
+	const middleBeamUpper = [5, -380];
+	const middleBeamLower = [5, -126];
+	const rightBeamLower = [335, -250];
+	const rightBeamUpper = [333, -310];
+	const beetleHook = [184, -383];
+	const pastWall = [57, -447];
+	const middleBeamCenter = [3, -193];
+	const chandelierHook = [-305, -368];
+
+	const isRope = (spot) => {
+		return spot.item === 'rope';
+	};
+	const ropeExit = () => {
+		// TODO: rope sfx
+		this.tween(this.scene.find('rope').display.container.scale, 'y', 1, 250, 1.1, t => 1-Math.cos(t*250*0.02)*(1-t));
+		this.resetMite();
+		this.camPoint = undefined;
+		this.goto('close');
+	};
+	const isWheel = (spot) => {
+		return spot.item === 'wheel';
+	};
+	const wheelExit = async (...spots) => {
+		// TODO: wheel sfx
+		this.tween(this.scene.find('wheel').display.container, 'angle', 0, 250, -10, t => 1-Math.cos(t*250*0.02)*(1-t));
+		await spots.reduce(async (p, spot) => {
+			await p;
+			await this.mite.walkTo(...(spot.transform ? [spot.transform.x, spot.transform.y] : spot));
+		}, Promise.resolve());
+		this.resetMite();
+		this.camPoint = undefined;
+		this.goto('close');
+	};
+
 	(async () => {
 		this.camPoint = this.mite.transform;
-		await this.mite.walkTo(5, -380);
+		await this.mite.walkTo(...middleBeamUpper);
 		await this.delay(200);
 
-		// left branch
-		if (this.route === 3) { // TODO: real check
-			await this.mite.walkTo(3, -193);
+		const hookspots = this.scene.findAll('hook').reduce((acc, i) => {
+			acc[i.spot] = i;
+			return acc;
+		}, {});
+
+		if (!hookspots.r1.item || isWheel(hookspots.l1)) { // right branch
+			await this.mite.walkTo(...middleBeamLower);
 			await this.delay(200);
-			await this.mite.walkTo(-312, -338);
-			await this.delay(500);
-			await this.mite.walkTo(-305, -368);
+			await this.mite.walkTo(hookspots.r1.transform.x, hookspots.r1.transform.y);
+			if (isRope(hookspots.r1)) return ropeExit();
+			if (isWheel(hookspots.r1)) return wheelExit(middleBeamLower);
+			await this.mite.walkTo(hookspots.r2.transform.x, hookspots.r2.transform.y);
+			if (isRope(hookspots.r2)) return ropeExit();
+			if (isWheel(hookspots.r2)) return wheelExit(hookspots.r1, middleBeamLower);
+			await this.mite.walkTo(hookspots.r3.transform.x, hookspots.r3.transform.y);
+			if (isRope(hookspots.r3)) return ropeExit();
+			if (isWheel(hookspots.r3)) return wheelExit(hookspots.r2, hookspots.r1, middleBeamLower);
+			await this.mite.walkTo(...rightBeamLower);
+			this.mite.display.container.offset = 0;
+			await this.mite.walkTo(...rightBeamUpper);
+			await this.mite.walkTo(hookspots.r4.transform.x, hookspots.r4.transform.y);
+			if (isRope(hookspots.r4)) return ropeExit();
+			if (isWheel(hookspots.r4)) return wheelExit(rightBeamUpper);
+			await this.mite.walkTo(...beetleHook);
+			if (!this.smashedPeanut) {
+				this.smashedPeanut = true;
+				this.goto('smash peanut');
+			} else {
+				this.goto('smash peanut again');
+			}
+			await this.mite.walkTo(...pastWall);
+		} else { // left branch
+			await this.mite.walkTo(...middleBeamCenter);
+			await this.mite.walkTo(hookspots.l1.transform.x, hookspots.l1.transform.y);
+			if (isRope(hookspots.l1)) { // bread branch
+				// TODO: rope sfx
+				this.tween(this.scene.find('rope').display.container.scale, 'y', 1, 250, 1.1, t => 1-Math.cos(t*250*0.02)*(1-t));
+				this.mite.display.container.offset = 9500;
+				await this.mite.walkTo(-53, -116);
+				if (!this.knockedBread) {
+					this.knockedBread = true;
+					this.goto('knock bread');
+					await this.delay(500);
+					await this.mite.walkTo(-11, -112);
+					await this.delay(500);
+				} else {
+					await this.mite.walkTo(-11, -112);
+					this.goto('knock bread again');
+				}
+				this.resetMite();
+				return;
+			}
+			if (isWheel(hookspots.l1)) return wheelExit(middleBeamCenter);
+			await this.mite.walkTo(hookspots.l2.transform.x, hookspots.l2.transform.y);
+			if (isRope(hookspots.l2)) return ropeExit();
+			if (isWheel(hookspots.l2)) return wheelExit(hookspots.l1, middleBeamCenter);
+			await this.mite.walkTo(hookspots.l3.transform.x, hookspots.l3.transform.y);
+			if (isRope(hookspots.l3)) return ropeExit();
+			if (isWheel(hookspots.l3)) return wheelExit(hookspots.l2, hookspots.l1, middleBeamCenter);
+			await this.mite.walkTo(...chandelierHook);
 			await this.delay(500);
 			if (this.scene.find('chandelier')) {
 				this.goto('drop chandelier');
 			} else {
 				this.goto('drop chandelier again');
-			}
-		} else {
-			// right branch
-			if (this.route === 1) { // TODO: real check
-				await this.mite.walkTo(5, -126);
-				await this.delay(200);
-				await this.mite.walkTo(335, -250);
-				await this.mite.walkTo(333, -325);
-				this.mite.display.container.offset = 0;
-				await this.mite.walkTo(177, -394);
-				if (!this.smashedPeanut) {
-					this.smashedPeanut = true;
-					this.goto('smash peanut');
-				} else {
-					this.goto('smash peanut again');
-				}
-				await this.mite.walkTo(57, -447);
-				await this.delay(500);
-			} else if(this.route === 2) {
-				// down branch
-				await this.mite.walkTo(-1, -102);
-				this.mite.display.container.offset = 9500;
-				await this.mite.walkTo(-11, -112);
-				if (!this.knockedBread) {
-					this.knockedBread = true;
-					this.goto('knock bread');
-					await this.delay(500);
-					await this.mite.walkTo(-53, -116);
-					await this.delay(500);
-				} else {
-					await this.mite.walkTo(-53, -116);
-					this.goto('knock bread again');
-				}
-			} else {
-				this.camPoint = undefined;
-				this.goto('close');
-			}
+			};
 		}
 		this.resetMite();
 	})();
@@ -667,6 +892,9 @@ wow you did it gj
 					player: ['p:"it is a candle"'],
 				}, }),
 				this.Prop({ texture: 'dropped chandelier', x: -92, y: -144, offset: -17 }),
+				
+			);
+			this.scene.drop(
 				this.Poly({ verts: [-78,-163, -111,-162] }),
 			);
 			// TODO: crash sfx
@@ -951,6 +1179,14 @@ can't live on bread alone"
 	<<do this.gotoItemRoom({ x: -190, y: -160 }, 'soap');>>
 <<endif>>
 
+::soap
+soap
+>
+<<do
+	this.scene.goto({ area: 'mouse town center', x: 50, y: -100 });
+	this.goto('close');
+>>
+
 
 
 // 88d8b.d8b. .d8888b. dP    dP .d8888b. .d8888b.
@@ -998,7 +1234,19 @@ can't live on bread alone"
 
 
 
-
+::swap cutter
+<<do
+	const a = this.gameObject;
+	const b = this.scene.carrying;
+	this.scene.find(`${a.cookie}Pos${a.pos}`).spr.alpha = 0;
+	this.scene.find(`${b.cookie}Pos${b.pos}`).spr.alpha = 0;
+	[a.cookie, b.cookie] = [b.cookie, a.cookie];
+	[a.carrying, b.carrying] = [b.carrying, a.carrying];
+	this.scene.find(`${a.cookie}Pos${a.pos}`).spr.alpha = 1;
+	this.scene.find(`${b.cookie}Pos${b.pos}`).spr.alpha = 1;
+	this.scene.loseItem();
+	this.goto('close');
+>>
 
 
 

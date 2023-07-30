@@ -63,6 +63,11 @@ textures/little rock.png
 textures/glass.png
 textures/flower_head.png
 
+textures/gnomePuzzle/thimble.png
+textures/gnomePuzzle/die.png
+textures/gnomePuzzle/safety pin.png
+textures/gnomePuzzle/dragonfly.png
+
 textures/dustbun_demolition_sittingIdle.x2.png
 textures/dustbun_demolitionIdle.x2.png
 textures/dustbun_bossIdle.x2.png
@@ -94,6 +99,13 @@ textures/heist/busted bread.png
 textures/heist/bread slice.png
 textures/heist/bread slice buttered.png
 
+textures/heist/ladder.png
+textures/heist/cowboy hat.png
+textures/heist/horseshoe.png
+textures/heist/rope.png
+textures/heist/wheel.png
+textures/heist/hook.png
+
 textures/miteIdle.x2.png
 textures/miteRun.x2.png
 
@@ -113,5 +125,15 @@ textures/townCenter/purpleCrayonLayer.png
 textures/townCenter/redCrayonLayer.png
 textures/townCenter/tinfoilRoomLayer.png
 textures/townCenter/toothpickLayer.png
+
+textures/cookieCutters/snowmanPos1.png
+textures/cookieCutters/snowmanPos2.png
+textures/cookieCutters/snowmanPos3.png
+textures/cookieCutters/starPos1.png
+textures/cookieCutters/starPos2.png
+textures/cookieCutters/starPos3.png
+textures/cookieCutters/treePos1.png
+textures/cookieCutters/treePos2.png
+textures/cookieCutters/treePos3.png
 
 textures/glow.png

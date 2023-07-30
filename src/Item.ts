@@ -7,19 +7,24 @@ export class Item extends Prop {
 
 	name: string;
 
+	carrying?: string;
+
 	constructor({
 		use,
 		label,
+		carrying,
 		...options
 	}: ConstructorParameters<typeof Prop>[0] &
 		Partial<ConstructorParameters<typeof BtnItem>[0]> & {
 			label?: string;
+			carrying?: string;
 		}) {
 		super({
 			...options,
 		});
 
 		this.name = label || options.texture;
+		this.carrying = carrying;
 		this.btn = new BtnItem({
 			gameObject: this,
 			use: {

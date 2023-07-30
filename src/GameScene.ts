@@ -348,7 +348,7 @@ export class GameScene {
 		}
 		this.loseItem();
 		this.player.expression = 'up';
-		let texT = tex(`${item.texture}_carrying`);
+		let texT = tex(item.carrying || `${item.texture}_carrying`);
 		if (texT === tex('error')) texT = tex(item.texture);
 		this.sprCarrying.texture = texT;
 		this.sprCarrying.tint = item.spr.tint;
