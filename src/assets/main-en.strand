@@ -407,7 +407,7 @@
 		this.Prop({ texture: 'bgLayer',                  offset: -1000000 }),
 		this.Prop({ texture: 'floorButtonsLayer',        offset: -1000000 }),
 		this.Prop({ texture: 'easterEggLayer',           offset: -1000000 }),
-		this.Prop({ texture: 'butterKnifeLayer',         offset: -1000000 }),
+		this.Prop({ texture: 'butterKnifeLayer', x: 66, y: -94,        offset: -20 }),
 		this.Prop({ texture: 'chapstickLayerLayer',      offset: -1000000 }),
 		this.Prop({ texture: 'pillBottleCapLayer',      offset: 0 }),
 
