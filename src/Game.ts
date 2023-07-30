@@ -124,6 +124,8 @@ export class Game {
 			.reduce<Record<string, string>>((acc, i) => {
 				const name = i.split('/').pop()?.split('.').slice(0, -1).join('.') || i;
 				const url = cacheBust(i.startsWith('http') ? i : `assets/${i}`);
+				if (acc[name])
+					throw new Error(`Asset name conflict: "${acc[name]}", "${url}"`);
 				acc[name] = url;
 				return acc;
 			}, {});
