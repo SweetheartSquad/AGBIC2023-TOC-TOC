@@ -453,7 +453,7 @@
 		this.Prop({ texture: 'cheeseCart', x: -235, y: 0,  offset: -0 }),
 		this.Prop({ texture: 'cheeseFloor', x: 300, y: -140,   offset: 0 }),
 		this.Prop({ texture: 'horseNoKey', x: -128, y: 0,   offset: 0 }),
-		this.Prop({ texture: 'horseWithKey',   offset: -0 }),
+		this.Prop({ texture: 'horseWithKey', x: -128, y: 0,   offset: -0 }),
 
 		this.Prop({ texture: 'candlePile',        offset: 0 }),
 		this.Prop({ texture: 'waxSnowman',        offset: 0 }),
