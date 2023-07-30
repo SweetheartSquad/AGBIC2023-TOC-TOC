@@ -32,7 +32,7 @@ export class BtnItem extends Btn {
 			// nothing specific to say, so go to other
 			if (!say) {
 				key = 'other';
-				say = this.use.other;
+				say = (item && scene.carrying?.btn?.use.otherTarget) || this.use.other;
 			}
 
 			// nothing to say, so go to global generic use
