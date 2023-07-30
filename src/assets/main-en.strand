@@ -440,7 +440,7 @@
 		this.Prop({ texture: 'starAltar', x: 110, y: -237,         offset: 8 }),
 		this.Prop({ texture: 'cheeseAltar', x: -80, y: -202,       offset: 6 }),
 
-		this.Prop({ texture: 'matchbox',          offset: -186 }),
+		this.Prop({ texture: 'matchbox', x: 246, y: -161,         offset: -25 }),
 		
 		this.Prop({ texture: 'blueCandleColumn',  offset: -276 }),
 		this.Prop({ texture: 'greenCandleColumn',       offset: -339 }),
