@@ -438,7 +438,7 @@
 		this.Prop({ texture: 'pizzaTableSLLayer', x: -79, y: -189,      offset: -7 }),
 		this.Prop({ texture: 'pizzaTableSRLayer', x: 110, y: -222,      offset: -7 }),
 		this.Prop({ texture: 'starAltarLayer', x: 110, y: -237,         offset: 8 }),
-		this.Prop({ texture: 'cheeseAlterLayer', x: -80, y: -202,       offset: 6 }),
+		this.Prop({ texture: 'cheeseAltarLayer', x: -80, y: -202,       offset: 6 }),
 
 		this.Prop({ texture: 'matchboxLayer',          offset: -186 }),
 		

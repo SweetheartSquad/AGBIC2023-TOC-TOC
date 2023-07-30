@@ -151,7 +151,7 @@ textures/townCenter/fountainNoWaterLayer.png
 textures/townCenter/pizzaTableSLLayer.png
 textures/townCenter/pizzaTableSRLayer.png
 textures/townCenter/starAltarLayer.png
-textures/townCenter/cheeseAlterLayer.png
+textures/townCenter/cheeseAltarLayer.png
 
 textures/townCenter/matchboxLayer.png
 
