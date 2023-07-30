@@ -435,10 +435,10 @@
 		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
 		this.Prop({ texture: 'fountainWaterAnim', freq: 1/100, offset: -229 }),
 		this.Prop({ texture: 'fountainNoWaterLayer',   offset: -229 }),
-		this.Prop({ texture: 'pizzaTableSLLayer',      offset: -229 }),
-		this.Prop({ texture: 'pizzaTableSRLayer',      offset: -229 }),
-		this.Prop({ texture: 'starAltarLayer',         offset: -229 }),
-		this.Prop({ texture: 'cheeseAlterLayer',         offset: -229 }),
+		this.Prop({ texture: 'pizzaTableSLLayer', x: -79, y: -189,      offset: -7 }),
+		this.Prop({ texture: 'pizzaTableSRLayer', x: 110, y: -222,      offset: -7 }),
+		this.Prop({ texture: 'starAltarLayer', x: 110, y: -237,         offset: 8 }),
+		this.Prop({ texture: 'cheeseAlterLayer', x: -80, y: -202,       offset: 6 }),
 
 		this.Prop({ texture: 'matchboxLayer',          offset: -186 }),
 		
