@@ -1,5 +1,6 @@
 import { Btn } from './Btn';
 import { GameObject } from './GameObject';
+import { Transform } from './Scripts/Transform';
 import { getActiveScene } from './main';
 
 export class BtnItem extends Btn {
@@ -23,6 +24,8 @@ export class BtnItem extends Btn {
 		super(() => {
 			const scene = getActiveScene();
 			if (!scene) return;
+			scene.player.flipped =
+				scene.player.transform.x > (gameObject.getScript(Transform)?.x || 0);
 			scene.player.canMove = false;
 			scene.strand.gameObject = gameObject;
 			const item = scene.carrying?.name;
