@@ -122,7 +122,7 @@ textures/townCenter/pushPins.png
 textures/townCenter/toothpickPile.png
 textures/townCenter/saltShaker.png
 textures/townCenter/pillBottle.png
-textures/townCenter/pillItem.png
+textures/townCenter/pill.png
 
 textures/townCenter/shelfCrayonSL.png
 textures/townCenter/shelfCrayonSR.png
