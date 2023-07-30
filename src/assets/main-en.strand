@@ -433,7 +433,7 @@
 		this.Prop({ texture: 'keyCounter', x: -59, y: -354,       offset: 50 }),
 
 		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
-		this.Prop({ texture: 'fountainWaterAnim', x: 0, y: -164, freq: 1/100, offset: -45 }),
+		this.Prop({ texture: 'fountainWaterAnim', x: 15, y: -164, freq: 1/100, offset: -45 }),
 		this.Prop({ texture: 'fountainNoWater',   offset: -229 }),
 		this.Prop({ texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7 }),
 		this.Prop({ texture: 'pizzaTableSR', x: 110, y: -222,      offset: -7 }),
