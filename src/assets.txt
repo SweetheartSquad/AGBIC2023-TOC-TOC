@@ -68,7 +68,7 @@ textures/gnomePuzzle/die.png
 textures/gnomePuzzle/safety pin.png
 textures/gnomePuzzle/dragonfly.png
 
-textures/dustbun_demolition_sittingIdle.x2.png
+textures/dustbun_oilIdle.x2.png
 textures/dustbun_demolitionIdle.x2.png
 textures/dustbun_bossIdle.x2.png
 textures/dustbun_mook1Idle.x2.png

@@ -285,7 +285,7 @@
 			oil: ['goto:oil vault'],
 		}, }),
 
-		this.Npc({ name: 'snake oil\nsalesman', body: 'dustbun_demolition_sitting', tint: 0x746568, x: 290, y: -130, shadow: false, flip: true, use: {
+		this.Npc({ name: 'snake oil\nsalesman', body: 'dustbun_oil', tint: 0x746568, x: 290, y: -130, shadow: false, flip: true, use: {
 			undefined: [`"can't believe this..."`, `"past noon already..."`, `"never woulda happened with my oil..."`],
 			'bread slice': ['goto:give bread'],
 		}, }),
