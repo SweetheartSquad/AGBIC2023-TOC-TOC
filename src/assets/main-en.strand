@@ -443,7 +443,7 @@
 		this.Prop({ texture: 'matchbox', x: 246, y: -161,         offset: -25 }),
 		
 		this.Prop({ texture: 'blueCandleColumn', x: -320, y: -272,  offset: -4 }),
-		this.Prop({ texture: 'greenCandleColumn',       offset: -339 }),
+		this.Prop({ texture: 'greenCandleColumn', x: -218, y: -335,      offset: -4 }),
 		this.Prop({ texture: 'purpleCandleColumn',      offset: -228 }),
 		this.Prop({ texture: 'redCandleColumn',         offset: -292 }),
 		this.Prop({ texture: 'aluminumPackets', x: -253, y: -274,  offset: 0 }),
