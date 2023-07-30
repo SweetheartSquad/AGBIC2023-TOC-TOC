@@ -144,7 +144,7 @@ textures/townCenter/horseWithKey.png
 
 textures/townCenter/can back.png
 textures/townCenter/can front.png
-textures/townCenter/keyCounter.png
+textures/townCenter/key.png
 
 textures/townCenter/fountainWater.x4.png
 textures/townCenter/fountainNoWater.png
