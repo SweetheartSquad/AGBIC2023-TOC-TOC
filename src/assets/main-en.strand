@@ -412,6 +412,7 @@
 		this.Prop({ texture: 'chapstickLayerLayer',      offset: -1000000 }),
 		this.Prop({ texture: 'pillBottleCapLayer',      offset: 0 }),
 
+		this.Poly({ verts: [286,-306, 221,-271, 172,-299, 237,-345, 166,-385, 98,-347, 39,-382, 111,-423] }), // gate
 		this.Prop({ texture: 'gatehouseLayer',         offset: -379 }),
 		this.Prop({ texture: 'pushPinsLayer',          offset: -379 }),
 		this.Prop({ texture: 'toothpickPileLayer',     offset: -334 }),
