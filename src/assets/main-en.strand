@@ -442,10 +442,10 @@
 
 		this.Prop({ texture: 'matchbox', x: 246, y: -161,         offset: -25 }),
 		
-		this.Prop({ texture: 'blueCandleColumn', x: -320, y: -272,  offset: -4 }),
-		this.Prop({ texture: 'greenCandleColumn', x: -218, y: -335,      offset: -4 }),
-		this.Prop({ texture: 'purpleCandleColumn', x: -244, y: -225,     offset: -4 }),
-		this.Prop({ texture: 'redCandleColumn', x: -142, y: -287,        offset: -4 }),
+		this.Prop({ texture: 'candleColumnBlue', x: -320, y: -272,  offset: -4 }),
+		this.Prop({ texture: 'candleColumnGreen', x: -218, y: -335,      offset: -4 }),
+		this.Prop({ texture: 'candleColumnPurple', x: -244, y: -225,     offset: -4 }),
+		this.Prop({ texture: 'candleColumnRed', x: -142, y: -287,        offset: -4 }),
 		this.Prop({ texture: 'aluminumPackets', x: -253, y: -274,  offset: 0 }),
 		this.Prop({ texture: 'juicebox', x: -168, y: -225,         offset: -47 }),
 		this.Prop({ texture: 'crayonVendorTop', x: -227, y: -300,   offset: 300 }),

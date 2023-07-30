@@ -129,10 +129,10 @@ textures/townCenter/shelfCrayonSR.png
 textures/townCenter/shelf.png
 textures/townCenter/pepperShaker.png
 
-textures/townCenter/blueCandleColumn.png
-textures/townCenter/greenCandleColumn.png
-textures/townCenter/purpleCandleColumn.png
-textures/townCenter/redCandleColumn.png
+textures/townCenter/candleColumnBlue.png
+textures/townCenter/candleColumnGreen.png
+textures/townCenter/candleColumnPurple.png
+textures/townCenter/candleColumnRed.png
 textures/townCenter/aluminumPackets.png
 textures/townCenter/juicebox.png
 textures/townCenter/crayonVendorTop.png
