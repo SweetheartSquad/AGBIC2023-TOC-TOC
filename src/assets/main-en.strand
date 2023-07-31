@@ -463,6 +463,7 @@
 		this.Prop({ texture: 'candleColumnPurple', x: -244, y: -225,     offset: -4 }),
 		this.Prop({ texture: 'candleColumnRed', x: -142, y: -287,        offset: -4 }),
 		this.Poly({ verts: [-212,-308, -260,-313, -292,-287], width: 14 }), // foil
+		this.Poly({ verts: [-307,-365, -263,-316] }), // extra foil wall
 		this.Item({ texture: 'foil', x: -253, y: -274,  offset: -25 }),
 		this.Prop({ texture: 'juicebox', x: -168, y: -225,         offset: -47 }),
 		this.Prop({ texture: 'juiceboxL', x: -168, y: -225,         offset: -27 }),
@@ -534,6 +535,14 @@
 			h.spr.height = 100;
 			return h;
 		})(),
+
+		// hacky fix for getting stuck behind cutter during swap
+		this.Updater(() => {
+			if (this.scene.player.x < -299 && this.scene.player.y < -227) {
+				this.scene.player.x = -258;
+				this.scene.player.y = -195;
+			}
+		}),
 
 		this.Poly({ verts: [348,-187, 37,7] }), // stove ledge
 		this.Prop({ texture: 'stoveFloor', x: 175, y: 0, offset: 0 }),
