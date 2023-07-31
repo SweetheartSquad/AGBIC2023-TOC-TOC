@@ -1541,11 +1541,11 @@ soap
 <<do
 	this.fountainOff = !this.fountainOff;
 	if (this.fountainOff) {
-		this.tween(this.scene.find('fountain').spr,      'alpha', 1, 800, undefined, this.ease.cubicInOut);
+		this.tween(this.scene.find('fountain').spr,      'alpha', 1, 600, undefined, this.ease.cubicInOut);
 		this.tween(this.scene.find('fountainWater').spr, 'alpha', 0, 800, undefined, this.ease.cubicIn);
 	} else {
 		this.tween(this.scene.find('fountain').spr,      'alpha', 0, 800, undefined, this.ease.cubicIn);
-		this.tween(this.scene.find('fountainWater').spr, 'alpha', 1, 800, undefined, this.ease.cubicInOut);
+		this.tween(this.scene.find('fountainWater').spr, 'alpha', 1, 600, undefined, this.ease.cubicInOut);
 	}
 	this.goto('close');
 >>
