@@ -410,7 +410,8 @@
 		this.Item({ texture: 'easter egg', x: -23, y: -463,          offset: -10 }),
 		this.Poly({ verts: [-24,-105, 42,-111], width: 5, }), // knife
 		this.Prop({ texture: 'butter knife', x: 66, y: -94,        offset: -30 }),
-		this.Prop({ texture: 'chapstick', x: -284, y: -10,     offset: 0 }),
+		this.Poly({ verts: [-337,-45, -255,-26, -291,-5], width: 7 }), // chapstick
+		this.Prop({ texture: 'chapstick', x: -284, y: -10,     offset: -10 }),
 		this.Poly({ verts: [15,-390, 4,-395, 15,-398, 24,-395, 16,-390] }), // bottle cap
 		this.Item({ texture: 'bottle cap', x: 15, y: -378,     offset: -10 }),
 
