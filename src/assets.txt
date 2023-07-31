@@ -130,6 +130,7 @@ textures/townCenter/pill.png
 textures/townCenter/shelfCrayonSL.png
 textures/townCenter/shelfCrayonSR.png
 textures/townCenter/shelfBg.png
+textures/townCenter/pushPinsTop.png
 textures/townCenter/pepper shaker.png
 
 textures/townCenter/candleColumnBlue.png
