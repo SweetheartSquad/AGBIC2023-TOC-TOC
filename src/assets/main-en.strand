@@ -467,10 +467,11 @@
 		this.Prop({ texture: 'juicebox', x: -168, y: -225,         offset: -47 }),
 		this.Prop({ texture: 'candle foil top', x: -227, y: -300,   offset: 300 }),
 
-		this.Prop({ texture: 'cheeseCart', x: -235, y: 0,  offset: -0 }),
+		this.Poly({ verts: [-142,-11, -100,-40, -191,-71, -245,-110, -209,-123, -252,-149, -336,-88] }), // cart
 		this.Prop({ texture: 'cheeseFloor', x: 300, y: -140,   offset: 0 }),
-		this.Prop({ texture: 'horseNoKey', x: -128, y: 0,   offset: 0 }),
-		this.Prop({ texture: 'horseWithKey', x: -128, y: 0,   offset: -0 }),
+		this.Prop({ texture: 'cheeseCart', x: -235, y: 0,  offset: -115 }),
+		this.Prop({ texture: 'horseNoKey', x: -128, y: 0,   offset: -35 }),
+		this.Prop({ texture: 'horseWithKey', x: -128, y: 0,   offset: -35 }),
 
 		this.Poly({ verts: [-180,-336, -176,-327, -110,-292, -119,-297, -94,-316, -150,-353, -180,-336], width: 12 }), // candles
 		this.Hotspot({ texture: 'birthday candles', x: -127, y: -288,        offset: -33 }),
