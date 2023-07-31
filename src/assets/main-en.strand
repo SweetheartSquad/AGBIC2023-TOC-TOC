@@ -479,12 +479,6 @@
 		this.Hotspot({ texture: 'birthday candles', x: -127, y: -288,        offset: -33, use: {
 			matchbox: [`goto:melt wax`],
 		}, }),
-		// this.Poly({ verts: [-118,-315, -98,-313], width: 15 }), // snowman
-		// this.Hotspot({ texture: 'wax snowman', x: -103, y: -303,       offset: 0 }),
-		// this.Poly({ verts: [-133,-317, -98,-308], width: 12 }), // star
-		// this.Hotspot({ texture: 'wax star', x: -108, y: -302,          offset: -10 }),
-		// this.Poly({ verts: [-118,-314] }), // tree
-		// this.Hotspot({ texture: 'wax tree', x: -111, y: -305,          offset: -3 }),
 		
 
 		// bottom right
@@ -520,6 +514,7 @@
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: -314, y: -214, offset: 1000, use: {
 				player: [`p:"it's a cookie cutter"`],
 				'cookie cutter': ['goto:swap cutter'],
+				'wax wad': ['goto:shape wax'],
 			}, });
 			h.pos = 2;
 			h.cookie = 'snowman';
@@ -1437,6 +1432,45 @@ soap
 <<endif>>
 <<do this.scene.loseItem();>>
 <<do this.gameObject = this.scene.player>>
+
+::shape wax
+<<do
+	// TODO: animate
+	// TODO: sfx
+	this.destroy(this.scene.carrying);
+	this.destroy(this.polyWax);
+
+	let poly;
+	let wax;
+	switch (this.gameObject.cookie) {
+		case 'snowman':
+			poly = this.Poly({ verts: [-118,-315, -98,-313], width: 15 }); // snowman
+			wax = this.Hotspot({ texture: 'wax snowman', x: -103, y: -303, offset: 0, use: {
+				matchbox: ['goto:melt wax'],
+			}, });
+			break;
+		case 'star':
+			poly = this.Poly({ verts: [-133,-317, -98,-308], width: 12 }); // star
+			wax = this.Hotspot({ texture: 'wax star', x: -108, y: -302,    offset: -10, use: {
+				matchbox: ['goto:melt wax'],
+			}, });
+			break;
+		case 'tree':
+			poly = this.Poly({ verts: [-118,-314] }); // tree
+			wax = this.Hotspot({ texture: 'wax tree', x: -111, y: -305,    offset: -3, use: {
+				matchbox: ['goto:melt wax'],
+			}, });
+			break;
+	}
+
+	this.add(wax);
+	this.scene.drop(
+		this.polyWax = poly,
+	);
+	this.scene.loseItem();
+	this.gameObject = this.scene.player;
+	this.goto('close');
+>>
 
 
 ::swap cutter
