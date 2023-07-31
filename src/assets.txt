@@ -167,6 +167,7 @@ textures/townCenter/stoveFloor.png
 textures/townCenter/stoveHob.png
 textures/townCenter/spoonForkStoveProng.png
 textures/townCenter/anvilStoveProng.png
+textures/townCenter/anvil_carrying.png
 
 textures/townCenter/birthday candles.png
 textures/townCenter/wax snowman.png

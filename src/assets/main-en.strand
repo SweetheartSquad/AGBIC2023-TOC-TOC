@@ -554,6 +554,14 @@
 		this.Prop({ texture: 'stoveHob', x: 310, y: 0,   offset: 0 }),
 		this.Prop({ texture: 'spoonForkStoveProng', x: 218, y: 0,      offset: 0 }),
 		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 45 }),
+		(() => {
+			const h = this.Item({ label: 'anvil', texture: 'blank', carrying: 'anvil_carrying', x: 295, y: -52, offset: 100, use: {
+				player: [`p:"it's a hammer"`],
+			}, });
+			h.spr.width = 50;
+			h.spr.height = 50;
+			return h;
+		})(),
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 71, y: -302, flip: true, use: {}, }),
 		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
