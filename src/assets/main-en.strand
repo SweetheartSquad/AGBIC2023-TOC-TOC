@@ -465,6 +465,7 @@
 		this.Poly({ verts: [-212,-308, -260,-313, -292,-287], width: 14 }), // foil
 		this.Item({ texture: 'foil', x: -253, y: -274,  offset: -25 }),
 		this.Prop({ texture: 'juicebox', x: -168, y: -225,         offset: -47 }),
+		this.Prop({ texture: 'juiceboxL', x: -168, y: -225,         offset: -27 }),
 		this.Prop({ texture: 'candle foil top', x: -227, y: -300,   offset: 300 }),
 
 		this.Poly({ verts: [-142,-11, -100,-40, -191,-71, -245,-110, -209,-123, -252,-149, -336,-88] }), // cart
