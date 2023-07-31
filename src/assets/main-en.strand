@@ -442,7 +442,9 @@
 		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
 		this.Poly({ verts: [-79,-199, 111,-234], width: 15 }), // altars
 		this.Prop({ texture: 'fountainWater', x: 15, y: -164, freq: 1/100, offset: -45 }),
-		this.Item({ texture: 'fountain',   x: 15, y: -164, alpha: 0, offset: -45 }),
+		this.Item({ texture: 'fountain',   x: 15, y: -164, alpha: 0, offset: -45, use: {
+			undefined: [`goto:toggle fountain`],
+		}, }),
 		this.Hotspot({ label: 'left altar', texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7 }),
 		this.Hotspot({ label: 'right altar', texture: 'pizzaTableSR', x: 110, y: -222,      offset: -7 }),
 		this.Prop({ texture: 'starAltar', x: 110, y: -237,         offset: 8 }),
@@ -1509,6 +1511,18 @@ soap
 	this.goto('close');
 >>
 
+::toggle fountain
+<<do
+	this.fountainOff = !this.fountainOff;
+	if (this.fountainOff) {
+		this.scene.find('fountain').spr.alpha = 1;
+		this.scene.find('fountainWater').spr.alpha = 0;
+	} else {
+		this.scene.find('fountain').spr.alpha = 0;
+		this.scene.find('fountainWater').spr.alpha = 1;
+	}
+	this.goto('close');
+>>
 
 
 
