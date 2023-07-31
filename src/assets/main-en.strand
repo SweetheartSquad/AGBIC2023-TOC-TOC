@@ -471,7 +471,7 @@
 		this.Prop({ texture: 'cheeseFloor', x: 300, y: -140,   offset: 0 }),
 		this.Prop({ texture: 'cheeseCart', x: -235, y: 0,  offset: -115 }),
 		this.Prop({ texture: 'horseNoKey', x: -128, y: 0,   offset: -35 }),
-		this.Prop({ texture: 'horseWithKey', x: -128, y: 0,   offset: -35 }),
+		// this.Prop({ texture: 'horseWithKey', x: -128, y: 0,   offset: -35 }),
 
 		this.Poly({ verts: [-180,-336, -176,-327, -110,-292, -119,-297, -94,-316, -150,-353, -180,-336], width: 12 }), // candles
 		this.Hotspot({ texture: 'birthday candles', x: -127, y: -288,        offset: -33 }),
