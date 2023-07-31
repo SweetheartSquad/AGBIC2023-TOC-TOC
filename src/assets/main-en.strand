@@ -468,8 +468,9 @@
 		this.Prop({ texture: 'juiceboxL', x: -168, y: -225,         offset: -27 }),
 		this.Prop({ texture: 'candle foil top', x: -227, y: -300,   offset: 300 }),
 
+		// this.Block({ type: 'circle', x: -304, y: -148, radius: 2 }), // cheese
+		// this.Prop({ texture: 'cheeseFloor', x: -300, y: -140,   offset: -5 }),
 		this.Poly({ verts: [-142,-11, -100,-40, -191,-71, -245,-110, -209,-123, -252,-149, -336,-88] }), // cart
-		this.Prop({ texture: 'cheeseFloor', x: 300, y: -140,   offset: 0 }),
 		this.Prop({ texture: 'cheeseCart', x: -235, y: 0,  offset: -115 }),
 		this.Prop({ texture: 'horseNoKey', x: -128, y: 0,   offset: -35 }),
 		// this.Prop({ texture: 'horseWithKey', x: -128, y: 0,   offset: -35 }),
