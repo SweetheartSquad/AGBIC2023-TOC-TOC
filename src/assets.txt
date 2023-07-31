@@ -152,7 +152,8 @@ textures/townCenter/horseWithKey.png
 
 textures/townCenter/can back.png
 textures/townCenter/can front.png
-textures/townCenter/key.png
+textures/townCenter/can front wKey.png
+textures/townCenter/key_carrying.png
 
 textures/townCenter/fountainWater.x4.png
 textures/townCenter/fountain.png
@@ -193,4 +194,3 @@ textures/townCenter/cutter tree carrying.png
 
 textures/townCenterItems/spoon_carrying.png
 textures/townCenterItems/fork_carrying.png
-textures/townCenterItems/horseKey_carrying.png
