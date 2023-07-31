@@ -134,7 +134,8 @@ textures/townCenter/candleColumnBlue.png
 textures/townCenter/candleColumnGreen.png
 textures/townCenter/candleColumnPurple.png
 textures/townCenter/candleColumnRed.png
-textures/townCenter/aluminumPackets.png
+textures/townCenter/foil.png
+textures/townCenter/foil_carrying.png
 textures/townCenter/juicebox.png
 textures/townCenter/candle foil top.png
 
