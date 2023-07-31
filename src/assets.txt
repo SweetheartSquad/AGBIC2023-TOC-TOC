@@ -150,7 +150,8 @@ textures/townCenter/can front.png
 textures/townCenter/key.png
 
 textures/townCenter/fountainWater.x4.png
-textures/townCenter/fountainNoWater.png
+textures/townCenter/fountain.png
+textures/townCenter/fountain_carrying.png
 textures/townCenter/pizzaTableSL.png
 textures/townCenter/pizzaTableSR.png
 textures/townCenter/starAltar.png
@@ -185,7 +186,6 @@ textures/townCenter/cutter star carrying.png
 textures/townCenter/cutter tree carrying.png
 
 textures/townCenterItems/spoon_carrying.png
-textures/townCenterItems/coin_carrying.png
 textures/townCenterItems/fork_carrying.png
 textures/townCenterItems/horseKey_carrying.png
 
