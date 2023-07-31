@@ -484,16 +484,20 @@
 		// this.Hotspot({ texture: 'wax wad', x: -121, y: -298,           offset: -16 }),
 		
 
+		// bottom right
 		this.Prop({ texture: 'cutter snowman 1', x: 274, y: -102, alpha: 0, offset: 202 }),
 		this.Prop({ texture: 'cutter star 1',    x: 274, y: -101, alpha: 1, offset: 201 }),
 		this.Prop({ texture: 'cutter tree 1',    x: 279, y: -107, alpha: 0, offset: 207 }),
+		// left
 		this.Prop({ texture: 'cutter snowman 2', x: -298, y: -129, alpha: 1, offset: 129 }),
 		this.Prop({ texture: 'cutter star 2',    x: -286, y: -126, alpha: 0, offset: 126 }),
 		this.Prop({ texture: 'cutter tree 2',    x: -293, y: -129, alpha: 0, offset: 129 }),
+		// top right
 		this.Prop({ texture: 'cutter snowman 3', x: 267, y: -300, alpha: 0, offset: 300 }),
 		this.Prop({ texture: 'cutter star 3',    x: 281, y: -314, alpha: 0, offset: 314 }),
 		this.Prop({ texture: 'cutter tree 3',    x: 268, y: -300, alpha: 1, offset: 300 }),
 		(() => {
+			// bottom right
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 311, y: -145, offset: 1000, use: {
 				player: [`p:"it's a cookie cutter"`],
 				'cookie cutter': ['goto:swap cutter'],
@@ -506,6 +510,7 @@
 			return h;
 		})(),
 		(() => {
+			// left
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: -314, y: -214, offset: 1000, use: {
 				player: [`p:"it's a cookie cutter"`],
 				'cookie cutter': ['goto:swap cutter'],
@@ -518,6 +523,7 @@
 			return h;
 		})(),
 		(() => {
+			// top right
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 299, y: -316, offset: 1000, use: {
 				player: [`p:"it's a cookie cutter"`],
 				'cookie cutter': ['goto:swap cutter'],
