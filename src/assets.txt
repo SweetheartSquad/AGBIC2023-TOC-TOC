@@ -141,6 +141,8 @@ textures/townCenter/foil.png
 textures/townCenter/foil_carrying.png
 textures/townCenter/juicebox.png
 textures/townCenter/juiceboxL.png
+textures/townCenter/juice.png
+textures/townCenter/juice_carrying.png
 textures/townCenter/candle foil top.png
 
 textures/townCenter/cheeseCart.png

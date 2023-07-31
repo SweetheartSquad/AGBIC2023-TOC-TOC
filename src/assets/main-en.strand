@@ -473,6 +473,7 @@
 		this.Item({ texture: 'foil', x: -253, y: -274,  offset: -25 }),
 		this.Prop({ texture: 'juicebox', x: -168, y: -225,         offset: -47 }),
 		this.Prop({ texture: 'juiceboxL', x: -168, y: -225,         offset: -27 }),
+		this.Item({ texture: 'juice', x: -152, y: -265,         offset: -5 }),
 		this.Prop({ texture: 'candle foil top', x: -227, y: -300,   offset: 300 }),
 
 		// this.Block({ type: 'circle', x: -304, y: -148, radius: 2 }), // cheese
