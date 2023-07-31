@@ -52,13 +52,4 @@ export class Item extends Prop {
 		if (!scene) return;
 		scene.pickupItem(this);
 	}
-
-	// useWith() {
-	// 	const scene = getActiveScene();
-	// 	if (!scene) return;
-	// 	if (scene.carrying === this) {
-	// 		scene.carrying = undefined;
-	// 		scene.sprCarrying.texture = tex('blank');
-	// 	}
-	// }
 }
