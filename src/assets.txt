@@ -165,7 +165,7 @@ textures/townCenter/cheeseAltar.png
 
 textures/townCenter/matchbox.png
 textures/townCenter/matchbox_carrying.png
-textures/townCenter/matchbox_lit.png
+textures/townCenter/matchbox_lit.x3.png
 
 textures/townCenter/stoveFloor.png
 textures/townCenter/stoveHob.png

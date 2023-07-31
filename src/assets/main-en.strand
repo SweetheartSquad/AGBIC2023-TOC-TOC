@@ -1414,14 +1414,14 @@ soap
 
 
 ::light match
-<<if this.scene.sprCarrying.texture === this.tex('matchbox_lit')>>
+<<if this.scene.sprCarrying.texture !== this.tex('matchbox_carrying')>>
 <<do
 	this.scene.loseItem();
 	this.goto('close');
 >>
 <<else>>
 <<do
-	this.scene.sprCarrying.texture = this.tex('matchbox_lit');
+	this.scene.animatorCarrying.setAnimation('matchbox_lit');
 	this.goto('close');
 >>
 <<endif>>

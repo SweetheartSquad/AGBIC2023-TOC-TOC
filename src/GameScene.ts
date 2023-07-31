@@ -11,6 +11,7 @@ import { engine } from './Physics';
 import { PhysicsDebug } from './PhysicsDebug';
 import { Player } from './Player';
 import { ScreenFilter } from './ScreenFilter';
+import { Animator } from './Scripts/Animator';
 import { StrandE } from './StrandE';
 import { TweenManager } from './Tweens';
 import { UIDialogue } from './UIDialogue';
@@ -83,6 +84,8 @@ export class GameScene {
 
 	sprCarrying: Sprite;
 
+	animatorCarrying: Animator;
+
 	constructor() {
 		this.container.addChild(this.camPoint);
 		this.camera.setTarget(this.camPoint);
@@ -96,6 +99,12 @@ export class GameScene {
 		this.sprCarrying.anchor.x = 0.5;
 		this.sprCarrying.anchor.y = 1;
 		game.app.stage.addChild(this.sprCarrying);
+		this.player.scripts.push(
+			(this.animatorCarrying = new Animator(this.player, {
+				spr: this.sprCarrying,
+				freq: 1 / 100,
+			}))
+		);
 
 		this.strand = new StrandE({
 			source: resource<string>('main-en') || '',
@@ -348,9 +357,13 @@ export class GameScene {
 		}
 		this.loseItem();
 		this.player.expression = 'up';
-		let texT = tex(item.carrying || `${item.texture}_carrying`);
-		if (texT === tex('error')) texT = tex(item.texture);
-		this.sprCarrying.texture = texT;
+		let texName = item.carrying || `${item.texture}_carrying`;
+		if (tex(texName) === tex('error')) {
+			texName = item.texture;
+		}
+		this.animatorCarrying.setAnimation(texName);
+		this.animatorCarrying.freq =
+			item.getScript(Animator)?.freq || this.animatorCarrying.freq;
 		this.sprCarrying.tint = item.spr.tint;
 		this.sprCarrying.scale.x = Math.sign(item.spr.scale.x);
 		this.carrying = item;
@@ -382,7 +395,7 @@ export class GameScene {
 			this.strand.destroy(this.carrying);
 		}
 		this.carrying = undefined;
-		this.sprCarrying.texture = tex('blank');
+		this.animatorCarrying.setAnimation('blank');
 	}
 
 	/**
