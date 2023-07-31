@@ -7,6 +7,7 @@ textures/ditherGrid.png
 textures/border.png
 textures/dialogueBg.png
 textures/shadows.png
+textures/glow.png
 
 audio/bgm.mp3
 audio/voiceDefault.mp3
@@ -188,5 +189,3 @@ textures/townCenter/cutter tree carrying.png
 textures/townCenterItems/spoon_carrying.png
 textures/townCenterItems/fork_carrying.png
 textures/townCenterItems/horseKey_carrying.png
-
-textures/glow.png
