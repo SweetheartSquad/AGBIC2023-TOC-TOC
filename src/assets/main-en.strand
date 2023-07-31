@@ -475,16 +475,16 @@
 		this.Prop({ texture: 'horseNoKey', x: -128, y: 0,   offset: -35 }),
 		// this.Prop({ texture: 'horseWithKey', x: -128, y: 0,   offset: -35 }),
 
-		this.Poly({ verts: [-180,-336, -176,-327, -110,-292, -119,-297, -94,-316, -150,-353, -180,-336], width: 12 }), // candles
-		this.Hotspot({ texture: 'birthday candles', x: -127, y: -288,        offset: -33 }),
+		this.polyWax = this.Poly({ verts: [-180,-336, -176,-327, -110,-292, -119,-297, -94,-316, -150,-353, -180,-336], width: 12 }), // candles
+		this.Hotspot({ texture: 'birthday candles', x: -127, y: -288,        offset: -33, use: {
+			matchbox: [`goto:melt wax`],
+		}, }),
 		// this.Poly({ verts: [-118,-315, -98,-313], width: 15 }), // snowman
 		// this.Hotspot({ texture: 'wax snowman', x: -103, y: -303,       offset: 0 }),
 		// this.Poly({ verts: [-133,-317, -98,-308], width: 12 }), // star
 		// this.Hotspot({ texture: 'wax star', x: -108, y: -302,          offset: -10 }),
 		// this.Poly({ verts: [-118,-314] }), // tree
 		// this.Hotspot({ texture: 'wax tree', x: -111, y: -305,          offset: -3 }),
-		// this.Poly({ verts: [-97,-310, -120,-311, -146,-324], width: 15 }), // wad
-		// this.Hotspot({ texture: 'wax wad', x: -121, y: -298,           offset: -16 }),
 		
 
 		// bottom right
@@ -1416,6 +1416,27 @@ soap
 	this.scene.player.walkTo(spot.x, spot.y).then(() => this.goto('close'))
 >>
 
+::melt wax
+<<if this.scene.sprCarrying.texture !== this.tex('matchbox_lit')>>
+	"hm no very unlit"
+	[[>close]]
+<<else>>
+	<<do
+		// TODO: animate
+		// TODO: sfx
+		this.destroy(this.gameObject);
+		this.destroy(this.polyWax);
+		this.add(
+			this.Item({ texture: 'wax wad', x: -121, y: -298,           offset: -16 }),
+		);
+		this.scene.drop(
+			this.polyWax = this.Poly({ verts: [-97,-310, -120,-311, -146,-324], width: 15 }),
+		);
+		this.goto('close');
+	>>
+<<endif>>
+<<do this.scene.loseItem();>>
+<<do this.gameObject = this.scene.player>>
 
 
 ::swap cutter
