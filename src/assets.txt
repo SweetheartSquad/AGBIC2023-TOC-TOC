@@ -117,6 +117,7 @@ textures/townCenter/easter egg.png
 textures/townCenter/butter knife.png
 textures/townCenter/chapstick.png
 textures/townCenter/bottle cap.png
+textures/townCenter/bottle cap filled.png
 
 textures/townCenter/gatehouse.png
 textures/townCenter/pushPins.png

@@ -413,7 +413,9 @@
 		this.Poly({ verts: [-337,-45, -255,-26, -291,-5], width: 7 }), // chapstick
 		this.Prop({ texture: 'chapstick', x: -284, y: -10,     offset: -10 }),
 		this.Poly({ verts: [15,-390, 4,-395, 15,-398, 24,-395, 16,-390] }), // bottle cap
-		this.Item({ texture: 'bottle cap', x: 15, y: -378,     offset: -10 }),
+		this.Item({ texture: 'bottle cap', x: 15, y: -378,     offset: -10, use: {
+			player: [`p:"it's a bottle cap"`, `p:"it could probably hold something"`],
+		}, }),
 
 		this.Interrupt({ passage: 'gatehouse reject', type: 'poly', verts: [84,-324, 141,-283, 178,-298, 236,-342, 162,-384] }),
 		this.Poly({ verts: [286,-306, 221,-271, 172,-299, 237,-345, 166,-385, 98,-347, 39,-382, 111,-423] }), // gate
@@ -444,6 +446,7 @@
 		this.Prop({ texture: 'fountainWater', x: 15, y: -164, freq: 1/100, offset: -45 }),
 		this.Item({ texture: 'fountain',   x: 15, y: -164, alpha: 0, offset: -45, use: {
 			undefined: [`goto:toggle fountain`],
+			'bottle cap': [`goto:fill cap`],
 		}, }),
 		this.Hotspot({ label: 'left altar', texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7 }),
 		this.Hotspot({ label: 'right altar', texture: 'pizzaTableSR', x: 110, y: -222,      offset: -7 }),
@@ -1510,6 +1513,29 @@ soap
 	this.scene.loseItem();
 	this.goto('close');
 >>
+
+::fill cap
+<<if this.capFilled>>
+<<do this.gameObject = this.scene.player>>
+"there's plenty of water already"
+[[>close]]
+<<elseif this.fountainOff>>
+<<do this.gameObject = this.scene.player>>
+"with what water?"
+[[>close]]
+<<else>>
+<<do
+	this.capFilled = true;
+	const cap = this.scene.find('bottle cap');
+	cap.texture = 'bottle cap filled';
+	cap.spr.texture = this.tex('bottle cap filled');
+	cap.btn.use.player = [`p:"i filled it with water"`, `p:"it's a bottle cap"`];
+	cap.btn.resetCycles();
+	this.goto('close');
+>>
+<<endif>>
+<<do this.scene.loseItem()>>
+
 
 ::toggle fountain
 <<do
