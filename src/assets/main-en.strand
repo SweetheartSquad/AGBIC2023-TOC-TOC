@@ -581,7 +581,8 @@
 		this.Prop({ texture: 'stoveFloor', x: 175, y: 0, offset: 0 }),
 		this.Prop({ texture: 'stoveHob', x: 310, y: 0,   offset: 0 }),
 		this.Prop({ texture: 'spoonForkStoveProng', x: 218, y: 0,      offset: 0 }),
-		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 45 }),
+		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 47 }),
+		this.Item({ texture: 'ring', x: 326, y: -28,          offset: 29 }),
 		(() => {
 			const h = this.Item({ label: 'anvil', texture: 'blank', carrying: 'anvil_carrying', x: 295, y: -52, offset: 100, use: {
 				player: [`p:"it's a hammer"`],
