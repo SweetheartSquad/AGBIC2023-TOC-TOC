@@ -461,7 +461,7 @@
 		this.Poly({ verts: [-79,-199, 111,-234], width: 15 }), // altars
 		this.Prop({ texture: 'fountainWater', x: 15, y: -164, freq: 1/100, offset: -45 }),
 		this.Item({ texture: 'fountain',   x: 15, y: -164, alpha: 0, offset: -45, use: {
-			undefined: [`goto:toggle fountain`],
+			undefined: [`goto:pickup coin`],
 			'bottle cap': [`goto:fill cap`],
 		}, }),
 		this.Hotspot({ label: 'left altar', texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7, use: {
@@ -1652,6 +1652,13 @@ soap
 <<do this.goto('generic use')>>
 <<endif>>
 
+
+::pickup coin
+<<if this.fountainOff>>
+<<do this.goto('generic item')>>
+<<else>>
+<<do this.goto('generic use')>>
+<<endif>>
 
 ::toggle fountain
 <<do
