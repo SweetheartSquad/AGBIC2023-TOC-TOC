@@ -74,7 +74,7 @@ textures/dustbun_scaredIdle.x2.png
 textures/dustbun_bossIdle.x2.png
 textures/dustbun_mook1Idle.x2.png
 textures/dustbun_mook2Idle.x2.png
-textures/dustbun_shopIdle.x2.png
+textures/dustbun_tellerIdle.x2.png
 
 textures/heist/heist_bg.png
 textures/heist/heist_fg.png

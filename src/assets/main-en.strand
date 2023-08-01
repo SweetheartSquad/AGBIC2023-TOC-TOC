@@ -331,7 +331,7 @@
 			'bread slice': [`"da boss don't let me eat on da job"`],
 			poster: [`"how come da boss gets all da credit..."`],
 		}, }),
-		this.Npc({ name: 'teller', body: 'dustbun_shop', tint: 0xC6A89D, shadow: false, offset: -100, x: 94, y: -247, use: {
+		this.Npc({ name: 'teller', body: 'dustbun_teller', tint: 0xC6A89D, shadow: false, offset: -100, x: 94, y: -247, use: {
 			undefined: [`"i told ya, da door's stuck!"`, `"already unlocked, nuddin else ta do!"`, `"arghh won't anybunny help me??"`],
 			other: [`p:"nah, they're pretty locked up in there"`],
 		}, }),
@@ -1170,9 +1170,9 @@ you got the moon-dried tomato.
 	const crook = this.scene.find('crook');
 	crook.flipped = false;
 	this.shock(crook, 500);
-	const shop = this.scene.find('shop');
-	this.shock(shop, 600);
-	this.gameObject = shop;
+	const teller = this.scene.find('teller');
+	this.shock(teller, 600);
+	this.gameObject = teller;
 >>
 "gadzooks!!"
 >
