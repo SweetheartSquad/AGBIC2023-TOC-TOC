@@ -687,7 +687,7 @@ me
 <<print this.shuffle([
 	`"i don't think that will work"`,
 	`"i don't know about that..."`,
-	`"nah"`,
+	`"not sure what that would do..."`,
 ])[0]>>
 [[>close]]
 
