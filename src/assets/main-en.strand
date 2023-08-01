@@ -457,7 +457,7 @@
 		}, }),
 		this.Hotspot({ label: 'left altar', texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7, use: {
 			undefined: [`goto:cheese poem`],
-			star: ['goto:place cheese'],
+			cheese: ['goto:place cheese'],
 		}, }),
 		this.Hotspot({ label: 'right altar', texture: 'pizzaTableSR', x: 110, y: -222,      offset: -7, use: {
 			undefined: [`goto:star poem`],
@@ -1408,6 +1408,11 @@ soap
 		this.tween(cart.transform, 'x', cart.transform.x + 200, 1000, undefined, this.ease.cubicIn);
 		this.tween(cart.transform, 'y', cart.transform.y + 200, 1000, undefined, this.ease.cubicIn);
 
+		this.add(
+			this.Item({ label: 'cheese', texture: 'cheeseFloor', x: -300, y: -140,   offset: -5, use: {
+			}, }),
+		);
+
 		await this.delay(300);
 		this.goto('windup key2');
 	})();
@@ -1725,7 +1730,8 @@ to guide you north
 	this.gameObject = this.scene.player;
 	this.destroy(this.scene.find('cheeseAltar'));
 	this.add(
-		this.Prop({ texture: 'cheeseFloor', x: -300, y: -140,   offset: -5 }),
+		this.Item({ label: 'cheese', texture: 'cheeseFloor', x: -300, y: -140,   offset: -5, use: {
+		}, }),
 	);
 	if (this.scene.find('starAltar')) {
 		this.goto('toggle fountain');
