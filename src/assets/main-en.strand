@@ -455,8 +455,18 @@
 			undefined: [`goto:toggle fountain`],
 			'bottle cap': [`goto:fill cap`],
 		}, }),
-		this.Hotspot({ label: 'left altar', texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7 }),
-		this.Hotspot({ label: 'right altar', texture: 'pizzaTableSR', x: 110, y: -222,      offset: -7 }),
+		this.Hotspot({ label: 'left altar', texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7, use: {
+			undefined: [
+				`p:"there's something inscribed here..."`,
+				`goto:cheese poem`,
+			],
+		}, }),
+		this.Hotspot({ label: 'right altar', texture: 'pizzaTableSR', x: 110, y: -222,      offset: -7, use: {
+			undefined: [
+				`p:"there's something inscribed here..."`,
+				`goto:star poem`,
+			],
+		}, }),
 		this.Prop({ texture: 'starAltar', x: 110, y: -237,         offset: 8 }),
 		this.Prop({ texture: 'cheeseAltar', x: -80, y: -202,       offset: 6 }),
 
@@ -1592,6 +1602,39 @@ soap
 	this.goto('close');
 >>
 
+::cheese poem
+<<do this.scene.dialogue.textText.style.fontStyle = 'italic'>>
+when hunger pains
+>
+are what you feel
+>
+consume at once
+>
+the holy meal
+>
+<<do
+	this.gameObject = this.scene.player;
+	this.scene.dialogue.textText.style.fontStyle = 'normal';
+>>
+"hmm..."
+[[>close]]
+
+::star poem
+<<do this.scene.dialogue.textText.style.fontStyle = 'italic'>>
+if you get lost
+>
+when you go forth
+>
+my light is there
+>
+to guide you north
+>
+<<do
+	this.gameObject = this.scene.player;
+	this.scene.dialogue.textText.style.fontStyle = 'normal';
+>>
+"hmm..."
+[[>close]]
 
 
 ::The End
