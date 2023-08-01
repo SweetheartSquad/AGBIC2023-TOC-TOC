@@ -583,6 +583,10 @@
 		this.Prop({ texture: 'spoonForkStoveProng', x: 218, y: 0,      offset: 0 }),
 		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 47 }),
 		this.Item({ texture: 'ring', x: 326, y: -28,          offset: 29 }),
+		this.Item({ texture: 'hot sword', x: 277, y: -72,          offset: 75, use: {
+			'bottle cap': ['goto:cool sword'],
+			otherTarget: [`p:"ow! that's too hot to move..."`, `p:"i can't move the sword while it's hot"`],
+		}, }),
 		(() => {
 			const h = this.Item({ label: 'anvil', texture: 'blank', carrying: 'anvil_carrying', x: 295, y: -52, offset: 100, use: {
 				player: [`p:"it's a hammer"`],
@@ -1631,6 +1635,22 @@ soap
 >>
 <<endif>>
 <<do this.scene.loseItem()>>
+
+::cool sword
+<<if this.capFilled>>
+<<do
+	this.scene.loseItem();
+	this.destroy(this.gameObject);
+	this.add(
+		this.Item({ texture: 'cool sword', x: 277, y: -72,          offset: 75, use: {
+		}, }),
+	);
+	this.gameObject = undefined;
+	this.goto('close');
+>>
+<<else>>
+<<do this.goto('generic use')>>
+<<endif>>
 
 
 ::toggle fountain
