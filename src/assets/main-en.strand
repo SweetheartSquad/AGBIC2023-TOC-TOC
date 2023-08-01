@@ -495,7 +495,6 @@
 		this.Item({ texture: 'juice', x: -152, y: -265,         offset: -5 }),
 		this.Prop({ texture: 'candle foil top', x: -227, y: -300,   offset: 300 }),
 
-		// this.Prop({ texture: 'cheeseFloor', x: -300, y: -140,   offset: -5 }),
 		this.cartPoly = this.Poly({ verts: [-142,-11, -100,-40, -191,-71, -245,-110, -209,-123, -252,-149, -336,-88] }), // cart
 		this.Prop({ texture: 'cheeseCart', x: -235, y: 0,  offset: -115 }),
 		this.Prop({ texture: 'horseNoKey', x: -128, y: 0,   offset: -35 }),
@@ -1425,17 +1424,18 @@ soap
 		this.cartPoly = null;
 		const horse = this.scene.find('horseNoKey');
 		const cart = this.scene.find('cheeseCart');
-		this.tween(horse.transform, 'x', horse.transform.x + 200, 1000, undefined, this.ease.cubicIn);
-		this.tween(horse.transform, 'y', horse.transform.y + 200, 1000, undefined, this.ease.cubicIn);
-		this.tween(cart.transform, 'x', cart.transform.x + 200, 1000, undefined, this.ease.cubicIn);
-		this.tween(cart.transform, 'y', cart.transform.y + 200, 1000, undefined, this.ease.cubicIn);
+		this.tween(horse.transform, 'x', horse.transform.x + 200, 2000, undefined, this.ease.cubicIn);
+		this.tween(horse.transform, 'y', horse.transform.y + 200, 2000, undefined, this.ease.cubicIn);
+		this.tween(cart.transform, 'x', cart.transform.x + 200, 2000, undefined, this.ease.cubicIn);
+		this.tween(cart.transform, 'y', cart.transform.y + 200, 2000, undefined, this.ease.cubicIn);
 
-		this.add(
-			this.Item({ label: 'cheese', texture: 'cheeseFloor', x: -300, y: -140,   offset: -5, use: {
-			}, }),
-		);
+		const cheese = this.Item({ label: 'cheese', texture: 'cheeseFloor', x: -268, y: -107,   offset: -5, use: {
+		}, });
+		cheese.display.container.offset -= 100;
+		this.add(cheese);
 
-		await this.delay(300);
+		await this.delay(1500);
+		cheese.display.container.offset += 100;
 		this.goto('windup key2');
 	})();
 >>
@@ -1446,11 +1446,11 @@ soap
 	(async () => {
 		const farmer = this.scene.find('cheese farmer');
 		this.gameObject = farmer;
-		const [t1, t2] = this.shock(farmer, 800);
-		const t3 = this.tween(farmer, 'x', -33, 800, undefined, this.ease.backIn);
-		const t4 = this.tween(farmer, 'y', -7, 800, undefined, this.ease.backIn);
-		const t5 = this.tween(farmer.display.container, 'alpha', 0, 800, undefined, this.ease.cubicIn);
-		await this.delay(1200);
+		const [t1, t2] = this.shock(farmer, 1200);
+		const t3 = this.tween(farmer, 'x', -33, 1200, undefined, this.ease.backIn);
+		const t4 = this.tween(farmer, 'y', -7, 1200, undefined, this.ease.backIn);
+		const t5 = this.tween(farmer.display.container, 'alpha', 0, 1200, undefined, this.ease.cubicIn);
+		await this.delay(1600);
 		this.tweenAbort(t1);
 		this.tweenAbort(t2);
 		this.tweenAbort(t3);
@@ -1458,14 +1458,9 @@ soap
 		this.tweenAbort(t5);
 		this.destroy(farmer);
 		this.gameObject = undefined;
-		this.goto('windup key3');
+		this.goto('close');
 	})();
 >>
-
-::windup key3
-<<do this.gameObject = this.scene.player>>
-"at least the horse is out of the way..."
-[[>close]]
 
 
 
@@ -1752,7 +1747,7 @@ to guide you north
 	this.gameObject = this.scene.player;
 	this.destroy(this.scene.find('cheeseAltar'));
 	this.add(
-		this.Item({ label: 'cheese', texture: 'cheeseFloor', x: -300, y: -140,   offset: -5, use: {
+		this.Item({ label: 'cheese', texture: 'cheeseFloor', x: -268, y: -107,   offset: -5, use: {
 		}, }),
 	);
 	if (this.scene.find('starAltar')) {
