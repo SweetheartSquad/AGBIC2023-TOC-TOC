@@ -456,19 +456,13 @@
 			'bottle cap': [`goto:fill cap`],
 		}, }),
 		this.Hotspot({ label: 'left altar', texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7, use: {
-			undefined: [
-				`p:"there's something inscribed here..."`,
-				`goto:cheese poem`,
-			],
+			undefined: [`goto:cheese poem`],
+			star: ['goto:place cheese'],
 		}, }),
 		this.Hotspot({ label: 'right altar', texture: 'pizzaTableSR', x: 110, y: -222,      offset: -7, use: {
-			undefined: [
-				`p:"there's something inscribed here..."`,
-				`goto:star poem`,
-			],
+			undefined: [`goto:star poem`],
+			star: ['goto:place star'],
 		}, }),
-		this.Prop({ texture: 'starAltar', x: 110, y: -237,         offset: 8 }),
-		this.Prop({ texture: 'cheeseAltar', x: -80, y: -202,       offset: 6 }),
 
 		this.Poly({ verts: [218,-166, 192,-184, 271,-237, 298,-218, 219,-166], width: 5 }), // matchbox
 		this.Item({ texture: 'matchbox', x: 246, y: -161,         offset: -25, use: {
@@ -492,7 +486,6 @@
 		this.Item({ texture: 'juice', x: -152, y: -265,         offset: -5 }),
 		this.Prop({ texture: 'candle foil top', x: -227, y: -300,   offset: 300 }),
 
-		// this.Block({ type: 'circle', x: -304, y: -148, radius: 2 }), // cheese
 		// this.Prop({ texture: 'cheeseFloor', x: -300, y: -140,   offset: -5 }),
 		this.Poly({ verts: [-142,-11, -100,-40, -191,-71, -245,-110, -209,-123, -252,-149, -336,-88] }), // cart
 		this.Prop({ texture: 'cheeseCart', x: -235, y: 0,  offset: -115 }),
@@ -1603,6 +1596,17 @@ soap
 >>
 
 ::cheese poem
+<<if this.scene.find('cheeseAltar')>>
+<<do this.goto('reset cheese')>>
+<<elseif !this.poemPromptCheese>>
+<<do this.gameObject = this.scene.player; this.poemPromptCheese = true;>>
+"there's something inscribed here..."
+[[>close]]
+<<else>>
+<<do this.goto('cheese poem2')>>
+<<endif>>
+
+::cheese poem2
 <<do this.scene.dialogue.textText.style.fontStyle = 'italic'>>
 when hunger pains
 >
@@ -1620,6 +1624,17 @@ the holy meal
 [[>close]]
 
 ::star poem
+<<if this.scene.find('starAltar')>>
+<<do this.goto('reset star')>>
+<<elseif !this.poemPromptStar>>
+<<do this.gameObject = this.scene.player; this.poemPromptStar = true;>>
+"there's something inscribed here..."
+[[>close]]
+<<else>>
+<<do this.goto('star poem2')>>
+<<endif>>
+
+::star poem2
 <<do this.scene.dialogue.textText.style.fontStyle = 'italic'>>
 if you get lost
 >
@@ -1636,6 +1651,60 @@ to guide you north
 "hmm..."
 [[>close]]
 
+::place star
+<<do
+	this.scene.loseItem(true);
+	this.add(
+		this.Prop({ texture: 'starAltar', x: 110, y: -237,         offset: 8 }),
+	);
+	if (this.scene.find('cheeseAltar')) {
+		this.goto('toggle fountain');
+	} else {
+		this.goto('close');
+	}
+>>
+
+::place cheese
+<<do
+	this.scene.loseItem(true);
+	this.add(
+		this.Prop({ texture: 'cheeseAltar', x: -80, y: -202,       offset: 6 }),
+	);
+	if (this.scene.find('starAltar')) {
+		this.goto('toggle fountain');
+	} else {
+		this.goto('close');
+	}
+>>
+
+::reset star
+<<do
+	this.gameObject = this.scene.player;
+	this.destroy(this.scene.find('starAltar'));
+	this.add(
+		this.Item({ label: 'star', texture: 'wax tree star', x: -89, y: -280,    offset: -5, use: {
+		}, }),
+	);
+	if (this.scene.find('cheeseAltar')) {
+		this.goto('toggle fountain');
+	} else {
+		this.goto('close');
+	}
+>>
+
+::reset cheese
+<<do
+	this.gameObject = this.scene.player;
+	this.destroy(this.scene.find('cheeseAltar'));
+	this.add(
+		this.Prop({ texture: 'cheeseFloor', x: -300, y: -140,   offset: -5 }),
+	);
+	if (this.scene.find('starAltar')) {
+		this.goto('toggle fountain');
+	} else {
+		this.goto('close');
+	}
+>>
 
 ::The End
 blah blah
