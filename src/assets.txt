@@ -177,7 +177,9 @@ textures/townCenter/birthday candles.png
 textures/townCenter/wax snowman.png
 textures/townCenter/wax star.png
 textures/townCenter/wax tree.png
+textures/townCenter/wax tree broken.png
 textures/townCenter/wax wad.png
+textures/townCenter/wax tree star.png
 
 textures/townCenter/cutter snowman 1.png
 textures/townCenter/cutter snowman 2.png
