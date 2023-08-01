@@ -53,16 +53,16 @@ textures/gnomePuzzle/bg_gnome_puzzle_flower_gone.png
 textures/gnomePuzzle/stone_tile.png
 textures/gnomePuzzle/leaf.png
 
+textures/gnomePuzzle/big rock.png
+textures/gnomePuzzle/medium rock.png
+textures/gnomePuzzle/little rock.png
+textures/gnomePuzzle/glass.png
+textures/gnomePuzzle/flower_head.png
+
 textures/gnome_topIdle.x2.png
 textures/gnome_bottomIdle.x2.png
 textures/gnome_bottom_hatless.x2.png
 textures/hat.x2.png
-
-textures/big rock.png
-textures/medium rock.png
-textures/little rock.png
-textures/glass.png
-textures/flower_head.png
 
 textures/gnomePuzzle/thimble.png
 textures/gnomePuzzle/die.png
