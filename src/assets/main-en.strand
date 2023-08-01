@@ -1331,7 +1331,7 @@ you got the moon-dried tomato.
 		if (mook) {
 			mook.btn.use.undefined = [`"thanks for da door help kid"`, `"but still. back off"`];
 		}
-		this.scene.find('teller').use.undefined = [`"oh, you fixed da door?"`, `"coulda maybe picked a better time..."`, `"sigh"`];
+		this.scene.find('teller').btn.use.undefined = [`"oh, you fixed da door?"`, `"coulda maybe picked a better time..."`, `"sigh"`];
 		setTimeout(() => {
 			this.camPoint = undefined;
 			this.goto('close');
