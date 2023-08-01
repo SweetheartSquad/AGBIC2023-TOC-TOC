@@ -588,7 +588,7 @@
 				player: [`p:"it's a hammer"`],
 			}, });
 			h.spr.width = 50;
-			h.spr.height = 50;
+			h.spr.height = 30;
 			return h;
 		})(),
 
