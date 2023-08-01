@@ -1449,7 +1449,7 @@ soap
 >>
 
 ::melt wax
-<<if this.scene.sprCarrying.texture !== this.tex('matchbox_lit')>>
+<<if this.scene.animatorCarrying.animation === 'matchbox_carrying'>>
 	"hm no very unlit"
 	[[>close]]
 <<else>>
