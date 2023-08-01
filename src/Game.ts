@@ -54,7 +54,7 @@ function updateResourceCache(assetsLoaded: Record<string, unknown>) {
 	frameCounts = Object.fromEntries(
 		animated.map((i) => [
 			i,
-			Object.keys(assetsLoaded).filter((j) => j.startsWith(i)).length,
+			Object.keys(assetsLoaded).filter((j) => j.startsWith(`${i}.`)).length,
 		])
 	);
 
