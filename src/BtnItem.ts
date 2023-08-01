@@ -31,6 +31,7 @@ export class BtnItem extends Btn {
 			const item = scene.carrying?.name;
 			let key = `${item}`;
 			let say = this.use[key];
+			let { cycles } = this;
 
 			// nothing specific to say, so go to other
 			if (!say) {
@@ -38,6 +39,7 @@ export class BtnItem extends Btn {
 					(item && scene.carrying?.btn?.use.otherTarget && 'otherTarget') ||
 					'other';
 				say = (item && scene.carrying?.btn?.use.otherTarget) || this.use.other;
+				cycles = (item && scene.carrying?.btn?.cycles) || this.cycles;
 			}
 
 			// nothing to say, so go to global generic use
@@ -47,8 +49,8 @@ export class BtnItem extends Btn {
 				return;
 			}
 
-			const cycle = this.cycles[key] || 0;
-			this.cycles[key] = cycle + 1;
+			const cycle = cycles[key] || 0;
+			cycles[key] = cycle + 1;
 			let currentSay = say[cycle % say.length];
 			if (currentSay.startsWith('goto:')) {
 				scene.strand.goto(currentSay.replace('goto:', ''));
