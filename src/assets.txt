@@ -39,7 +39,7 @@ textures/mouse_nervousIdle.x2.png
 textures/mouse_sittingIdle.x2.png
 textures/mouse_guard_tallIdle.x2.png
 textures/mouse_guard_shortIdle.x2.png
-textures/mouse_guard_sleepyIdle.x2.png
+textures/mouse_smithIdle.x2.png
 textures/mouse_guard_forkIdle.x2.png
 
 

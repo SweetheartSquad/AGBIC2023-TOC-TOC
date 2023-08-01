@@ -580,7 +580,7 @@
 		this.Poly({ verts: [348,-187, 37,7] }), // stove ledge
 		this.Prop({ texture: 'stoveFloor', x: 175, y: 0, offset: 0 }),
 		this.Prop({ texture: 'stoveHob', x: 310, y: 0,   offset: 0 }),
-		this.Prop({ texture: 'spoonForkStoveProng', x: 218, y: 0,      offset: 0 }),
+		this.Prop({ texture: 'spoonForkStoveProng', x: 218, y: 0,      offset: 1 }),
 		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 47 }),
 		this.Item({ texture: 'ring', x: 326, y: -28,          offset: 29 }),
 		this.Item({ texture: 'hot sword', x: 277, y: -72,          offset: 75, use: {
@@ -601,7 +601,7 @@
 		this.Npc({ name: 'can', body: 'mouse_basic', x: -78, y: -354, offset: -5, use: {}, }),
 		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -278, use: {}, }),
 		this.Npc({ name: 'right', body: 'mouse_basic', x: 268, y: -165, flip: true, use: {}, }),
-		this.Npc({ name: 'bottom', body: 'mouse_basic', x: 153, y: -57, flip: true, offset: 100, use: {}, }),
+		this.Npc({ name: 'smith', body: 'mouse_smith', x: 238, y: -62, flip: true, offset: 62, use: {}, }),
 		
 		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -192, y: -172, bodyCollision: { isStatic: true },
 			use: {
