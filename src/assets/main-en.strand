@@ -451,7 +451,9 @@
 		this.Prop({ texture: 'can front wKey', x: -81, y: -334,          offset: -25 }),
 		(() => {
 			// key
-			const h = this.Item({ label: 'key', texture: 'blank', carrying: 'key_carrying', x: -55, y: -360,       offset: 100 });
+			const h = this.Item({ label: 'key', texture: 'blank', carrying: 'key_carrying', x: -55, y: -360,       offset: 100, use: {
+				undefined: ['goto:take key'],
+			}, });
 			h.spr.width = 40;
 			h.spr.height = 20;
 			return h;
@@ -598,7 +600,11 @@
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 71, y: -302, flip: true, use: {}, }),
 		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
-		this.Npc({ name: 'can', body: 'mouse_basic', x: -78, y: -354, offset: -5, use: {}, }),
+		this.Npc({ name: 'stuffy shopkeep', body: 'mouse_basic', x: -78, y: -360, offset: -5, use: {
+			undefined: [`"kaffkafkf..."`, `"kkff.. t-too hot..."`, `"khh.. th-thirsty..."`],
+			'bottle cap': [`"kfhh.. no.. dirty..."`],
+			juice: ['goto:give juice'],
+		}, }),
 		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -278, use: {}, }),
 		this.Npc({ name: 'right', body: 'mouse_basic', x: 268, y: -165, flip: true, use: {}, }),
 		this.Npc({ name: 'smith', body: 'mouse_smith', x: 238, y: -62, flip: true, offset: 62, use: {}, }),
@@ -1406,6 +1412,44 @@ soap
 // 88'`88'`88 88'  `88 88    88 Y8ooooo. 88ooood8
 // 88  88  88 88.  .88 88.  .88       88 88.  ...
 // dP  dP  dP `88888P' `88888P' `88888P' `88888P'
+::take key
+<<if this.juiced>>
+<<do this.goto('generic item')>>
+<<else>>
+<<do this.gameObject = this.scene.find('stuffy shopkeep')>>
+"kffkf... k-key.. mine..."
+[[>close]]
+<<endif>>
+
+::give juice
+<<if this.juiced>>
+<<do this.scene.loseItem();>>
+"khh... not thirsty.. no more"
+[[>close]]
+<<else>>
+<<do
+	this.scene.loseItem();
+	this.juiced = true;
+	this.scene.find('stuffy shopkeep').btn.use.undefined = [`"kh.. keep..."`, `"kfhkf.. krfffkkf... khf.."`];
+	this.scene.find('stuffy shopkeep').btn.resetCycles();
+	this.goto('give juice2');
+>>
+<<endif>>
+
+::give juice2
+"khhfhhf... hmmf...?"
+>
+// TODO: sfx
+<<do this.scene.screenFilter.flash([12,25,40], 600, this.ease.cubicIn)>>
+*sluuurrrrrp*
+>
+<<do this.shock(this.scene.find('stuffy shopkeep'), 250)>>
+"kahhh... good..."
+>
+"here.. key... yours..."
+[[>close]]
+
+
 ::windup key
 <<do 
 	this.scene.loseItem(true);
