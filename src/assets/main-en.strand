@@ -1482,6 +1482,7 @@ soap
 <<else>>
 <<do
 	this.scene.animatorCarrying.setAnimation('matchbox_lit');
+	this.scene.screenFilter.flash([255,125,0], 200);
 	this.goto('close');
 >>
 <<endif>>
