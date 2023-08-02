@@ -610,7 +610,9 @@
 				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
 			},
 		}),
-		this.Npc({ name: 'sitting', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, use: {}, }),
+		this.Npc({ name: 'sitting', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, use: {
+			'cool sword': ['goto:give sword'],
+		}, }),
 	]);
 
 	this.Area('sandwich', [
@@ -1652,6 +1654,16 @@ soap
 <<do this.goto('generic use')>>
 <<endif>>
 
+::give sword
+"haha yesss"
+<<do
+	this.scene.loseItem(true);
+	this.add(
+		this.Item({ texture: 'cool sword', x: 212, y: -388, angle: 180,         offset: 2000, use: {
+		}, }),
+	);
+>>
+[[>close]]
 
 ::pickup coin
 <<if this.fountainOff>>
