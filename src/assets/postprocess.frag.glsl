@@ -37,6 +37,7 @@ void main(void) {
 	vec3 col = (orig - 0.5 + (brightness - 1.0)) * contrast + 0.5;
 	col = mix(col, vec3(1.0), whiteout);
 	vec3 limit = texture2D(ditherGridMap, uvDither).rgb;
+	col = mix(bg, fg, col) / 255.0;
 
 	// posterization
 	vec3 raw = col;
@@ -48,8 +49,6 @@ void main(void) {
 
 	col = mix(col, vec3(1.0) - col, invert);
 
-	vec3 rgb = mix(bg, fg, col) / 255.0;
-
-	gl_FragColor = vec4(rgb, 1.0);
+	gl_FragColor = vec4(col, 1.0);
 	// gl_FragColor = vec4(orig, 1.0);
 }
