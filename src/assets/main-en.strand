@@ -586,10 +586,6 @@
 		this.Prop({ texture: 'spoonForkStoveProng', x: 218, y: 0,      offset: 1 }),
 		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 47 }),
 		this.Item({ texture: 'ring', x: 149, y: -69,          offset: 69 }),
-		this.Item({ texture: 'hot sword', x: 277, y: -72,          offset: 75, use: {
-			'bottle cap': ['goto:cool sword'],
-			otherTarget: [`p:"ow! that's too hot to move..."`, `p:"i can't move the sword while it's hot"`],
-		}, }),
 		(() => {
 			const h = this.Item({ label: 'anvil', texture: 'blank', carrying: 'anvil_carrying', x: 295, y: -52, offset: 100, use: {
 				player: [`p:"it's a hammer"`],
@@ -611,7 +607,13 @@
 			ring: ['goto:give ring'],
 		}, }),
 		this.Npc({ name: 'right', body: 'mouse_basic', x: 268, y: -165, flip: true, use: {}, }),
-		this.Npc({ name: 'smith', body: 'mouse_smith', x: 238, y: -62, flip: true, offset: 62, use: {}, }),
+		this.Npc({ name: 'smith', body: 'mouse_smith', x: 238, y: -62, flip: true, offset: 62, use: {
+			undefined: [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`],
+			foil: ['goto:give foil'],
+			toothpicks: ['goto:give toothpicks'],
+			'hot sword': [`"mm... molten.. careful..."`],
+			'cool sword': [`"mm.. my work... mhmmmm.."`],
+		}, }),
 		
 		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -192, y: -172, bodyCollision: { isStatic: true },
 			use: {
@@ -1718,6 +1720,69 @@ soap
 >>
 <<endif>>
 <<do this.scene.loseItem()>>
+
+::give foil
+<<do
+	this.scene.loseItem();
+	this.gaveFoil = true;
+	const smith = this.scene.find('smith');
+	smith.btn.use.foil = [`"mmore mmetal..?"`];
+	smith.btn.resetCycles();
+>>
+"mmm.. metal... yes..."
+<<if this.gaveToothpicks>>
+[[>make sword]]
+<<else>>
+[[>close]]
+<<endif>>
+
+
+::give toothpicks
+<<do
+	this.scene.loseItem();
+	this.gaveToothpicks = true;
+	const smith = this.scene.find('smith');
+	smith.btn.use.toothpicks = [`"mhmmeh.. plenty..."`];
+	smith.btn.resetCycles();
+>>
+"mhm.. strong.. wood..."
+<<if this.gaveFoil>>
+[[>make sword]]
+<<else>>
+[[>close]]
+<<endif>>
+
+
+::make sword
+<<do this.scene.find('smith').flipped = false;>>
+"mhmhmhm... materials.. ready..."
+>
+<<do
+	(async () => {
+		const smith = this.scene.find('smith');
+		this.camPoint = { x: this.size.x, y: this.size.y };
+		await this.delay(1500);
+		// TODO: sfx
+		this.scene.screenFilter.flash([250/3,200/3,150/3], 150, this.ease.cubicOut);
+		await this.delay(500);
+		this.scene.screenFilter.flash([250/2,200/2,150/2], 150, this.ease.cubicOut);
+		await this.delay(500);
+		this.scene.screenFilter.flash([250,200,150], 150, this.ease.cubicOut);
+		await this.delay(1500);
+		smith.flipped = true;
+		this.add(
+			this.Item({ texture: 'hot sword', x: 277, y: -72,          offset: 75, use: {
+				'bottle cap': ['goto:cool sword'],
+				otherTarget: [`p:"ow! that's too hot to move..."`, `p:"i can't move the sword while it's hot"`],
+			}, }),
+		);
+		this.goto('close');
+		smith.btn.use.undefined = [`"mm..."`, `"mmmmmagnificent..."`];
+		smith.btn.resetCycles();
+		this.camPoint = undefined;
+	})();
+>>
+
 
 ::cool sword
 <<if this.capFilled>>
