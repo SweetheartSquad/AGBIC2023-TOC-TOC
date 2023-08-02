@@ -1,6 +1,7 @@
 import { Rectangle, Texture, WRAP_MODES } from 'pixi.js';
 import { CustomFilter } from './CustomFilter';
 import { game, resource } from './Game';
+import { Tween, TweenManager } from './Tweens';
 import { size } from './config';
 import { getActiveScene } from './main';
 import { contrastDiff, reduceGrayscale } from './utils';
@@ -90,5 +91,21 @@ export class ScreenFilter extends CustomFilter<Uniforms> {
 		document.body.style.backgroundColor = `rgb(${this.uniforms.bg
 			.map((i) => Math.floor(i))
 			.join(',')})`;
+	}
+
+	tweenFlash: Tween[] = [];
+
+	flash(
+		colour: [number, number, number],
+		duration: number,
+		ease: (t: number) => number
+	) {
+		this.tweenFlash.forEach((i) => TweenManager.abort(i));
+		this.tweenFlash.length = 0;
+		this.tweenFlash = [
+			TweenManager.tween(this.uniforms.bg, 0, 0, duration, colour[0], ease),
+			TweenManager.tween(this.uniforms.bg, 1, 0, duration, colour[1], ease),
+			TweenManager.tween(this.uniforms.bg, 2, 0, duration, colour[2], ease),
+		];
 	}
 }
