@@ -596,6 +596,55 @@
 			h.spr.height = 30;
 			return h;
 		})(),
+		// cutlery
+		(() => {
+			const h = this.Item({ label: 'fork', texture: 'blank', carrying: 'fork_carrying', x: 197, y: -64, offset: 1000, use: {
+				player: [`p:"it's a fork"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'spoon', texture: 'blank', carrying: 'spoon_carrying', x: 217, y: -61, offset: 1000, use: {
+				player: [`p:"it's a spoon"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'spoon', texture: 'blank', carrying: 'spoon_carrying', x: 241, y: -58, offset: 1000, use: {
+				player: [`p:"it's a spoon"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'spoon', texture: 'blank', carrying: 'spoon_carrying', x: 192, y: -14, offset: 1000, use: {
+				player: [`p:"it's a spoon"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 60;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'fork', texture: 'blank', carrying: 'fork_carrying', x: 218, y: -13, offset: 1000, use: {
+				player: [`p:"it's a fork"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 60;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'fork', texture: 'blank', carrying: 'fork_carrying', x: 236, y: -8, offset: 1000, use: {
+				player: [`p:"it's a fork"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 60;
+			return h;
+		})(),
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 71, y: -302, flip: true, use: {}, }),
 		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
@@ -613,6 +662,8 @@
 			undefined: [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`],
 			foil: ['goto:give foil'],
 			toothpicks: ['goto:give toothpicks'],
+			fork: [`"mm.. no... fresh metal only..."`],
+			spoon: [`"mm.. no... fresh metal only..."`],
 			'hot sword': [`"mm... molten.. careful..."`],
 			'cool sword': [`"mm.. my work... mhmmmm.."`],
 		}, }),
@@ -629,6 +680,8 @@
 			'cool sword': ['goto:give sword'],
 			other: [`"hmm.. don't want that..."`, `"hm.. not a weapon..."`],
 			anvil: [`"hm... sword would be cooler..."`],
+			fork: [`"hm... sword would be cooler..."`],
+			spoon: [`"hm... sword would be cooler..."`],
 			toothpicks: [`"hm... no.. weak..."`],
 		}, }),
 	]);

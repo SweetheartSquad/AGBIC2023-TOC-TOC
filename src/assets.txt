@@ -172,6 +172,8 @@ textures/townCenter/stoveHob.png
 textures/townCenter/spoonForkStoveProng.png
 textures/townCenter/anvilStoveProng.png
 textures/townCenter/anvil_carrying.png
+textures/townCenter/spoon_carrying.png
+textures/townCenter/fork_carrying.png
 textures/townCenter/ring.png
 textures/townCenter/ring_carrying.png
 textures/townCenter/hot sword.png
@@ -197,6 +199,3 @@ textures/townCenter/cutter tree 3.png
 textures/townCenter/cutter snowman carrying.png
 textures/townCenter/cutter star carrying.png
 textures/townCenter/cutter tree carrying.png
-
-textures/townCenterItems/spoon_carrying.png
-textures/townCenterItems/fork_carrying.png
