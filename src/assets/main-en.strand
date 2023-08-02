@@ -1434,12 +1434,17 @@ soap
 >>
 "whaaa.."
 >
-// TODO: show ring
 // TODO: sfx
-<<do this.scene.screenFilter.flash([30,90,100], 600, this.ease.cubicIn)>>
-*bling*
->
-<<do this.shock(this.scene.find('juicemonger'), 250)>>
+<<do
+	this.scene.screenFilter.flash([30,40,60], 300, this.ease.cubicIn);
+	const spr = new this.PIXI.Sprite(this.tex('ring_carrying'));
+	spr.scale.x *= -1;
+	spr.x = 5;
+	spr.y = -49;
+	const juice = this.scene.find("juicemonger");
+	juice.spr.addChild(spr);
+	this.shock(this.scene.find('juicemonger'), 500);
+>>
 "wehehe... finally..."
 >
 "friend.. take... whhhhaatever..."
