@@ -716,7 +716,7 @@ me
 		player: [`p:"it's a flower"`],
 	}, });
 	cutFlower.btn.enabled = false;
-	this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, 0.5, this.ease.cubicOut);
+	this.scene.screenFilter.flash([128,128,128], 200, this.ease.cubicOut);
 	this.tween(cutFlower.transform, 'y', -266, 2000, -321, this.ease.backIn);
 	this.tween(cutFlower.transform, 'x', -25, 2000, -55, (t) => this.ease.sineInOut(t) + this.ease.sineInOut(t*4));
 	this.tween(cutFlower.spr, 'angle', 0, 2000, 30, (t) => this.ease.sineInOut(t) + this.ease.sineInOut(t*4));
@@ -868,7 +868,7 @@ me
 <<do
 	this.scene.findAll('spot').forEach(i => { i.btn.enabled = false; });
 	this.scene.camera.shake = 2;
-	this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, 1, this.ease.cubicOut);
+	this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
 	this.tween(this.scene.camera, 'shake', 0, 1500, 2, this.ease.cubicIn);
 	this.tween(this.scene.find('bg_gnome_puzzle_closed_BACK').display.container, 'alpha', 0, 1000);
 
@@ -1078,8 +1078,7 @@ you got the moon-dried tomato.
 
 
 		setTimeout(() => {
-			this.scene.screenFilter.uniforms.whiteout = 1.0;
-			this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, undefined, this.ease.cubicOut);
+			this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
 			this.tween(this.scene.camera, 'shake', 0, 1000, 4, this.ease.cubicOut);
 			this.destroy(chandelier);
 			this.add(
@@ -1182,8 +1181,7 @@ you got the moon-dried tomato.
 
 
 		setTimeout(() => {
-			this.scene.screenFilter.uniforms.whiteout = 1.0;
-			this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, undefined, this.ease.cubicOut);
+			this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
 			this.tween(this.scene.camera, 'shake', 0, 1000, 4, this.ease.cubicOut);
 			beetle.btn.enabled = false;
 			beetle.spr.angle = -10;
@@ -1246,8 +1244,7 @@ you got the moon-dried tomato.
 
 
 		setTimeout(() => {
-			this.scene.screenFilter.uniforms.whiteout = 1.0;
-			this.tween(this.scene.screenFilter.uniforms, 'whiteout', 0, 200, undefined, this.ease.cubicOut);
+			this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
 			this.tween(this.scene.camera, 'shake', 0, 1000, 4, this.ease.cubicOut);
 			this.destroy(bread);
 			this.add(
