@@ -1738,11 +1738,16 @@ soap
 ::give sword
 "haha yesss"
 <<do
+	// TODO: sfx
 	this.scene.loseItem(true);
-	this.add(
-		this.Item({ texture: 'cool sword', x: 212, y: -388, angle: 180,         offset: 2000, use: {
-		}, }),
-	);
+	this.scene.screenFilter.flash([20,20,20], 300, this.ease.cubicIn);
+	const spr = new this.PIXI.Sprite(this.tex('cool sword'));
+	spr.scale.y *= -1;
+	spr.x = -33;
+	spr.y = 21;
+	const sitting = this.scene.find("sitting");
+	sitting.spr.addChild(spr);
+	this.shock(this.scene.find('sitting'), 1000);
 >>
 [[>close]]
 
