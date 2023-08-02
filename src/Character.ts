@@ -239,7 +239,8 @@ export class Character extends GameObject {
 		this.spr.scale.y =
 			(this.s +
 				(Math.sin(curTime + this.offset) / 50 +
-					Math.abs(Math.sin(curTime + this.offset) / 30))) *
+					Math.abs(Math.sin(curTime + this.offset) / 30)) *
+					this.bounce) *
 			this.rawScale;
 		this.spr.scale.x = (this.flipped ? -this.s : this.s) * this.rawScale;
 		this.spr.skew.x = -this.bodyCollision.body.velocity.x / 50;
