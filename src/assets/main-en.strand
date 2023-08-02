@@ -443,7 +443,9 @@
 		this.Prop({ texture: 'pushPinsTop', x: 30, y: -498,          offset: 375 }),
 		this.Prop({ texture: 'pepper shaker', x: 192, y: -456,     offset: 275 }),
 		this.Prop({ texture: 'pill bottle', x: 100, y: -437,     offset: 275 }),
-		this.Item({ texture: 'pill', x: 151, y: -423,     offset: 275 }),
+		this.Item({ texture: 'pill', x: 151, y: -423,     offset: 275, use: {
+			undefined: ['goto:take pill'],
+		}, }),
 
 
 		this.Poly({ verts: [-105,-368, -56,-368], width: 55 }), // can
@@ -622,8 +624,12 @@
 				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
 			},
 		}),
-		this.Npc({ name: 'sitting', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, use: {
+		this.Npc({ name: 'haughty hooligan', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, use: {
+			undefined: [`"hehehe..."`, `"heh.. even guards.. below me..."`, `"hm... but.. have weapons..."`],
 			'cool sword': ['goto:give sword'],
+			other: [`"hmm.. don't want that..."`, `"hm.. not a weapon..."`],
+			anvil: [`"hm... sword would be cooler..."`],
+			toothpicks: [`"hm... no.. weak..."`],
 		}, }),
 	]);
 
@@ -1801,7 +1807,7 @@ soap
 <<endif>>
 
 ::give sword
-"haha yesss"
+"hahaha.. yesss...!"
 <<do
 	// TODO: sfx
 	this.scene.loseItem(true);
@@ -1810,11 +1816,24 @@ soap
 	spr.scale.y *= -1;
 	spr.x = -33;
 	spr.y = 21;
-	const sitting = this.scene.find("sitting");
+	const sitting = this.scene.find('haughty hooligan');
 	sitting.spr.addChild(spr);
-	this.shock(this.scene.find('sitting'), 1000);
+	sitting.btn.use.undefined = [`"hehehe... haha.. heh..."`, `"heh.. heehee..."`, `"haha...!"`];
+	sitting.btn.use.other = [`"heh.. worse than sword..."`, `"hmph.. don't need..."`];
+	sitting.btn.resetCycles();
+	this.shock(sitting, 1000);
+	this.gaveSword = true;
 >>
 [[>close]]
+
+::take pill
+<<if this.gaveSword>>
+<<do this.goto('generic item')>>
+<<else>>
+<<do this.gameObject = this.scene.find('haughty hooligan')>>
+"he-hey.. guardin' those..."
+[[>close]]
+<<endif>>
 
 ::pickup coin
 <<if this.fountainOff>>
