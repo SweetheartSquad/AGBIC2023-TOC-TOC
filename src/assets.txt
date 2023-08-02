@@ -126,6 +126,7 @@ textures/townCenter/toothpicks_carrying.png
 textures/townCenter/salt shaker.png
 textures/townCenter/pill bottle.png
 textures/townCenter/pill.png
+textures/townCenter/pill_carrying.png
 
 textures/townCenter/shelfCrayonSL.png
 textures/townCenter/shelfCrayonSR.png
