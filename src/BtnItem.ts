@@ -34,7 +34,9 @@ export class BtnItem extends Btn {
 
 			// nothing specific to say, so go to other
 			if (!say) {
-				key = 'other';
+				key =
+					(item && scene.carrying?.btn?.use.otherTarget && 'otherTarget') ||
+					'other';
 				say = (item && scene.carrying?.btn?.use.otherTarget) || this.use.other;
 			}
 
