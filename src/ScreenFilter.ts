@@ -3,7 +3,7 @@ import { CustomFilter } from './CustomFilter';
 import { game, resource } from './Game';
 import { size } from './config';
 import { getActiveScene } from './main';
-import { contrastDiff, lerp, reduceGrayscale } from './utils';
+import { contrastDiff, reduceGrayscale } from './utils';
 
 type Uniforms = {
 	whiteout: number;
@@ -16,8 +16,6 @@ type Uniforms = {
 };
 
 export class ScreenFilter extends CustomFilter<Uniforms> {
-	targetPalette: [[number, number, number], [number, number, number]];
-
 	constructor(uniforms?: Partial<Uniforms>) {
 		const texDitherGrid = resource<Texture>('ditherGrid');
 		if (!texDitherGrid) throw new Error('Could not find ditherGrid');
@@ -32,7 +30,6 @@ export class ScreenFilter extends CustomFilter<Uniforms> {
 			ditherGridMap: texDitherGrid,
 			...uniforms,
 		});
-		this.targetPalette = [this.uniforms.bg, this.uniforms.fg];
 		window.screenFilter = this;
 		this.padding = 0;
 		this.autoFit = false;
@@ -58,10 +55,8 @@ export class ScreenFilter extends CustomFilter<Uniforms> {
 	}
 
 	palette(bg = this.uniforms.bg, fg = this.uniforms.fg) {
-		this.targetPalette = [
-			bg.map((i) => i) as [number, number, number],
-			fg.map((i) => i) as [number, number, number],
-		];
+		this.uniforms.bg = bg;
+		this.uniforms.fg = fg;
 	}
 
 	randomizePalette() {
@@ -80,23 +75,18 @@ export class ScreenFilter extends CustomFilter<Uniforms> {
 				[fg, bg] = [bg, fg];
 			}
 			this.palette(bg, fg);
-		} while (contrastDiff(this.targetPalette[0], this.targetPalette[1]) < 50);
+		} while (contrastDiff(this.uniforms.bg, this.uniforms.fg) < 50);
 	}
 
 	paletteToString() {
 		return JSON.stringify(
-			this.targetPalette.map((i) => i.map((c) => Math.floor(c)))
+			[this.uniforms.bg, this.uniforms.fg].map((i) =>
+				i.map((c) => Math.floor(c))
+			)
 		);
 	}
 
 	update() {
-		const [bg, fg] = this.targetPalette;
-		this.uniforms.fg = fg.map((i, idx) =>
-			lerp(this.uniforms.fg[idx], i, 0.1)
-		) as [number, number, number];
-		this.uniforms.bg = bg.map((i, idx) =>
-			lerp(this.uniforms.bg[idx], i, 0.1)
-		) as [number, number, number];
 		document.body.style.backgroundColor = `rgb(${this.uniforms.bg
 			.map((i) => Math.floor(i))
 			.join(',')})`;
