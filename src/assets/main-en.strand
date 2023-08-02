@@ -494,7 +494,9 @@
 		this.Item({ texture: 'foil', x: -253, y: -274,  offset: -25 }),
 		this.Prop({ texture: 'juicebox', x: -168, y: -225,         offset: -47 }),
 		this.Prop({ texture: 'juiceboxL', x: -168, y: -225,         offset: -27 }),
-		this.Item({ texture: 'juice', x: -152, y: -265,         offset: -5 }),
+		this.Item({ texture: 'juice', x: -152, y: -265,         offset: -5, use: {
+			undefined: ['goto:take juice'],
+		}, }),
 		this.Prop({ texture: 'candle foil top', x: -227, y: -300,   offset: 300 }),
 
 		this.cartPoly = this.Poly({ verts: [-142,-11, -100,-40, -191,-71, -245,-110, -209,-123, -252,-149, -336,-88] }), // cart
@@ -604,7 +606,10 @@
 			'bottle cap': [`"kfhh.. no.. dirty..."`],
 			juice: ['goto:give juice'],
 		}, }),
-		this.Npc({ name: 'juicebox', body: 'mouse_basic', x: -207, y: -278, use: {}, }),
+		this.Npc({ name: 'juicemonger', body: 'mouse_basic', x: -207, y: -278, use: {
+			undefined: [`"wehh.. late late late..."`, `"waahnhn..."`, `"wuhh.. waaannnt ring back..."`],
+			ring: ['goto:give ring'],
+		}, }),
 		this.Npc({ name: 'right', body: 'mouse_basic', x: 268, y: -165, flip: true, use: {}, }),
 		this.Npc({ name: 'smith', body: 'mouse_smith', x: 238, y: -62, flip: true, offset: 62, use: {}, }),
 		
@@ -1411,6 +1416,36 @@ soap
 // 88'`88'`88 88'  `88 88    88 Y8ooooo. 88ooood8
 // 88  88  88 88.  .88 88.  .88       88 88.  ...
 // dP  dP  dP `88888P' `88888P' `88888P' `88888P'
+::take juice
+<<if this.gaveRing>>
+<<do this.goto('generic item')>>
+<<else>>
+<<do this.gameObject = this.scene.find('juicemonger')>>
+"wohhh...! not! free...!!"
+[[>close]]
+<<endif>>
+
+::give ring
+<<do
+	this.scene.loseItem();
+	this.gaveRing = true;
+	this.scene.find('juicemonger').btn.use.undefined = [`"weee... pretty"`, `"whhoo... friend..? drink...!"`];
+	this.scene.find('juicemonger').btn.resetCycles();
+>>
+"whaaa.."
+>
+// TODO: show ring
+// TODO: sfx
+<<do this.scene.screenFilter.flash([30,90,100], 600, this.ease.cubicIn)>>
+*bling*
+>
+<<do this.shock(this.scene.find('juicemonger'), 250)>>
+"wehehe... finally..."
+>
+"friend.. take... whhhhaatever..."
+[[>close]]
+
+
 ::take key
 <<if this.juiced>>
 <<do this.goto('generic item')>>
