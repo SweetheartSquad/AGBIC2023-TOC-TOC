@@ -1758,7 +1758,7 @@ to guide you north
 <<do
 	this.scene.loseItem(true);
 	this.add(
-		this.Prop({ texture: 'cheeseAltar', x: -80, y: -202,       offset: 6 }),
+		this.Prop({ texture: 'cheeseAltar', x: -80, y: -204,       offset: 8 }),
 	);
 	if (this.scene.find('starAltar')) {
 		this.goto('toggle fountain');
