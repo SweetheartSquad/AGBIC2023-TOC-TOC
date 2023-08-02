@@ -675,7 +675,7 @@
 				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
 			},
 		}),
-		this.Npc({ name: 'haughty hooligan', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, use: {
+		this.Npc({ name: 'haughty hooligan', body: 'mouse_sitting', offset: 1000, x: 218, y: -357, shadow: false, flip: true, use: {
 			undefined: [`"hehehe..."`, `"heh.. even guards.. below me..."`, `"hm... but.. have weapons..."`],
 			'cool sword': ['goto:give sword'],
 			other: [`"hmm.. don't want that..."`, `"hm.. not a weapon..."`],
