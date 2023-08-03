@@ -1910,7 +1910,9 @@ soap
 		ts.forEach(i => this.tweenFinish(i));
 		guard.spr.angle = 90;
 		guard.spr.x -= 20;
-		guard.btn.spr.y += 20;
+		guard.spr.y -= 30;
+		guard.y += 30;
+		guard.bodyCollision.body.isSensor = true;
 		guard.shadow.visible = false;
 		guard.bounce = 0;
 		guard.btn.use = {
