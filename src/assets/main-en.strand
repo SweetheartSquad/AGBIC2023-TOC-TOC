@@ -633,7 +633,10 @@
 
 		this.Poly({ verts: [348,-187, 37,7] }), // stove ledge
 		this.Prop({ texture: 'stoveFloor', x: 175, y: 0, offset: 0 }),
-		this.Prop({ texture: 'stoveHob', x: 310, y: 0,   offset: 0 }),
+		this.Hotspot({ label: 'hob', texture: 'stoveHob', x: 310, y: 0,   offset: 0, use: {
+			undefined: [`p:"it's a gas hob"`],
+			matchbox: [`goto:light stove`],
+		}, }),
 		this.Prop({ texture: 'spoonForkStoveProng', x: 218, y: 0,      offset: 1 }),
 		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 47 }),
 		this.Item({ texture: 'ring', x: 149, y: -69,          offset: 69 }),
@@ -1593,6 +1596,26 @@ soap
 // 88'`88'`88 88'  `88 88    88 Y8ooooo. 88ooood8
 // 88  88  88 88.  .88 88.  .88       88 88.  ...
 // dP  dP  dP `88888P' `88888P' `88888P' `88888P'
+::light stove
+<<if this.scene.animatorCarrying.animation === 'matchbox_carrying'>>
+<<do
+	this.gameObject = this.scene.player;
+	this.scene.loseItem();
+>>
+"can't light it with an unlit match"
+[[>close]]
+<<else>>
+<<do
+	this.add(
+		this.Prop({ texture: 'stove light', freq: 1/200, x: 0, y: 0, offset: 1000 }),
+	);
+	this.gameObject.btn.enabled = false;
+	this.scene.screenFilter.flash([255,125,0], 200);
+	this.scene.loseItem();
+	this.goto('close');
+>>
+<<endif>>
+
 ::take juice
 <<if this.gaveRing>>
 <<do this.goto('generic item')>>

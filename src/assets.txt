@@ -168,6 +168,7 @@ textures/townCenter/matchbox.png
 textures/townCenter/matchbox_carrying.png
 textures/townCenter/matchbox_lit.x3.png
 
+textures/townCenter/stove light.x3.png
 textures/townCenter/stoveFloor.png
 textures/townCenter/stoveHob.png
 textures/townCenter/spoonForkStoveProng.png
