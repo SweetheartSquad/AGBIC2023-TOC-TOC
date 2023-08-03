@@ -127,7 +127,7 @@
 
 		this.Hotspot({ label: 'flower', texture: 'bg_gnome_puzzle_flower', x: -57, y: -266, offset: -10, use: {
 			glass: ['goto:cut flower'],
-			undefined: ['cute flower!'],
+			undefined: [`p:"cute flower!"`],
 		}, }),
 
 		this.Hotspot({ label: 'leaf', texture: 'leaf', x: 122, y: -175, offset: 10, use: {
@@ -166,21 +166,21 @@
 		//junk
 		this.Item({ texture: 'thimble', x: 290, y: -20, offset: 10000000, use: {
 			player: [`"it's a thimble"`],
-			die: [`"yahtzee!"`],
+			die: [`p:"yahtzee!"`],
 		}, }),
 		this.Item({ texture: 'die', x: -304, y: -103, offset: 100000000, use: {
 			player: [`"it's a six-sided die"`],
-			thimble: [`"yahtzee!"`],
+			thimble: [`p:"yahtzee!"`],
 		}, }),
 		this.Item({ texture: 'safety pin', x: 50, y: -50, offset: -35, use: {
 			player: [`"it's a safety pin"`],
 		}, }),
 		this.Hotspot({ label: 'dragonfly', texture: 'dragonfly', x: 261, y:-290, offset: 100000000, use: {
 			undefined: ['what a pretty dragonfly...'],
-			glass: [`i don't wanna hurt it...`],
-			die: [`i don't think it wants to play.`],
-			thimble: [`i don't think it can sew.`],
-			'safety pin': [`the pin kinda looks like a wing...`],
+			glass: [`p:"i don't wanna hurt it..."`],
+			die: [`p:"i don't think it wants to play"`],
+			thimble: [`p:"i don't think it can sew"`],
+			'safety pin': [`p:"the pin kinda looks like a wing..."`],
 		}, }),
 		
 		
