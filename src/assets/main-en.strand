@@ -416,7 +416,11 @@
 		this.Prop({ texture: 'bg',                  offset: -1000000 }),
 		this.Prop({ texture: 'buttons', x: 44, y: -339,        offset: -30 }),
 		this.Poly({ verts: [-23,-472] }), // egg
-		this.Item({ texture: 'easter egg', x: -23, y: -463,          offset: -10 }),
+		this.Item({ texture: 'easter egg', x: -23, y: -463,          offset: -10, use: {
+			player: [`p:"it's an easter egg"`],
+			matchbox: [`p:"i don't want to melt that..."`],
+			otherTarget: [`p:"maybe... no, nothing"`, `p:"what if... no, that couldn't be it"`, `p:"thought it might do something special... guess not"`],
+		}, }),
 		this.Poly({ verts: [-24,-105, 42,-111], width: 5, }), // knife
 		this.Prop({ texture: 'butter knife', x: 66, y: -94,        offset: -30 }),
 		this.Poly({ verts: [-337,-45, -255,-26, -291,-5], width: 7 }), // chapstick
@@ -424,6 +428,7 @@
 		this.Poly({ verts: [15,-390, 4,-395, 15,-398, 24,-395, 16,-390] }), // bottle cap
 		this.Item({ texture: 'bottle cap', x: 15, y: -378,     offset: -10, use: {
 			player: [`p:"it's a bottle cap"`, `p:"it could probably hold something"`],
+			juice: [`p:"it's already in a cup"`],
 		}, }),
 
 		this.Interrupt({ passage: 'gatehouse interrupt', type: 'poly', verts: [84,-324, 141,-283, 178,-298, 236,-342, 162,-384] }),
@@ -431,7 +436,13 @@
 		this.Prop({ texture: 'gatehouse', x: 164, y: -259,        offset: -120 }),
 		this.Prop({ texture: 'pushPins', x: 62, y: -420,          offset: 41 }),
 		this.Poly({ verts: [258,-268, 293,-282], width: 10 }), // toothpicks
-		this.Item({ texture: 'toothpicks', x: 273, y: -247,    offset: -87 }),
+		this.Item({ texture: 'toothpicks', x: 273, y: -247,    offset: -87, use: {
+			player: [`p:"it's a toothpick"`],
+			matchbox: [`p:"i could burn them, but i shouldn't"`],
+			foil: [`p:"hm... maybe if it were more malleable..."`],
+			anvil: [`p:"maybe the smith could use it"`],
+			cheese: [`p:"i'm not here to make hors d'oeuvres"`],
+		}, }),
 		this.Poly({ verts: [321,-245, 333,-245] }), // salt shaker
 		this.Prop({ texture: 'salt shaker', x: 328, y: -232,        offset: -10 }),
 
@@ -444,9 +455,15 @@
 		this.Prop({ texture: 'pepper shaker', x: 192, y: -456,     offset: 275 }),
 		this.Hotspot({ texture: 'pill bottle', x: 100, y: -437,     offset: 275, use: {
 			undefined: [`p:"it's a bottle of pills"`, `p:"the label says 'sleepmaxx 2000'"`, `p:"they're probably expired"`],
+			'bottle cap': [`p:"guess it fell down here"`],
+			pill: [`p:"there's more of them in there"`],
+			other: [`p:"i can't reach it up there"`],
 		}, }),
 		this.Item({ texture: 'pill', x: 179, y: -385,     offset: 275, use: {
+			player: [`p:"it's a sleeping pill"`],
 			undefined: ['goto:take pill'],
+			other: [`p:"i can't reach it up there"`],
+			otherTarget: [`p:"i don't think it'll reach that"`],
 		}, }),
 
 
@@ -457,6 +474,8 @@
 			// key
 			const h = this.Item({ label: 'key', texture: 'blank', carrying: 'key_carrying', x: -55, y: -360,       offset: 100, use: {
 				undefined: ['goto:take key'],
+				player: [`p:"it's a windup key"`],
+				otherTarget: [`p:"there's no keyhole for that"`],
 			}, });
 			h.spr.width = 40;
 			h.spr.height = 20;
@@ -469,19 +488,26 @@
 		this.Item({ texture: 'fountain',   x: 15, y: -164, alpha: 0, offset: -45, use: {
 			undefined: [`goto:pickup coin`],
 			'bottle cap': [`goto:fill cap`],
+			player: [`p:"it's a shiny coin"`],
+			matchbox: [`p:"i'm not sure i need a wet match"`],
 		}, }),
 		this.Hotspot({ label: 'left altar', texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7, use: {
 			undefined: [`goto:cheese poem`],
 			cheese: ['goto:place cheese'],
+			'easter egg': [`p:"no... chocolate is poisonous to mice"`],
+			other: [`p:"that doesn't seem to fit"`],
 		}, }),
 		this.Hotspot({ label: 'right altar', texture: 'pizzaTableSR', x: 110, y: -222,      offset: -7, use: {
 			undefined: [`goto:star poem`],
 			star: ['goto:place star'],
+			other: [`p:"that doesn't seem to fit"`],
 		}, }),
 
 		this.Poly({ verts: [218,-166, 192,-184, 271,-237, 298,-218, 219,-166], width: 5 }), // matchbox
 		this.Item({ texture: 'matchbox', x: 246, y: -161,         offset: -25, use: {
+			player: [`p:"it's a match"`],
 			matchbox: [`goto:light match`],
+			toothpicks: [`p:"i think a match would work better"`],
 		}, }),
 
 		this.Block({ type: 'circle', x: -219, y: -339, radius: 2, }), // candle green
@@ -495,11 +521,18 @@
 		this.Prop({ texture: 'candleColumnRed', x: -142, y: -287,        offset: -4 }),
 		this.Poly({ verts: [-212,-308, -260,-313, -292,-287], width: 14 }), // foil
 		this.Poly({ verts: [-307,-365, -263,-316] }), // extra foil wall
-		this.Item({ texture: 'foil', x: -253, y: -274,  offset: -25 }),
+		this.Item({ texture: 'foil', x: -253, y: -274,  offset: -25, use: {
+			player: [`p:"it's some tin foil"`],
+			toothpicks: [`p:"hm... maybe if it were more malleable..."`],
+			matchbox: [`p:"it's not hot enough to do anything"`],
+		}, }),
 		this.Prop({ texture: 'juicebox', x: -168, y: -225,         offset: -47 }),
 		this.Prop({ texture: 'juiceboxL', x: -168, y: -225,         offset: -27 }),
 		this.Item({ texture: 'juice', x: -152, y: -265,         offset: -5, use: {
 			undefined: ['goto:take juice'],
+			player: [`p:*sluurrrp*`, `p:"tastes pretty good actually"`],
+			'bottle cap': [`p:"it's already in a cup"`],
+			matchbox: [`p:"seems better cold"`],
 		}, }),
 		this.Prop({ texture: 'candle foil top', x: -227, y: -300,   offset: 300 }),
 
@@ -509,7 +542,16 @@
 		(() => {
 			// horse
 			const h = this.Hotspot({ label: 'horse', texture: 'blank', x: -155, y: -30,   offset: 0, use: {
+				undefined: [`p:"it's a horse"`, `"..."`, `p:"must be tired"`, `"..."`],
 				key: ['goto:windup key'],
+				toothpicks: [`p:"that seems mean..."`],
+				spoon: [`p:"that seems mean..."`],
+				fork: [`p:"that seems mean..."`],
+				'cool sword': [`p:"that seems mean..."`],
+				anvil: [`p:"that seems mean..."`],
+				matchbox: [`p:"that seems mean..."`],
+				juice: [`p:"its owner might not like that"`],
+				'easter egg': [`p:"its owner might not like that"`],
 			}, });
 			h.spr.width = 130;
 			h.spr.height = 100;
@@ -518,7 +560,10 @@
 
 		this.polyWax = this.Poly({ verts: [-180,-336, -176,-327, -110,-292, -119,-297, -94,-316, -150,-353, -180,-336], width: 12 }), // candles
 		this.Hotspot({ texture: 'birthday candles', x: -132, y: -288,        offset: -33, use: {
+			undefined: [`p:"happy birthday!"`, `p:"that's a lot of candles..."`],
+			'cookie cutter': [`p:"maybe if they were melted..."`],
 			matchbox: [`goto:melt wax`],
+			'easter egg': [`p:"they have enough wax already"`],
 		}, }),
 		
 
@@ -540,6 +585,7 @@
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 311, y: -145, offset: 1000, use: {
 				player: [`p:"it's a cookie cutter"`],
 				'cookie cutter': ['goto:swap cutter'],
+				'wax wad': [`p:"it'd need to be flat for that"`],
 			}, });
 			h.pos = 1;
 			h.cookie = 'star';
@@ -567,6 +613,7 @@
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 299, y: -316, offset: 1000, use: {
 				player: [`p:"it's a cookie cutter"`],
 				'cookie cutter': ['goto:swap cutter'],
+				other: [`p:"i can't do much with it up there"`],
 			}, });
 			h.pos = 3;
 			h.cookie = 'tree';
@@ -593,6 +640,8 @@
 		(() => {
 			const h = this.Item({ label: 'anvil', texture: 'blank', carrying: 'anvil_carrying', x: 295, y: -52, offset: 100, use: {
 				player: [`p:"it's a hammer"`],
+				other: [`p:"better leave it to the smith"`],
+				otherTarget: [`p:"why would i hit that?"`],
 			}, });
 			h.spr.width = 50;
 			h.spr.height = 30;
@@ -651,23 +700,63 @@
 		this.Npc({ name: 'grumpy guard', body: 'mouse_guard_tall', tint: 0x2063ef, x: 71, y: -302, flip: true, use: {
 			undefined: [`"hrhgh.. hate this..."`, `"hrg.. not paid enough..."`, `"hhh..."`],
 			fountain: ['goto:give coin'],
+			pill: [`p:"i don't think it's close enough for that"`],
+			toothpicks: [`"hrghgh.. dangerous.. confiscated..."`],
+			foil: [`"hrghgh.. dangerous.. confiscated..."`],
+			anvil: [`"hhrf... put back..."`],
+			spoon: [`"hhrf... put back.. now..."`],
+			fork: [`"hhrf... put back.. now..."`],
+			cheese: [`"huhh...? no.. contraband..."`],
+			juice: [`"hehg.. not on job..."`],
+			'cookie cutter': [`"herh... don't give mouse.. cookie..."`],
+			ring: [`"hrhr.. no.. fraternization..."`],
+			'cool sword': [`"huhh...? cool..."`],
+			other: [`"hgreh.. leave..."`, `"hufh.. back..."`],
 		}, }),
 		this.Npc({ name: 'sleepy sentry', body: 'mouse_guard_short', tint: 0xe6d77a, x: 170, y: -259, flip: true, use: {
 			undefined: [`"guh.. tired..."`, `"ghuhg... need.. nap..."`, `"geugh... yawn..."`],
+			fountain: [`"grhgerh... bribes.. illegal..."`],
+			toothpicks: [`"grgrg.. dangerous.. confiscated"`],
+			foil: [`"grgrg.. dangerous.. confiscated"`],
+			anvil: [`"grgh... put back..."`],
+			spoon: [`"grgh... put back.. now..."`],
+			fork: [`"grgh... put back.. now..."`],
+			cheese: [`"guhh...? forbidden..."`],
+			juice: [`"ghghh... not.. before bed..."`],
+			'cookie cutter': [`"grr... don't give mouse.. cookie..."`],
+			ring: [`"grgr.. no.. fraternization..."`],
 			pill: ['goto:drop pill'],
+			'cool sword': [`"guhh...? cool..."`],
 		}, }),
 		this.Npc({ name: 'stuffy shopkeep', body: 'mouse_basic', tint: 0xb68ab8, x: -78, y: -360, offset: -5, use: {
 			undefined: [`"kaffkafkf..."`, `"kkff.. t-too hot..."`, `"khh.. th-thirsty..."`],
 			'bottle cap': [`"kfhh.. no.. dirty..."`],
+			cheese: [`"krekg.. contraband..."`],
+			'wax wad': [`"kfgkg... sticky.. tastes bad..."`],
+			key: [`"key.. found.. take..."`],
+			ring: [`"keh.. wrong.. thirst..."`],
 			juice: ['goto:give juice'],
+			'cookie cutter': [`"kack... don't give mouse.. cookie..."`],
+			fountain: [`"kafkf.. nothing left.. sale..."`],
 		}, }),
 		this.Npc({ name: 'jumpy juicemonger', body: 'mouse_basic', tint: 0x880DB4, x: -207, y: -278, use: {
 			undefined: [`"wehh.. late late late..."`, `"waahnhn..."`, `"wuhh.. waaannnt ring back..."`],
 			ring: ['goto:give ring'],
+			fountain: [`"wahh.. for you.. free..."`],
+			cheese: [`"whaa..! forbidden...!"`],
+			'cookie cutter': [`"wagh... don't give mouse.. cookie..."`],
 		}, }),
 		this.Npc({ name: 'puny pyro', body: 'mouse_basic', tint: 0x47654c, x: 268, y: -165, flip: true, use: {
-			undefined: [`"iia... matches.. free..."`, `"iii'm little.. can't catch..."`, `"ihihihi..."`],
-			matchbox: [`"ihihi.. do it..."`],
+			undefined: [`"iia... matches.. free..."`, `"iii'm liiiittle.. can't catch..."`, `"ihihihi..."`],
+			matchbox: [`"ihihi.. do iiit..."`],
+			toothpicks: [`"ih.. prefer.. matches..."`],
+			other: [`"iit's.. cold..."`, `"iiiff.. i could..? burn it...?"`],
+			ring: [`"ih.. prefer.. siiingle..."`],
+			anvil: [`"ihi.. won't let.. play with forge..."`],
+			cheese: [`"ih.. couldn't... forbidden..."`],
+			star: [`"ihihi.. melted.. good..."`],
+			'cookie cutter': [`"ihih... don't give mouse.. cookie..."`],
+			'cool sword': [`"ihh... hate cool things..."`],
 		}, }),
 		this.Npc({ name: 'stubborn smith', body: 'mouse_smith', tint: 0x3CECA1, x: 238, y: -62, flip: true, offset: 62, use: {
 			undefined: [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`],
@@ -677,15 +766,19 @@
 			spoon: [`"mm.. no... fresh metal only..."`],
 			'hot sword': [`"mm... molten.. careful..."`],
 			'cool sword': [`"mm.. my work... mhmmmm.."`],
+			fountain: [`"meh.. weak..."`],
+			anvil: [`"mm.. stregth.. share..."`],
+			'cookie cutter': [`"mrrhh... don't give mouse.. cookie..."`],
+			ring: [`"mmm... my bad..."`],
 		}, }),
 		
-		this.Npc({ name: 'cheesy coachmouse', body: 'mouse_nervous', tint: 0xB5320C, x: -192, y: -172, bodyCollision: { isStatic: true },
-			use: {
-				undefined: [`"my horse.."`, `"it won't go..."`],
-				'wind-up key': [`"that looks familiar.."`, `"i know this..."`],
-				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
-			},
-		}),
+		this.Npc({ name: 'cheesy coachmouse', body: 'mouse_nervous', tint: 0xB5320C, x: -192, y: -172, bodyCollision: { isStatic: true }, use: {
+			undefined: [`"arhh.. horse.."`, `"ahhh.. won't go..."`, `"arhghg..."`],
+			'wind-up key': [`"ah.. familiar...?"`, `"ah.. think..."`],
+			fountain: [`"ah.. only work.. for crown..."`],
+			ring: [`"ahg.. for horse...?"`],
+			'cookie cutter': [`"arhgh... don't give mouse.. cookie..."`],
+		}, }),
 		this.Npc({ name: 'haughty hooligan', body: 'mouse_sitting', tint: 0x88898c, offset: 1000, x: 218, y: -357, shadow: false, flip: true, use: {
 			undefined: [`"hehehe..."`, `"heh.. even guards.. below me..."`, `"hm... but.. have weapons..."`],
 			'cool sword': ['goto:give sword'],
@@ -693,7 +786,10 @@
 			anvil: [`"hm... sword would be cooler..."`],
 			fork: [`"hm... sword would be cooler..."`],
 			spoon: [`"hm... sword would be cooler..."`],
+			foil: [`"hm... not ready..."`],
 			toothpicks: [`"hm... no.. weak..."`],
+			'cookie cutter': [`"hhh... don't give mouse.. cookie..."`],
+			ring: [`"heh.. not cool..."`],
 		}, }),
 
 		(() => {
@@ -866,7 +962,7 @@ me
 	spr.scale.x *= -1;
 	spr.y -= 74;
 	spr.x = 5;
-	const numbgnome = this.scene.find("numb gnome");
+	const numbgnome = this.scene.find('numb gnome');
 	numbgnome.spr.addChild(spr);
 	this.shock(numbgnome, 300);
 	numbgnome.btn.use.undefined = [`"he won't put his rock on that tile..."`,`"my solution is right but whatever..."`,`"thanks for the cute flower..."`];
@@ -898,7 +994,7 @@ me
 	this.tween(hat.display.container, 'alpha', 0, 1000);
 	this.tween(worm.display.container, 'alpha', 0, 1000);
 	worm.btn.enabled = false;
-	const fierygnome = this.scene.find("fiery gnome");
+	const fierygnome = this.scene.find('fiery gnome');
 	fierygnome.btn.use.undefined = [`"i know where the rocks go!"`,`"don't listen to the other guy."`, `"so glad that worm is gone..."`];
 	fierygnome.btn.resetCycles();
 >>
@@ -968,10 +1064,10 @@ me
 		this.Poly({ verts: [18,-292, 13,-263, 35,-234, 60,-263, 166,-324, 187,-237, 216,-166, 212,-247] }),
 	);
 
-	const fierygnome = this.scene.find("fiery gnome");
+	const fierygnome = this.scene.find('fiery gnome');
 	fierygnome.btn.use.undefined = [`"i can't believe i was wrong!!"`,`"don't tell anyone i was wrong!"`];
 	fierygnome.btn.resetCycles();
-	const numbgnome = this.scene.find("numb gnome");
+	const numbgnome = this.scene.find('numb gnome');
 	numbgnome.btn.use.undefined = [`"i guess my solution didn't work..."`,`"that's fine i guess..."`];
 	numbgnome.btn.resetCycles();
 
@@ -1501,7 +1597,10 @@ soap
 <<if this.gaveRing>>
 <<do this.goto('generic item')>>
 <<else>>
-<<do this.gameObject = this.scene.find('jumpy juicemonger')>>
+<<do
+	this.gameObject = this.scene.find('jumpy juicemonger');
+	this.shock(this.gameObject, 400);
+>>
 "wohhh...! not! free...!!"
 [[>close]]
 <<endif>>
@@ -1522,7 +1621,7 @@ soap
 	spr.scale.x *= -1;
 	spr.x = 5;
 	spr.y = -49;
-	const juice = this.scene.find("jumpy juicemonger");
+	const juice = this.scene.find('jumpy juicemonger');
 	juice.spr.addChild(spr);
 	this.shock(this.scene.find('jumpy juicemonger'), 500);
 >>
@@ -1574,12 +1673,16 @@ soap
 <<do 
 	this.scene.loseItem(true);
 	this.scene.find('can front wKey').spr.texture = this.tex('can front');
-	this.scene.find('horseNoKey').spr.texture = this.tex('horseWithKey');
+	
+	this.destroy(this.scene.find('horseNoKey'));
+	this.add(
+		this.Prop({ texture: 'horseKey', freq: 1/100, x: -128, y: 0,   offset: -35 }),
+	);
 >>
 <<do this.gameObject = this.scene.player>>
 "here you go"
 >
-<<do this.gameObject = this.scene.find('horseNoKey')>>
+<<do this.gameObject = this.scene.find('horseKey')>>
 *wind*
 >
 *wind-wind*
@@ -1590,8 +1693,9 @@ soap
 		this.destroy(this.cartPoly);
 		this.destroy(this.scene.find('horse'));
 		this.cartPoly = null;
-		const horse = this.scene.find('horseNoKey');
+		const horse = this.scene.find('horseKey');
 		const cart = this.scene.find('cheeseCart');
+		this.camPoint = cart.transform;
 		this.tween(horse.transform, 'x', horse.transform.x + 200, 2000, undefined, this.ease.cubicIn);
 		this.tween(horse.transform, 'y', horse.transform.y + 200, 2000, undefined, this.ease.cubicIn);
 		this.tween(cart.transform, 'x', cart.transform.x + 200, 2000, undefined, this.ease.cubicIn);
@@ -1625,6 +1729,7 @@ soap
 		this.tweenAbort(t4);
 		this.tweenAbort(t5);
 		this.destroy(farmer);
+		this.camPoint = undefined;
 		this.gameObject = undefined;
 		this.goto('close');
 	})();

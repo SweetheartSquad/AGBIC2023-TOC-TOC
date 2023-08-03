@@ -149,7 +149,7 @@ textures/townCenter/candle foil top.png
 textures/townCenter/cheeseCart.png
 textures/townCenter/cheeseFloor.png
 textures/townCenter/horseNoKey.png
-textures/townCenter/horseWithKey.png
+textures/townCenter/horseKey.x4.png
 
 textures/townCenter/can back.png
 textures/townCenter/can front.png
