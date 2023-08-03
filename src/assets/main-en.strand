@@ -1620,6 +1620,7 @@ soap
 		this.cartPoly = null;
 		const horse = this.scene.find('horseNoKey');
 		const cart = this.scene.find('cheeseCart');
+		this.camPoint = cart.transform;
 		this.tween(horse.transform, 'x', horse.transform.x + 200, 2000, undefined, this.ease.cubicIn);
 		this.tween(horse.transform, 'y', horse.transform.y + 200, 2000, undefined, this.ease.cubicIn);
 		this.tween(cart.transform, 'x', cart.transform.x + 200, 2000, undefined, this.ease.cubicIn);
@@ -1653,6 +1654,7 @@ soap
 		this.tweenAbort(t4);
 		this.tweenAbort(t5);
 		this.destroy(farmer);
+		this.camPoint = undefined;
 		this.gameObject = undefined;
 		this.goto('close');
 	})();
