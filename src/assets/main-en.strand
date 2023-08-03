@@ -442,8 +442,10 @@
 		this.Prop({ texture: 'shelfBg', x: 157, y: -288,            offset: 75 }),
 		this.Prop({ texture: 'pushPinsTop', x: 30, y: -498,          offset: 375 }),
 		this.Prop({ texture: 'pepper shaker', x: 192, y: -456,     offset: 275 }),
-		this.Prop({ texture: 'pill bottle', x: 100, y: -437,     offset: 275 }),
-		this.Item({ texture: 'pill', x: 151, y: -423,     offset: 275, use: {
+		this.Hotspot({ texture: 'pill bottle', x: 100, y: -437,     offset: 275, use: {
+			undefined: [`p:"it's a bottle of pills"`, `p:"the label says 'sleepmaxx 2000'"`, `p:"they're probably expired"`],
+		}, }),
+		this.Item({ texture: 'pill', x: 179, y: -385,     offset: 275, use: {
 			undefined: ['goto:take pill'],
 		}, }),
 
@@ -647,7 +649,10 @@
 		})(),
 
 		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 71, y: -302, flip: true, use: {}, }),
-		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
+		this.Npc({ name: 'sleepy sentry', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {
+			undefined: [`"guh.. tired..."`, `"ghuhg... need.. nap..."`, `"geugh... yawn..."`],
+			pill: ['goto:drop pill'],
+		}, }),
 		this.Npc({ name: 'stuffy shopkeep', body: 'mouse_basic', x: -78, y: -360, offset: -5, use: {
 			undefined: [`"kaffkafkf..."`, `"kkff.. t-too hot..."`, `"khh.. th-thirsty..."`],
 			'bottle cap': [`"kfhh.. no.. dirty..."`],
@@ -1887,6 +1892,42 @@ soap
 "he-hey.. guardin' those..."
 [[>close]]
 <<endif>>
+
+::drop pill
+<<do
+	(async () => {
+		this.scene.loseItem(true);
+		const pill = this.Prop({ texture: 'pill_carrying', x: 179, y: -385, offset: 10000 });
+		const guard = this.scene.find('sleepy sentry');
+		this.camPoint = pill.transform;
+		this.add(
+			pill,
+		);
+		this.tween(pill.transform, 'x', pill.transform.x, 1200, pill.transform.x + 10, (t) => 1-(Math.random()-0.5)*(1-t));
+		await this.delay(400);
+		this.tween(pill.transform, 'y', -257 - 30, 400, undefined, this.ease.cubicIn);
+		await this.delay(400);
+		this.destroy(pill);
+		this.camPoint = guard.transform;
+		this.scene.screenFilter.flash([255,128,128], 200, this.ease.cubicOut);
+		const ts = this.shock(guard, 450);
+		await this.delay(800);
+		// TODO: sfx
+		this.scene.screenFilter.flash([40,20,20], 200, this.ease.cubicOut);
+		ts.forEach(i => this.tweenFinish(i));
+		guard.spr.angle = 90;
+		guard.spr.x -= 20;
+		guard.btn.spr.y += 20;
+		guard.shadow.visible = false;
+		guard.bounce = 0;
+		guard.btn.use = {
+			undefined: [`p:"...they're probably fine"`, `"zzz..."`],
+		};
+		guard.btn.resetCycles();
+		this.camPoint = undefined;
+		this.goto('close');
+	})();
+>>
 
 ::pickup coin
 <<if this.fountainOff>>
