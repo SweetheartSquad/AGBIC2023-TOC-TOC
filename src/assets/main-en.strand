@@ -648,22 +648,22 @@
 			return h;
 		})(),
 
-		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 71, y: -302, flip: true, use: {}, }),
-		this.Npc({ name: 'sleepy sentry', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {
+		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', tint: 0x2063ef, x: 71, y: -302, flip: true, use: {}, }),
+		this.Npc({ name: 'sleepy sentry', body: 'mouse_guard_short', tint: 0xe6d77a, x: 170, y: -259, flip: true, use: {
 			undefined: [`"guh.. tired..."`, `"ghuhg... need.. nap..."`, `"geugh... yawn..."`],
 			pill: ['goto:drop pill'],
 		}, }),
-		this.Npc({ name: 'stuffy shopkeep', body: 'mouse_basic', x: -78, y: -360, offset: -5, use: {
+		this.Npc({ name: 'stuffy shopkeep', body: 'mouse_basic', tint: 0xb68ab8, x: -78, y: -360, offset: -5, use: {
 			undefined: [`"kaffkafkf..."`, `"kkff.. t-too hot..."`, `"khh.. th-thirsty..."`],
 			'bottle cap': [`"kfhh.. no.. dirty..."`],
 			juice: ['goto:give juice'],
 		}, }),
-		this.Npc({ name: 'juicemonger', body: 'mouse_basic', x: -207, y: -278, use: {
+		this.Npc({ name: 'juicemonger', body: 'mouse_basic', tint: 0x880DB4, x: -207, y: -278, use: {
 			undefined: [`"wehh.. late late late..."`, `"waahnhn..."`, `"wuhh.. waaannnt ring back..."`],
 			ring: ['goto:give ring'],
 		}, }),
-		this.Npc({ name: 'right', body: 'mouse_basic', x: 268, y: -165, flip: true, use: {}, }),
-		this.Npc({ name: 'smith', body: 'mouse_smith', x: 238, y: -62, flip: true, offset: 62, use: {
+		this.Npc({ name: 'right', body: 'mouse_basic', tint: 0x3CECA1, x: 268, y: -165, flip: true, use: {}, }),
+		this.Npc({ name: 'smith', body: 'mouse_smith', tint: 0x47654c, x: 238, y: -62, flip: true, offset: 62, use: {
 			undefined: [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`],
 			foil: ['goto:give foil'],
 			toothpicks: ['goto:give toothpicks'],
@@ -673,14 +673,14 @@
 			'cool sword': [`"mm.. my work... mhmmmm.."`],
 		}, }),
 		
-		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -192, y: -172, bodyCollision: { isStatic: true },
+		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', tint: 0xB5320C, x: -192, y: -172, bodyCollision: { isStatic: true },
 			use: {
 				undefined: [`"my horse.."`, `"it won't go..."`],
 				'wind-up key': [`"that looks familiar.."`, `"i know this..."`],
 				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
 			},
 		}),
-		this.Npc({ name: 'haughty hooligan', body: 'mouse_sitting', offset: 1000, x: 218, y: -357, shadow: false, flip: true, use: {
+		this.Npc({ name: 'haughty hooligan', body: 'mouse_sitting', tint: 0x88898c, offset: 1000, x: 218, y: -357, shadow: false, flip: true, use: {
 			undefined: [`"hehehe..."`, `"heh.. even guards.. below me..."`, `"hm... but.. have weapons..."`],
 			'cool sword': ['goto:give sword'],
 			other: [`"hmm.. don't want that..."`, `"hm.. not a weapon..."`],
