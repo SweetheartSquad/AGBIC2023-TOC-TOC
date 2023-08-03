@@ -138,6 +138,7 @@
 			'die': [`"no time for games!"`],
 			'glass': [`"hey! watch where you swing that!"`],
 			undefined: [`"i know where the rocks go!"`,`"don't listen to the other guy."`, `"we'll never get into the temple..."`, `"ugh, that worm creeps me out..."`],
+			'medium rock': [`"hey! that's my- oh, maybe not."`],
 		}, }),
 		this.Npc({ name: 'numb gnome', body: 'gnome_bottom', tint: 0x6f79cd, x: 180, y: -100, flip: true, use: {
 			'cut flower': [`goto:remove-hat`],
@@ -146,6 +147,7 @@
 			'glass': [`"careful with that..."`],
 			'safety pin': [`"hmm, that's not really a hat..."`],
 			undefined: [`"he won't put his rock on that tile..."`,`"my solution is right but whatever..."`,`"i hope there's a cute hat in there..."`],
+			'medium rock': [`"oh, you have one too..."`],
 		}, }),
 
 		this.Item({ texture: 'big rock', x: -109, y: -219, use: {
