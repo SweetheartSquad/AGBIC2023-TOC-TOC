@@ -648,7 +648,10 @@
 			return h;
 		})(),
 
-		this.Npc({ name: 'grumpy guard', body: 'mouse_guard_tall', tint: 0x2063ef, x: 71, y: -302, flip: true, use: {}, }),
+		this.Npc({ name: 'grumpy guard', body: 'mouse_guard_tall', tint: 0x2063ef, x: 71, y: -302, flip: true, use: {
+			undefined: [`"hrhgh.. hate this..."`, `"hrg.. not paid enough..."`, `"hhh..."`],
+			fountain: ['goto:give coin'],
+		}, }),
 		this.Npc({ name: 'sleepy sentry', body: 'mouse_guard_short', tint: 0xe6d77a, x: 170, y: -259, flip: true, use: {
 			undefined: [`"guh.. tired..."`, `"ghuhg... need.. nap..."`, `"geugh... yawn..."`],
 			pill: ['goto:drop pill'],
@@ -1943,6 +1946,36 @@ soap
 		this.tween(this.scene.find('fountainWater').spr, 'alpha', 1, 600, undefined, this.ease.cubicInOut);
 	}
 	this.goto('close');
+>>
+
+::give coin
+<<do
+	this.scene.loseItem();
+	this.bribed = true;
+>>
+"hrhr...?"
+>
+"hh.. ok... i get it.."
+>
+"have at it..."
+<<do
+	(async () => {
+		const guard = this.scene.find('grumpy guard');
+		this.gameObject = guard;
+		const [t1, t2] = this.shock(guard, 1200);
+		const t3 = this.tween(guard, 'x', -36, 1200, undefined, this.ease.backIn);
+		const t4 = this.tween(guard, 'y', -284, 1200, undefined, this.ease.backIn);
+		const t5 = this.tween(guard.display.container, 'alpha', 0, 1200, undefined, this.ease.cubicIn);
+		await this.delay(1600);
+		this.tweenAbort(t1);
+		this.tweenAbort(t2);
+		this.tweenAbort(t3);
+		this.tweenAbort(t4);
+		this.tweenAbort(t5);
+		this.destroy(guard);
+		this.gameObject = undefined;
+		this.goto('close');
+	})();
 >>
 
 ::cheese poem
