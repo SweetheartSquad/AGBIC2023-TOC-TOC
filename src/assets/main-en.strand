@@ -1640,7 +1640,9 @@ soap
 		await this.delay(1500);
 		smith.flipped = true;
 		this.add(
-			this.Item({ texture: 'ring', x: 149, y: -69,          offset: 69 }),
+			this.Item({ texture: 'ring', x: 149, y: -69,          offset: 69, use: {
+				player: [`p:"it's a pretty ring"`],
+			}, }),
 		);
 		this.camPoint = undefined;
 		this.goto('close');
