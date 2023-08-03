@@ -416,7 +416,11 @@
 		this.Prop({ texture: 'bg',                  offset: -1000000 }),
 		this.Prop({ texture: 'buttons', x: 44, y: -339,        offset: -30 }),
 		this.Poly({ verts: [-23,-472] }), // egg
-		this.Item({ texture: 'easter egg', x: -23, y: -463,          offset: -10 }),
+		this.Item({ texture: 'easter egg', x: -23, y: -463,          offset: -10, use: {
+			player: [`p:"it's an easter egg"`],
+			matchbox: [`p:"i don't want to melt that..."`],
+			otherTarget: [`p:"maybe... no, nothing"`, `p:"what if... no, that couldn't be it"`, `p:"thought it might do something special... guess not"`],
+		}, }),
 		this.Poly({ verts: [-24,-105, 42,-111], width: 5, }), // knife
 		this.Prop({ texture: 'butter knife', x: 66, y: -94,        offset: -30 }),
 		this.Poly({ verts: [-337,-45, -255,-26, -291,-5], width: 7 }), // chapstick
@@ -424,6 +428,7 @@
 		this.Poly({ verts: [15,-390, 4,-395, 15,-398, 24,-395, 16,-390] }), // bottle cap
 		this.Item({ texture: 'bottle cap', x: 15, y: -378,     offset: -10, use: {
 			player: [`p:"it's a bottle cap"`, `p:"it could probably hold something"`],
+			juice: [`p:"it's already in a cup"`],
 		}, }),
 
 		this.Interrupt({ passage: 'gatehouse interrupt', type: 'poly', verts: [84,-324, 141,-283, 178,-298, 236,-342, 162,-384] }),
@@ -431,7 +436,13 @@
 		this.Prop({ texture: 'gatehouse', x: 164, y: -259,        offset: -120 }),
 		this.Prop({ texture: 'pushPins', x: 62, y: -420,          offset: 41 }),
 		this.Poly({ verts: [258,-268, 293,-282], width: 10 }), // toothpicks
-		this.Item({ texture: 'toothpicks', x: 273, y: -247,    offset: -87 }),
+		this.Item({ texture: 'toothpicks', x: 273, y: -247,    offset: -87, use: {
+			player: [`p:"it's a toothpick"`],
+			matchbox: [`p:"i could burn them, but i shouldn't"`],
+			foil: [`p:"hm... maybe if it were more malleable..."`],
+			anvil: [`p:"maybe the smith could use it"`],
+			cheese: [`p:"i'm not here to make hors d'oeuvres"`],
+		}, }),
 		this.Poly({ verts: [321,-245, 333,-245] }), // salt shaker
 		this.Prop({ texture: 'salt shaker', x: 328, y: -232,        offset: -10 }),
 
@@ -444,9 +455,15 @@
 		this.Prop({ texture: 'pepper shaker', x: 192, y: -456,     offset: 275 }),
 		this.Hotspot({ texture: 'pill bottle', x: 100, y: -437,     offset: 275, use: {
 			undefined: [`p:"it's a bottle of pills"`, `p:"the label says 'sleepmaxx 2000'"`, `p:"they're probably expired"`],
+			'bottle cap': [`p:"guess it fell down here"`],
+			pill: [`p:"there's more of them in there"`],
+			other: [`p:"i can't reach it up there"`],
 		}, }),
 		this.Item({ texture: 'pill', x: 179, y: -385,     offset: 275, use: {
+			player: [`p:"it's a sleeping pill"`],
 			undefined: ['goto:take pill'],
+			other: [`p:"i can't reach it up there"`],
+			otherTarget: [`p:"i don't think it'll reach that"`],
 		}, }),
 
 
@@ -457,6 +474,8 @@
 			// key
 			const h = this.Item({ label: 'key', texture: 'blank', carrying: 'key_carrying', x: -55, y: -360,       offset: 100, use: {
 				undefined: ['goto:take key'],
+				player: [`p:"it's a windup key"`],
+				otherTarget: [`p:"there's no keyhole for that"`],
 			}, });
 			h.spr.width = 40;
 			h.spr.height = 20;
@@ -469,19 +488,26 @@
 		this.Item({ texture: 'fountain',   x: 15, y: -164, alpha: 0, offset: -45, use: {
 			undefined: [`goto:pickup coin`],
 			'bottle cap': [`goto:fill cap`],
+			player: [`p:"it's a shiny coin"`],
+			matchbox: [`p:"i'm not sure i need a wet match"`],
 		}, }),
 		this.Hotspot({ label: 'left altar', texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7, use: {
 			undefined: [`goto:cheese poem`],
 			cheese: ['goto:place cheese'],
+			'easter egg': [`p:"no... chocolate is poisonous to mice"`],
+			other: [`p:"that doesn't seem to fit"`],
 		}, }),
 		this.Hotspot({ label: 'right altar', texture: 'pizzaTableSR', x: 110, y: -222,      offset: -7, use: {
 			undefined: [`goto:star poem`],
 			star: ['goto:place star'],
+			other: [`p:"that doesn't seem to fit"`],
 		}, }),
 
 		this.Poly({ verts: [218,-166, 192,-184, 271,-237, 298,-218, 219,-166], width: 5 }), // matchbox
 		this.Item({ texture: 'matchbox', x: 246, y: -161,         offset: -25, use: {
+			player: [`p:"it's a match"`],
 			matchbox: [`goto:light match`],
+			toothpicks: [`p:"i think a match would work better"`],
 		}, }),
 
 		this.Block({ type: 'circle', x: -219, y: -339, radius: 2, }), // candle green
@@ -495,11 +521,18 @@
 		this.Prop({ texture: 'candleColumnRed', x: -142, y: -287,        offset: -4 }),
 		this.Poly({ verts: [-212,-308, -260,-313, -292,-287], width: 14 }), // foil
 		this.Poly({ verts: [-307,-365, -263,-316] }), // extra foil wall
-		this.Item({ texture: 'foil', x: -253, y: -274,  offset: -25 }),
+		this.Item({ texture: 'foil', x: -253, y: -274,  offset: -25, use: {
+			player: [`p:"it's some tin foil"`],
+			toothpicks: [`p:"hm... maybe if it were more malleable..."`],
+			matchbox: [`p:"it's not hot enough to do anything"`],
+		}, }),
 		this.Prop({ texture: 'juicebox', x: -168, y: -225,         offset: -47 }),
 		this.Prop({ texture: 'juiceboxL', x: -168, y: -225,         offset: -27 }),
 		this.Item({ texture: 'juice', x: -152, y: -265,         offset: -5, use: {
 			undefined: ['goto:take juice'],
+			player: [`p:*sluurrrp*`, `p:"tastes pretty good actually"`],
+			'bottle cap': [`p:"it's already in a cup"`],
+			matchbox: [`p:"seems better cold"`],
 		}, }),
 		this.Prop({ texture: 'candle foil top', x: -227, y: -300,   offset: 300 }),
 
@@ -661,6 +694,7 @@
 			juice: [`"hehg.. not on job..."`],
 			'cookie cutter': [`"herh... don't give mouse.. cookie..."`],
 			ring: [`"hrhr.. no.. fraternization..."`],
+			'cool sword': [`"huhh...? cool..."`],
 			other: [`"hgreh.. leave..."`, `"hufh.. back..."`],
 		}, }),
 		this.Npc({ name: 'sleepy sentry', body: 'mouse_guard_short', tint: 0xe6d77a, x: 170, y: -259, flip: true, use: {
@@ -676,6 +710,7 @@
 			'cookie cutter': [`"grr... don't give mouse.. cookie..."`],
 			ring: [`"grgr.. no.. fraternization..."`],
 			pill: ['goto:drop pill'],
+			'cool sword': [`"guhh...? cool..."`],
 		}, }),
 		this.Npc({ name: 'stuffy shopkeep', body: 'mouse_basic', tint: 0xb68ab8, x: -78, y: -360, offset: -5, use: {
 			undefined: [`"kaffkafkf..."`, `"kkff.. t-too hot..."`, `"khh.. th-thirsty..."`],
@@ -705,6 +740,7 @@
 			cheese: [`"ih.. couldn't... forbidden..."`],
 			star: [`"ihihi.. melted.. good..."`],
 			'cookie cutter': [`"ihih... don't give mouse.. cookie..."`],
+			'cool sword': [`"ihh... hate cool things..."`],
 		}, }),
 		this.Npc({ name: 'stubborn smith', body: 'mouse_smith', tint: 0x3CECA1, x: 238, y: -62, flip: true, offset: 62, use: {
 			undefined: [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`],
