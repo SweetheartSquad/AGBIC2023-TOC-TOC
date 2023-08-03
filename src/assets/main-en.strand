@@ -119,9 +119,9 @@
 		this.Hotspot({ label: 'worm', texture: 'bg_gnome_puzzle_worm', x: -286, y: -159, offset: 0, use: {
 			hat: ['goto:worm hat'],
 			undefined: [`"wish i had a hat to go out in"`, `"i wanna look good before i head out"`],
-			die: [`"i dont have hands dude"`],
+			die: [`"i don't have hands dude"`],
 			thimble: [`"kind of a bummer hat no offense"`],
-			glass: [`"whoa dude dont hurt me"`],
+			glass: [`"whoa dude don't hurt me"`],
 			'cut flower': [`"im not really a flower guy"`],
 		}, }),
 
