@@ -866,7 +866,7 @@ me
 	spr.scale.x *= -1;
 	spr.y -= 74;
 	spr.x = 5;
-	const numbgnome = this.scene.find("numb gnome");
+	const numbgnome = this.scene.find('numb gnome');
 	numbgnome.spr.addChild(spr);
 	this.shock(numbgnome, 300);
 	numbgnome.btn.use.undefined = [`"he won't put his rock on that tile..."`,`"my solution is right but whatever..."`,`"thanks for the cute flower..."`];
@@ -898,7 +898,7 @@ me
 	this.tween(hat.display.container, 'alpha', 0, 1000);
 	this.tween(worm.display.container, 'alpha', 0, 1000);
 	worm.btn.enabled = false;
-	const fierygnome = this.scene.find("fiery gnome");
+	const fierygnome = this.scene.find('fiery gnome');
 	fierygnome.btn.use.undefined = [`"i know where the rocks go!"`,`"don't listen to the other guy."`, `"so glad that worm is gone..."`];
 	fierygnome.btn.resetCycles();
 >>
@@ -968,10 +968,10 @@ me
 		this.Poly({ verts: [18,-292, 13,-263, 35,-234, 60,-263, 166,-324, 187,-237, 216,-166, 212,-247] }),
 	);
 
-	const fierygnome = this.scene.find("fiery gnome");
+	const fierygnome = this.scene.find('fiery gnome');
 	fierygnome.btn.use.undefined = [`"i can't believe i was wrong!!"`,`"don't tell anyone i was wrong!"`];
 	fierygnome.btn.resetCycles();
-	const numbgnome = this.scene.find("numb gnome");
+	const numbgnome = this.scene.find('numb gnome');
 	numbgnome.btn.use.undefined = [`"i guess my solution didn't work..."`,`"that's fine i guess..."`];
 	numbgnome.btn.resetCycles();
 
@@ -1522,7 +1522,7 @@ soap
 	spr.scale.x *= -1;
 	spr.x = 5;
 	spr.y = -49;
-	const juice = this.scene.find("jumpy juicemonger");
+	const juice = this.scene.find('jumpy juicemonger');
 	juice.spr.addChild(spr);
 	this.shock(this.scene.find('jumpy juicemonger'), 500);
 >>
