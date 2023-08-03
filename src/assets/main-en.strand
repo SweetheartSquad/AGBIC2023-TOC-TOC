@@ -1059,6 +1059,7 @@ me
 <<do
 	this.scene.findAll('spot').forEach(i => { i.btn.enabled = false; });
 	this.scene.camera.shake = 2;
+	this.camPoint = { x: this.size.x, y: -this.size.y }; 
 	this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
 	this.tween(this.scene.camera, 'shake', 0, 1500, 2, this.ease.cubicIn);
 	this.tween(this.scene.find('bg_gnome_puzzle_closed_BACK').display.container, 'alpha', 0, 1000);
@@ -1076,6 +1077,7 @@ me
 	numbgnome.btn.resetCycles();
 
 	setTimeout(() => {
+		this.camPoint = undefined;
 		this.goto('rock solved1');
 	}, 2000);
 	setTimeout(() => {
@@ -1094,8 +1096,10 @@ me
 	h.spr.height = 100;
 	this.add(h);
 >>
+<<do this.gameObject = this.scene.find('fiery gnome')>>
 "you opened the temple..."
 >
+<<do this.gameObject = this.scene.find('numb gnome')>>
 "wow..."
 [[>close]]
 
