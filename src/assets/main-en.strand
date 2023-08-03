@@ -762,11 +762,11 @@
 			'cool sword': [`"ihh... hate cool things..."`],
 		}, }),
 		this.Npc({ name: 'stubborn smith', body: 'mouse_smith', tint: 0x3CECA1, x: 238, y: -62, flip: true, offset: 62, use: {
-			undefined: [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`],
-			foil: ['goto:give foil'],
-			toothpicks: ['goto:give toothpicks'],
-			fork: [`"mm.. no... fresh metal only..."`],
-			spoon: [`"mm.. no... fresh metal only..."`],
+			undefined: [`"mhhe.. forge.. dead..."`, `"mm.. ring.. late..."`, `"mhm..."`],
+			foil: [`"mehh... not.. without forge..."`],
+			toothpicks: [`"mehh... not.. without forge..."`],
+			fork: [`"mehh... not.. without forge..."`],
+			spoon: [`"mehh... not.. without forge..."`],
 			'hot sword': [`"mm... molten.. careful..."`],
 			'cool sword': [`"mm.. my work... mhmmmm.."`],
 			fountain: [`"meh.. weak..."`],
@@ -1612,6 +1612,14 @@ soap
 	this.gameObject.btn.enabled = false;
 	this.scene.screenFilter.flash([255,125,0], 200);
 	this.scene.loseItem();
+	const smith = this.scene.find('stubborn smith');
+	smith.btn.use.undefined = [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`];
+	smith.btn.use.foil = ['goto:give foil'];
+	smith.btn.use.toothpicks = ['goto:give toothpicks'];
+	smith.btn.use.fork = [`"mm.. no... fresh metal only..."`];
+	smith.btn.use.spoon = [`"mm.. no... fresh metal only..."`];
+	smith.btn.resetCycles();
+
 	this.goto('close');
 >>
 <<endif>>
