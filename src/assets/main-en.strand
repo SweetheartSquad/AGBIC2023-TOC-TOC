@@ -658,12 +658,12 @@
 			'bottle cap': [`"kfhh.. no.. dirty..."`],
 			juice: ['goto:give juice'],
 		}, }),
-		this.Npc({ name: 'juicemonger', body: 'mouse_basic', tint: 0x880DB4, x: -207, y: -278, use: {
+		this.Npc({ name: 'jumpy juicemonger', body: 'mouse_basic', tint: 0x880DB4, x: -207, y: -278, use: {
 			undefined: [`"wehh.. late late late..."`, `"waahnhn..."`, `"wuhh.. waaannnt ring back..."`],
 			ring: ['goto:give ring'],
 		}, }),
 		this.Npc({ name: 'right', body: 'mouse_basic', tint: 0x3CECA1, x: 268, y: -165, flip: true, use: {}, }),
-		this.Npc({ name: 'smith', body: 'mouse_smith', tint: 0x47654c, x: 238, y: -62, flip: true, offset: 62, use: {
+		this.Npc({ name: 'stubborn smith', body: 'mouse_smith', tint: 0x47654c, x: 238, y: -62, flip: true, offset: 62, use: {
 			undefined: [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`],
 			foil: ['goto:give foil'],
 			toothpicks: ['goto:give toothpicks'],
@@ -673,7 +673,7 @@
 			'cool sword': [`"mm.. my work... mhmmmm.."`],
 		}, }),
 		
-		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', tint: 0xB5320C, x: -192, y: -172, bodyCollision: { isStatic: true },
+		this.Npc({ name: 'cheesy coachmouse', body: 'mouse_nervous', tint: 0xB5320C, x: -192, y: -172, bodyCollision: { isStatic: true },
 			use: {
 				undefined: [`"my horse.."`, `"it won't go..."`],
 				'wind-up key': [`"that looks familiar.."`, `"i know this..."`],
@@ -1495,7 +1495,7 @@ soap
 <<if this.gaveRing>>
 <<do this.goto('generic item')>>
 <<else>>
-<<do this.gameObject = this.scene.find('juicemonger')>>
+<<do this.gameObject = this.scene.find('jumpy juicemonger')>>
 "wohhh...! not! free...!!"
 [[>close]]
 <<endif>>
@@ -1504,8 +1504,8 @@ soap
 <<do
 	this.scene.loseItem();
 	this.gaveRing = true;
-	this.scene.find('juicemonger').btn.use.undefined = [`"weee... pretty"`, `"whhoo... friend..? drink...!"`];
-	this.scene.find('juicemonger').btn.resetCycles();
+	this.scene.find('jumpy juicemonger').btn.use.undefined = [`"weee... pretty"`, `"whhoo... friend..? drink...!"`];
+	this.scene.find('jumpy juicemonger').btn.resetCycles();
 >>
 "whaaa.."
 >
@@ -1518,7 +1518,7 @@ soap
 	spr.y = -49;
 	const juice = this.scene.find("juicemonger");
 	juice.spr.addChild(spr);
-	this.shock(this.scene.find('juicemonger'), 500);
+	this.shock(this.scene.find('jumpy juicemonger'), 500);
 >>
 "wehehe... finally..."
 >
@@ -1606,7 +1606,7 @@ soap
 "h-hey, my horse!!"
 <<do
 	(async () => {
-		const farmer = this.scene.find('cheese farmer');
+		const farmer = this.scene.find('cheesy coachmouse');
 		this.gameObject = farmer;
 		const [t1, t2] = this.shock(farmer, 1200);
 		const t3 = this.tween(farmer, 'x', -33, 1200, undefined, this.ease.backIn);
@@ -1776,7 +1776,7 @@ soap
 <<do
 	this.scene.loseItem();
 	this.gaveFoil = true;
-	const smith = this.scene.find('smith');
+	const smith = this.scene.find('stubborn smith');
 	smith.btn.use.foil = [`"mmore mmetal..?"`];
 	smith.btn.resetCycles();
 >>
@@ -1792,7 +1792,7 @@ soap
 <<do
 	this.scene.loseItem();
 	this.gaveToothpicks = true;
-	const smith = this.scene.find('smith');
+	const smith = this.scene.find('stubborn smith');
 	smith.btn.use.toothpicks = [`"mhmmeh.. plenty..."`];
 	smith.btn.resetCycles();
 >>
@@ -1805,12 +1805,12 @@ soap
 
 
 ::make sword
-<<do this.scene.find('smith').flipped = false;>>
+<<do this.scene.find('stubborn smith').flipped = false;>>
 "mhmhmhm... materials.. ready..."
 >
 <<do
 	(async () => {
-		const smith = this.scene.find('smith');
+		const smith = this.scene.find('stubborn smith');
 		this.camPoint = { x: this.size.x, y: this.size.y };
 		await this.delay(1500);
 		// TODO: sfx
