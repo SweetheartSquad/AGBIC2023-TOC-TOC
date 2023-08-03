@@ -1602,12 +1602,16 @@ soap
 <<do 
 	this.scene.loseItem(true);
 	this.scene.find('can front wKey').spr.texture = this.tex('can front');
-	this.scene.find('horseNoKey').spr.texture = this.tex('horseWithKey');
+	
+	this.destroy(this.scene.find('horseNoKey'));
+	this.add(
+		this.Prop({ texture: 'horseKeyAnim', freq: 1/100, x: -128, y: 0,   offset: -35 }),
+	);
 >>
 <<do this.gameObject = this.scene.player>>
 "here you go"
 >
-<<do this.gameObject = this.scene.find('horseNoKey')>>
+<<do this.gameObject = this.scene.find('horseKeyAnim')>>
 *wind*
 >
 *wind-wind*
@@ -1618,7 +1622,7 @@ soap
 		this.destroy(this.cartPoly);
 		this.destroy(this.scene.find('horse'));
 		this.cartPoly = null;
-		const horse = this.scene.find('horseNoKey');
+		const horse = this.scene.find('horseKeyAnim');
 		const cart = this.scene.find('cheeseCart');
 		this.camPoint = cart.transform;
 		this.tween(horse.transform, 'x', horse.transform.x + 200, 2000, undefined, this.ease.cubicIn);
