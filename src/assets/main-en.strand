@@ -662,11 +662,11 @@
 			undefined: [`"wehh.. late late late..."`, `"waahnhn..."`, `"wuhh.. waaannnt ring back..."`],
 			ring: ['goto:give ring'],
 		}, }),
-		this.Npc({ name: 'puny pyro', body: 'mouse_basic', tint: 0x3CECA1, x: 268, y: -165, flip: true, use: {
+		this.Npc({ name: 'puny pyro', body: 'mouse_basic', tint: 0x47654c, x: 268, y: -165, flip: true, use: {
 			undefined: [`"iia... matches.. free..."`, `"iii'm little.. can't catch..."`, `"ihihihi..."`],
 			matchbox: [`"ihihi.. do it..."`],
 		}, }),
-		this.Npc({ name: 'stubborn smith', body: 'mouse_smith', tint: 0x47654c, x: 238, y: -62, flip: true, offset: 62, use: {
+		this.Npc({ name: 'stubborn smith', body: 'mouse_smith', tint: 0x3CECA1, x: 238, y: -62, flip: true, offset: 62, use: {
 			undefined: [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`],
 			foil: ['goto:give foil'],
 			toothpicks: ['goto:give toothpicks'],
