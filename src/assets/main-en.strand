@@ -426,7 +426,7 @@
 			player: [`p:"it's a bottle cap"`, `p:"it could probably hold something"`],
 		}, }),
 
-		this.Interrupt({ passage: 'gatehouse reject', type: 'poly', verts: [84,-324, 141,-283, 178,-298, 236,-342, 162,-384] }),
+		this.Interrupt({ passage: 'gatehouse interrupt', type: 'poly', verts: [84,-324, 141,-283, 178,-298, 236,-342, 162,-384] }),
 		this.Poly({ verts: [286,-306, 221,-271, 172,-299, 237,-345, 166,-385, 98,-347, 39,-382, 111,-423] }), // gate
 		this.Prop({ texture: 'gatehouse', x: 164, y: -259,        offset: -120 }),
 		this.Prop({ texture: 'pushPins', x: 62, y: -420,          offset: 41 }),
@@ -442,8 +442,10 @@
 		this.Prop({ texture: 'shelfBg', x: 157, y: -288,            offset: 75 }),
 		this.Prop({ texture: 'pushPinsTop', x: 30, y: -498,          offset: 375 }),
 		this.Prop({ texture: 'pepper shaker', x: 192, y: -456,     offset: 275 }),
-		this.Prop({ texture: 'pill bottle', x: 100, y: -437,     offset: 275 }),
-		this.Item({ texture: 'pill', x: 151, y: -423,     offset: 275, use: {
+		this.Hotspot({ texture: 'pill bottle', x: 100, y: -437,     offset: 275, use: {
+			undefined: [`p:"it's a bottle of pills"`, `p:"the label says 'sleepmaxx 2000'"`, `p:"they're probably expired"`],
+		}, }),
+		this.Item({ texture: 'pill', x: 179, y: -385,     offset: 275, use: {
 			undefined: ['goto:take pill'],
 		}, }),
 
@@ -596,41 +598,112 @@
 			h.spr.height = 30;
 			return h;
 		})(),
+		// cutlery
+		(() => {
+			const h = this.Item({ label: 'fork', texture: 'blank', carrying: 'fork_carrying', x: 197, y: -64, offset: 1000, use: {
+				player: [`p:"it's a fork"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'spoon', texture: 'blank', carrying: 'spoon_carrying', x: 217, y: -61, offset: 1000, use: {
+				player: [`p:"it's a spoon"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'spoon', texture: 'blank', carrying: 'spoon_carrying', x: 241, y: -58, offset: 1000, use: {
+				player: [`p:"it's a spoon"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'spoon', texture: 'blank', carrying: 'spoon_carrying', x: 192, y: -14, offset: 1000, use: {
+				player: [`p:"it's a spoon"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 60;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'fork', texture: 'blank', carrying: 'fork_carrying', x: 218, y: -13, offset: 1000, use: {
+				player: [`p:"it's a fork"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 60;
+			return h;
+		})(),
+		(() => {
+			const h = this.Item({ label: 'fork', texture: 'blank', carrying: 'fork_carrying', x: 236, y: -8, offset: 1000, use: {
+				player: [`p:"it's a fork"`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 60;
+			return h;
+		})(),
 
-		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', x: 71, y: -302, flip: true, use: {}, }),
-		this.Npc({ name: 'guard lower', body: 'mouse_guard_short', x: 170, y: -259, flip: true, use: {}, }),
-		this.Npc({ name: 'stuffy shopkeep', body: 'mouse_basic', x: -78, y: -360, offset: -5, use: {
+		this.Npc({ name: 'grumpy guard', body: 'mouse_guard_tall', tint: 0x2063ef, x: 71, y: -302, flip: true, use: {
+			undefined: [`"hrhgh.. hate this..."`, `"hrg.. not paid enough..."`, `"hhh..."`],
+			fountain: ['goto:give coin'],
+		}, }),
+		this.Npc({ name: 'sleepy sentry', body: 'mouse_guard_short', tint: 0xe6d77a, x: 170, y: -259, flip: true, use: {
+			undefined: [`"guh.. tired..."`, `"ghuhg... need.. nap..."`, `"geugh... yawn..."`],
+			pill: ['goto:drop pill'],
+		}, }),
+		this.Npc({ name: 'stuffy shopkeep', body: 'mouse_basic', tint: 0xb68ab8, x: -78, y: -360, offset: -5, use: {
 			undefined: [`"kaffkafkf..."`, `"kkff.. t-too hot..."`, `"khh.. th-thirsty..."`],
 			'bottle cap': [`"kfhh.. no.. dirty..."`],
 			juice: ['goto:give juice'],
 		}, }),
-		this.Npc({ name: 'juicemonger', body: 'mouse_basic', x: -207, y: -278, use: {
+		this.Npc({ name: 'jumpy juicemonger', body: 'mouse_basic', tint: 0x880DB4, x: -207, y: -278, use: {
 			undefined: [`"wehh.. late late late..."`, `"waahnhn..."`, `"wuhh.. waaannnt ring back..."`],
 			ring: ['goto:give ring'],
 		}, }),
-		this.Npc({ name: 'right', body: 'mouse_basic', x: 268, y: -165, flip: true, use: {}, }),
-		this.Npc({ name: 'smith', body: 'mouse_smith', x: 238, y: -62, flip: true, offset: 62, use: {
+		this.Npc({ name: 'puny pyro', body: 'mouse_basic', tint: 0x47654c, x: 268, y: -165, flip: true, use: {
+			undefined: [`"iia... matches.. free..."`, `"iii'm little.. can't catch..."`, `"ihihihi..."`],
+			matchbox: [`"ihihi.. do it..."`],
+		}, }),
+		this.Npc({ name: 'stubborn smith', body: 'mouse_smith', tint: 0x3CECA1, x: 238, y: -62, flip: true, offset: 62, use: {
 			undefined: [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`],
 			foil: ['goto:give foil'],
 			toothpicks: ['goto:give toothpicks'],
+			fork: [`"mm.. no... fresh metal only..."`],
+			spoon: [`"mm.. no... fresh metal only..."`],
 			'hot sword': [`"mm... molten.. careful..."`],
 			'cool sword': [`"mm.. my work... mhmmmm.."`],
 		}, }),
 		
-		this.Npc({ name: 'cheese farmer', body: 'mouse_nervous', x: -192, y: -172, bodyCollision: { isStatic: true },
+		this.Npc({ name: 'cheesy coachmouse', body: 'mouse_nervous', tint: 0xB5320C, x: -192, y: -172, bodyCollision: { isStatic: true },
 			use: {
 				undefined: [`"my horse.."`, `"it won't go..."`],
 				'wind-up key': [`"that looks familiar.."`, `"i know this..."`],
 				'appley slice': [`"no thanks... i saw you pick that up off the ground"`],
 			},
 		}),
-		this.Npc({ name: 'haughty hooligan', body: 'mouse_sitting', offset: 1000, x: 200, y: -370, shadow: false, flip: true, use: {
+		this.Npc({ name: 'haughty hooligan', body: 'mouse_sitting', tint: 0x88898c, offset: 1000, x: 218, y: -357, shadow: false, flip: true, use: {
 			undefined: [`"hehehe..."`, `"heh.. even guards.. below me..."`, `"hm... but.. have weapons..."`],
 			'cool sword': ['goto:give sword'],
 			other: [`"hmm.. don't want that..."`, `"hm.. not a weapon..."`],
 			anvil: [`"hm... sword would be cooler..."`],
+			fork: [`"hm... sword would be cooler..."`],
+			spoon: [`"hm... sword would be cooler..."`],
 			toothpicks: [`"hm... no.. weak..."`],
 		}, }),
+
+		(() => {
+			const h = this.Hotspot({ label: 'entrance', texture: 'blank', x: 130, y: -310, offset: 1000, use: {
+				undefined: [`goto:goto sandwich`],
+			}, });
+			h.spr.width = 80;
+			h.spr.height = 90;
+			return h;
+		})(),
 	]);
 
 	this.Area('sandwich', [
@@ -1428,7 +1501,7 @@ soap
 <<if this.gaveRing>>
 <<do this.goto('generic item')>>
 <<else>>
-<<do this.gameObject = this.scene.find('juicemonger')>>
+<<do this.gameObject = this.scene.find('jumpy juicemonger')>>
 "wohhh...! not! free...!!"
 [[>close]]
 <<endif>>
@@ -1437,8 +1510,8 @@ soap
 <<do
 	this.scene.loseItem();
 	this.gaveRing = true;
-	this.scene.find('juicemonger').btn.use.undefined = [`"weee... pretty"`, `"whhoo... friend..? drink...!"`];
-	this.scene.find('juicemonger').btn.resetCycles();
+	this.scene.find('jumpy juicemonger').btn.use.undefined = [`"weee... pretty"`, `"whhoo... friend..? drink...!"`];
+	this.scene.find('jumpy juicemonger').btn.resetCycles();
 >>
 "whaaa.."
 >
@@ -1449,9 +1522,9 @@ soap
 	spr.scale.x *= -1;
 	spr.x = 5;
 	spr.y = -49;
-	const juice = this.scene.find("juicemonger");
+	const juice = this.scene.find("jumpy juicemonger");
 	juice.spr.addChild(spr);
-	this.shock(this.scene.find('juicemonger'), 500);
+	this.shock(this.scene.find('jumpy juicemonger'), 500);
 >>
 "wehehe... finally..."
 >
@@ -1539,7 +1612,7 @@ soap
 "h-hey, my horse!!"
 <<do
 	(async () => {
-		const farmer = this.scene.find('cheese farmer');
+		const farmer = this.scene.find('cheesy coachmouse');
 		this.gameObject = farmer;
 		const [t1, t2] = this.shock(farmer, 1200);
 		const t3 = this.tween(farmer, 'x', -33, 1200, undefined, this.ease.backIn);
@@ -1574,28 +1647,6 @@ soap
 	this.goto('close');
 >>
 <<endif>>
-
-
-::gatehouse reject
-<<do this.gameObject = this.scene.find('guard upper')>>
-"hrghrh.. not allowed..."
->
-<<do
-	const spots = [
-		{x: 59, y: -340},
-		{x: 112, y: -269},
-	];
-	let spot;
-	let d1 = Infinity;
-	for (let i = 0; i < spots.length; ++i) {
-		const d2 = Math.abs(spots[i].x - this.scene.player.transform.x) + Math.abs(spots[i].y - this.scene.player.transform.y);
-		if (d2 < d1) {
-			d1 = d2;
-			spot = spots[i];
-		}
-	}
-	this.scene.player.walkTo(spot.x, spot.y).then(() => this.goto('close'))
->>
 
 ::melt wax
 <<if this.scene.animatorCarrying.animation === 'matchbox_carrying'>>
@@ -1731,7 +1782,7 @@ soap
 <<do
 	this.scene.loseItem();
 	this.gaveFoil = true;
-	const smith = this.scene.find('smith');
+	const smith = this.scene.find('stubborn smith');
 	smith.btn.use.foil = [`"mmore mmetal..?"`];
 	smith.btn.resetCycles();
 >>
@@ -1747,7 +1798,7 @@ soap
 <<do
 	this.scene.loseItem();
 	this.gaveToothpicks = true;
-	const smith = this.scene.find('smith');
+	const smith = this.scene.find('stubborn smith');
 	smith.btn.use.toothpicks = [`"mhmmeh.. plenty..."`];
 	smith.btn.resetCycles();
 >>
@@ -1760,20 +1811,23 @@ soap
 
 
 ::make sword
-<<do this.scene.find('smith').flipped = false;>>
+<<do this.scene.find('stubborn smith').flipped = false;>>
 "mhmhmhm... materials.. ready..."
 >
 <<do
 	(async () => {
-		const smith = this.scene.find('smith');
+		const smith = this.scene.find('stubborn smith');
 		this.camPoint = { x: this.size.x, y: this.size.y };
 		await this.delay(1500);
 		// TODO: sfx
 		this.scene.screenFilter.flash([250/3,200/3,150/3], 150, this.ease.cubicOut);
+		this.shock(smith, 250);
 		await this.delay(500);
 		this.scene.screenFilter.flash([250/2,200/2,150/2], 150, this.ease.cubicOut);
+		this.shock(smith, 300);
 		await this.delay(500);
 		this.scene.screenFilter.flash([250,200,150], 150, this.ease.cubicOut);
+		this.shock(smith, 450);
 		await this.delay(1500);
 		smith.flipped = true;
 		this.add(
@@ -1835,6 +1889,45 @@ soap
 [[>close]]
 <<endif>>
 
+::drop pill
+<<do
+	(async () => {
+		this.scene.loseItem(true);
+		const pill = this.Prop({ texture: 'pill_carrying', x: 179, y: -385, offset: 10000 });
+		const guard = this.scene.find('sleepy sentry');
+		this.camPoint = pill.transform;
+		this.add(
+			pill,
+		);
+		this.tween(pill.transform, 'x', pill.transform.x, 1200, pill.transform.x + 10, (t) => 1-(Math.random()-0.5)*(1-t));
+		await this.delay(400);
+		this.tween(pill.transform, 'y', -257 - 30, 400, undefined, this.ease.cubicIn);
+		await this.delay(400);
+		this.destroy(pill);
+		this.camPoint = guard.transform;
+		this.scene.screenFilter.flash([255,128,128], 200, this.ease.cubicOut);
+		const ts = this.shock(guard, 450);
+		await this.delay(800);
+		// TODO: sfx
+		this.scene.screenFilter.flash([40,20,20], 200, this.ease.cubicOut);
+		ts.forEach(i => this.tweenFinish(i));
+		guard.spr.angle = 90;
+		guard.spr.x -= 20;
+		guard.spr.y -= 30;
+		guard.y += 30;
+		guard.bodyCollision.body.isSensor = true;
+		guard.shadow.visible = false;
+		guard.bounce = 0;
+		guard.btn.use = {
+			undefined: [`p:"...they're probably fine"`, `"zzz..."`],
+		};
+		guard.btn.resetCycles();
+		this.knockedOut = true;
+		this.camPoint = undefined;
+		this.goto('close');
+	})();
+>>
+
 ::pickup coin
 <<if this.fountainOff>>
 <<do this.goto('generic item')>>
@@ -1853,6 +1946,36 @@ soap
 		this.tween(this.scene.find('fountainWater').spr, 'alpha', 1, 600, undefined, this.ease.cubicInOut);
 	}
 	this.goto('close');
+>>
+
+::give coin
+<<do
+	this.scene.loseItem();
+	this.bribed = true;
+>>
+"hrhr...?"
+>
+"hh.. ok... i get it.."
+>
+"have at it..."
+<<do
+	(async () => {
+		const guard = this.scene.find('grumpy guard');
+		this.gameObject = guard;
+		const [t1, t2] = this.shock(guard, 1200);
+		const t3 = this.tween(guard, 'x', -36, 1200, undefined, this.ease.backIn);
+		const t4 = this.tween(guard, 'y', -284, 1200, undefined, this.ease.backIn);
+		const t5 = this.tween(guard.display.container, 'alpha', 0, 1200, undefined, this.ease.cubicIn);
+		await this.delay(1600);
+		this.tweenAbort(t1);
+		this.tweenAbort(t2);
+		this.tweenAbort(t3);
+		this.tweenAbort(t4);
+		this.tweenAbort(t5);
+		this.destroy(guard);
+		this.gameObject = undefined;
+		this.goto('close');
+	})();
 >>
 
 ::cheese poem
@@ -1966,6 +2089,57 @@ to guide you north
 		this.goto('close');
 	}
 >>
+
+
+::gatehouse interrupt
+<<do
+	this.pushPlayer = true;
+	this.goto('goto sandwich');
+>>
+
+::gatehouse reject
+<<do
+	const guards = [];
+	if (!this.knockedOut) {
+		guards.push([this.scene.find('sleepy sentry'), `"grr.. get back..."`]);
+	}
+	if (!this.bribed) {
+		guards.push([this.scene.find('grumpy guard'), `"hrghrh.. not allowed..."`]);
+	}
+	const [guard, dlg] = this.shuffle(guards)[0];
+	this.gameObject = guard;
+	this.shock(guard, 250);
+	this.dlg = dlg;
+>>
+<<print this.dlg>>
+<<if this.pushPlayer>>
+<<do
+	this.pushPlayer = false;
+	const spots = [
+		{x: 59, y: -340},
+		{x: 112, y: -269},
+	];
+	let spot;
+	let d1 = Infinity;
+	for (let i = 0; i < spots.length; ++i) {
+		const d2 = Math.abs(spots[i].x - this.scene.player.transform.x) + Math.abs(spots[i].y - this.scene.player.transform.y);
+		if (d2 < d1) {
+			d1 = d2;
+			spot = spots[i];
+		}
+	}
+	this.scene.player.cancelWalkToMouse();
+	this.scene.player.walkTo(spot.x, spot.y);
+>>
+<<endif>>
+[[>close]]
+
+::goto sandwich
+<<if !this.knockedOut || !this.bribed>>
+<<do this.goto('gatehouse reject')>>
+<<else>>
+	<<do this.gotoItemRoom({ x: 180, y: -369 }, 'sandwich');>>
+<<endif>>
 
 ::The End
 blah blah
