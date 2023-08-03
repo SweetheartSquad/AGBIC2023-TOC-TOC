@@ -426,7 +426,7 @@
 			player: [`p:"it's a bottle cap"`, `p:"it could probably hold something"`],
 		}, }),
 
-		this.Interrupt({ passage: 'gatehouse reject', type: 'poly', verts: [84,-324, 141,-283, 178,-298, 236,-342, 162,-384] }),
+		this.Interrupt({ passage: 'gatehouse interrupt', type: 'poly', verts: [84,-324, 141,-283, 178,-298, 236,-342, 162,-384] }),
 		this.Poly({ verts: [286,-306, 221,-271, 172,-299, 237,-345, 166,-385, 98,-347, 39,-382, 111,-423] }), // gate
 		this.Prop({ texture: 'gatehouse', x: 164, y: -259,        offset: -120 }),
 		this.Prop({ texture: 'pushPins', x: 62, y: -420,          offset: 41 }),
@@ -689,6 +689,15 @@
 			spoon: [`"hm... sword would be cooler..."`],
 			toothpicks: [`"hm... no.. weak..."`],
 		}, }),
+
+		(() => {
+			const h = this.Hotspot({ label: 'entrance', texture: 'blank', x: 130, y: -310, offset: 1000, use: {
+				undefined: [`goto:goto sandwich`],
+			}, });
+			h.spr.width = 80;
+			h.spr.height = 90;
+			return h;
+		})(),
 	]);
 
 	this.Area('sandwich', [
@@ -1633,28 +1642,6 @@ soap
 >>
 <<endif>>
 
-
-::gatehouse reject
-<<do this.gameObject = this.scene.find('guard upper')>>
-"hrghrh.. not allowed..."
->
-<<do
-	const spots = [
-		{x: 59, y: -340},
-		{x: 112, y: -269},
-	];
-	let spot;
-	let d1 = Infinity;
-	for (let i = 0; i < spots.length; ++i) {
-		const d2 = Math.abs(spots[i].x - this.scene.player.transform.x) + Math.abs(spots[i].y - this.scene.player.transform.y);
-		if (d2 < d1) {
-			d1 = d2;
-			spot = spots[i];
-		}
-	}
-	this.scene.player.walkTo(spot.x, spot.y).then(() => this.goto('close'))
->>
-
 ::melt wax
 <<if this.scene.animatorCarrying.animation === 'matchbox_carrying'>>
 	"hm no very unlit"
@@ -2064,6 +2051,57 @@ to guide you north
 		this.goto('close');
 	}
 >>
+
+
+::gatehouse interrupt
+<<do
+	this.pushPlayer = true;
+	this.goto('goto sandwich');
+>>
+
+::gatehouse reject
+<<do
+	const guards = [];
+	if (!this.knockedOut) {
+		guards.push([this.scene.find('sleepy sentry'), `"grr.. get back..."`]);
+	}
+	if (!this.bribed) {
+		guards.push([this.scene.find('guard upper'), `"hrghrh.. not allowed..."`]);
+	}
+	const [guard, dlg] = this.shuffle(guards)[0];
+	this.gameObject = guard;
+	this.shock(guard, 250);
+	this.dlg = dlg;
+>>
+<<print this.dlg>>
+<<if this.pushPlayer>>
+<<do
+	this.pushPlayer = false;
+	const spots = [
+		{x: 59, y: -340},
+		{x: 112, y: -269},
+	];
+	let spot;
+	let d1 = Infinity;
+	for (let i = 0; i < spots.length; ++i) {
+		const d2 = Math.abs(spots[i].x - this.scene.player.transform.x) + Math.abs(spots[i].y - this.scene.player.transform.y);
+		if (d2 < d1) {
+			d1 = d2;
+			spot = spots[i];
+		}
+	}
+	this.scene.player.cancelWalkToMouse();
+	this.scene.player.walkTo(spot.x, spot.y);
+>>
+<<endif>>
+[[>close]]
+
+::goto sandwich
+<<if !this.knockedOut || !this.bribed>>
+<<do this.goto('gatehouse reject')>>
+<<else>>
+	<<do this.gotoItemRoom({ x: -190, y: -160 }, 'sandwich');>>
+<<endif>>
 
 ::The End
 blah blah
