@@ -1605,13 +1605,13 @@ soap
 	
 	this.destroy(this.scene.find('horseNoKey'));
 	this.add(
-		this.Prop({ texture: 'horseKeyAnim', freq: 1/100, x: -128, y: 0,   offset: -35 }),
+		this.Prop({ texture: 'horseKey', freq: 1/100, x: -128, y: 0,   offset: -35 }),
 	);
 >>
 <<do this.gameObject = this.scene.player>>
 "here you go"
 >
-<<do this.gameObject = this.scene.find('horseKeyAnim')>>
+<<do this.gameObject = this.scene.find('horseKey')>>
 *wind*
 >
 *wind-wind*
@@ -1622,7 +1622,7 @@ soap
 		this.destroy(this.cartPoly);
 		this.destroy(this.scene.find('horse'));
 		this.cartPoly = null;
-		const horse = this.scene.find('horseKeyAnim');
+		const horse = this.scene.find('horseKey');
 		const cart = this.scene.find('cheeseCart');
 		this.camPoint = cart.transform;
 		this.tween(horse.transform, 'x', horse.transform.x + 200, 2000, undefined, this.ease.cubicIn);
