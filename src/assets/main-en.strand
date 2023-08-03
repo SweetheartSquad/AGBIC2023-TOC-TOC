@@ -1519,7 +1519,7 @@ soap
 	spr.scale.x *= -1;
 	spr.x = 5;
 	spr.y = -49;
-	const juice = this.scene.find("juicemonger");
+	const juice = this.scene.find("jumpy juicemonger");
 	juice.spr.addChild(spr);
 	this.shock(this.scene.find('jumpy juicemonger'), 500);
 >>
