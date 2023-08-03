@@ -648,7 +648,7 @@
 			return h;
 		})(),
 
-		this.Npc({ name: 'guard upper', body: 'mouse_guard_tall', tint: 0x2063ef, x: 71, y: -302, flip: true, use: {}, }),
+		this.Npc({ name: 'grumpy guard', body: 'mouse_guard_tall', tint: 0x2063ef, x: 71, y: -302, flip: true, use: {}, }),
 		this.Npc({ name: 'sleepy sentry', body: 'mouse_guard_short', tint: 0xe6d77a, x: 170, y: -259, flip: true, use: {
 			undefined: [`"guh.. tired..."`, `"ghuhg... need.. nap..."`, `"geugh... yawn..."`],
 			pill: ['goto:drop pill'],
@@ -2066,7 +2066,7 @@ to guide you north
 		guards.push([this.scene.find('sleepy sentry'), `"grr.. get back..."`]);
 	}
 	if (!this.bribed) {
-		guards.push([this.scene.find('guard upper'), `"hrghrh.. not allowed..."`]);
+		guards.push([this.scene.find('grumpy guard'), `"hrghrh.. not allowed..."`]);
 	}
 	const [guard, dlg] = this.shuffle(guards)[0];
 	this.gameObject = guard;
