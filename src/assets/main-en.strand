@@ -1501,7 +1501,10 @@ soap
 <<if this.gaveRing>>
 <<do this.goto('generic item')>>
 <<else>>
-<<do this.gameObject = this.scene.find('jumpy juicemonger')>>
+<<do
+	this.gameObject = this.scene.find('jumpy juicemonger');
+	this.shock(this.gameObject, 400);
+>>
 "wohhh...! not! free...!!"
 [[>close]]
 <<endif>>
