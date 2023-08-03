@@ -1927,6 +1927,7 @@ soap
 			undefined: [`p:"...they're probably fine"`, `"zzz..."`],
 		};
 		guard.btn.resetCycles();
+		this.knockedOut = true;
 		this.camPoint = undefined;
 		this.goto('close');
 	})();
