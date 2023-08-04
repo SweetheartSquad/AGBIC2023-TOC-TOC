@@ -68,7 +68,7 @@
 
 	this.Area('empty', []);
 	this.Area('no one', [
-		this.Prop({ texture: 'no one', offset: -1000 }),
+		this.Prop({ freq: 1/100, texture: 'noOneHeadAnim', offset: -1000 }),
 		this.Prop({ texture: 'no one UL', offset: 1000 }),
 		this.Prop({ texture: 'no one LL', offset: 1000 }),
 		this.Prop({ texture: 'no one LR', offset: 1000 }),
@@ -1119,6 +1119,7 @@ me
 		this.scene.player.flipped = false;
 		this.scene.player.expression = 'up';
 		this.goto('moon-dried tomato1');
+		// TODO: pick up tomato fr
 	})();
 >>
 
@@ -1154,7 +1155,7 @@ you got the moon-dried tomato.
 		this.scene.player.walkTo(-164, -112);
 		await this.delay(1500);
 		this.scene.goto({ area: 'no one', x: this.scene.player.x, y: this.scene.player.y });
-		this.scene.find('no one').display.container.alpha = 0;
+		this.scene.find('noOneHeadAnim').display.container.alpha = 0;
 		this.scene.find('no one UL').display.container.alpha = 0;
 		this.scene.find('no one LL').display.container.alpha = 0;
 		this.scene.find('no one LR').display.container.alpha = 0;
@@ -1164,7 +1165,7 @@ you got the moon-dried tomato.
 		this.tween(this.scene.find('no one UL').display.container, 'alpha', 1, 800);
 		this.tween(this.scene.find('no one LR').display.container, 'alpha', 1, 1200);
 		await this.delay(1000);
-		this.tween(this.scene.find('no one').display.container, 'alpha', 1, 2000);
+		this.tween(this.scene.find('noOneHeadAnim').display.container, 'alpha', 1, 2000);
 		await this.delay(1000);
 		// this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
 		this.goto('close');
