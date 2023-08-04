@@ -67,6 +67,12 @@
 	};
 
 	this.Area('empty', []);
+	this.Area('no one', [
+		this.Prop({ texture: 'no one', offset: -1000 }),
+		this.Prop({ texture: 'no one UL', offset: 1000 }),
+		this.Prop({ texture: 'no one LL', offset: 1000 }),
+		this.Prop({ texture: 'no one LR', offset: 1000 }),
+	]);
 	this.Area('intro', [
 		...([
 			'gnome puzzle',
@@ -119,15 +125,15 @@
 		this.Hotspot({ label: 'worm', texture: 'bg_gnome_puzzle_worm', x: -286, y: -159, offset: 0, use: {
 			hat: ['goto:worm hat'],
 			undefined: [`"wish i had a hat to go out in"`, `"i wanna look good before i head out"`],
-			die: [`"i dont have hands dude"`],
+			die: [`"i don't have hands dude"`],
 			thimble: [`"kind of a bummer hat no offense"`],
-			glass: [`"whoa dude dont hurt me"`],
+			glass: [`"whoa dude don't hurt me"`],
 			'cut flower': [`"im not really a flower guy"`],
 		}, }),
 
 		this.Hotspot({ label: 'flower', texture: 'bg_gnome_puzzle_flower', x: -57, y: -266, offset: -10, use: {
 			glass: ['goto:cut flower'],
-			undefined: ['cute flower!'],
+			undefined: [`p:"cute flower!"`],
 		}, }),
 
 		this.Hotspot({ label: 'leaf', texture: 'leaf', x: 122, y: -175, offset: 10, use: {
@@ -138,6 +144,7 @@
 			'die': [`"no time for games!"`],
 			'glass': [`"hey! watch where you swing that!"`],
 			undefined: [`"i know where the rocks go!"`,`"don't listen to the other guy."`, `"we'll never get into the temple..."`, `"ugh, that worm creeps me out..."`],
+			'medium rock': [`"hey! that's my- oh, maybe not."`],
 		}, }),
 		this.Npc({ name: 'numb gnome', body: 'gnome_bottom', tint: 0x6f79cd, x: 180, y: -100, flip: true, use: {
 			'cut flower': [`goto:remove-hat`],
@@ -146,6 +153,7 @@
 			'glass': [`"careful with that..."`],
 			'safety pin': [`"hmm, that's not really a hat..."`],
 			undefined: [`"he won't put his rock on that tile..."`,`"my solution is right but whatever..."`,`"i hope there's a cute hat in there..."`],
+			'medium rock': [`"oh, you have one too..."`],
 		}, }),
 
 		this.Item({ texture: 'big rock', x: -109, y: -219, use: {
@@ -164,21 +172,21 @@
 		//junk
 		this.Item({ texture: 'thimble', x: 290, y: -20, offset: 10000000, use: {
 			player: [`"it's a thimble"`],
-			die: [`"yahtzee!"`],
+			die: [`p:"yahtzee!"`],
 		}, }),
 		this.Item({ texture: 'die', x: -304, y: -103, offset: 100000000, use: {
 			player: [`"it's a six-sided die"`],
-			thimble: [`"yahtzee!"`],
+			thimble: [`p:"yahtzee!"`],
 		}, }),
 		this.Item({ texture: 'safety pin', x: 50, y: -50, offset: -35, use: {
 			player: [`"it's a safety pin"`],
 		}, }),
 		this.Hotspot({ label: 'dragonfly', texture: 'dragonfly', x: 261, y:-290, offset: 100000000, use: {
 			undefined: ['what a pretty dragonfly...'],
-			glass: [`i don't wanna hurt it...`],
-			die: [`i don't think it wants to play.`],
-			thimble: [`i don't think it can sew.`],
-			'safety pin': [`the pin kinda looks like a wing...`],
+			glass: [`p:"i don't wanna hurt it..."`],
+			die: [`p:"i don't think it wants to play"`],
+			thimble: [`p:"i don't think it can sew"`],
+			'safety pin': [`p:"the pin kinda looks like a wing..."`],
 		}, }),
 		
 		
@@ -633,10 +641,12 @@
 
 		this.Poly({ verts: [348,-187, 37,7] }), // stove ledge
 		this.Prop({ texture: 'stoveFloor', x: 175, y: 0, offset: 0 }),
-		this.Prop({ texture: 'stoveHob', x: 310, y: 0,   offset: 0 }),
+		this.Hotspot({ label: 'hob', texture: 'stoveHob', x: 310, y: 0,   offset: 0, use: {
+			undefined: [`p:"it's a gas hob"`],
+			matchbox: [`goto:light stove`],
+		}, }),
 		this.Prop({ texture: 'spoonForkStoveProng', x: 218, y: 0,      offset: 1 }),
 		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 47 }),
-		this.Item({ texture: 'ring', x: 149, y: -69,          offset: 69 }),
 		(() => {
 			const h = this.Item({ label: 'anvil', texture: 'blank', carrying: 'anvil_carrying', x: 295, y: -52, offset: 100, use: {
 				player: [`p:"it's a hammer"`],
@@ -759,11 +769,11 @@
 			'cool sword': [`"ihh... hate cool things..."`],
 		}, }),
 		this.Npc({ name: 'stubborn smith', body: 'mouse_smith', tint: 0x3CECA1, x: 238, y: -62, flip: true, offset: 62, use: {
-			undefined: [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`],
-			foil: ['goto:give foil'],
-			toothpicks: ['goto:give toothpicks'],
-			fork: [`"mm.. no... fresh metal only..."`],
-			spoon: [`"mm.. no... fresh metal only..."`],
+			undefined: [`"mhhe.. forge.. dead..."`, `"mm.. ring.. late..."`, `"mhm..."`],
+			foil: [`"mehh... not.. without forge..."`],
+			toothpicks: [`"mehh... not.. without forge..."`],
+			fork: [`"mehh... not.. without forge..."`],
+			spoon: [`"mehh... not.. without forge..."`],
 			'hot sword': [`"mm... molten.. careful..."`],
 			'cool sword': [`"mm.. my work... mhmmmm.."`],
 			fountain: [`"meh.. weak..."`],
@@ -1055,6 +1065,7 @@ me
 <<do
 	this.scene.findAll('spot').forEach(i => { i.btn.enabled = false; });
 	this.scene.camera.shake = 2;
+	this.camPoint = { x: this.size.x, y: -this.size.y }; 
 	this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
 	this.tween(this.scene.camera, 'shake', 0, 1500, 2, this.ease.cubicIn);
 	this.tween(this.scene.find('bg_gnome_puzzle_closed_BACK').display.container, 'alpha', 0, 1000);
@@ -1072,6 +1083,7 @@ me
 	numbgnome.btn.resetCycles();
 
 	setTimeout(() => {
+		this.camPoint = undefined;
 		this.goto('rock solved1');
 	}, 2000);
 	setTimeout(() => {
@@ -1090,8 +1102,10 @@ me
 	h.spr.height = 100;
 	this.add(h);
 >>
+<<do this.gameObject = this.scene.find('fiery gnome')>>
 "you opened the temple..."
 >
+<<do this.gameObject = this.scene.find('numb gnome')>>
 "wow..."
 [[>close]]
 
@@ -1099,11 +1113,62 @@ me
 <<do this.gotoItemRoom({ x: 125, y: -240 }, 'tomato');>>
 
 ::moon-dried tomato
+<<do
+	(async () => {
+		await this.scene.player.walkTo(-40, -260);
+		this.scene.player.flipped = false;
+		this.scene.player.expression = 'up';
+		this.goto('moon-dried tomato1');
+	})();
+>>
+
+::moon-dried tomato1
 you got the moon-dried tomato.
 >
 <<do
-	this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
-	this.goto('close');
+	(async () => {
+		await this.delay(400);
+		this.tween(this.scene.find('godRayL').display.container, 'alpha', 0, 50);
+		await this.delay(300);
+		this.tween(this.scene.find('godRayC').display.container, 'alpha', 0, 50);
+		await this.delay(200);
+		this.tween(this.scene.find('godRayR').display.container, 'alpha', 0, 50);
+		await this.delay(100);
+		this.tween(this.scene.find('tomatoRoom').display.container, 'alpha', 0, 2000);
+		this.tween(this.scene.find('moon-dried tomato').display.container, 'alpha', 0, 2000);
+		await this.delay(1500);
+		this.scene.player.expression = '';
+		await this.delay(1500);
+		this.tween(this.scene.find('godRayL').spr, 'alpha', 0, 100);
+		this.scene.player.flipped = true;
+		await this.delay(1000);
+		this.tween(this.scene.find('godRayC').spr, 'alpha', 0, 100);
+		await this.delay(1000);
+		this.tween(this.scene.find('godRayR').spr, 'alpha', 0, 100);
+		await this.delay(1200);
+		this.scene.player.flipped = false;
+		await this.delay(1200);
+		this.scene.player.flipped = true;
+		await this.delay(1000);
+
+		this.scene.player.walkTo(-164, -112);
+		await this.delay(1500);
+		this.scene.goto({ area: 'no one', x: this.scene.player.x, y: this.scene.player.y });
+		this.scene.find('no one').display.container.alpha = 0;
+		this.scene.find('no one UL').display.container.alpha = 0;
+		this.scene.find('no one LL').display.container.alpha = 0;
+		this.scene.find('no one LR').display.container.alpha = 0;
+		this.tween(this.scene.find('no one LL').display.container, 'alpha', 1, 1000);
+		await this.delay(1000);
+		this.scene.player.flipped = false;
+		this.tween(this.scene.find('no one UL').display.container, 'alpha', 1, 800);
+		this.tween(this.scene.find('no one LR').display.container, 'alpha', 1, 1200);
+		await this.delay(1000);
+		this.tween(this.scene.find('no one').display.container, 'alpha', 1, 2000);
+		await this.delay(1000);
+		// this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
+		this.goto('close');
+	})();
 >>
 
 
@@ -1593,6 +1658,61 @@ soap
 // 88'`88'`88 88'  `88 88    88 Y8ooooo. 88ooood8
 // 88  88  88 88.  .88 88.  .88       88 88.  ...
 // dP  dP  dP `88888P' `88888P' `88888P' `88888P'
+::light stove
+<<if this.scene.animatorCarrying.animation === 'matchbox_carrying'>>
+<<do
+	this.gameObject = this.scene.player;
+	this.scene.loseItem();
+>>
+"can't light it with an unlit match"
+[[>close]]
+<<else>>
+<<do
+	(async () => {
+		this.add(
+			this.Prop({ texture: 'stove light', freq: 1/200, x: 0, y: 0, offset: 1000 }),
+		);
+		this.gameObject.btn.enabled = false;
+		this.scene.screenFilter.flash([255,125,0], 200);
+		this.scene.loseItem();
+		const smith = this.scene.find('stubborn smith');
+		smith.btn.use.undefined = [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`];
+		smith.btn.use.foil = ['goto:give foil'];
+		smith.btn.use.toothpicks = ['goto:give toothpicks'];
+		smith.btn.use.fork = [`"mm.. no... fresh metal only..."`];
+		smith.btn.use.spoon = [`"mm.. no... fresh metal only..."`];
+		smith.btn.resetCycles();
+		
+		await this.delay(500);
+		this.camPoint = { x: this.size.x, y: this.size.y };
+		smith.flipped = false;
+		await this.delay(500);
+		this.gameObject = smith;
+		scene.dialogue.say('"finally"');
+		await this.delay(1500);
+		scene.dialogue.say('');
+		// TODO: sfx
+		this.scene.screenFilter.flash([250/3,200/3,150/3], 150, this.ease.cubicOut);
+		this.shock(smith, 250);
+		await this.delay(500);
+		this.scene.screenFilter.flash([250/2,200/2,150/2], 150, this.ease.cubicOut);
+		this.shock(smith, 300);
+		await this.delay(500);
+		this.scene.screenFilter.flash([250,200,150], 150, this.ease.cubicOut);
+		this.shock(smith, 450);
+		await this.delay(1500);
+		smith.flipped = true;
+		this.add(
+			this.Item({ texture: 'ring', x: 149, y: -69,          offset: 69, use: {
+				player: [`p:"it's a pretty ring"`],
+			}, }),
+		);
+		this.camPoint = undefined;
+		this.goto('close');
+	})();
+>>
+<<endif>>
+
 ::take juice
 <<if this.gaveRing>>
 <<do this.goto('generic item')>>
