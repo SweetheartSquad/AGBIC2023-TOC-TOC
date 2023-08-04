@@ -67,6 +67,12 @@
 	};
 
 	this.Area('empty', []);
+	this.Area('no one', [
+		this.Prop({ texture: 'no one', offset: -1000 }),
+		this.Prop({ texture: 'no one UL', offset: 1000 }),
+		this.Prop({ texture: 'no one LL', offset: 1000 }),
+		this.Prop({ texture: 'no one LR', offset: 1000 }),
+	]);
 	this.Area('intro', [
 		...([
 			'gnome puzzle',
@@ -1107,11 +1113,62 @@ me
 <<do this.gotoItemRoom({ x: 125, y: -240 }, 'tomato');>>
 
 ::moon-dried tomato
+<<do
+	(async () => {
+		await this.scene.player.walkTo(-40, -260);
+		this.scene.player.flipped = false;
+		this.scene.player.expression = 'up';
+		this.goto('moon-dried tomato1');
+	})();
+>>
+
+::moon-dried tomato1
 you got the moon-dried tomato.
 >
 <<do
-	this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
-	this.goto('close');
+	(async () => {
+		await this.delay(400);
+		this.tween(this.scene.find('godRayL').display.container, 'alpha', 0, 50);
+		await this.delay(300);
+		this.tween(this.scene.find('godRayC').display.container, 'alpha', 0, 50);
+		await this.delay(200);
+		this.tween(this.scene.find('godRayR').display.container, 'alpha', 0, 50);
+		await this.delay(100);
+		this.tween(this.scene.find('tomatoRoom').display.container, 'alpha', 0, 2000);
+		this.tween(this.scene.find('moon-dried tomato').display.container, 'alpha', 0, 2000);
+		await this.delay(1500);
+		this.scene.player.expression = '';
+		await this.delay(1500);
+		this.tween(this.scene.find('godRayL').spr, 'alpha', 0, 100);
+		this.scene.player.flipped = true;
+		await this.delay(1000);
+		this.tween(this.scene.find('godRayC').spr, 'alpha', 0, 100);
+		await this.delay(1000);
+		this.tween(this.scene.find('godRayR').spr, 'alpha', 0, 100);
+		await this.delay(1200);
+		this.scene.player.flipped = false;
+		await this.delay(1200);
+		this.scene.player.flipped = true;
+		await this.delay(1000);
+
+		this.scene.player.walkTo(-164, -112);
+		await this.delay(1500);
+		this.scene.goto({ area: 'no one', x: this.scene.player.x, y: this.scene.player.y });
+		this.scene.find('no one').display.container.alpha = 0;
+		this.scene.find('no one UL').display.container.alpha = 0;
+		this.scene.find('no one LL').display.container.alpha = 0;
+		this.scene.find('no one LR').display.container.alpha = 0;
+		this.tween(this.scene.find('no one LL').display.container, 'alpha', 1, 1000);
+		await this.delay(1000);
+		this.scene.player.flipped = false;
+		this.tween(this.scene.find('no one UL').display.container, 'alpha', 1, 800);
+		this.tween(this.scene.find('no one LR').display.container, 'alpha', 1, 1200);
+		await this.delay(1000);
+		this.tween(this.scene.find('no one').display.container, 'alpha', 1, 2000);
+		await this.delay(1000);
+		// this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
+		this.goto('close');
+	})();
 >>
 
 

@@ -16,6 +16,11 @@ textures/walk_cursor.x2.png
 audio/stepDefault.mp3
 textures/footprintDefault.png
 
+textures/no one/no one.x3.png
+textures/no one/no one UL.x3.png
+textures/no one/no one LL.x3.png
+textures/no one/no one LR.x3.png
+
 textures/guyIdle.x2.png
 textures/guyRun.x2.png
 textures/guy_up.x2.png
