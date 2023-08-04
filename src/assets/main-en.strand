@@ -69,9 +69,9 @@
 	this.Area('empty', []);
 	this.Area('no one', [
 		this.Prop({ freq: 1/100, texture: 'noOneHeadAnim', offset: -1000 }),
-		this.Prop({ texture: 'no one UL', offset: 1000 }),
-		this.Prop({ texture: 'no one LL', offset: 1000 }),
-		this.Prop({ texture: 'no one LR', offset: 1000 }),
+		this.Prop({ freq: 1/100, texture: 'no one UL', offset: 1000 }),
+		this.Prop({ freq: 1/100, texture: 'no one LL', offset: 1000 }),
+		this.Prop({ freq: 1/100, texture: 'noOneAnim_Bottom', offset: 1000 }),
 	]);
 	this.Area('intro', [
 		...([
@@ -1158,12 +1158,12 @@ you got the moon-dried tomato.
 		this.scene.find('noOneHeadAnim').display.container.alpha = 0;
 		this.scene.find('no one UL').display.container.alpha = 0;
 		this.scene.find('no one LL').display.container.alpha = 0;
-		this.scene.find('no one LR').display.container.alpha = 0;
+		this.scene.find('noOneAnim_Bottom').display.container.alpha = 0;
 		this.tween(this.scene.find('no one LL').display.container, 'alpha', 1, 1000);
 		await this.delay(1000);
 		this.scene.player.flipped = false;
 		this.tween(this.scene.find('no one UL').display.container, 'alpha', 1, 800);
-		this.tween(this.scene.find('no one LR').display.container, 'alpha', 1, 1200);
+		this.tween(this.scene.find('noOneAnim_Bottom').display.container, 'alpha', 1, 1200);
 		await this.delay(1000);
 		this.tween(this.scene.find('noOneHeadAnim').display.container, 'alpha', 1, 2000);
 		await this.delay(1000);
