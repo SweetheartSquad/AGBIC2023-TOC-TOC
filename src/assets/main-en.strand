@@ -214,7 +214,7 @@
 
 	this.Area('tomato', [
 		this.Prop({ texture: 'tomatoRoom', offset: -1000000 }),
-		this.Item({ label: 'moon-dried tomato', texture: 'tomatoItem', x: 119, y: -341, use: {
+		this.Item({ label: 'moon-dried tomato', texture: 'tomatoItem', x: 135, y: -347, use: {
 			undefined: ['goto:moon-dried tomato'],
 			player: ['goto:no one item cancel'],
 		} }),
@@ -854,6 +854,62 @@
 		this.goto('close');
 	};
 
+	this.itemRoomPickup = async (next) => {
+		await this.scene.player.walkTo(-40, -260);
+		this.scene.player.flipped = false;
+		await this.delay(500);
+		this.scene.player.expression = 'up';
+		const item = this.scene.currentArea.find(i => i.btn);
+		this.scene.pickupItem(item);
+		item.display.container.visible = false;
+		item.btn.enabled = false;
+		this.goto(next);
+	};
+
+	this.gotoNoOne = async (getItem) => {
+		await this.delay(400);
+		this.tween(this.scene.find('godRayL').display.container, 'alpha', 0, 50);
+		await this.delay(300);
+		this.tween(this.scene.find('godRayC').display.container, 'alpha', 0, 50);
+		await this.delay(200);
+		this.tween(this.scene.find('godRayR').display.container, 'alpha', 0, 50);
+		await this.delay(100);
+		this.scene.currentArea.filter(i => i.texture && !i.texture.includes('Ray')).forEach(i => {
+			this.tween(i.display.container, 'alpha', 0, 2000);
+		});
+		await this.delay(1500);
+		this.scene.player.expression = '';
+		await this.delay(1500);
+		this.tween(this.scene.find('godRayL').spr, 'alpha', 0, 100);
+		this.scene.player.flipped = true;
+		await this.delay(1000);
+		this.tween(this.scene.find('godRayC').spr, 'alpha', 0, 100);
+		await this.delay(1000);
+		this.tween(this.scene.find('godRayR').spr, 'alpha', 0, 100);
+		await this.delay(1200);
+		this.scene.player.flipped = false;
+		await this.delay(1200);
+		this.scene.player.flipped = true;
+		await this.delay(1000);
+
+		this.scene.player.walkTo(-164, -112);
+		await this.delay(1500);
+		this.scene.goto({ area: 'no one', x: this.scene.player.x, y: this.scene.player.y });
+		this.scene.find('noOneHeadAnim').display.container.alpha = 0;
+		this.scene.find('no one UL').display.container.alpha = 0;
+		this.scene.find('no one LL').display.container.alpha = 0;
+		this.scene.find('noOneAnim_Bottom').display.container.alpha = 0;
+		this.tween(this.scene.find('no one LL').display.container, 'alpha', 1, 1000);
+		await this.delay(1000);
+		this.scene.player.flipped = false;
+		this.tween(this.scene.find('no one UL').display.container, 'alpha', 1, 800);
+		this.tween(this.scene.find('noOneAnim_Bottom').display.container, 'alpha', 1, 1200);
+		await this.delay(1000);
+		this.tween(this.scene.find('noOneHeadAnim').display.container, 'alpha', 1, 2000);
+		await this.delay(1000);
+		this.goto('close');
+	};
+
 
 	// start
 	this.started=true;
@@ -902,6 +958,10 @@ me
 	`"i don't know about that..."`,
 	`"not sure what that would do..."`,
 ])[0]>>
+[[>close]]
+
+::no one item cancel
+"i probably shouldn't hold on to that..."
 [[>close]]
 
 
@@ -1123,74 +1183,12 @@ me
 <<do this.gotoItemRoom({ x: 125, y: -240 }, 'tomato');>>
 
 ::moon-dried tomato
-<<do
-	(async () => {
-		await this.scene.player.walkTo(-40, -260);
-		this.scene.player.flipped = false;
-		await this.delay(500);
-		this.scene.player.expression = 'up';
-		const item = this.scene.find('moon-dried tomato');
-
-		this.scene.find('tomatoRoom').set('tomatoRoomNoTomato');
-		this.scene.pickupItem(item);
-		item.display.container.visible = false;
-		item.btn.enabled = false;
-		this.goto('moon-dried tomato1');
-		// TODO: pick up tomato fr
-	})();
->>
-
-::no one item cancel
-"i probably shouldn't hold on to that..."
-[[>close]]
+<<do this.itemRoomPickup('moon-dried tomato1')>>
 
 ::moon-dried tomato1
 you got the moon-dried tomato.
 >
-<<do
-	(async () => {
-		await this.delay(400);
-		this.tween(this.scene.find('godRayL').display.container, 'alpha', 0, 50);
-		await this.delay(300);
-		this.tween(this.scene.find('godRayC').display.container, 'alpha', 0, 50);
-		await this.delay(200);
-		this.tween(this.scene.find('godRayR').display.container, 'alpha', 0, 50);
-		await this.delay(100);
-		this.tween(this.scene.find('tomatoRoom').display.container, 'alpha', 0, 2000);
-		this.tween(this.scene.find('moon-dried tomato').display.container, 'alpha', 0, 2000);
-		await this.delay(1500);
-		this.scene.player.expression = '';
-		await this.delay(1500);
-		this.tween(this.scene.find('godRayL').spr, 'alpha', 0, 100);
-		this.scene.player.flipped = true;
-		await this.delay(1000);
-		this.tween(this.scene.find('godRayC').spr, 'alpha', 0, 100);
-		await this.delay(1000);
-		this.tween(this.scene.find('godRayR').spr, 'alpha', 0, 100);
-		await this.delay(1200);
-		this.scene.player.flipped = false;
-		await this.delay(1200);
-		this.scene.player.flipped = true;
-		await this.delay(1000);
-
-		this.scene.player.walkTo(-164, -112);
-		await this.delay(1500);
-		this.scene.goto({ area: 'no one', x: this.scene.player.x, y: this.scene.player.y });
-		this.scene.find('noOneHeadAnim').display.container.alpha = 0;
-		this.scene.find('no one UL').display.container.alpha = 0;
-		this.scene.find('no one LL').display.container.alpha = 0;
-		this.scene.find('noOneAnim_Bottom').display.container.alpha = 0;
-		this.tween(this.scene.find('no one LL').display.container, 'alpha', 1, 1000);
-		await this.delay(1000);
-		this.scene.player.flipped = false;
-		this.tween(this.scene.find('no one UL').display.container, 'alpha', 1, 800);
-		this.tween(this.scene.find('noOneAnim_Bottom').display.container, 'alpha', 1, 1200);
-		await this.delay(1000);
-		this.tween(this.scene.find('noOneHeadAnim').display.container, 'alpha', 1, 2000);
-		await this.delay(1000);
-		this.goto('close');
-	})();
->>
+<<do this.gotoNoOne();>>
 
 ::give tomato
 <<do
