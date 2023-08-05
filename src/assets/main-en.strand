@@ -1138,12 +1138,22 @@ continue
 ::worm hat
 <<do
 	this.scene.loseItem(true);
-	this.add(
-		this.Prop({ texture: 'hat', x: -250, y: -180, tint: 0x6f79cd, offset: 50, }),
-	);
 >>
 "for me? thanks buddy"
 >
+<<do
+	setTimeout(() => {
+		this.sfx('rustle');
+		this.add(
+			this.Prop({ texture: 'hat', x: -250, y: -180, tint: 0x6f79cd, offset: 50, }),
+		);
+		setTimeout(() => {
+			this.goto('worm hat1');
+		}, 1000);
+	}, 500);
+>>
+
+::worm hat1
 "now i can go out and look cute"
 >
 <<do
