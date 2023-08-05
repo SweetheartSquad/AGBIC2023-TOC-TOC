@@ -203,7 +203,7 @@
 			player: [`"it's a safety pin"`],
 		}, }),
 		this.Hotspot({ label: 'dragonfly', texture: 'dragonfly', x: 261, y:-290, offset: 100000000, use: {
-			undefined: ['what a pretty dragonfly...'],
+			undefined: ['p:"what a pretty dragonfly..."'],
 			glass: [`p:"i don't wanna hurt it..."`],
 			die: [`p:"i don't think it wants to play"`],
 			thimble: [`p:"i don't think it can sew"`],
