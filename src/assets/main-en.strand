@@ -1973,8 +1973,8 @@ soap
 		case 'tree':
 			poly = this.Poly({ verts: [-118,-314] }); // tree
 			wax = this.Hotspot({ texture: 'wax tree', x: -111, y: -305,    offset: -3, use: {
+				undefined: ['goto:smash tree'],
 				matchbox: ['goto:melt wax'],
-				anvil: ['goto:smash tree'],
 			}, });
 			break;
 	}
@@ -2000,7 +2000,6 @@ soap
 		this.Item({ label: 'star', texture: 'wax tree star', x: -89, y: -280,    offset: -5, use: {
 		}, }),
 	);
-	this.scene.loseItem(true);
 	this.goto('close');
 >>
 
