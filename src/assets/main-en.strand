@@ -1915,8 +1915,8 @@ soap
 >>
 "whaaa.."
 >
-// TODO: sfx
 <<do
+	this.sfx('rustle');
 	this.scene.screenFilter.flash([30,40,60], 300, this.ease.cubicIn);
 	const spr = new this.PIXI.Sprite(this.tex('ring_carrying'));
 	spr.scale.x *= -1;
@@ -1925,7 +1925,13 @@ soap
 	const juice = this.scene.find('jumpy juicemonger');
 	juice.spr.addChild(spr);
 	this.shock(this.scene.find('jumpy juicemonger'), 500);
+
+	setTimeout(() => {
+		this.goto('give ring1');
+	}, 1000);
 >>
+
+::give ring1
 "wehehe... finally..."
 >
 "friend.. take... whhhhaatever..."
