@@ -19,11 +19,10 @@ audio/stepStone.mp3
 audio/stepCounter.mp3
 textures/footprintDefault.png
 
-textures/no one/no one.x3.png
+textures/no one/no one Head.x23.png
 textures/no one/no one UL.x24.png
 textures/no one/no one LL.x24.png
 textures/no one/no one LR.x3.png
-textures/noOneHeadAnim/noOneHeadAnim.x23.png
 textures/noOneAnim_Bottom/noOneAnim_Bottom.x24.png
 
 textures/guyIdle.x2.png
