@@ -1263,10 +1263,42 @@ you got the moon-dried tomato.
 <<do this.gotoNoOne();>>
 
 ::give tomato
-<<do
-	this.scene.loseItem();
->>
-"idk do something i guess"
+<<do this.scene.loseItem();>>
+<<do this.gameObject = this.scene.player>>
+"i got this..."
+>
+<<do this.gameObject = this.noone>>
+"ah yes, the moon-dried tomato..."
+>
+"a face only a mother could love."
+>
+<<do this.gameObject = this.scene.player>>
+"what are you gonna do with it?"
+>
+<<do this.gameObject = this.noone>>
+"that's no one's business."
+>
+<<do this.gameObject = this.scene.player>>
+"..."
+>
+<<do this.gameObject = this.noone>>
+"..."
+>
+<<do this.gameObject = this.scene.player>>
+"can i go now?"
+>
+<<do this.gameObject = this.noone>>
+"no. i need another object."
+>
+"i need a bar of soap."
+>
+"the dust bunnies are hoarding them all..."
+>
+"a veritable arsenal."
+>
+"you can find them between the floorboards."
+>
+"watch out for outlaws."
 >
 <<do
 	this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
