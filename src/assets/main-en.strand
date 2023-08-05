@@ -964,7 +964,7 @@
 		this.scene.player.walkTo(-164, -112);
 		await this.delay(1500);
 		this.scene.goto({ area: 'no one', x: this.scene.player.x, y: this.scene.player.y });
-		this.scene.find('no one').display.container.alpha = 0;
+		this.scene.find('no one Head').display.container.alpha = 0;
 		this.scene.find('no one UL').display.container.alpha = 0;
 		this.scene.find('no one LL').display.container.alpha = 0;
 		this.scene.find('noOneAnim_Bottom').display.container.alpha = 0;
@@ -974,7 +974,7 @@
 		this.tween(this.scene.find('no one UL').display.container, 'alpha', 1, 800);
 		this.tween(this.scene.find('noOneAnim_Bottom').display.container, 'alpha', 1, 1200);
 		await this.delay(1000);
-		this.tween(this.scene.find('no one').display.container, 'alpha', 1, 2000);
+		this.tween(this.scene.find('no one Head').display.container, 'alpha', 1, 2000);
 		await this.delay(1000);
 		this.goto('close');
 	};
