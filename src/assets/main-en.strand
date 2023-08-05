@@ -81,11 +81,18 @@
 				'soap': ['goto:give soap'],
 				'sandwich': ['goto:give sandwich'],
 			}, });
+			this.noone = h;
 			h.spr.width = 200;
 			h.spr.height = 200;
 			return h;
 		})(),
 
+		this.Updater(() => {
+			if (this.gameObject === this.noone) {
+				const t = game.app.ticker.lastTime;
+				this.scene.dialogue.strText = this.scene.dialogue.strText.split('').map((i, idx) => Math.floor(idx/5 -t/300 - Math.sin(t/300)*0.5 - Math.sin(t/400)*0.2) % 3 ? i.toLowerCase() : i.toUpperCase()).join('');
+			}
+		}),
 	]);
 	this.Area('intro', [
 		...([
