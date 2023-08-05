@@ -340,7 +340,7 @@
 			oil: [`"gotta respect da classics"`, `"ah go for bigger scores dese days"`],
 			'bread slice': [`"no thanks, ah ate before we came"`, `"nevah do a heist on an empty stomach"`],
 		}, }),
-		this.Npc({ name: 'mook', body: 'dustbun_mook2', tint: 0xE6E2A4, x: -139, y: -115, use: {
+		this.Npc({ name: 'mook', body: 'dustbun_mook', tint: 0xE6E2A4, x: -139, y: -115, use: {
 			undefined: [`"ey step back kiddo"`, `"dis stuff's dangerous"`],
 			rope: [`p:"i think they'd overpower me..."`, `p:"better knot risk it"`],
 			'cowboy hat': [`"hats're more da boss's style"`],
