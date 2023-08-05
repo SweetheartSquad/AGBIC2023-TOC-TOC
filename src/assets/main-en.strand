@@ -125,6 +125,10 @@
 	const Rockspot = ({ spot, x, y }) => {
 		const h = this.Hotspot({ label: 'spot', texture: 'stone_tile', offset: -100, x, y, use: {
 			undefined: [`p:"looks like something could go here"`],
+			thimble: [`p:"it's too big for the tile"`],
+			die: [`p:"it's too big for the tile"`],
+			glass: [`p:"that's not a short cut"`],
+			hat: [`p:"i'm getting ahead of myself"`],
 			'big rock': ['goto:place big rock'],
 			'medium rock': ['goto:place medium rock'],
 			'little rock': ['goto:place little rock'],
@@ -149,23 +153,37 @@
 			die: [`"i don't have hands dude"`],
 			thimble: [`"kind of a bummer hat no offense"`],
 			glass: [`"whoa dude don't hurt me"`],
+			'safety pin': [`"whoa dude don't hurt me"`],
 			'cut flower': [`"im not really a flower guy"`],
+			'little rock': [`"you gonna finish that?"`],
+			'medium rock': [`"you gonna finish that?"`],
+			'big rock': [`"you gonna finish that?"`],
 		}, }),
 
 		this.Hotspot({ label: 'flower', texture: 'bg_gnome_puzzle_flower', x: -57, y: -266, offset: -10, use: {
 			glass: ['goto:cut flower'],
 			undefined: [`p:"cute flower!"`],
+			thimble: [`p:"i think it's a daisy, not a thimble flower"`],
+			'little rock': [`p:"i don't want to crush it"`],
+			'medium rock': [`p:"i don't want to crush it"`],
+			'big rock': [`p:"i don't want to crush it"`],
+			'safety pin': [`p:"it's tough to cut it with that"`],
 		}, }),
 
 		this.Hotspot({ label: 'leaf', texture: 'leaf', x: 122, y: -175, offset: 10, use: {
 			undefined: ['goto:move leaf'],
+			other: [`p:"i can probably just move it with my hands"`],
 		}, }),
 		
 		this.Npc({ name: 'fiery gnome', body: 'gnome_top', tint: 0xcd836f, x: -162, y: -224, use: {
 			'die': [`"no time for games!"`],
 			'glass': [`"hey! watch where you swing that!"`],
+			'safety pin': [`"hey! watch where you swing that!"`],
 			undefined: [`"i know where the rocks go!"`,`"don't listen to the other guy."`, `"we'll never get into the temple..."`, `"ugh, that worm creeps me out..."`],
 			'medium rock': [`"hey! that's my- oh, maybe not."`],
+			thimble: [`"i don't need a new hat!"`],
+			hat: [`"i don't need a new hat!"`],
+			'cut flower': [`"that's cute. i hate it!"`],
 		}, }),
 		this.Npc({ name: 'numb gnome', body: 'gnome_bottom', tint: 0x6f79cd, x: 180, y: -100, flip: true, use: {
 			'cut flower': [`goto:remove-hat`],
@@ -175,32 +193,61 @@
 			'safety pin': [`"hmm, that's not really a hat..."`],
 			undefined: [`"he won't put his rock on that tile..."`,`"my solution is right but whatever..."`,`"i hope there's a cute hat in there..."`],
 			'medium rock': [`"oh, you have one too..."`],
+			hat: [`"nah... i like the new one better"`],
 		}, }),
 
 		this.Item({ texture: 'big rock', x: -109, y: -219, use: {
 			undefined: ['goto:take big rock'],
 			player: [`"it's a rock"`],
+			'cut flower': [`p:"i don't want to crush it"`],
+			'little rock': [`p:"wouldn't want to get between these two"`],
+			'medium rock': [`p:"wouldn't want to get between these two"`],
+			glass: [`p:"not a house, but i still shouldn't throw it"`],
+			die: [`p:"rock and roll!"`],
 		}, }),
 		this.Item({ texture: 'little rock', x: 100, y: -110, use: {
 			undefined: ['goto:take little rock'],
 			player: [`"it's a rock"`],
+			'cut flower': [`p:"i don't want to crush it"`],
+			'big rock': [`p:"wouldn't want to get between these two"`],
+			'medium rock': [`p:"wouldn't want to get between these two"`],
+			glass: [`p:"not a house, but i still shouldn't throw it"`],
+			die: [`p:"rock and roll!"`],
 		}, }),
 		this.glassPoly = this.Poly({ verts: [-179,-82, -209,-84, -205,-66, -179,-84], width: 10 }),
 		this.Item({ texture: 'glass', x: -190, y: -50, offset: -35, use: {
 			player: [`"it's a sharp piece of broken glass"`],
+			'little rock': [`p:"not a house, but i still shouldn't throw it"`],
+			'medium rock': [`p:"not a house, but i still shouldn't throw it"`],
+			'big rock': [`p:"not a house, but i still shouldn't throw it"`],
+			die: [`p:"that's not how die cuts work"`],
+			'safety pin': [`p:"they're both pretty sharp..."`],
 		}, }),
 
 		//junk
 		this.Item({ texture: 'thimble', x: 290, y: -20, offset: 10000000, use: {
 			player: [`"it's a thimble"`],
 			die: [`p:"yahtzee!"`],
+			'cut flower': [`p:"i think it's a daisy, not a thimble flower"`],
+			'safety pin': [`p:"wrong type of needle for that"`],
+			hat: [`p:"fashion is so complicated"`],
 		}, }),
 		this.Item({ texture: 'die', x: -304, y: -103, offset: 100000000, use: {
 			player: [`"it's a six-sided die"`],
 			thimble: [`p:"yahtzee!"`],
+			'little rock': [`p:"rock and roll!"`],
+			'medium rock': [`p:"rock and roll!"`],
+			'big rock': [`p:"rock and roll!"`],
+			glass: [`p:"that's not how die cuts work"`],
+			other: [`p:"now's not the time to be playing around"`],
+			otherTarget: [`p:"now's not the time to be playing around"`],
 		}, }),
 		this.Item({ texture: 'safety pin', x: 50, y: -50, offset: -35, use: {
 			player: [`"it's a safety pin"`],
+			'cut flower': [`p:"it's too big for that"`],
+			glass: [`p:"they're both pretty sharp..."`],
+			thimble: [`p:"wrong type of needle for that"`],
+			hat: [`p:"it doesn't need a pin to stay on"`],
 		}, }),
 		this.Hotspot({ label: 'dragonfly', texture: 'dragonfly', x: 261, y:-290, offset: 100000000, use: {
 			undefined: ['p:"what a pretty dragonfly..."'],
@@ -996,6 +1043,11 @@ me
 
 	const cutFlower = this.Item({ label: 'cut flower', texture: 'flower_head', x: -55, y: -321, offset: 0, use: {
 		player: [`p:"it's a flower"`],
+		'safety pin': [`p:"it's too big for that"`],
+		thimble: [`p:"i think it's a daisy, not a thimble flower"`],
+		'little rock': [`p:"i don't want to crush it"`],
+		'medium rock': [`p:"i don't want to crush it"`],
+		'big rock': [`p:"i don't want to crush it"`],
 	}, });
 	cutFlower.btn.enabled = false;
 	this.scene.screenFilter.flash([128,128,128], 200, this.ease.cubicOut);
@@ -1019,6 +1071,11 @@ me
 	this.add(
 		this.Item({ texture: 'medium rock', x: 132, y: -185, use: {
 			player: [`"it's a rock"`],
+			'cut flower': [`p:"i don't want to crush it"`],
+			'little rock': [`p:"wouldn't want to get between these two"`],
+			'big rock': [`p:"wouldn't want to get between these two"`],
+			glass: [`p:"not a house, but i still shouldn't throw it"`],
+			die: [`p:"rock and roll!"`],
 		}, }),
 	);
 	this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 100, 500, undefined, this.ease.cubicInOut);
@@ -1066,6 +1123,8 @@ me
 	this.add(
 		this.Item({ texture: 'hat', x: 128, y: -83, tint: 0x6f79cd, use: {
 			player: ['p:"it is a gnome hat"'],
+			'safety pin': [`p:"it doesn't need a pin to stay on"`],
+			thimble: [`p:"fashion is so complicated"`],
 		}, }),
 	);
 >>
