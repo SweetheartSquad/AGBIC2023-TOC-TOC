@@ -1759,7 +1759,7 @@ soap
 
 ::give ring
 <<do
-	this.scene.loseItem();
+	this.scene.loseItem(true);
 	this.gaveRing = true;
 	this.scene.find('jumpy juicemonger').btn.use.undefined = [`"weee... pretty"`, `"whhoo... friend..? drink...!"`];
 	this.scene.find('jumpy juicemonger').btn.resetCycles();
