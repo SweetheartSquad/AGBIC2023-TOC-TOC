@@ -946,12 +946,15 @@
 		await this.delay(1500);
 		this.scene.player.expression = '';
 		await this.delay(1500);
+		this.sfx('chunk', { volume: 0.7, rate: 1.0 }),
 		this.tween(this.scene.find('godRayL').spr, 'alpha', 0, 100);
 		this.scene.player.flipped = true;
 		await this.delay(1000);
 		this.tween(this.scene.find('godRayC').spr, 'alpha', 0, 100);
+		this.sfx('chunk', { volume: 0.85, rate: 0.95 }),
 		await this.delay(1000);
 		this.tween(this.scene.find('godRayR').spr, 'alpha', 0, 100);
+		this.sfx('chunk', { volume: 1.0, rate: 0.9 }),
 		await this.delay(1200);
 		this.scene.player.flipped = false;
 		await this.delay(1200);
