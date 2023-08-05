@@ -911,6 +911,7 @@
 		this.scene.player.walkTo(pos.x, pos.y);
 		await this.delay(500);
 		this.scene.goto({ area, x: -277 - 100, y: -108 + 100 });
+		this.scene.player.floor = 'Stone';
 		this.scrim(0, 1500);
 		await this.scene.player.walkTo(-277, -108);
 		this.goto('close');
@@ -1269,6 +1270,7 @@ you got the moon-dried tomato.
 >
 <<do
 	this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
+	this.scene.player.floor = 'Wood';
 	this.goto('close');
 >>
 
@@ -1759,6 +1761,7 @@ soap
 >
 <<do
 	this.scene.goto({ area: 'mouse town center', x: 50, y: -100 });
+	this.scene.player.floor = 'Counter';
 	this.goto('close');
 >>
 

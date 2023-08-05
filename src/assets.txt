@@ -14,6 +14,9 @@ audio/voiceDefault.mp3
 textures/walk_cursor.x2.png
 
 audio/stepDefault.mp3
+audio/stepWood.mp3
+audio/stepStone.mp3
+audio/stepCounter.mp3
 textures/footprintDefault.png
 
 textures/no one/no one.x3.png
