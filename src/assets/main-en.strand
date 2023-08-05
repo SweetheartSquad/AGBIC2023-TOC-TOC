@@ -1755,6 +1755,7 @@ you got the soap.
 <<do this.gotoNoOne();>>
 
 ::give soap
+<<do this.scene.loseItem();>>
 soap
 >
 <<do
@@ -2488,6 +2489,7 @@ you got the sandwich.
 <<do this.gotoNoOne();>>
 
 ::give sandwich
+<<do this.scene.loseItem();>>
 sandwich
 >
 <<do
