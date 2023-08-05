@@ -1961,20 +1961,22 @@ soap
 		case 'snowman':
 			poly = this.Poly({ verts: [-118,-315, -98,-313], width: 15 }); // snowman
 			wax = this.Hotspot({ texture: 'wax snowman', x: -103, y: -303, offset: 0, use: {
+				undefined: [`p:"seems fragile and i don't need a snowman"`],
 				matchbox: ['goto:melt wax'],
 			}, });
 			break;
 		case 'star':
 			poly = this.Poly({ verts: [-133,-317, -98,-308], width: 12 }); // star
 			wax = this.Hotspot({ texture: 'wax star', x: -108, y: -302,    offset: -10, use: {
+				undefined: [`p:"that's too big to pick up"`],
 				matchbox: ['goto:melt wax'],
 			}, });
 			break;
 		case 'tree':
 			poly = this.Poly({ verts: [-118,-314] }); // tree
 			wax = this.Hotspot({ texture: 'wax tree', x: -111, y: -305,    offset: -3, use: {
+				undefined: ['goto:smash tree'],
 				matchbox: ['goto:melt wax'],
-				anvil: ['goto:smash tree'],
 			}, });
 			break;
 	}
@@ -2000,7 +2002,6 @@ soap
 		this.Item({ label: 'star', texture: 'wax tree star', x: -89, y: -280,    offset: -5, use: {
 		}, }),
 	);
-	this.scene.loseItem(true);
 	this.goto('close');
 >>
 
