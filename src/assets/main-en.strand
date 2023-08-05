@@ -2043,6 +2043,10 @@ soap
 		const t3 = this.tween(farmer, 'x', -33, 1200, undefined, this.ease.backIn);
 		const t4 = this.tween(farmer, 'y', -7, 1200, undefined, this.ease.backIn);
 		const t5 = this.tween(farmer.display.container, 'alpha', 0, 1200, undefined, this.ease.cubicIn);
+		const clicks = 10;
+		for (let i = 0; i < clicks; ++i) {
+			setTimeout(() => this.sfx('stepStone', { volume: 1-i/clicks, rate: 1 - Math.random()*0.1 }), i*150);
+		}
 		await this.delay(1600);
 		this.tweenAbort(t1);
 		this.tweenAbort(t2);
