@@ -174,7 +174,7 @@
 			undefined: ['goto:move leaf'],
 			other: [`p:"i can probably just move it with my hands"`],
 		}, }),
-		
+
 		this.Npc({ name: 'fiery gnome', body: 'gnome_top', tint: 0xcd836f, x: -162, y: -224, use: {
 			'die': [`"no time for games!"`],
 			'glass': [`"hey! watch where you swing that!"`],
@@ -256,10 +256,10 @@
 			thimble: [`p:"i don't think it can sew"`],
 			'safety pin': [`p:"the pin kinda looks like a wing..."`],
 		}, }),
-		
-		
-		
-		
+
+
+
+
 		Rockspot({ spot: '11', x: -110, y: -125, }),
 		Rockspot({ spot: '12', x: -64,  y: -149, }),
 		Rockspot({ spot: '13', x: -25,  y: -171, }),
@@ -643,7 +643,7 @@
 			matchbox: [`goto:melt wax`],
 			'easter egg': [`p:"they have enough wax already"`],
 		}, }),
-		
+
 
 		// bottom right
 		this.Prop({ texture: 'cutter snowman 1', x: 274, y: -102, alpha: 0, offset: 202 }),
@@ -852,7 +852,7 @@
 			'cookie cutter': [`"mrrhh... don't give mouse.. cookie..."`],
 			ring: [`"mmm... my bad..."`],
 		}, }),
-		
+
 		this.Npc({ name: 'cheesy coachmouse', body: 'mouse_nervous', tint: 0xB5320C, x: -192, y: -172, bodyCollision: { isStatic: true }, use: {
 			undefined: [`"arhh.. horse.."`, `"ahhh.. won't go..."`, `"arhghg..."`],
 			'wind-up key': [`"ah.. familiar...?"`, `"ah.. think..."`],
@@ -1035,7 +1035,7 @@ me
 //      .88
 //  d8888P
 ::cut flower
-<<do 
+<<do
 	this.scene.loseItem(true);
 	this.destroy(this.gameObject);
 	this.destroy(this.glassPoly);
@@ -1209,7 +1209,7 @@ me
 <<do
 	this.scene.findAll('spot').forEach(i => { i.btn.enabled = false; });
 	this.scene.camera.shake = 2;
-	this.camPoint = { x: this.size.x, y: -this.size.y }; 
+	this.camPoint = { x: this.size.x, y: -this.size.y };
 	this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
 	this.tween(this.scene.camera, 'shake', 0, 1500, 2, this.ease.cubicIn);
 	this.tween(this.scene.find('bg_gnome_puzzle_closed_BACK').display.container, 'alpha', 0, 1000);
@@ -1794,7 +1794,7 @@ soap
 		smith.btn.use.fork = [`"mm.. no... fresh metal only..."`];
 		smith.btn.use.spoon = [`"mm.. no... fresh metal only..."`];
 		smith.btn.resetCycles();
-		
+
 		await this.delay(500);
 		this.camPoint = { x: this.size.x, y: this.size.y };
 		smith.flipped = false;
@@ -1902,10 +1902,10 @@ soap
 
 
 ::windup key
-<<do 
+<<do
 	this.scene.loseItem(true);
 	this.scene.find('can front wKey').spr.texture = this.tex('can front');
-	
+
 	this.destroy(this.scene.find('horseNoKey'));
 	this.add(
 		this.Prop({ texture: 'horseKey', freq: 1/100, x: -128, y: 0,   offset: -35 }),
@@ -2075,7 +2075,7 @@ soap
 	[a.carrying, b.carrying] = [b.carrying, a.carrying];
 	this.scene.find(`cutter ${a.cookie} ${a.pos}`).spr.alpha = 1;
 	this.scene.find(`cutter ${b.cookie} ${b.pos}`).spr.alpha = 1;
-	
+
 	this.destroy(this.polyCutter);
 	let poly;
 	switch (a.cookie) {
@@ -2502,7 +2502,7 @@ blah blah
 	this.show('black', { scale: this.size.x });
 	this.tween(this.scene.border.display.container, 'alpha', 0, 1000);
 	this.tween(scene.camera.display.container, 'alpha', 0, 1000);
-	
+
 >>
 blah blah
 >
