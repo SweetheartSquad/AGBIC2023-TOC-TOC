@@ -1961,12 +1961,14 @@ soap
 		case 'snowman':
 			poly = this.Poly({ verts: [-118,-315, -98,-313], width: 15 }); // snowman
 			wax = this.Hotspot({ texture: 'wax snowman', x: -103, y: -303, offset: 0, use: {
+				undefined: [`p:"seems fragile and i don't need a snowman"`],
 				matchbox: ['goto:melt wax'],
 			}, });
 			break;
 		case 'star':
 			poly = this.Poly({ verts: [-133,-317, -98,-308], width: 12 }); // star
 			wax = this.Hotspot({ texture: 'wax star', x: -108, y: -302,    offset: -10, use: {
+				undefined: [`p:"that's too big to pick up"`],
 				matchbox: ['goto:melt wax'],
 			}, });
 			break;
