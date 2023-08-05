@@ -2438,6 +2438,7 @@ soap
 
 ::cheese poem2
 <<do this.scene.dialogue.textText.style.fontStyle = 'italic'>>
+voicePoem
 when hunger pains
 >
 are what you feel
@@ -2450,6 +2451,7 @@ the holy meal
 	this.gameObject = this.scene.player;
 	this.scene.dialogue.textText.style.fontStyle = 'normal';
 >>
+voiceDefault
 "hmm..."
 [[>close]]
 
@@ -2466,6 +2468,7 @@ the holy meal
 
 ::star poem2
 <<do this.scene.dialogue.textText.style.fontStyle = 'italic'>>
+voicePoem
 if you get lost
 >
 when you go forth
@@ -2478,6 +2481,7 @@ to guide you north
 	this.gameObject = this.scene.player;
 	this.scene.dialogue.textText.style.fontStyle = 'normal';
 >>
+voiceDefault
 "hmm..."
 [[>close]]
 
