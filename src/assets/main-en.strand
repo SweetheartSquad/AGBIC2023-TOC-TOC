@@ -81,11 +81,18 @@
 				'soap': ['goto:give soap'],
 				'sandwich': ['goto:give sandwich'],
 			}, });
+			this.noone = h;
 			h.spr.width = 200;
 			h.spr.height = 200;
 			return h;
 		})(),
 
+		this.Updater(() => {
+			if (this.gameObject === this.noone) {
+				const t = game.app.ticker.lastTime;
+				this.scene.dialogue.strText = this.scene.dialogue.strText.split('').map((i, idx) => Math.floor(idx/5 -t/300 - Math.sin(t/300)*0.5 - Math.sin(t/400)*0.2) % 3 ? i.toLowerCase() : i.toUpperCase()).join('');
+			}
+		}),
 	]);
 	this.Area('intro', [
 		...([
@@ -601,9 +608,9 @@
 		this.Prop({ texture: 'cutter star 2',    x: -286, y: -126, alpha: 0, offset: -115 }),
 		this.Prop({ texture: 'cutter tree 2',    x: -293, y: -129, alpha: 0, offset: -125 }),
 		// top right
-		this.Prop({ texture: 'cutter snowman 3', x: 267, y: -300, alpha: 0, offset: 300 }),
-		this.Prop({ texture: 'cutter star 3',    x: 281, y: -314, alpha: 0, offset: 314 }),
-		this.Prop({ texture: 'cutter tree 3',    x: 268, y: -300, alpha: 1, offset: 300 }),
+		this.Prop({ texture: 'cutter snowman 3', x: 289, y: -324, alpha: 0, offset: 300 }),
+		this.Prop({ texture: 'cutter star 3',    x: 281, y: -300, alpha: 0, offset: 314 }),
+		this.Prop({ texture: 'cutter tree 3',    x: 284, y: -303, alpha: 1, offset: 300 }),
 		(() => {
 			// bottom right
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 311, y: -145, offset: 1000, use: {
@@ -634,16 +641,17 @@
 		})(),
 		(() => {
 			// top right
-			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 299, y: -316, offset: 1000, use: {
+			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 310, y: -346, offset: 1000, use: {
 				player: [`p:"it's a cookie cutter"`],
 				'cookie cutter': ['goto:swap cutter'],
+				'wax wad': [`p:"it'd need to be flat for that"`],
 				other: [`p:"i can't do much with it up there"`],
 			}, });
 			h.pos = 3;
 			h.cookie = 'tree';
 			h.carrying = 'cutter tree carrying';
 			h.spr.width = 100;
-			h.spr.height = 100;
+			h.spr.height = 120;
 			return h;
 		})(),
 
