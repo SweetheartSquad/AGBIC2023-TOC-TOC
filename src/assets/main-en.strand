@@ -78,6 +78,8 @@
 			const h = this.Hotspot({ label: 'no one', texture: 'blank', x: 27, y: -214, offset: 10000, use: {
 				undefined: ['goto:no one'],
 				'moon-dried tomato': ['goto:give tomato'],
+				'soap': ['goto:give soap'],
+				'sandwich': ['goto:give sandwich'],
 			}, });
 			h.spr.width = 200;
 			h.spr.height = 200;
@@ -425,8 +427,9 @@
 
 	this.Area('soap', [
 		this.Prop({ texture: 'noItemSoap', offset: -1000000 }),
-		this.Hotspot({ label: 'soap', texture: 'soapItem', x: 54, y: -304, use: {
+		this.Item({ label: 'soap', texture: 'soapItem', x: 54, y: -304, use: {
 			undefined: ['goto:soap'],
+			player: ['goto:no one item cancel'],
 		} }),
 		...rays(),
 	]);
@@ -829,8 +832,9 @@
 		// sandwich
 		this.Poly({ verts: [26,-326, 109,-283, 166,-271, 224,-285, 261,-314, 259,-339, 214,-381, 135,-431, 54,-465, 6,-458, -30,-445, -56,-422, -56,-399, -33,-368, 25,-327] }),
 		this.Prop({ texture: 'plateNoSandwhich', offset: -1000000 }),
-		this.Hotspot({ label: 'half-eaten tuna fish sandwich', texture: 'sandwhich', x: 100, y: -261, offset: -100000, use: {
+		this.Item({ label: 'half-eaten tuna fish sandwich', texture: 'sandwhich', x: 100, y: -261, offset: -100000, use: {
 			undefined: ['sandwich'],
+			player: ['goto:no one item cancel'],
 		} }),
 		...rays(),
 	]);
@@ -1678,6 +1682,14 @@ you got the moon-dried tomato.
 <<endif>>
 
 ::soap
+<<do this.itemRoomPickup('soap1')>>
+
+::soap1
+you got the soap.
+>
+<<do this.gotoNoOne();>>
+
+::give soap
 soap
 >
 <<do
@@ -2398,6 +2410,22 @@ to guide you north
 <<else>>
 	<<do this.gotoItemRoom({ x: 180, y: -369 }, 'sandwich');>>
 <<endif>>
+
+::sandwich
+<<do this.itemRoomPickup('sandwich1')>>
+
+::sandwich1
+you got the sandwich.
+>
+<<do this.gotoNoOne();>>
+
+::give sandwich
+sandwich
+>
+<<do
+	// this.scene.goto({ area: 'TODO', x: 50, y: -100 });
+	this.goto('close');
+>>
 
 ::The End
 blah blah
