@@ -97,16 +97,25 @@
 			}
 		}),
 	]);
-	this.Area('intro', [
-		...([
-			'gnome puzzle',
-			'dustbun heist',
-			'mouse town center',
-		].flatMap((i, idx) => [
-			this.Prop({ texture: 'glow', x: 80, y: -225 + 50*idx + 50 }),
-			this.Text(i, { x: 80, y: -225 + 50*idx }),
-			this.Goto({ area: i, y: -100 }, { x: 80, y: -200 + 50*idx, width: 80, height: 50 }),
-		])),
+	this.Area('menu', [
+		this.Prop({ texture: 'TOC TOC', x: 0, y: -this.size.y/2, offset: 10000 }),
+		this.Hotspot({ texture: 'start', x: -176, y: -74, offset: 10000, use: {
+			undefined: ['goto:start game'],
+		}, }),
+		this.Hotspot({ texture: 'credits', x: 183, y: -68, offset: 10000, use: {
+			undefined: ['goto:credits'],
+		}, }),
+	]);
+	this.Area('credits', [
+		this.Hotspot({ label: 'made by Sean, Michael & IAN\nof Sweet♥Heart Squad', texture: 'SweetHeart Squad', x: -176, y: -242, offset: 10000, use: {
+			undefined: ['goto:credits-sweetheartsquad'],
+		}, }),
+		this.Hotspot({ label: 'based on Famicase artwork\nby AQUILES', texture: 'AQUILES', x: 183, y: -68, offset: 10000, use: {
+			undefined: ['goto:credits-aquiles'],
+		}, }),
+		this.Hotspot({ texture: 'back', x: -185, y: -95, offset: 10000, use: {
+			undefined: ['goto:credits-back'],
+		}, }),
 	]);
 
 	const rays = () => {
@@ -982,30 +991,23 @@
 
 	// start
 	this.started=true;
-	this.scene.goto({ area: 'intro' });
-	requestAnimationFrame(() => {
-		this.scrim(1, 3000);
-	});
+	this.scene.goto({ area: 'menu' });
 >>
 <<endif>>
 <<do
-	this.scene.dialogue.textText.style.fill = 0xffd20a;
-	this.show('title2', { scale: 2, duration: 0 });
-	this.scene.dialogue.textText.x = this.size.x / 2;
-	this.scene.dialogue.textText.y = this.size.y / 2;
->>
-TOC TOC
->start
-<<do
-	this.scene.dialogue.textText.style.fill = 0xffffff;
-	// this.music('bgm');
-	this.show('').then(() => {this.goto('start2')});
+	this.tween(this.scene.border.display.container, 'alpha', 1, 1000);
+	this.scrim(0, 3000);
+	this.goto('close');
+	this.scene.player.display.container.visible = false;
+	this.scene.player.display.container.canMove = false;
 >>
 
-::start2
+::start game
 <<do
-	this.tween(this.scene.border.display.container, 'alpha', 1, 1000);
-	this.goto('main');
+	this.scene.goto({ area: 'gnome puzzle', x: -106, y: -79 });
+	this.goto('close');
+	this.scene.player.display.container.visible = true;
+	this.scene.player.display.container.canMove = true;
 >>
 
 ::close
@@ -2847,9 +2849,14 @@ The End
 ]]
 [[back|this.back()]]
 
-::main
-<<do
-	this.sfx('voiceDefault');
-	this.scrim(0, 3000);
-	this.goto('close');
->>
+::credits
+<<do this.scene.goto({ area: 'credits' }); this.goto('close');>>
+
+::credits-sweetheartsquad
+<<do window.open('https://sweetheartsquad.itch.io', '_blank'); this.goto('close');>>
+
+::credits-aquiles
+<<do window.open('https://famicase.com/23/softs/122.html', '_blank'); this.goto('close');>>
+
+::credits-back
+<<do this.scene.goto({ area: 'menu' }); this.goto('close');>>
