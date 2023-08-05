@@ -1118,19 +1118,22 @@ continue
 	const numbgnome = this.scene.find('numb gnome');
 	numbgnome.spr.addChild(spr);
 	this.shock(numbgnome, 300);
-	numbgnome.btn.use.undefined = [`"he won't put his rock on that tile..."`,`"my solution is right but whatever..."`,`"thanks for the cute flower..."`];
+	numbgnome.btn.use.undefined = [`"thanks for the cute flower..."`, `"he won't put his rock on that tile..."`, `"my solution is right but whatever..."`];
 	numbgnome.btn.resetCycles();
+	this.sfx('rustle', { rate: 1.1 });
 
-	this.add(
-		this.Item({ texture: 'hat', x: 128, y: -83, tint: 0x6f79cd, use: {
-			player: ['p:"it is a gnome hat"'],
-			'safety pin': [`p:"it doesn't need a pin to stay on"`],
-			thimble: [`p:"fashion is so complicated"`],
-		}, }),
-	);
+	setTimeout(() => {
+		this.sfx('rustle', { rate: 0.8 });
+		this.goto('close');
+		this.add(
+			this.Item({ texture: 'hat', x: 128, y: -83, tint: 0x6f79cd, use: {
+				player: ['p:"it is a gnome hat"'],
+				'safety pin': [`p:"it doesn't need a pin to stay on"`],
+				thimble: [`p:"fashion is so complicated"`],
+			}, }),
+		);
+	}, 1000);
 >>
-"i guess you can have my hat..."
-[[>close]]
 
 ::worm hat
 <<do
