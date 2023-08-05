@@ -118,6 +118,7 @@ export class GameScene {
 			renderer: {
 				displayPassage: (passage) => {
 					if (passage.title === 'close') {
+						this.dialogue.voice = 'Default';
 						this.dialogue.close();
 						player.followers.forEach((i) => {
 							i.roam.active = true;
