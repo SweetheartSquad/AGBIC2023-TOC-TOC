@@ -69,10 +69,10 @@
 	this.Area('empty', []);
 	this.Area('no one', [
 
-		this.Prop({ freq: 1/100, texture: 'noOneHeadAnim', offset: -1000 }),
-		this.Prop({ freq: 1/100, texture: 'no one UL', offset: 1000 }),
-		this.Prop({ freq: 1/100, texture: 'no one LL', offset: 1000 }),
-		this.Prop({ freq: 1/150, texture: 'noOneAnim_Bottom', offset: 1500 }),
+		this.Prop({ freq: 1/150, texture: 'noOneHeadAnim', offset: -1000 }),
+		this.Prop({ freq: 1/200, texture: 'no one UL', offset: 1000 }),
+		this.Prop({ freq: 1/190, texture: 'no one LL', offset: 1000 }),
+		this.Prop({ freq: 1/180, texture: 'noOneAnim_Bottom', offset: 1500 }),
 
 		(() => {
 			const h = this.Hotspot({ label: 'no one', texture: 'blank', x: 27, y: -214, offset: 10000, use: {
