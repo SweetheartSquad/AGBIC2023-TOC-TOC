@@ -195,13 +195,9 @@ export class Player extends Character {
 	}
 
 	async walkTo(...args: Parameters<Character['walkTo']>) {
+		this.cancelWalkToMouse();
 		await super.walkTo(...args);
 		this.roam.active = false;
-	}
-
-	walkBy(...args: Parameters<Character['walkBy']>) {
-		this.cancelWalkToMouse();
-		return super.walkBy(...args);
 	}
 
 	walkToMouse() {

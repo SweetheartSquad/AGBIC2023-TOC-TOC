@@ -90,7 +90,10 @@
 		this.Updater(() => {
 			if (this.gameObject === this.noone) {
 				const t = game.app.ticker.lastTime;
+				this.scene.dialogue.voice = 'No one';
 				this.scene.dialogue.strText = this.scene.dialogue.strText.split('').map((i, idx) => Math.floor(idx/5 -t/300 - Math.sin(t/300)*0.5 - Math.sin(t/400)*0.2) % 3 ? i.toLowerCase() : i.toUpperCase()).join('');
+			} else {
+				this.scene.dialogue.voice = 'Default';
 			}
 		}),
 	]);
@@ -125,6 +128,10 @@
 	const Rockspot = ({ spot, x, y }) => {
 		const h = this.Hotspot({ label: 'spot', texture: 'stone_tile', offset: -100, x, y, use: {
 			undefined: [`p:"looks like something could go here"`],
+			thimble: [`p:"it's too big for the tile"`],
+			die: [`p:"it's too big for the tile"`],
+			glass: [`p:"that's not a short cut"`],
+			hat: [`p:"i'm getting ahead of myself"`],
 			'big rock': ['goto:place big rock'],
 			'medium rock': ['goto:place medium rock'],
 			'little rock': ['goto:place little rock'],
@@ -149,23 +156,37 @@
 			die: [`"i don't have hands dude"`],
 			thimble: [`"kind of a bummer hat no offense"`],
 			glass: [`"whoa dude don't hurt me"`],
+			'safety pin': [`"whoa dude don't hurt me"`],
 			'cut flower': [`"im not really a flower guy"`],
+			'little rock': [`"you gonna finish that?"`],
+			'medium rock': [`"you gonna finish that?"`],
+			'big rock': [`"you gonna finish that?"`],
 		}, }),
 
 		this.Hotspot({ label: 'flower', texture: 'bg_gnome_puzzle_flower', x: -57, y: -266, offset: -10, use: {
 			glass: ['goto:cut flower'],
 			undefined: [`p:"cute flower!"`],
+			thimble: [`p:"i think it's a daisy, not a thimble flower"`],
+			'little rock': [`p:"i don't want to crush it"`],
+			'medium rock': [`p:"i don't want to crush it"`],
+			'big rock': [`p:"i don't want to crush it"`],
+			'safety pin': [`p:"it's tough to cut it with that"`],
 		}, }),
 
 		this.Hotspot({ label: 'leaf', texture: 'leaf', x: 122, y: -175, offset: 10, use: {
 			undefined: ['goto:move leaf'],
+			other: [`p:"i can probably just move it with my hands"`],
 		}, }),
-		
+
 		this.Npc({ name: 'fiery gnome', body: 'gnome_top', tint: 0xcd836f, x: -162, y: -224, use: {
 			'die': [`"no time for games!"`],
 			'glass': [`"hey! watch where you swing that!"`],
+			'safety pin': [`"hey! watch where you swing that!"`],
 			undefined: [`"i know where the rocks go!"`,`"don't listen to the other guy."`, `"we'll never get into the temple..."`, `"ugh, that worm creeps me out..."`],
 			'medium rock': [`"hey! that's my- oh, maybe not."`],
+			thimble: [`"i don't need a new hat!"`],
+			hat: [`"i don't need a new hat!"`],
+			'cut flower': [`"that's cute. i hate it!"`],
 		}, }),
 		this.Npc({ name: 'numb gnome', body: 'gnome_bottom', tint: 0x6f79cd, x: 180, y: -100, flip: true, use: {
 			'cut flower': [`goto:remove-hat`],
@@ -175,44 +196,73 @@
 			'safety pin': [`"hmm, that's not really a hat..."`],
 			undefined: [`"he won't put his rock on that tile..."`,`"my solution is right but whatever..."`,`"i hope there's a cute hat in there..."`],
 			'medium rock': [`"oh, you have one too..."`],
+			hat: [`"nah... i like the new one better"`],
 		}, }),
 
 		this.Item({ texture: 'big rock', x: -109, y: -219, use: {
 			undefined: ['goto:take big rock'],
 			player: [`"it's a rock"`],
+			'cut flower': [`p:"i don't want to crush it"`],
+			'little rock': [`p:"wouldn't want to get between these two"`],
+			'medium rock': [`p:"wouldn't want to get between these two"`],
+			glass: [`p:"not a house, but i still shouldn't throw it"`],
+			die: [`p:"rock and roll!"`],
 		}, }),
 		this.Item({ texture: 'little rock', x: 100, y: -110, use: {
 			undefined: ['goto:take little rock'],
 			player: [`"it's a rock"`],
+			'cut flower': [`p:"i don't want to crush it"`],
+			'big rock': [`p:"wouldn't want to get between these two"`],
+			'medium rock': [`p:"wouldn't want to get between these two"`],
+			glass: [`p:"not a house, but i still shouldn't throw it"`],
+			die: [`p:"rock and roll!"`],
 		}, }),
 		this.glassPoly = this.Poly({ verts: [-179,-82, -209,-84, -205,-66, -179,-84], width: 10 }),
 		this.Item({ texture: 'glass', x: -190, y: -50, offset: -35, use: {
-			player: [`"it's a piece of glass"`],
+			player: [`"it's a sharp piece of broken glass"`],
+			'little rock': [`p:"not a house, but i still shouldn't throw it"`],
+			'medium rock': [`p:"not a house, but i still shouldn't throw it"`],
+			'big rock': [`p:"not a house, but i still shouldn't throw it"`],
+			die: [`p:"that's not how die cuts work"`],
+			'safety pin': [`p:"they're both pretty sharp..."`],
 		}, }),
 
 		//junk
 		this.Item({ texture: 'thimble', x: 290, y: -20, offset: 10000000, use: {
 			player: [`"it's a thimble"`],
 			die: [`p:"yahtzee!"`],
+			'cut flower': [`p:"i think it's a daisy, not a thimble flower"`],
+			'safety pin': [`p:"wrong type of needle for that"`],
+			hat: [`p:"fashion is so complicated"`],
 		}, }),
 		this.Item({ texture: 'die', x: -304, y: -103, offset: 100000000, use: {
 			player: [`"it's a six-sided die"`],
 			thimble: [`p:"yahtzee!"`],
+			'little rock': [`p:"rock and roll!"`],
+			'medium rock': [`p:"rock and roll!"`],
+			'big rock': [`p:"rock and roll!"`],
+			glass: [`p:"that's not how die cuts work"`],
+			other: [`p:"now's not the time to be playing around"`],
+			otherTarget: [`p:"now's not the time to be playing around"`],
 		}, }),
 		this.Item({ texture: 'safety pin', x: 50, y: -50, offset: -35, use: {
 			player: [`"it's a safety pin"`],
+			'cut flower': [`p:"it's too big for that"`],
+			glass: [`p:"they're both pretty sharp..."`],
+			thimble: [`p:"wrong type of needle for that"`],
+			hat: [`p:"it doesn't need a pin to stay on"`],
 		}, }),
 		this.Hotspot({ label: 'dragonfly', texture: 'dragonfly', x: 261, y:-290, offset: 100000000, use: {
-			undefined: ['what a pretty dragonfly...'],
+			undefined: ['p:"what a pretty dragonfly..."'],
 			glass: [`p:"i don't wanna hurt it..."`],
 			die: [`p:"i don't think it wants to play"`],
 			thimble: [`p:"i don't think it can sew"`],
 			'safety pin': [`p:"the pin kinda looks like a wing..."`],
 		}, }),
-		
-		
-		
-		
+
+
+
+
 		Rockspot({ spot: '11', x: -110, y: -125, }),
 		Rockspot({ spot: '12', x: -64,  y: -149, }),
 		Rockspot({ spot: '13', x: -25,  y: -171, }),
@@ -515,6 +565,7 @@
 
 		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
 		this.Poly({ verts: [-79,-199, 111,-234], width: 15 }), // altars
+		this.sfxWater = this.Audio({ sfx: 'water', x: 19, y: -227, volume: 0.5, maxDistance: 400 }),
 		this.Prop({ texture: 'fountainWater', x: 15, y: -164, freq: 1/100, offset: -45 }),
 		this.Item({ texture: 'fountain',   x: 15, y: -164, alpha: 0, offset: -45, use: {
 			undefined: [`goto:pickup coin`],
@@ -596,7 +647,7 @@
 			matchbox: [`goto:melt wax`],
 			'easter egg': [`p:"they have enough wax already"`],
 		}, }),
-		
+
 
 		// bottom right
 		this.Prop({ texture: 'cutter snowman 1', x: 274, y: -102, alpha: 0, offset: 202 }),
@@ -805,7 +856,7 @@
 			'cookie cutter': [`"mrrhh... don't give mouse.. cookie..."`],
 			ring: [`"mmm... my bad..."`],
 		}, }),
-		
+
 		this.Npc({ name: 'cheesy coachmouse', body: 'mouse_nervous', tint: 0xB5320C, x: -192, y: -172, bodyCollision: { isStatic: true }, use: {
 			undefined: [`"arhh.. horse.."`, `"ahhh.. won't go..."`, `"arhghg..."`],
 			'wind-up key': [`"ah.. familiar...?"`, `"ah.. think..."`],
@@ -860,12 +911,12 @@
 
 	this.gotoItemRoom = async (pos, area) => {
 		this.scrim(1, 400);
-		this.scene.player.walkBy(pos.x, pos.y);
+		this.scene.player.walkTo(pos.x, pos.y);
 		await this.delay(500);
 		this.scene.goto({ area, x: -277 - 100, y: -108 + 100 });
+		this.scene.player.floor = 'Stone';
 		this.scrim(0, 1500);
-		this.scene.player.walkTo(-277, -108);
-		await this.delay(1600);
+		await this.scene.player.walkTo(-277, -108);
 		this.goto('close');
 	};
 
@@ -895,12 +946,15 @@
 		await this.delay(1500);
 		this.scene.player.expression = '';
 		await this.delay(1500);
+		this.sfx('chunk', { volume: 0.7, rate: 1.0 }),
 		this.tween(this.scene.find('godRayL').spr, 'alpha', 0, 100);
 		this.scene.player.flipped = true;
 		await this.delay(1000);
 		this.tween(this.scene.find('godRayC').spr, 'alpha', 0, 100);
+		this.sfx('chunk', { volume: 0.85, rate: 0.95 }),
 		await this.delay(1000);
 		this.tween(this.scene.find('godRayR').spr, 'alpha', 0, 100);
+		this.sfx('chunk', { volume: 1.0, rate: 0.9 }),
 		await this.delay(1200);
 		this.scene.player.flipped = false;
 		await this.delay(1200);
@@ -960,9 +1014,6 @@ this should never render
 ::choiceDefault
 continue
 
-::me
-me
-
 ::generic item
 <<do this.gameObject.pickup(); this.goto('close')>>
 
@@ -988,7 +1039,8 @@ me
 //      .88
 //  d8888P
 ::cut flower
-<<do 
+<<do
+	this.sfx('rustle');
 	this.scene.loseItem(true);
 	this.destroy(this.gameObject);
 	this.destroy(this.glassPoly);
@@ -996,6 +1048,11 @@ me
 
 	const cutFlower = this.Item({ label: 'cut flower', texture: 'flower_head', x: -55, y: -321, offset: 0, use: {
 		player: [`p:"it's a flower"`],
+		'safety pin': [`p:"it's too big for that"`],
+		thimble: [`p:"i think it's a daisy, not a thimble flower"`],
+		'little rock': [`p:"i don't want to crush it"`],
+		'medium rock': [`p:"i don't want to crush it"`],
+		'big rock': [`p:"i don't want to crush it"`],
 	}, });
 	cutFlower.btn.enabled = false;
 	this.scene.screenFilter.flash([128,128,128], 200, this.ease.cubicOut);
@@ -1009,21 +1066,31 @@ me
 	setTimeout(() => {
 		cutFlower.btn.enabled = true;
 	}, 2000);
+	this.goto('close');
 >>
-"snip snip!"
-[[>close]]
 
 ::move leaf
 <<do
+	this.sfx('rustle', { rate: 0.8 });
 	this.gameObject.btn.enabled = false;
 	this.add(
 		this.Item({ texture: 'medium rock', x: 132, y: -185, use: {
 			player: [`"it's a rock"`],
+			'cut flower': [`p:"i don't want to crush it"`],
+			'little rock': [`p:"wouldn't want to get between these two"`],
+			'big rock': [`p:"wouldn't want to get between these two"`],
+			glass: [`p:"not a house, but i still shouldn't throw it"`],
+			die: [`p:"rock and roll!"`],
 		}, }),
 	);
-	this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 100, 500, undefined, this.ease.cubicInOut);
+	this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 50, 800, undefined, this.ease.cubicInOut);
 	this.gameObject = this.scene.player;
+	setTimeout(() => {
+		this.goto('move leaf1');
+	}, 600);
 >>
+
+::move leaf1
 "oh! a rock!"
 [[>close]]
 
@@ -1060,27 +1127,42 @@ me
 	const numbgnome = this.scene.find('numb gnome');
 	numbgnome.spr.addChild(spr);
 	this.shock(numbgnome, 300);
-	numbgnome.btn.use.undefined = [`"he won't put his rock on that tile..."`,`"my solution is right but whatever..."`,`"thanks for the cute flower..."`];
+	numbgnome.btn.use.undefined = [`"thanks for the cute flower..."`, `"he won't put his rock on that tile..."`, `"my solution is right but whatever..."`];
 	numbgnome.btn.resetCycles();
+	this.sfx('rustle', { rate: 1.1 });
 
-	this.add(
-		this.Item({ texture: 'hat', x: 128, y: -83, tint: 0x6f79cd, use: {
-			player: ['p:"it is a gnome hat"'],
-		}, }),
-	);
+	setTimeout(() => {
+		this.sfx('rustle', { rate: 0.8 });
+		this.goto('close');
+		this.add(
+			this.Item({ texture: 'hat', x: 128, y: -83, tint: 0x6f79cd, use: {
+				player: ['p:"it is a gnome hat"'],
+				'safety pin': [`p:"it doesn't need a pin to stay on"`],
+				thimble: [`p:"fashion is so complicated"`],
+			}, }),
+		);
+	}, 1000);
 >>
-"i guess you can have my hat..."
-[[>close]]
 
 ::worm hat
 <<do
 	this.scene.loseItem(true);
-	this.add(
-		this.Prop({ texture: 'hat', x: -250, y: -180, tint: 0x6f79cd, offset: 50, }),
-	);
 >>
 "for me? thanks buddy"
 >
+<<do
+	setTimeout(() => {
+		this.sfx('rustle');
+		this.add(
+			this.Prop({ texture: 'hat', x: -250, y: -180, tint: 0x6f79cd, offset: 50, }),
+		);
+		setTimeout(() => {
+			this.goto('worm hat1');
+		}, 1000);
+	}, 500);
+>>
+
+::worm hat1
 "now i can go out and look cute"
 >
 <<do
@@ -1092,6 +1174,8 @@ me
 	const fierygnome = this.scene.find('fiery gnome');
 	fierygnome.btn.use.undefined = [`"i know where the rocks go!"`,`"don't listen to the other guy."`, `"so glad that worm is gone..."`];
 	fierygnome.btn.resetCycles();
+	this.sfx('rustle', { rate: 0.5 });
+	this.voice = 'None';
 >>
 "peace"
 [[>close]]
@@ -1117,13 +1201,19 @@ me
 
 ::place rock
 <<do
+	this.sfx('stepStone');
 	const oldSpot = this.scene.findAll('spot').find(i => i.rock === this.rock);
 	if (oldSpot) oldSpot.rock = undefined;
 	this.spot.rock = this.rock;
 	this.scene.loseItem();
 	this.rock.transform.x = this.spot.transform.x;
 	this.rock.transform.y = this.spot.transform.y - 20;
+	setTimeout(() => {
+		this.goto('place rock1');
+	}, 500);
 >>
+
+::place rock1
 <<do this.gameObject = this.scene.player>>
 "how about this?"
 >
@@ -1150,7 +1240,7 @@ me
 <<do
 	this.scene.findAll('spot').forEach(i => { i.btn.enabled = false; });
 	this.scene.camera.shake = 2;
-	this.camPoint = { x: this.size.x, y: -this.size.y }; 
+	this.camPoint = { x: this.size.x, y: -this.size.y };
 	this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
 	this.tween(this.scene.camera, 'shake', 0, 1500, 2, this.ease.cubicIn);
 	this.tween(this.scene.find('bg_gnome_puzzle_closed_BACK').display.container, 'alpha', 0, 1000);
@@ -1206,13 +1296,46 @@ you got the moon-dried tomato.
 <<do this.gotoNoOne();>>
 
 ::give tomato
-<<do
-	this.scene.loseItem();
->>
-"idk do something i guess"
+<<do this.scene.loseItem();>>
+<<do this.gameObject = this.scene.player>>
+"i got this..."
+>
+<<do this.gameObject = this.noone>>
+"ah yes, the moon-dried tomato..."
+>
+"a face only a mother could love."
+>
+<<do this.gameObject = this.scene.player>>
+"what are you gonna do with it?"
+>
+<<do this.gameObject = this.noone>>
+"that's no one's business."
+>
+<<do this.gameObject = this.scene.player>>
+"..."
+>
+<<do this.gameObject = this.noone>>
+"..."
+>
+<<do this.gameObject = this.scene.player>>
+"can i go now?"
+>
+<<do this.gameObject = this.noone>>
+"no. i need another object."
+>
+"i need a bar of soap."
+>
+"the dust bunnies are hoarding them all..."
+>
+"a veritable arsenal."
+>
+"you can find them between the floorboards."
+>
+"watch out for outlaws."
 >
 <<do
 	this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
+	this.scene.player.floor = 'Wood';
 	this.goto('close');
 >>
 
@@ -1237,6 +1360,7 @@ you got the moon-dried tomato.
 	spot.item = item.name;
 	spot.btn.enabled = false;
 	this.scene.loseItem();
+	this.sfx('pickup', { rate: 0.8 });
 	this.goto('close');
 >>
 
@@ -1422,7 +1546,9 @@ you got the moon-dried tomato.
 	this.gameObject.use.undefined = ['p:"must be one of those slow burning fuses"', 'p:"very, very slow burning..."'];
 	this.gameObject.use.other = [`p:"fusing those won't do anything"`, `p:"it's already lit"`];
 	this.gameObject.btn.resetCycles();
-	// TODO: fuse sfx
+	this.waterHowldId = this.sfx('water', { volume: 0.5, rate: 8, loop: true });
+	this.waterHowl = window.Howler._howls.find(i => i._src.includes('water'));
+
 	setTimeout(() => {
 		this.goto('light fuse1');
 	}, 1000);
@@ -1451,6 +1577,10 @@ you got the moon-dried tomato.
 		const [t1, t2] = this.shock(this.scene.find('mook'), 1200);
 
 		await this.delay(1200-800);
+		var clicks = 10;
+		for (let i = 0; i < clicks; ++i) {
+			setTimeout(() => this.sfx('stepWood', { volume: 1-i/clicks, rate: 1 - Math.random()*0.1 }), i*150);
+		}
 		const t3 = this.tween(mook, 'x', 102, 800, undefined, this.ease.backIn);
 		const t4 = this.tween(mook, 'y', -57, 800, undefined, this.ease.backIn);
 		const t5 = this.tween(mook.display.container, 'alpha', 0, 800, undefined, this.ease.cubicIn);
@@ -1462,6 +1592,10 @@ you got the moon-dried tomato.
 		this.tweenAbort(t4);
 		this.tweenAbort(t5);
 		this.gameObject = undefined;
+		this.waterHowl.fade(0.5, 0, 10000, this.waterHowldId);
+		setTimeout(() => {
+			this.waterHowl.stop(this.waterHowldId);
+		}, 10000);
 		this.goto('close');
 	})();
 >>
@@ -1600,8 +1734,11 @@ you got the moon-dried tomato.
 <<endif>>
 
 ::give bread2
+<<do this.voice = 'None'>>
+<<do this.sfx('bite')>>
 *munch* *monch* *mounch* *muonch*
 >
+<<do this.voice = 'Default'>>
 "yum yum"
 >
 "fine take my oil i don't care anymore"
@@ -1698,10 +1835,12 @@ you got the soap.
 <<do this.gotoNoOne();>>
 
 ::give soap
+<<do this.scene.loseItem();>>
 soap
 >
 <<do
 	this.scene.goto({ area: 'mouse town center', x: 50, y: -100 });
+	this.scene.player.floor = 'Counter';
 	this.goto('close');
 >>
 
@@ -1735,7 +1874,7 @@ soap
 		smith.btn.use.fork = [`"mm.. no... fresh metal only..."`];
 		smith.btn.use.spoon = [`"mm.. no... fresh metal only..."`];
 		smith.btn.resetCycles();
-		
+
 		await this.delay(500);
 		this.camPoint = { x: this.size.x, y: this.size.y };
 		smith.flipped = false;
@@ -1760,6 +1899,7 @@ soap
 				player: [`p:"it's a pretty ring"`],
 			}, }),
 		);
+		this.sfx('pickup', { rate: 0.8 });
 		this.camPoint = undefined;
 		this.goto('close');
 	})();
@@ -1787,8 +1927,8 @@ soap
 >>
 "whaaa.."
 >
-// TODO: sfx
 <<do
+	this.sfx('rustle');
 	this.scene.screenFilter.flash([30,40,60], 300, this.ease.cubicIn);
 	const spr = new this.PIXI.Sprite(this.tex('ring_carrying'));
 	spr.scale.x *= -1;
@@ -1797,7 +1937,13 @@ soap
 	const juice = this.scene.find('jumpy juicemonger');
 	juice.spr.addChild(spr);
 	this.shock(this.scene.find('jumpy juicemonger'), 500);
+
+	setTimeout(() => {
+		this.goto('give ring1');
+	}, 1000);
 >>
+
+::give ring1
 "wehehe... finally..."
 >
 "friend.. take... whhhhaatever..."
@@ -1843,22 +1989,34 @@ soap
 
 
 ::windup key
-<<do 
+<<do
 	this.scene.loseItem(true);
 	this.scene.find('can front wKey').spr.texture = this.tex('can front');
-	
 	this.destroy(this.scene.find('horseNoKey'));
+	this.add(
+		this.Prop({ texture: 'horseKey', animate: false, x: -128, y: 0,   offset: -35 }),
+	);
+
+	this.sfx('pickup', { rate: 0.8 });
+	setTimeout(() => {
+		this.goto('windup key1');
+	}, 1000);
+>>
+
+::windup key1
+<<do
+	this.destroy(this.scene.find('horseKey'));
 	this.add(
 		this.Prop({ texture: 'horseKey', freq: 1/100, x: -128, y: 0,   offset: -35 }),
 	);
+	this.gameObject = this.scene.find('horseKey');
+	const clicks = 30;
+	for (let i = 0; i < clicks; ++i) {
+		setTimeout(() => this.sfx('pickup', { volume: 1-i/clicks, rate: 1 + i/clicks*0.2 }), i*80);
+	}
+	this.voice = 'None';
 >>
-<<do this.gameObject = this.scene.player>>
-"here you go"
->
-<<do this.gameObject = this.scene.find('horseKey')>>
 *wind*
->
-*wind-wind*
 >
 "*whinny*"
 <<do
@@ -1886,6 +2044,7 @@ soap
 >>
 
 ::windup key2
+<<do this.voice = 'Default'>>
 "h-hey, my horse!!"
 <<do
 	(async () => {
@@ -1895,6 +2054,10 @@ soap
 		const t3 = this.tween(farmer, 'x', -33, 1200, undefined, this.ease.backIn);
 		const t4 = this.tween(farmer, 'y', -7, 1200, undefined, this.ease.backIn);
 		const t5 = this.tween(farmer.display.container, 'alpha', 0, 1200, undefined, this.ease.cubicIn);
+		const clicks = 10;
+		for (let i = 0; i < clicks; ++i) {
+			setTimeout(() => this.sfx('stepStone', { volume: 1-i/clicks, rate: 1 - Math.random()*0.1 }), i*150);
+		}
 		await this.delay(1600);
 		this.tweenAbort(t1);
 		this.tweenAbort(t2);
@@ -2016,7 +2179,8 @@ soap
 	[a.carrying, b.carrying] = [b.carrying, a.carrying];
 	this.scene.find(`cutter ${a.cookie} ${a.pos}`).spr.alpha = 1;
 	this.scene.find(`cutter ${b.cookie} ${b.pos}`).spr.alpha = 1;
-	
+	this.sfx('pickup', { rate: 0.8 });
+
 	this.destroy(this.polyCutter);
 	let poly;
 	switch (a.cookie) {
@@ -2216,15 +2380,22 @@ soap
 
 ::toggle fountain
 <<do
-	this.fountainOff = !this.fountainOff;
-	if (this.fountainOff) {
-		this.tween(this.scene.find('fountain').spr,      'alpha', 1, 600, undefined, this.ease.cubicInOut);
-		this.tween(this.scene.find('fountainWater').spr, 'alpha', 0, 800, undefined, this.ease.cubicIn);
-	} else {
-		this.tween(this.scene.find('fountain').spr,      'alpha', 0, 800, undefined, this.ease.cubicIn);
-		this.tween(this.scene.find('fountainWater').spr, 'alpha', 1, 600, undefined, this.ease.cubicInOut);
-	}
-	this.goto('close');
+	setTimeout(() => {
+		this.sfx('chunk', { rate: 1.5, volume: 0.25 });
+	}, 1000);
+	setTimeout(() => {
+		this.fountainOff = !this.fountainOff;
+		if (this.fountainOff) {
+			this.tween(this.sfxWater, 'volume', 0, 1000);
+			this.tween(this.scene.find('fountain').spr,      'alpha', 1, 600, undefined, this.ease.cubicInOut);
+			this.tween(this.scene.find('fountainWater').spr, 'alpha', 0, 800, undefined, this.ease.cubicIn);
+		} else {
+			this.tween(this.sfxWater, 'volume', 0.5, 1000);
+			this.tween(this.scene.find('fountain').spr,      'alpha', 0, 800, undefined, this.ease.cubicIn);
+			this.tween(this.scene.find('fountainWater').spr, 'alpha', 1, 600, undefined, this.ease.cubicInOut);
+		}
+		this.goto('close');
+	}, 1500);
 >>
 
 ::give coin
@@ -2244,6 +2415,10 @@ soap
 		const [t1, t2] = this.shock(guard, 1200);
 		const t3 = this.tween(guard, 'x', -36, 1200, undefined, this.ease.backIn);
 		const t4 = this.tween(guard, 'y', -284, 1200, undefined, this.ease.backIn);
+		var clicks = 10;
+		for (let i = 0; i < clicks; ++i) {
+			setTimeout(() => this.sfx('stepStone', { volume: 1-i/clicks, rate: 1 - Math.random()*0.1 }), i*150);
+		}
 		const t5 = this.tween(guard.display.container, 'alpha', 0, 1200, undefined, this.ease.cubicIn);
 		await this.delay(1600);
 		this.tweenAbort(t1);
@@ -2270,6 +2445,7 @@ soap
 
 ::cheese poem2
 <<do this.scene.dialogue.textText.style.fontStyle = 'italic'>>
+voicePoem
 when hunger pains
 >
 are what you feel
@@ -2282,6 +2458,7 @@ the holy meal
 	this.gameObject = this.scene.player;
 	this.scene.dialogue.textText.style.fontStyle = 'normal';
 >>
+voiceDefault
 "hmm..."
 [[>close]]
 
@@ -2298,6 +2475,7 @@ the holy meal
 
 ::star poem2
 <<do this.scene.dialogue.textText.style.fontStyle = 'italic'>>
+voicePoem
 if you get lost
 >
 when you go forth
@@ -2310,6 +2488,7 @@ to guide you north
 	this.gameObject = this.scene.player;
 	this.scene.dialogue.textText.style.fontStyle = 'normal';
 >>
+voiceDefault
 "hmm..."
 [[>close]]
 
@@ -2319,6 +2498,7 @@ to guide you north
 	this.add(
 		this.Prop({ texture: 'starAltar', x: 110, y: -237,         offset: 8 }),
 	);
+	this.sfx('pickup', { rate: 0.8 });
 	if (this.scene.find('cheeseAltar')) {
 		this.goto('toggle fountain');
 	} else {
@@ -2332,6 +2512,7 @@ to guide you north
 	this.add(
 		this.Prop({ texture: 'cheeseAltar', x: -80, y: -204,       offset: 8 }),
 	);
+	this.sfx('pickup', { rate: 0.8 });
 	if (this.scene.find('starAltar')) {
 		this.goto('toggle fountain');
 	} else {
@@ -2429,6 +2610,7 @@ you got the sandwich.
 <<do this.gotoNoOne();>>
 
 ::give sandwich
+<<do this.scene.loseItem();>>
 sandwich
 >
 <<do
@@ -2443,7 +2625,7 @@ blah blah
 	this.show('black', { scale: this.size.x });
 	this.tween(this.scene.border.display.container, 'alpha', 0, 1000);
 	this.tween(scene.camera.display.container, 'alpha', 0, 1000);
-	
+
 >>
 blah blah
 >

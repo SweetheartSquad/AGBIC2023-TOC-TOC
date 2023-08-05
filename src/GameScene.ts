@@ -1,6 +1,7 @@
 import { Body, Events, Runner } from 'matter-js';
 import { Container, DisplayObject, Graphics, Sprite } from 'pixi.js';
 import { Area } from './Area';
+import { sfx } from './Audio';
 import { Border } from './Border';
 import { BtnItem } from './BtnItem';
 import { Camera } from './Camera';
@@ -118,6 +119,7 @@ export class GameScene {
 			renderer: {
 				displayPassage: (passage) => {
 					if (passage.title === 'close') {
+						this.dialogue.voice = 'Default';
 						this.dialogue.close();
 						player.followers.forEach((i) => {
 							i.roam.active = true;
@@ -352,9 +354,11 @@ export class GameScene {
 
 	pickupItem(item: Item) {
 		if (this.carrying === item) {
+			sfx('pickup', { rate: 0.8 });
 			this.loseItem();
 			return;
 		}
+		sfx('pickup', { rate: 1.1 });
 		this.loseItem();
 		this.player.expression = 'up';
 		let texName = item.carrying || `${item.texture}_carrying`;

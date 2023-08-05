@@ -411,7 +411,6 @@ export class UIDialogue extends GameObject {
 				if (event && event.button !== undefined && event.button !== mouse.LEFT)
 					return;
 				if (this.containerChoices.alpha > 0.5) {
-					sfx('voiceDefault');
 					if (this.choices.length > 1) {
 						// @ts-ignore
 						getActiveScene().strand.lastChoice = i.text;
