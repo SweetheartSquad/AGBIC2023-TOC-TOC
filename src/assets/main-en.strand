@@ -1360,6 +1360,7 @@ you got the moon-dried tomato.
 	spot.item = item.name;
 	spot.btn.enabled = false;
 	this.scene.loseItem();
+	this.sfx('pickup', { rate: 0.8 });
 	this.goto('close');
 >>
 
