@@ -1037,6 +1037,7 @@ continue
 //  d8888P
 ::cut flower
 <<do
+	this.sfx('rustle');
 	this.scene.loseItem(true);
 	this.destroy(this.gameObject);
 	this.destroy(this.glassPoly);
@@ -1062,9 +1063,8 @@ continue
 	setTimeout(() => {
 		cutFlower.btn.enabled = true;
 	}, 2000);
+	this.goto('close');
 >>
-"snip snip!"
-[[>close]]
 
 ::move leaf
 <<do
