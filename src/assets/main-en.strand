@@ -1196,13 +1196,19 @@ continue
 
 ::place rock
 <<do
+	this.sfx('stepStone');
 	const oldSpot = this.scene.findAll('spot').find(i => i.rock === this.rock);
 	if (oldSpot) oldSpot.rock = undefined;
 	this.spot.rock = this.rock;
 	this.scene.loseItem();
 	this.rock.transform.x = this.spot.transform.x;
 	this.rock.transform.y = this.spot.transform.y - 20;
+	setTimeout(() => {
+		this.goto('place rock1');
+	}, 500);
 >>
+
+::place rock1
 <<do this.gameObject = this.scene.player>>
 "how about this?"
 >
