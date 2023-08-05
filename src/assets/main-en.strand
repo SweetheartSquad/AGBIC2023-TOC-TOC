@@ -2402,6 +2402,10 @@ soap
 		const [t1, t2] = this.shock(guard, 1200);
 		const t3 = this.tween(guard, 'x', -36, 1200, undefined, this.ease.backIn);
 		const t4 = this.tween(guard, 'y', -284, 1200, undefined, this.ease.backIn);
+		var clicks = 10;
+		for (let i = 0; i < clicks; ++i) {
+			setTimeout(() => this.sfx('stepStone', { volume: 1-i/clicks, rate: 1 - Math.random()*0.1 }), i*150);
+		}
 		const t5 = this.tween(guard.display.container, 'alpha', 0, 1200, undefined, this.ease.cubicIn);
 		await this.delay(1600);
 		this.tweenAbort(t1);
