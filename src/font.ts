@@ -10,6 +10,7 @@ export const fontDialogue: Partial<ITextStyle> = {
 	letterSpacing: 0,
 	stroke: 0,
 	strokeThickness: 4,
+	lineJoin: 'round',
 };
 export const fontPrompt: Partial<ITextStyle> = {
 	fontFamily: 'font',
@@ -21,6 +22,7 @@ export const fontPrompt: Partial<ITextStyle> = {
 	letterSpacing: 0,
 	stroke: 0,
 	strokeThickness: 4,
+	lineJoin: 'round',
 };
 export const fontIngame: Partial<ITextStyle> = {
 	fontFamily: 'font',
@@ -32,4 +34,5 @@ export const fontIngame: Partial<ITextStyle> = {
 	letterSpacing: 0,
 	stroke: 0,
 	strokeThickness: 2,
+	lineJoin: 'round',
 };

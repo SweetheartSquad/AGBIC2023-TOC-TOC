@@ -215,3 +215,10 @@ audio/bite.mp3
 audio/chunk.mp3
 audio/voiceNo one.mp3
 audio/voicePoem.mp3
+
+textures/menu/TOC TOC.png
+textures/menu/start.png
+textures/menu/credits.png
+textures/credits/SweetHeart Squad.png
+textures/credits/AQUILES.png
+textures/credits/back.png
