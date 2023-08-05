@@ -71,7 +71,7 @@
 		this.Prop({ freq: 1/100, texture: 'noOneHeadAnim', offset: -1000 }),
 		this.Prop({ freq: 1/100, texture: 'no one UL', offset: 1000 }),
 		this.Prop({ freq: 1/100, texture: 'no one LL', offset: 1000 }),
-		this.Prop({ freq: 1/100, texture: 'noOneAnim_Bottom', offset: 1000 }),
+		this.Prop({ freq: 1/150, texture: 'noOneAnim_Bottom', offset: 1000 }),
 	]);
 	this.Area('intro', [
 		...([
