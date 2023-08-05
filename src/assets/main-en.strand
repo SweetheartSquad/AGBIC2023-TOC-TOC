@@ -68,10 +68,22 @@
 
 	this.Area('empty', []);
 	this.Area('no one', [
+
 		this.Prop({ freq: 1/100, texture: 'noOneHeadAnim', offset: -1000 }),
 		this.Prop({ freq: 1/100, texture: 'no one UL', offset: 1000 }),
 		this.Prop({ freq: 1/100, texture: 'no one LL', offset: 1000 }),
-		this.Prop({ freq: 1/150, texture: 'noOneAnim_Bottom', offset: 1000 }),
+		this.Prop({ freq: 1/150, texture: 'noOneAnim_Bottom', offset: 1500 }),
+
+		(() => {
+			const h = this.Hotspot({ label: 'no one', texture: 'blank', x: 27, y: -214, offset: 10000, use: {
+				undefined: ['goto:no one'],
+				'moon-dried tomato': ['goto:give tomato'],
+			}, });
+			h.spr.width = 200;
+			h.spr.height = 200;
+			return h;
+		})(),
+
 	]);
 	this.Area('intro', [
 		...([
@@ -205,8 +217,9 @@
 
 	this.Area('tomato', [
 		this.Prop({ texture: 'tomatoRoom', offset: -1000000 }),
-		this.Hotspot({ label: 'moon-dried tomato', texture: 'tomatoItem', x: 119, y: -341, use: {
+		this.Item({ label: 'moon-dried tomato', texture: 'tomatoItem', x: 119, y: -341, use: {
 			undefined: ['goto:moon-dried tomato'],
+			player: ['goto:no one item cancel'],
 		} }),
 		...rays(),
 	]);
@@ -340,7 +353,7 @@
 			oil: [`"gotta respect da classics"`, `"ah go for bigger scores dese days"`],
 			'bread slice': [`"no thanks, ah ate before we came"`, `"nevah do a heist on an empty stomach"`],
 		}, }),
-		this.Npc({ name: 'mook', body: 'dustbun_mook2', tint: 0xE6E2A4, x: -139, y: -115, use: {
+		this.Npc({ name: 'mook', body: 'dustbun_mook', tint: 0xE6E2A4, x: -139, y: -115, use: {
 			undefined: [`"ey step back kiddo"`, `"dis stuff's dangerous"`],
 			rope: [`p:"i think they'd overpower me..."`, `p:"better knot risk it"`],
 			'cowboy hat': [`"hats're more da boss's style"`],
@@ -1117,11 +1130,22 @@ me
 	(async () => {
 		await this.scene.player.walkTo(-40, -260);
 		this.scene.player.flipped = false;
+		await this.delay(500);
 		this.scene.player.expression = 'up';
+		const item = this.scene.find('moon-dried tomato');
+
+		this.scene.find('tomatoRoom').set('tomatoRoomNoTomato');
+		this.scene.pickupItem(item);
+		item.display.container.visible = false;
+		item.btn.enabled = false;
 		this.goto('moon-dried tomato1');
 		// TODO: pick up tomato fr
 	})();
 >>
+
+::no one item cancel
+"i probably shouldn't hold on to that..."
+[[>close]]
 
 ::moon-dried tomato1
 you got the moon-dried tomato.
@@ -1167,9 +1191,19 @@ you got the moon-dried tomato.
 		await this.delay(1000);
 		this.tween(this.scene.find('noOneHeadAnim').display.container, 'alpha', 1, 2000);
 		await this.delay(1000);
-		// this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
 		this.goto('close');
 	})();
+>>
+
+::give tomato
+<<do
+	this.scene.loseItem();
+>>
+"idk do something i guess"
+>
+<<do
+	this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
+	this.goto('close');
 >>
 
 
@@ -1728,7 +1762,7 @@ soap
 
 ::give ring
 <<do
-	this.scene.loseItem();
+	this.scene.loseItem(true);
 	this.gaveRing = true;
 	this.scene.find('jumpy juicemonger').btn.use.undefined = [`"weee... pretty"`, `"whhoo... friend..? drink...!"`];
 	this.scene.find('jumpy juicemonger').btn.resetCycles();

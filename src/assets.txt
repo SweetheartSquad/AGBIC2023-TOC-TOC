@@ -17,8 +17,8 @@ audio/stepDefault.mp3
 textures/footprintDefault.png
 
 textures/no one/no one.x3.png
-textures/no one/no one UL.x3.png
-textures/no one/no one LL.x3.png
+textures/no one/no one UL.x24.png
+textures/no one/no one LL.x24.png
 textures/no one/no one LR.x3.png
 textures/noOneHeadAnim/noOneHeadAnim.x24.png
 textures/noOneAnim_Bottom/noOneAnim_Bottom.x24.png
@@ -47,7 +47,6 @@ textures/mouse_sittingIdle.x2.png
 textures/mouse_guard_tallIdle.x2.png
 textures/mouse_guard_shortIdle.x2.png
 textures/mouse_smithIdle.x2.png
-textures/mouse_guard_forkIdle.x2.png
 
 
 textures/gnomePuzzle/bg_gnome_puzzle_closed_BACK.png
@@ -79,8 +78,7 @@ textures/gnomePuzzle/dragonfly.png
 textures/dustbun_oilIdle.x2.png
 textures/dustbun_scaredIdle.x2.png
 textures/dustbun_bossIdle.x2.png
-textures/dustbun_mook1Idle.x2.png
-textures/dustbun_mook2Idle.x2.png
+textures/dustbun_mookIdle.x2.png
 textures/dustbun_tellerIdle.x2.png
 
 textures/heist/heist_bg.png
