@@ -20,8 +20,8 @@ audio/stepCounter.mp3
 textures/footprintDefault.png
 
 textures/no one/no one Head.x23.png
-textures/no one/no one UL.x24.png
-textures/no one/no one LL.x24.png
+textures/no one/no one UL.x23.png
+textures/no one/no one LL.x23.png
 textures/no one/no one LR.x3.png
 textures/noOneAnim_Bottom/noOneAnim_Bottom.x23.png
 
