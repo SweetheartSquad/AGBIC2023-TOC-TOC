@@ -1574,6 +1574,10 @@ you got the moon-dried tomato.
 		const [t1, t2] = this.shock(this.scene.find('mook'), 1200);
 
 		await this.delay(1200-800);
+		var clicks = 10;
+		for (let i = 0; i < clicks; ++i) {
+			setTimeout(() => this.sfx('stepWood', { volume: 1-i/clicks, rate: 1 - Math.random()*0.1 }), i*150);
+		}
 		const t3 = this.tween(mook, 'x', 102, 800, undefined, this.ease.backIn);
 		const t4 = this.tween(mook, 'y', -57, 800, undefined, this.ease.backIn);
 		const t5 = this.tween(mook.display.container, 'alpha', 0, 800, undefined, this.ease.cubicIn);
