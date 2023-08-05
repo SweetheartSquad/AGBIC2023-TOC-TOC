@@ -1888,6 +1888,7 @@ soap
 				player: [`p:"it's a pretty ring"`],
 			}, }),
 		);
+		this.sfx('pickup', { rate: 0.8 });
 		this.camPoint = undefined;
 		this.goto('close');
 	})();
