@@ -2482,6 +2482,7 @@ to guide you north
 	this.add(
 		this.Prop({ texture: 'starAltar', x: 110, y: -237,         offset: 8 }),
 	);
+	this.sfx('pickup', { rate: 0.8 });
 	if (this.scene.find('cheeseAltar')) {
 		this.goto('toggle fountain');
 	} else {
@@ -2495,6 +2496,7 @@ to guide you north
 	this.add(
 		this.Prop({ texture: 'cheeseAltar', x: -80, y: -204,       offset: 8 }),
 	);
+	this.sfx('pickup', { rate: 0.8 });
 	if (this.scene.find('starAltar')) {
 		this.goto('toggle fountain');
 	} else {
