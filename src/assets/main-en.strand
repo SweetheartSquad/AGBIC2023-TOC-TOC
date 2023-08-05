@@ -187,7 +187,7 @@
 		}, }),
 		this.glassPoly = this.Poly({ verts: [-179,-82, -209,-84, -205,-66, -179,-84], width: 10 }),
 		this.Item({ texture: 'glass', x: -190, y: -50, offset: -35, use: {
-			player: [`"it's a piece of glass"`],
+			player: [`"it's a sharp piece of broken glass"`],
 		}, }),
 
 		//junk
