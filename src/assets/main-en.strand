@@ -1720,8 +1720,11 @@ you got the moon-dried tomato.
 <<endif>>
 
 ::give bread2
+<<do this.voice = 'None'>>
+<<do this.sfx('bite')>>
 *munch* *monch* *mounch* *muonch*
 >
+<<do this.voice = 'Default'>>
 "yum yum"
 >
 "fine take my oil i don't care anymore"
