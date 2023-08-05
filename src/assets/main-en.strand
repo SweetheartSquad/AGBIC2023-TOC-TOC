@@ -2373,17 +2373,22 @@ soap
 
 ::toggle fountain
 <<do
-	this.fountainOff = !this.fountainOff;
-	if (this.fountainOff) {
-		this.tween(this.sfxWater, 'volume', 0, 1000);
-		this.tween(this.scene.find('fountain').spr,      'alpha', 1, 600, undefined, this.ease.cubicInOut);
-		this.tween(this.scene.find('fountainWater').spr, 'alpha', 0, 800, undefined, this.ease.cubicIn);
-	} else {
-		this.tween(this.sfxWater, 'volume', 0.5, 1000);
-		this.tween(this.scene.find('fountain').spr,      'alpha', 0, 800, undefined, this.ease.cubicIn);
-		this.tween(this.scene.find('fountainWater').spr, 'alpha', 1, 600, undefined, this.ease.cubicInOut);
-	}
-	this.goto('close');
+	setTimeout(() => {
+		this.sfx('chunk', { rate: 1.5, volume: 0.25 });
+	}, 1000);
+	setTimeout(() => {
+		this.fountainOff = !this.fountainOff;
+		if (this.fountainOff) {
+			this.tween(this.sfxWater, 'volume', 0, 1000);
+			this.tween(this.scene.find('fountain').spr,      'alpha', 1, 600, undefined, this.ease.cubicInOut);
+			this.tween(this.scene.find('fountainWater').spr, 'alpha', 0, 800, undefined, this.ease.cubicIn);
+		} else {
+			this.tween(this.sfxWater, 'volume', 0.5, 1000);
+			this.tween(this.scene.find('fountain').spr,      'alpha', 0, 800, undefined, this.ease.cubicIn);
+			this.tween(this.scene.find('fountainWater').spr, 'alpha', 1, 600, undefined, this.ease.cubicInOut);
+		}
+		this.goto('close');
+	}, 1500);
 >>
 
 ::give coin
