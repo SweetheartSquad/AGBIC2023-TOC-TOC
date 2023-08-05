@@ -1981,19 +1981,31 @@ soap
 <<do
 	this.scene.loseItem(true);
 	this.scene.find('can front wKey').spr.texture = this.tex('can front');
-
 	this.destroy(this.scene.find('horseNoKey'));
+	this.add(
+		this.Prop({ texture: 'horseKey', animate: false, x: -128, y: 0,   offset: -35 }),
+	);
+
+	this.sfx('pickup', { rate: 0.8 });
+	setTimeout(() => {
+		this.goto('windup key1');
+	}, 1000);
+>>
+
+::windup key1
+<<do
+	this.destroy(this.scene.find('horseKey'));
 	this.add(
 		this.Prop({ texture: 'horseKey', freq: 1/100, x: -128, y: 0,   offset: -35 }),
 	);
+	this.gameObject = this.scene.find('horseKey');
+	const clicks = 30;
+	for (let i = 0; i < clicks; ++i) {
+		setTimeout(() => this.sfx('pickup', { volume: 1-i/clicks, rate: 1 + i/clicks*0.2 }), i*80);
+	}
+	this.voice = 'None';
 >>
-<<do this.gameObject = this.scene.player>>
-"here you go"
->
-<<do this.gameObject = this.scene.find('horseKey')>>
 *wind*
->
-*wind-wind*
 >
 "*whinny*"
 <<do
@@ -2021,6 +2033,7 @@ soap
 >>
 
 ::windup key2
+<<do this.voice = 'Default'>>
 "h-hey, my horse!!"
 <<do
 	(async () => {
