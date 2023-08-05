@@ -1068,6 +1068,7 @@ continue
 
 ::move leaf
 <<do
+	this.sfx('rustle', { rate: 0.8 });
 	this.gameObject.btn.enabled = false;
 	this.add(
 		this.Item({ texture: 'medium rock', x: 132, y: -185, use: {
@@ -1081,7 +1082,12 @@ continue
 	);
 	this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 50, 800, undefined, this.ease.cubicInOut);
 	this.gameObject = this.scene.player;
+	setTimeout(() => {
+		this.goto('move leaf1');
+	}, 600);
 >>
+
+::move leaf1
 "oh! a rock!"
 [[>close]]
 
