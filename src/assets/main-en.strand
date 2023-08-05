@@ -1171,6 +1171,8 @@ continue
 	const fierygnome = this.scene.find('fiery gnome');
 	fierygnome.btn.use.undefined = [`"i know where the rocks go!"`,`"don't listen to the other guy."`, `"so glad that worm is gone..."`];
 	fierygnome.btn.resetCycles();
+	this.sfx('rustle', { rate: 0.5 });
+	this.voice = 'None';
 >>
 "peace"
 [[>close]]
