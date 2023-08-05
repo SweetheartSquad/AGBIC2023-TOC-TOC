@@ -2172,6 +2172,7 @@ soap
 	[a.carrying, b.carrying] = [b.carrying, a.carrying];
 	this.scene.find(`cutter ${a.cookie} ${a.pos}`).spr.alpha = 1;
 	this.scene.find(`cutter ${b.cookie} ${b.pos}`).spr.alpha = 1;
+	this.sfx('pickup', { rate: 0.8 });
 
 	this.destroy(this.polyCutter);
 	let poly;
