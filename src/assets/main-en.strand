@@ -74,7 +74,7 @@
 				undefined: ['goto:no one'],
 				'moon-dried tomato': ['goto:give tomato'],
 				'soap': ['goto:give soap'],
-				'sandwich': ['goto:give sandwich'],
+				'half-eaten tuna fish sandwich': ['goto:give sandwich'],
 			}, });
 			this.noone = h;
 			h.spr.width = 200;
@@ -890,8 +890,8 @@
 	this.Area('sandwich', [
 		// sandwich
 		this.Poly({ verts: [26,-326, 109,-283, 166,-271, 224,-285, 261,-314, 259,-339, 214,-381, 135,-431, 54,-465, 6,-458, -30,-445, -56,-422, -56,-399, -33,-368, 25,-327] }),
-		this.Prop({ texture: 'plateNoSandwhich', offset: -1000000 }),
-		this.Item({ label: 'half-eaten tuna fish sandwich', texture: 'sandwhich', x: 100, y: -261, offset: -100000, use: {
+		this.Prop({ texture: 'sandwichBg', offset: -1000000 }),
+		this.Item({ label: 'half-eaten tuna fish sandwich', texture: 'sandwich', x: +344-142-218/2, y: -307, offset: -100000, use: {
 			undefined: ['goto:sandwich'],
 			player: ['goto:no one item cancel'],
 		} }),
