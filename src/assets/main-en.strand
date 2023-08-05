@@ -562,6 +562,7 @@
 
 		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
 		this.Poly({ verts: [-79,-199, 111,-234], width: 15 }), // altars
+		this.sfxWater = this.Audio({ sfx: 'water', x: 19, y: -227, volume: 0.5, maxDistance: 400 }),
 		this.Prop({ texture: 'fountainWater', x: 15, y: -164, freq: 1/100, offset: -45 }),
 		this.Item({ texture: 'fountain',   x: 15, y: -164, alpha: 0, offset: -45, use: {
 			undefined: [`goto:pickup coin`],
@@ -2274,9 +2275,11 @@ soap
 <<do
 	this.fountainOff = !this.fountainOff;
 	if (this.fountainOff) {
+		this.tween(this.sfxWater, 'volume', 0, 1000);
 		this.tween(this.scene.find('fountain').spr,      'alpha', 1, 600, undefined, this.ease.cubicInOut);
 		this.tween(this.scene.find('fountainWater').spr, 'alpha', 0, 800, undefined, this.ease.cubicIn);
 	} else {
+		this.tween(this.sfxWater, 'volume', 0.5, 1000);
 		this.tween(this.scene.find('fountain').spr,      'alpha', 0, 800, undefined, this.ease.cubicIn);
 		this.tween(this.scene.find('fountainWater').spr, 'alpha', 1, 600, undefined, this.ease.cubicInOut);
 	}
