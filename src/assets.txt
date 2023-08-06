@@ -22,8 +22,7 @@ textures/footprintDefault.png
 textures/no one/no one Head.x23.png
 textures/no one/no one UL.x23.png
 textures/no one/no one LL.x23.png
-textures/no one/no one LR.x3.png
-textures/noOneAnim_Bottom/noOneAnim_Bottom.x23.png
+textures/no one/no one LR.x23.png
 textures/LL_shadow.png
 
 textures/guyIdle.x2.png
