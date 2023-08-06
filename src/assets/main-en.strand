@@ -85,7 +85,6 @@
 		this.Prop({ freq: 1/100, texture: 'no one Head', offset: 1000 }),
 		this.Prop({ freq: 1/200, texture: 'no one UL', offset: 500 }),
 		this.Prop({ freq: 1/190, texture: 'no one LL', offset: 2000 }),
-		this.Prop({ texture: 'LL_shadow', offset: 1750 }),
 		this.Prop({ freq: 1/180, texture: 'no one LR', offset: 1500 }),
 
 		this.Updater(() => {
