@@ -1040,11 +1040,13 @@
 <<endif>>
 <<do
 	this.tween(this.scene.border.display.container, 'alpha', 1, 1000);
-	this.scrim(0, 3000);
-	this.goto('close');
 	this.scene.player.walkToMouseO = this.scene.player.walkToMouse;
 	this.scene.player.walkToMouse = () => {};
 	this.scene.player.display.container.visible = false;
+	setTimeout(() => {
+		this.scrim(0, 3000);
+		this.goto('close');
+	}, 1000);
 >>
 
 ::start game
