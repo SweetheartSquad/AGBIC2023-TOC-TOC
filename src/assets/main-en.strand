@@ -270,6 +270,15 @@
 			'safety pin': [`p:"the pin kinda looks like a wing..."`],
 		}, }),
 
+		(() => {
+			const h = this.Hotspot({ label: 'entrance', texture: 'blank', x: 134, y: -240, use: {
+				other: [`goto:flamingo`],
+			}, });
+			h.spr.width = 200;
+			h.spr.height = 200;
+			return h;
+		})(),
+
 
 
 
@@ -1081,6 +1090,27 @@ continue
 // `8888P88 dP    dP `88888P' dP  dP  dP `88888P'
 //      .88
 //  d8888P
+::flamingo
+<<if this.scene.carrying && this.scene.carrying.name.includes('rock')>>
+<<if Math.random() > 0.5>>
+<<do this.gameObject = this.scene.find('fiery gnome')>>
+"put it where i say or it'll never open!"
+<<else>>
+<<do this.gameObject = this.scene.find('numb gnome')>>
+"it'd open if you put it where i said... oh well"
+<<endif>>
+<<else>>
+<<if Math.random() > 0.5>>
+<<do this.gameObject = this.scene.find('fiery gnome')>>
+"that'll never open it!"
+<<else>>
+<<do this.gameObject = this.scene.find('numb gnome')>>
+"you could try... but it won't work"
+<<endif>>
+<<endif>>
+<<do this.scene.loseItem()>>
+[[>close]]
+
 ::cut flower
 <<do
 	this.sfx('rustle');
@@ -1313,6 +1343,7 @@ continue
 >>
 ::rock solved1
 <<do
+	this.destroy(this.scene.find('entrance'));
 	const h = this.Hotspot({ label: 'entrance', texture: 'blank', x: 134, y: -240, use: {
 		undefined: [`goto:goto tomato`],
 	}, });
