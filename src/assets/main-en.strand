@@ -980,7 +980,7 @@
 		this.scene.player.flipped = true;
 		await this.delay(1000);
 
-		this.scene.player.walkTo(-164, -112);
+		this.scene.player.walkTo(-204, -96);
 		await this.delay(1500);
 		this.scene.goto({ area: 'no one', x: this.scene.player.x, y: this.scene.player.y });
 		this.scene.find('no one Head').display.container.alpha = 0;
@@ -1045,7 +1045,7 @@
 
 ::start game
 <<do
-	this.scene.goto({ area: 'no one', x: -164, y: -112 });
+	this.scene.goto({ area: 'no one', x: -204, y: -96 });
 	this.goto('close');
 	this.scene.player.display.container.visible = true;
 	this.scene.player.display.container.canMove = true;
