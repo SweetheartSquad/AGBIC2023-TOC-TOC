@@ -299,6 +299,9 @@ export class StrandE extends Strand {
 		go.display = display;
 		go.scripts.push(display);
 		const text = new Text(str, { ...fontIngame, ...font });
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		go.text = text;
 		text.cacheAsBitmap = true;
 		display.container.addChild(text);
 		go.init();
