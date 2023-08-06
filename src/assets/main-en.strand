@@ -1007,6 +1007,7 @@
 		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => 1-this.ease.cubicIn(t)+Math.sin(t*10)*-0.1);
 		this.tween(this.scene.player.spr, 'x', 0, d, -50, (t) => 1-(this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*t); 
 		this.tween(this.scene.player.spr, 'alpha', 1, d, 0, (t) => 1-this.ease.cubicIn(t));
+		this.scene.player.display.container.offset = 100000;
 
 		await this.delay(d);
 		this.scene.player.flipped = false;
@@ -1024,6 +1025,7 @@
 		this.scrim(1, 0);
 		this.scene.goto(area);
 		this.scene.player.display.container.visible = true;
+		this.scene.player.display.container.offset = 0;
 		this.camPoint = undefined;
 		this.scrim(0, 2000);
 		await this.delay(2000);
