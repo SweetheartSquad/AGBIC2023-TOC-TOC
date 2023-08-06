@@ -71,7 +71,7 @@
 
 		(() => {
 			const h = this.Hotspot({ label: 'no one', texture: 'blank', x: 27, y: -214, offset: 10000, use: {
-				undefined: ['goto:no one'],
+				undefined: ['goto:request'],
 				'moon-dried tomato': ['goto:give tomato'],
 				'soap': ['goto:give soap'],
 				'half-eaten tuna fish sandwich': ['goto:give sandwich'],
@@ -1005,7 +1005,7 @@
 
 ::start game
 <<do
-	this.scene.goto({ area: 'gnome puzzle', x: -106, y: -79 });
+	this.scene.goto({ area: 'no one', x: -164, y: -112 });
 	this.goto('close');
 	this.scene.player.display.container.visible = true;
 	this.scene.player.display.container.canMove = true;
@@ -1032,6 +1032,46 @@ continue
 ::no one item cancel
 "i probably shouldn't hold on to that..."
 [[>close]]
+
+
+::request
+<<do this.gameObject = this.noone>>
+"hello, human child."
+>
+<<do this.gameObject = this.scene.player>>
+"who are you?"
+>
+<<do this.gameObject = this.noone>>
+"no one."
+>
+"welcome to the world of the small."
+>
+"you are here for a reason:"
+>
+"you must fetch something."
+>
+<<do this.gameObject = this.scene.player>>
+"ok... what?"
+>
+<<do this.gameObject = this.noone>>
+"an odd-looking tomato..."
+>
+"locked in a temple for many years."
+>
+<<do this.gameObject = this.scene.player>>
+"um, what temple?"
+>
+<<do this.gameObject = this.noone>>
+"the gnomes in the garden will know more."
+>
+"go now, you haven't much time..."
+>
+<<do
+	this.scene.goto({ area: 'gnome puzzle', x: -106, y: -79 });
+	this.goto('close');
+>>
+
+
 
 
 
@@ -1839,7 +1879,34 @@ you got the soap.
 
 ::give soap
 <<do this.scene.loseItem();>>
-soap
+<<do this.gameObject = this.noone>>
+"ah, the bar of soap."
+>
+"this will play a crucial part."
+>
+<<do this.gameObject = this.scene.player>>
+"they had a lot of soap..."
+>
+"why didn't you ask for more?"
+>
+<<do this.gameObject = this.noone>>
+"no one will miss just one."
+>
+<<do this.gameObject = this.scene.player>>
+"..."
+>
+<<do this.gameObject = this.noone>>
+"..."
+>
+"hmm. just one more object."
+>
+"a half-eaten sandwich..."
+>
+"the mice in the kitchen have one."
+>
+"it will be guarded well..."
+>
+"but you will think of something."
 >
 <<do
 	this.scene.goto({ area: 'mouse town center', x: 50, y: -100 });
@@ -2614,7 +2681,34 @@ you got the sandwich.
 
 ::give sandwich
 <<do this.scene.loseItem();>>
-sandwich
+<<do this.gameObject = this.noone>>
+"yes, the half-eaten sandwich."
+>
+<<do this.gameObject = this.scene.player>>
+"i don't get it..."
+>
+"don't you want a full sandwich?"
+>
+<<do this.gameObject = this.noone>>
+"no one wants a half-eaten sandwich."
+>
+<<do this.gameObject = this.scene.player>>
+"you keep saying that..."
+>
+<<do this.gameObject = this.noone>>
+"do not worry your little head."
+>
+"you have done well. "
+>
+"all the objects are found."
+>
+<<do this.gameObject = this.scene.player>>
+"can i go home now?"
+>
+<<do this.gameObject = this.noone>>
+"yes, you may return to your world."
+>
+"no one will miss you..."
 >
 <<do
 	// this.scene.goto({ area: 'TODO', x: 50, y: -100 });
