@@ -4,9 +4,10 @@ const { execSync } = require('child_process');
 const glob = require('glob');
 
 const imagePool = new ImagePool();
+const globPattern = process.argv[2] || '*';
 
 (async () => {
-	const files = glob.sync('src/**/*.{png,jpg}');
+	const files = glob.sync(`src/**/${globPattern}.{png,jpg}`);
 	// eslint-disable-next-line no-restricted-syntax
 	for (const file of files) {
 		try {
