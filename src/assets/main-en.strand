@@ -998,6 +998,37 @@
 		this.goto('close');
 	};
 
+	this.leaveNoOne = async (area) => {
+		this.scene.player.expression = 'up';
+		const d = 4000;
+		const p = 30;
+		this.tween(this.scene.player.spr, 'angle', 0, d, 50, t => 1-Math.sin(t*p)*(t));
+		this.tween(this.scene.player, 'flipped', 0, d, 50, t => (1-Math.sin(t*p)) < 0.5);
+		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => 1-this.ease.cubicIn(t)+Math.sin(t*10)*-0.1);
+		this.tween(this.scene.player.spr, 'x', 0, d, -50, (t) => 1-(this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*t); 
+		this.tween(this.scene.player.spr, 'alpha', 1, d, 0, (t) => 1-this.ease.cubicIn(t));
+
+		await this.delay(d);
+		this.scene.player.flipped = false;
+		this.scene.player.display.container.visible = false;
+		this.scene.player.expression = '';
+		
+		this.tween(this.scene.find('noOneAnim_Bottom').display.container, 'alpha', 0, 1000);
+		await this.delay(1000);
+		this.tween(this.scene.find('no one UL').display.container, 'alpha', 0, 1000);
+		await this.delay(800);
+		this.tween(this.scene.find('no one LL').display.container, 'alpha', 0, 1000);
+		await this.delay(800);
+		this.tween(this.scene.find('no one Head').display.container, 'alpha', 0, 1000);
+		await this.delay(1500);
+		this.scrim(1, 0);
+		this.scene.goto(area);
+		this.scene.player.display.container.visible = true;
+		this.scrim(0, 2000);
+		await this.delay(2000);
+		this.goto('close');
+	};
+
 
 	// start
 	this.started=true;
@@ -1075,10 +1106,7 @@ continue
 >
 "go now, you haven't much time..."
 >
-<<do
-	this.scene.goto({ area: 'gnome puzzle', x: -106, y: -79 });
-	this.goto('close');
->>
+<<do this.leaveNoOne({ area: 'gnome puzzle', x: -106, y: -79 })>>
 
 
 
@@ -1408,9 +1436,8 @@ you got the moon-dried tomato.
 "watch out for outlaws."
 >
 <<do
-	this.scene.goto({ area: 'dustbun heist', x: 50, y: -100 });
+	this.leaveNoOne({ area: 'dustbun heist', x: 50, y: -100 })
 	this.scene.player.floor = 'Wood';
-	this.goto('close');
 >>
 
 
@@ -1940,9 +1967,8 @@ you got the soap.
 "but you will think of something."
 >
 <<do
-	this.scene.goto({ area: 'mouse town center', x: 50, y: -100 });
+	this.leaveNoOne({ area: 'mouse town center', x: 50, y: -100 });
 	this.scene.player.floor = 'Counter';
-	this.goto('close');
 >>
 
 
@@ -2742,7 +2768,7 @@ you got the sandwich.
 "no one will miss you..."
 >
 <<do
-	// this.scene.goto({ area: 'TODO', x: 50, y: -100 });
+	// this.leaveNoOne({ area: 'TODO', x: 50, y: -100 });
 	this.goto('close');
 >>
 
