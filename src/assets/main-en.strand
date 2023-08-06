@@ -940,6 +940,7 @@
 	};
 
 	this.itemRoomPickup = async (next) => {
+		this.camPoint = this.scene.player.transform;
 		await this.scene.player.walkTo(-40, -260);
 		this.scene.player.flipped = false;
 		await this.delay(500);
@@ -1024,6 +1025,7 @@
 		this.scrim(1, 0);
 		this.scene.goto(area);
 		this.scene.player.display.container.visible = true;
+		this.camPoint = undefined;
 		this.scrim(0, 2000);
 		await this.delay(2000);
 		this.goto('close');
