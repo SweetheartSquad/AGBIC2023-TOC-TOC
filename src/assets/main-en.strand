@@ -1992,7 +1992,7 @@ you got the soap.
 <<do
 	(async () => {
 		this.add(
-			this.Prop({ texture: 'stove light', freq: 1/200, x: 0, y: 0, offset: 1000 }),
+			this.Prop({ texture: 'stove light', freq: 1/200, x: 208, y: 0, offset: 1000 }),
 		);
 		this.gameObject.btn.enabled = false;
 		this.scene.screenFilter.flash([255,125,0], 200);
