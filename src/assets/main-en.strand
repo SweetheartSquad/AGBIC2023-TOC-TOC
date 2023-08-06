@@ -1042,16 +1042,17 @@
 	this.tween(this.scene.border.display.container, 'alpha', 1, 1000);
 	this.scrim(0, 3000);
 	this.goto('close');
+	this.scene.player.walkToMouseO = this.scene.player.walkToMouse;
+	this.scene.player.walkToMouse = () => {};
 	this.scene.player.display.container.visible = false;
-	this.scene.player.display.container.canMove = false;
 >>
 
 ::start game
 <<do
 	this.scene.goto({ area: 'no one', x: -204, y: -96 });
 	this.goto('close');
-	this.scene.player.display.container.visible = true;
-	this.scene.player.display.container.canMove = true;
+		this.scene.player.walkToMouse = this.scene.player.walkToMouseO;
+		this.scene.player.display.container.visible = true;
 >>
 
 ::close
