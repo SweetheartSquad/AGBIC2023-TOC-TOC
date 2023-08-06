@@ -287,10 +287,16 @@ export class StrandE extends Strand {
 	) {
 		const go = new GameObject();
 		const transform = new Transform(go);
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		go.transform = transform;
 		transform.x = x;
 		transform.y = y + offset;
 		go.scripts.push(transform);
 		const display = new Display(go);
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		go.display = display;
 		go.scripts.push(display);
 		const text = new Text(str, { ...fontIngame, ...font });
 		text.cacheAsBitmap = true;
