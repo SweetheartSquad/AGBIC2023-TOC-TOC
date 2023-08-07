@@ -2335,14 +2335,14 @@ you got the soap.
 				otherTarget: [`p:"why would i cover that in wax..."`],
 			}, });
 			this.add(wax);
-			this.tween(toMelt.display.container, 'alpha', 0, 600, undefined, this.ease.cubicIn);
+			const t1 = this.tween(toMelt.display.container, 'alpha', 0, 600, undefined, this.ease.cubicIn);
 			this.tween(wax.spr, 'alpha', 1, 1000, undefined, this.ease.cubicOut);
 			await this.delay(1000);
+			this.tweenAbort(t1);
 			this.destroy(toMelt);
 			this.destroy(this.polyWax);
-			this.scene.drop(
-				this.polyWax = this.Poly({ verts: [-97,-310, -120,-311, -146,-324], width: 15 }),
-			);
+			this.polyWax = this.Poly({ verts: [-97,-310, -120,-311, -146,-324], width: 15 });
+			this.scene.drop(this.polyWax);
 			this.goto('close');
 		})();
 	>>
