@@ -98,16 +98,38 @@
 		}),
 	]);
 	this.Area('menu', [
-		this.Hotspot({ texture: 'start', x: 9, y: -207, offset: 10000, use: {
-			undefined: ['goto:start game'],
-		}, }),
-		this.Hotspot({ texture: 'credits', x: 183, y: -68, offset: 10000, use: {
-			undefined: ['goto:credits'],
-		}, }),
 		this.Prop({ texture: 'static', x: 0, y: 0, offset: -10000 }),
+		(() => {
+			const h = this.Hotspot({ label: 'start', texture: 'blank', x: -2, y: -228, offset: 10000, use: {
+				undefined: ['goto:start game'],
+			}, });
+			h.spr.width = 100;
+			h.spr.height = 160;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'about', texture: 'blank', x: -4, y: -45, offset: 10000, use: {
+				undefined: ['goto:credits'],
+			}, });
+			h.spr.width = 300;
+			h.spr.height = 80;
+			return h;
+		})(),
 	]);
 	this.Area('credits', [
-		this.Hotspot({ label: 'made by Sean, Michael & IAN\nof Sweet♥Heart Squad', texture: 'SweetHeart Squad', x: -176, y: -242, offset: 10000, use: {
+		this.Text(`
+made by Sean, Michael & IAN
+of Sweet♥Heart Squad
+
+
+
+for A Game By Its Cover 2023
+
+
+
+based on Famicase artwork
+by AQUILES`, { x: 0, y: -450 }),
+		this.Hotspot({ label: 'more games', texture: 'SweetHeart Squad', x: -176, y: -242, offset: 10000, use: {
 			undefined: ['goto:credits-sweetheartsquad'],
 		}, }),
 		this.Hotspot({ label: 'based on Famicase artwork\nby AQUILES', texture: 'AQUILES', x: 183, y: -68, offset: 10000, use: {
@@ -3051,7 +3073,14 @@ The End
 [[back|this.back()]]
 
 ::credits
-<<do this.scene.goto({ area: 'credits' }); this.goto('close');>>
+<<do
+	this.scrim(1, 250);
+	setTimeout(() => {
+		this.scene.goto({ area: 'credits' });
+		this.scrim(0, 250);
+		this.goto('close');
+	}, 250);
+>>
 
 ::credits-sweetheartsquad
 <<do window.open('https://sweetheartsquad.itch.io', '_blank'); this.goto('close');>>
@@ -3060,4 +3089,11 @@ The End
 <<do window.open('https://famicase.com/23/softs/122.html', '_blank'); this.goto('close');>>
 
 ::credits-back
-<<do this.scene.goto({ area: 'menu' }); this.goto('close');>>
+<<do
+	this.scrim(1, 250);
+	setTimeout(() => {
+		this.scene.goto({ area: 'menu' });
+		this.scrim(0, 250);
+		this.goto('close');
+	}, 250);
+>>
