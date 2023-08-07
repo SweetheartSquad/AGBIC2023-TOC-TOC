@@ -143,9 +143,9 @@ by AQUILES`, { x: 0, y: -450 }),
 	]);
 
 	const rays = () => {
-		let slGodRay = this.Prop({ texture: 'godRayL', offset: 1000000 });
-		let scGodRay = this.Prop({ texture: 'godRayC', offset: 1000000 });
-		let srGodRay = this.Prop({ texture: 'godRayR', offset: 1000000 });
+		let slGodRay = this.Prop({ texture: 'godRayL', x: -270, y: 0, offset: 1000000 });
+		let scGodRay = this.Prop({ texture: 'godRayC', x: -160, y: -122, offset: 1000000 });
+		let srGodRay = this.Prop({ texture: 'godRayR', x: -43, y: -222, offset: 1000000 });
 		return [
 			slGodRay,
 			scGodRay,
