@@ -1463,10 +1463,10 @@ continue
 		this.goto('rock solved1');
 	}, 2000);
 	setTimeout(() => {
-		this.scene.strand.shock(fierygnome, 1500);
+		this.shock(fierygnome, 1500);
 	}, 60);
 	setTimeout(() => {
-		this.scene.strand.shock(numbgnome, 1500);
+		this.shock(numbgnome, 1500);
 	}, 120);
 >>
 ::rock solved1
