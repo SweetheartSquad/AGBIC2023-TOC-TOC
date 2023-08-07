@@ -1602,7 +1602,7 @@ you got the moon-dried tomato.
 		return spot.item === 'wheel';
 	};
 	const wheelExit = async (...spots) => {
-		// TODO: wheel sfx
+		this.sfx('rustle', { rate: 2 });
 		this.tween(this.scene.find('wheel').display.container, 'angle', 0, 250, -10, t => 1-Math.cos(t*250*0.02)*(1-t));
 		await spots.reduce(async (p, spot) => {
 			await p;
