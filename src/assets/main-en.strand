@@ -2402,8 +2402,9 @@ you got the soap.
 
 ::smash tree
 <<do
-	// TODO: animation
 	// TODO: sfx
+	this.tween(this.scene.camera, 'shake', 0, 400, 2, this.ease.cubicIn);
+	this.scene.screenFilter.flash([20,20,20], 200, this.ease.cubicOut);
 	const tree = this.scene.find('wax tree');
 	tree.spr.texture = this.tex('wax tree broken');
 	tree.btn.enabled = false;
