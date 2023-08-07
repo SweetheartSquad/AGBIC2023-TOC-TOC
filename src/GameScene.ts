@@ -302,8 +302,14 @@ export class GameScene {
 
 		const relativeMousePos = relativeMouse();
 		if (!this.dialogue.isOpen) {
-			this.camPoint.x = (relativeMousePos.x - size.x / 2) * 0.1;
-			this.camPoint.y = (relativeMousePos.y - size.y / 2) * 0.1;
+			this.camPoint.x =
+				(relativeMousePos.x - size.x / 2) *
+				0.1 *
+				(1 - this.dialogue.sprScrim.alpha);
+			this.camPoint.y =
+				(relativeMousePos.y - size.y / 2) *
+				0.1 *
+				(1 - this.dialogue.sprScrim.alpha);
 		} else if (this.strand.camPoint) {
 			this.camPoint.x = (this.strand.camPoint.x ?? 0) * 0.1;
 			this.camPoint.y = (this.strand.camPoint.y ?? 0) * 0.1;
