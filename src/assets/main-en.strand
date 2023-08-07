@@ -99,8 +99,8 @@
 	]);
 	this.Area('menu', [
 		this.Prop({ texture: 'mat', x: 0, y: -46, offset: -10000 }),
-		this.Prop({ texture: 'doorClosed', x: 0, y: 0, offset: -10000 }),
-		this.Prop({ texture: 'doorOpen', freq: 1/200, alpha: 0, x: 0, y: 0, offset: -10000 }),
+		this.Prop({ texture: 'doorClosed', x: 0, y: -128, offset: -10000 }),
+		this.Prop({ texture: 'doorOpen', freq: 1/200, alpha: 0, x: 0, y: -128, offset: -10000 }),
 		(() => {
 			const h = this.Hotspot({ label: 'start', texture: 'blank', x: -2, y: -228, offset: 10000, use: {
 				undefined: ['goto:start game'],
