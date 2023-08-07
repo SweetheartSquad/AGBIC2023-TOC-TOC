@@ -2363,7 +2363,7 @@ you got the soap.
 		case 'snowman':
 			poly = this.Poly({ verts: [-118,-315, -98,-313], width: 15 }); // snowman
 			wax = this.Hotspot({ texture: 'wax snowman', x: -103, y: -303, offset: 0, use: {
-				undefined: [`p:"seems fragile and i don't need a snowman"`],
+				undefined: [`p:"seems fragile..."`, `p:"i don't need a snowman though"`],
 				matchbox: ['goto:melt wax'],
 			}, });
 			break;
@@ -2379,6 +2379,7 @@ you got the soap.
 			wax = this.Hotspot({ texture: 'wax tree', x: -111, y: -305,    offset: -3, use: {
 				undefined: ['goto:smash tree'],
 				matchbox: ['goto:melt wax'],
+				other: [`p:"i could probably just use my hands"`],
 			}, });
 			break;
 	}
