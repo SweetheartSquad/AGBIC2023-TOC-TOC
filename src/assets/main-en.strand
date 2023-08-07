@@ -2328,7 +2328,11 @@ you got the soap.
 			// TODO: sfx
 			this.scene.screenFilter.flash([128,68,0], 500);
 			const wax = this.Item({ texture: 'wax wad', x: -121, y: -298, alpha: 0, offset: -16, use: {
-				// TODO: fill
+				player: [`p:"it's a pile of soft, warm wax"`],
+				matchbox: [`p:"that's already melted"`],
+				'cookie cutter': [`p:"it'd be easier the other way around"`],
+				other: [`p:"why would i put that in wax..."`],
+				otherTarget: [`p:"why would i cover that in wax..."`],
 			}, });
 			this.add(wax);
 			this.tween(toMelt.display.container, 'alpha', 0, 600, undefined, this.ease.cubicIn);
