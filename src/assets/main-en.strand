@@ -98,7 +98,7 @@
 		}),
 	]);
 	this.Area('menu', [
-		this.Prop({ texture: 'mat', x: 0, y: 0, offset: -10000 }),
+		this.Prop({ texture: 'mat', x: 0, y: -46, offset: -10000 }),
 		this.Prop({ texture: 'doorClosed', x: 0, y: 0, offset: -10000 }),
 		this.Prop({ texture: 'doorOpen', freq: 1/200, alpha: 0, x: 0, y: 0, offset: -10000 }),
 		(() => {
