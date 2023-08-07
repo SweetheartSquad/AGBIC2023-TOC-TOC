@@ -2352,45 +2352,52 @@ you got the soap.
 
 ::shape wax
 <<do
-	// TODO: animate
 	// TODO: sfx
-	this.destroy(this.scene.carrying);
-	this.destroy(this.polyWax);
-
-	let poly;
-	let wax;
-	switch (this.gameObject.cookie) {
-		case 'snowman':
-			poly = this.Poly({ verts: [-118,-315, -98,-313], width: 15 }); // snowman
-			wax = this.Hotspot({ texture: 'wax snowman', x: -103, y: -303, offset: 0, use: {
-				undefined: [`p:"seems fragile..."`, `p:"i don't need a snowman though"`],
-				matchbox: ['goto:melt wax'],
-			}, });
-			break;
-		case 'star':
-			poly = this.Poly({ verts: [-133,-317, -98,-308], width: 12 }); // star
-			wax = this.Hotspot({ texture: 'wax star', x: -108, y: -302,    offset: -10, use: {
-				undefined: [`p:"that's too big to pick up"`],
-				matchbox: ['goto:melt wax'],
-			}, });
-			break;
-		case 'tree':
-			poly = this.Poly({ verts: [-118,-314] }); // tree
-			wax = this.Hotspot({ texture: 'wax tree', x: -111, y: -305,    offset: -3, use: {
-				undefined: ['goto:smash tree'],
-				matchbox: ['goto:melt wax'],
-				other: [`p:"i could probably just use my hands"`],
-			}, });
-			break;
-	}
-
-	this.add(wax);
-	this.scene.drop(
-		this.polyWax = poly,
-	);
-	this.scene.loseItem();
+	const cookie = this.gameObject.cookie;
+	const carrying = this.scene.carrying;
 	this.gameObject = this.scene.player;
-	this.goto('close');
+	this.scene.loseItem();
+	(async () => {
+		let poly;
+		let wax;
+		switch (cookie) {
+			case 'snowman':
+				poly = this.Poly({ verts: [-118,-315, -98,-313], width: 15 }); // snowman
+				wax = this.Hotspot({ texture: 'wax snowman', x: -103, y: -303, alpha: 0, offset: 0, use: {
+					undefined: [`p:"seems fragile..."`, `p:"i don't need a snowman though"`],
+					matchbox: ['goto:melt wax'],
+				}, });
+				break;
+			case 'star':
+				poly = this.Poly({ verts: [-133,-317, -98,-308], width: 12 }); // star
+				wax = this.Hotspot({ texture: 'wax star', x: -108, y: -302, alpha: 0, offset: -10, use: {
+					undefined: [`p:"that's too big to pick up"`],
+					matchbox: ['goto:melt wax'],
+				}, });
+				break;
+			case 'tree':
+				poly = this.Poly({ verts: [-118,-314] }); // tree
+				wax = this.Hotspot({ texture: 'wax tree', x: -111, y: -305, alpha: 0, offset: -3, use: {
+					undefined: ['goto:smash tree'],
+					matchbox: ['goto:melt wax'],
+					other: [`p:"i could probably just use my hands"`],
+				}, });
+				break;
+		}
+
+		this.scene.screenFilter.flash([128,0,68], 500);
+		this.add(wax);
+		const t1 = this.tween(carrying.display.container, 'alpha', 0, 600, undefined, this.ease.cubicIn);
+		this.tween(wax.spr, 'alpha', 1, 1000, undefined, this.ease.cubicOut);
+
+		await this.delay(1000);
+		this.tweenAbort(t1);
+		this.destroy(carrying);
+		this.destroy(this.polyWax);
+		this.polyWax = poly;
+		this.scene.drop(poly);
+		this.goto('close');
+	})();
 >>
 
 ::smash tree
