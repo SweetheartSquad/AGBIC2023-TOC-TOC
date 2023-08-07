@@ -1592,7 +1592,7 @@ you got the moon-dried tomato.
 		return spot.item === 'rope';
 	};
 	const ropeExit = () => {
-		// TODO: rope sfx
+		this.sfx('rustle');
 		this.tween(this.scene.find('rope').display.container.scale, 'y', 1, 250, 1.1, t => 1-Math.cos(t*250*0.02)*(1-t));
 		this.resetMite();
 		this.camPoint = undefined;
@@ -1653,7 +1653,7 @@ you got the moon-dried tomato.
 			await this.mite.walkTo(...middleBeamCenter);
 			await this.mite.walkTo(hookspots.l1.transform.x, hookspots.l1.transform.y);
 			if (isRope(hookspots.l1)) { // bread branch
-				// TODO: rope sfx
+				this.sfx('rustle');
 				this.tween(this.scene.find('rope').display.container.scale, 'y', 1, 250, 1.1, t => 1-Math.cos(t*250*0.02)*(1-t));
 				this.mite.display.container.offset = 9500;
 				await this.mite.walkTo(-53, -116);
