@@ -2325,7 +2325,6 @@ you got the soap.
 	<<do
 		const toMelt = this.gameObject;
 		(async () => {
-			// TODO: sfx
 			this.scene.screenFilter.flash([128,68,0], 500);
 			const wax = this.Item({ texture: 'wax wad', x: -121, y: -298, alpha: 0, offset: -16, use: {
 				player: [`p:"it's a pile of soft, warm wax"`],
@@ -2337,6 +2336,7 @@ you got the soap.
 			this.add(wax);
 			const t1 = this.tween(toMelt.display.container, 'alpha', 0, 600, undefined, this.ease.cubicIn);
 			this.tween(wax.spr, 'alpha', 1, 1000, undefined, this.ease.cubicOut);
+			this.sfx('bite', { rate: 2.0, volume: 0.4 });
 			await this.delay(1000);
 			this.tweenAbort(t1);
 			this.destroy(toMelt);
@@ -2352,7 +2352,6 @@ you got the soap.
 
 ::shape wax
 <<do
-	// TODO: sfx
 	const cookie = this.gameObject.cookie;
 	const carrying = this.scene.carrying;
 	this.gameObject = this.scene.player;
@@ -2390,6 +2389,7 @@ you got the soap.
 		const t1 = this.tween(carrying.display.container, 'alpha', 0, 600, undefined, this.ease.cubicIn);
 		this.tween(wax.spr, 'alpha', 1, 1000, undefined, this.ease.cubicOut);
 
+		this.sfx('bite', { rate: 2.4, volume: 0.4 });
 		await this.delay(1000);
 		this.tweenAbort(t1);
 		this.destroy(carrying);
@@ -2402,7 +2402,7 @@ you got the soap.
 
 ::smash tree
 <<do
-	// TODO: sfx
+	this.sfx('bite', { rate: 2.4, volume: 0.4 });
 	this.tween(this.scene.camera, 'shake', 0, 400, 2, this.ease.cubicIn);
 	this.scene.screenFilter.flash([20,20,20], 200, this.ease.cubicOut);
 	const tree = this.scene.find('wax tree');
