@@ -1143,6 +1143,7 @@ by AQUILES`, { x: 0, y: -450 }),
 		this.tween(this.scene.player.display.container, 'alpha', 1, 100, undefined, this.ease.cubicOut);
 		this.scene.player.x = -69;
 		this.scene.player.y = -76;
+		this.scene.player.flipped = false;
 		await this.delay(100);
 		await this.delay(1500);
 		this.scene.goto({ area: 'no one', x: -204, y: -96 });
