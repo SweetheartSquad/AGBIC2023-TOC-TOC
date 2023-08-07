@@ -215,7 +215,10 @@ audio/chunk.mp3
 audio/voiceNo one.mp3
 audio/voicePoem.mp3
 
-textures/menu/static.png
+textures/menu/doorClosed.png
+textures/menu/doorKnock1.png
+textures/menu/doorKnock2.png
+textures/menu/doorOpen.x12.png
 textures/menu/guy_big.x2.png
 textures/credits/SweetHeart Squad.png
 textures/credits/AQUILES.png
