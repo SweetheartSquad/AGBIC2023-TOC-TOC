@@ -222,7 +222,6 @@ textures/menu/doorKnock2.png
 textures/menu/doorOpen.x12.png
 textures/menu/noone_head.png
 textures/menu/guy_big.x2.png
-textures/menu/doorShadow.png
 textures/credits/SweetHeart Squad.png
 textures/credits/AQUILES.png
 textures/credits/back.png
