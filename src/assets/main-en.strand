@@ -98,13 +98,13 @@
 		}),
 	]);
 	this.Area('menu', [
-		this.Prop({ texture: 'TOC TOC', x: 0, y: 0, offset: -10000 }),
 		this.Hotspot({ texture: 'start', x: 9, y: -207, offset: 10000, use: {
 			undefined: ['goto:start game'],
 		}, }),
 		this.Hotspot({ texture: 'credits', x: 183, y: -68, offset: 10000, use: {
 			undefined: ['goto:credits'],
 		}, }),
+		this.Prop({ texture: 'static', x: 0, y: 0, offset: -10000 }),
 	]);
 	this.Area('credits', [
 		this.Hotspot({ label: 'made by Sean, Michael & IAN\nof Sweet♥Heart Squad', texture: 'SweetHeart Squad', x: -176, y: -242, offset: 10000, use: {
