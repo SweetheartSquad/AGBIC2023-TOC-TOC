@@ -1117,7 +1117,7 @@ by AQUILES`, { x: 0, y: -450 }),
 		doorAnim.animator.setAnimation('doorOpen.1', { 12: 5 });
 		await this.delay(3000);
 		doorAnim.animator.active = false;
-		const head = this.Prop({ texture: 'noone_head', alpha: 0, offset: -20000, });
+		const head = this.Prop({ texture: 'noone_head', alpha: 0, x: 18, y: -212, offset: -20000, });
 		this.add(head);
 		this.tween(head.spr, 'alpha', 1, 2000, 0, this.ease.cubicOut);
 		this.tween(head.spr, 'x', 0, 2000, -20, this.ease.cubicOut);
