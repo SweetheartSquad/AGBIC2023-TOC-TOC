@@ -2323,17 +2323,24 @@ you got the soap.
 	[[>close]]
 <<else>>
 	<<do
-		// TODO: animate
-		// TODO: sfx
-		this.destroy(this.gameObject);
-		this.destroy(this.polyWax);
-		this.add(
-			this.Item({ texture: 'wax wad', x: -121, y: -298,           offset: -16 }),
-		);
-		this.scene.drop(
-			this.polyWax = this.Poly({ verts: [-97,-310, -120,-311, -146,-324], width: 15 }),
-		);
-		this.goto('close');
+		const toMelt = this.gameObject;
+		(async () => {
+			// TODO: sfx
+			this.scene.screenFilter.flash([128,68,0], 500);
+			const wax = this.Item({ texture: 'wax wad', x: -121, y: -298, alpha: 0, offset: -16, use: {
+				// TODO: fill
+			}, });
+			this.add(wax);
+			this.tween(toMelt.display.container, 'alpha', 0, 600, undefined, this.ease.cubicIn);
+			this.tween(wax.spr, 'alpha', 1, 1000, undefined, this.ease.cubicOut);
+			await this.delay(1000);
+			this.destroy(toMelt);
+			this.destroy(this.polyWax);
+			this.scene.drop(
+				this.polyWax = this.Poly({ verts: [-97,-310, -120,-311, -146,-324], width: 15 }),
+			);
+			this.goto('close');
+		})();
 	>>
 <<endif>>
 <<do this.scene.loseItem();>>
