@@ -2041,8 +2041,9 @@ you got the moon-dried tomato.
 	setTimeout(() => this.sfx('blorp', { rate: 2 }), 500);
 	setTimeout(() => this.sfx('slurp', { rate: 2 }), 750);
 >>
+<<do this.voice = 'None'>>
 *plaf* *smear* *plap* smush*
-[[>close]]
+[[|this.voice='Default';this.goto('close')]]
 <<else>>
 <<do this.gameObject = this.scene.player>>
 "i think it's peanutty enough"
@@ -2118,8 +2119,9 @@ you got the moon-dried tomato.
 	setTimeout(() => this.sfx('blorp', { rate: 1.3 }), 1050);
 	this.scene.loseItem();
 >>
+<<do this.voice = 'None'>>
 *oil* *oil* *oil* *oil*
-[[>close]]
+[[|this.voice='Default';this.goto('close')]]
 
 ::open vault
 <<if this.oiled>>
