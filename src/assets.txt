@@ -224,5 +224,4 @@ textures/menu/noone_head.x3.png
 textures/menu/guy_big.x2.png
 textures/credits/SweetHeart Squad.png
 textures/credits/AQUILES.png
-textures/credits/back.png
 textures/credits/toctoc_white.png
