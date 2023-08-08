@@ -143,9 +143,9 @@ by AQUILES`, { x: 0, y: -450 }),
 	]);
 
 	const rays = () => {
-		let slGodRay = this.Prop({ texture: 'godRayL', offset: 1000000 });
-		let scGodRay = this.Prop({ texture: 'godRayC', offset: 1000000 });
-		let srGodRay = this.Prop({ texture: 'godRayR', offset: 1000000 });
+		let slGodRay = this.Prop({ texture: 'godRayL', x: -270, y: 0, offset: 1000000 });
+		let scGodRay = this.Prop({ texture: 'godRayC', x: -160, y: -122, offset: 1000000 });
+		let srGodRay = this.Prop({ texture: 'godRayR', x: -43, y: -222, offset: 1000000 });
 		return [
 			slGodRay,
 			scGodRay,
@@ -1063,7 +1063,6 @@ by AQUILES`, { x: 0, y: -450 }),
 >>
 <<endif>>
 <<do
-	this.tween(this.scene.border.display.container, 'alpha', 1, 1000);
 	this.scene.player.walkToMouseO = this.scene.player.walkToMouse;
 	this.scene.player.walkToMouse = () => {};
 	this.scene.player.display.container.visible = false;
@@ -1077,13 +1076,22 @@ by AQUILES`, { x: 0, y: -450 }),
 <<do
 	(async () => {
 		const guy = this.Prop({ texture: 'guy_big', tint: 0xa49484, alpha: 0, x: -69, y: -75, offset: 10000 });
-		const doorStatic = this.scene.find('doorClosed');
-		const doorAnim = this.scene.find('doorOpen');
 		this.add(
 			guy,
 		);
 		this.tween(guy.spr, 'alpha', 1, 2000);
 		await this.delay(1000);
+		this.goto('start game1');
+	})();
+>>
+
+::start game1
+"TODO: before knock"
+>
+<<do
+	(async () => {
+		const doorStatic = this.scene.find('doorClosed');
+		const doorAnim = this.scene.find('doorOpen');
 		doorStatic.set('doorKnock1');
 		await this.delay(100);
 		doorStatic.set('doorKnock2');
@@ -1123,6 +1131,17 @@ by AQUILES`, { x: 0, y: -450 }),
 		this.tween(head.spr, 'x', 0, 2000, -20, this.ease.cubicOut);
 		this.tween(head.spr, 'y', 0, 2000, -10, this.ease.cubicOut);
 		await this.delay(2000);
+		this.goto('start game2');
+	})();
+>>
+
+
+::start game2
+"TODO: after knock"
+>
+<<do
+	(async () => {
+		const guy = this.scene.find('guy_big');
 		this.tween(guy.display.container.scale, 'x', 0.25, 1000, undefined, this.ease.cubicInOut);
 		this.tween(guy.display.container.scale, 'y', 0.25, 1000, undefined, this.ease.cubicInOut);
 		for(let i = 0; i < 10; ++i) {
@@ -1146,11 +1165,26 @@ by AQUILES`, { x: 0, y: -450 }),
 		this.scene.player.flipped = false;
 		await this.delay(100);
 		await this.delay(1500);
-		this.scene.goto({ area: 'no one', x: -204, y: -96 });
-		this.goto('close');
-		this.scene.player.walkToMouse = this.scene.player.walkToMouseO;
+		this.goto('start game3');
 	})();
 >>
+
+::start game3
+"TODO: after shrink"
+>
+<<do
+	(async () => {
+		this.scrim(1, 2000);
+		await this.delay(2000);
+		this.scene.goto({ area: 'gnome puzzle', x: -106, y: -79 });
+		this.goto('close');
+		this.scene.player.walkToMouse = this.scene.player.walkToMouseO;
+		this.scrim(0, 2000);
+		await this.delay(2000);
+	})();
+>>
+
+
 
 ::close
 this should never render
@@ -1592,7 +1626,7 @@ you got the moon-dried tomato.
 		return spot.item === 'rope';
 	};
 	const ropeExit = () => {
-		// TODO: rope sfx
+		this.sfx('rustle');
 		this.tween(this.scene.find('rope').display.container.scale, 'y', 1, 250, 1.1, t => 1-Math.cos(t*250*0.02)*(1-t));
 		this.resetMite();
 		this.camPoint = undefined;
@@ -1602,7 +1636,7 @@ you got the moon-dried tomato.
 		return spot.item === 'wheel';
 	};
 	const wheelExit = async (...spots) => {
-		// TODO: wheel sfx
+		this.sfx('rustle', { rate: 2 });
 		this.tween(this.scene.find('wheel').display.container, 'angle', 0, 250, -10, t => 1-Math.cos(t*250*0.02)*(1-t));
 		await spots.reduce(async (p, spot) => {
 			await p;
@@ -1653,7 +1687,7 @@ you got the moon-dried tomato.
 			await this.mite.walkTo(...middleBeamCenter);
 			await this.mite.walkTo(hookspots.l1.transform.x, hookspots.l1.transform.y);
 			if (isRope(hookspots.l1)) { // bread branch
-				// TODO: rope sfx
+				this.sfx('rustle');
 				this.tween(this.scene.find('rope').display.container.scale, 'y', 1, 250, 1.1, t => 1-Math.cos(t*250*0.02)*(1-t));
 				this.mite.display.container.offset = 9500;
 				await this.mite.walkTo(-53, -116);
@@ -2323,17 +2357,28 @@ you got the soap.
 	[[>close]]
 <<else>>
 	<<do
-		// TODO: animate
-		// TODO: sfx
-		this.destroy(this.gameObject);
-		this.destroy(this.polyWax);
-		this.add(
-			this.Item({ texture: 'wax wad', x: -121, y: -298,           offset: -16 }),
-		);
-		this.scene.drop(
-			this.polyWax = this.Poly({ verts: [-97,-310, -120,-311, -146,-324], width: 15 }),
-		);
-		this.goto('close');
+		const toMelt = this.gameObject;
+		(async () => {
+			this.scene.screenFilter.flash([128,68,0], 500);
+			const wax = this.Item({ texture: 'wax wad', x: -121, y: -298, alpha: 0, offset: -16, use: {
+				player: [`p:"it's a pile of soft, warm wax"`],
+				matchbox: [`p:"that's already melted"`],
+				'cookie cutter': [`p:"it'd be easier the other way around"`],
+				other: [`p:"why would i put that in wax..."`],
+				otherTarget: [`p:"why would i cover that in wax..."`],
+			}, });
+			this.add(wax);
+			const t1 = this.tween(toMelt.display.container, 'alpha', 0, 600, undefined, this.ease.cubicIn);
+			this.tween(wax.spr, 'alpha', 1, 1000, undefined, this.ease.cubicOut);
+			this.sfx('bite', { rate: 2.0, volume: 0.4 });
+			await this.delay(1000);
+			this.tweenAbort(t1);
+			this.destroy(toMelt);
+			this.destroy(this.polyWax);
+			this.polyWax = this.Poly({ verts: [-97,-310, -120,-311, -146,-324], width: 15 });
+			this.scene.drop(this.polyWax);
+			this.goto('close');
+		})();
 	>>
 <<endif>>
 <<do this.scene.loseItem();>>
@@ -2341,50 +2386,59 @@ you got the soap.
 
 ::shape wax
 <<do
-	// TODO: animate
-	// TODO: sfx
-	this.destroy(this.scene.carrying);
-	this.destroy(this.polyWax);
-
-	let poly;
-	let wax;
-	switch (this.gameObject.cookie) {
-		case 'snowman':
-			poly = this.Poly({ verts: [-118,-315, -98,-313], width: 15 }); // snowman
-			wax = this.Hotspot({ texture: 'wax snowman', x: -103, y: -303, offset: 0, use: {
-				undefined: [`p:"seems fragile and i don't need a snowman"`],
-				matchbox: ['goto:melt wax'],
-			}, });
-			break;
-		case 'star':
-			poly = this.Poly({ verts: [-133,-317, -98,-308], width: 12 }); // star
-			wax = this.Hotspot({ texture: 'wax star', x: -108, y: -302,    offset: -10, use: {
-				undefined: [`p:"that's too big to pick up"`],
-				matchbox: ['goto:melt wax'],
-			}, });
-			break;
-		case 'tree':
-			poly = this.Poly({ verts: [-118,-314] }); // tree
-			wax = this.Hotspot({ texture: 'wax tree', x: -111, y: -305,    offset: -3, use: {
-				undefined: ['goto:smash tree'],
-				matchbox: ['goto:melt wax'],
-			}, });
-			break;
-	}
-
-	this.add(wax);
-	this.scene.drop(
-		this.polyWax = poly,
-	);
-	this.scene.loseItem();
+	const cookie = this.gameObject.cookie;
+	const carrying = this.scene.carrying;
 	this.gameObject = this.scene.player;
-	this.goto('close');
+	this.scene.loseItem();
+	(async () => {
+		let poly;
+		let wax;
+		switch (cookie) {
+			case 'snowman':
+				poly = this.Poly({ verts: [-118,-315, -98,-313], width: 15 }); // snowman
+				wax = this.Hotspot({ texture: 'wax snowman', x: -103, y: -303, alpha: 0, offset: 0, use: {
+					undefined: [`p:"seems fragile..."`, `p:"i don't need a snowman though"`],
+					matchbox: ['goto:melt wax'],
+				}, });
+				break;
+			case 'star':
+				poly = this.Poly({ verts: [-133,-317, -98,-308], width: 12 }); // star
+				wax = this.Hotspot({ texture: 'wax star', x: -108, y: -302, alpha: 0, offset: -10, use: {
+					undefined: [`p:"that's too big to pick up"`],
+					matchbox: ['goto:melt wax'],
+				}, });
+				break;
+			case 'tree':
+				poly = this.Poly({ verts: [-118,-314] }); // tree
+				wax = this.Hotspot({ texture: 'wax tree', x: -111, y: -305, alpha: 0, offset: -3, use: {
+					undefined: ['goto:smash tree'],
+					matchbox: ['goto:melt wax'],
+					other: [`p:"i could probably just use my hands"`],
+				}, });
+				break;
+		}
+
+		this.scene.screenFilter.flash([128,0,68], 500);
+		this.add(wax);
+		const t1 = this.tween(carrying.display.container, 'alpha', 0, 600, undefined, this.ease.cubicIn);
+		this.tween(wax.spr, 'alpha', 1, 1000, undefined, this.ease.cubicOut);
+
+		this.sfx('bite', { rate: 2.4, volume: 0.4 });
+		await this.delay(1000);
+		this.tweenAbort(t1);
+		this.destroy(carrying);
+		this.destroy(this.polyWax);
+		this.polyWax = poly;
+		this.scene.drop(poly);
+		this.goto('close');
+	})();
 >>
 
 ::smash tree
 <<do
-	// TODO: animation
-	// TODO: sfx
+	this.sfx('bite', { rate: 2.4, volume: 0.4 });
+	this.tween(this.scene.camera, 'shake', 0, 400, 2, this.ease.cubicIn);
+	this.scene.screenFilter.flash([20,20,20], 200, this.ease.cubicOut);
 	const tree = this.scene.find('wax tree');
 	tree.spr.texture = this.tex('wax tree broken');
 	tree.btn.enabled = false;
@@ -2878,7 +2932,6 @@ blah blah
 >
 <<do
 	this.show('black', { scale: this.size.x });
-	this.tween(this.scene.border.display.container, 'alpha', 0, 1000);
 	this.tween(scene.camera.display.container, 'alpha', 0, 1000);
 
 >>

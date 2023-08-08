@@ -1,3 +1,5 @@
+import { size } from './config';
+
 // setup inputs
 export class Mouse {
 	LEFT = 0;
@@ -46,8 +48,8 @@ export class Mouse {
 		this.justDown = false;
 		this.justUp = false;
 
-		this.x = 0;
-		this.y = 0;
+		this.x = size.x / 2;
+		this.y = size.y / 2;
 		this.delta = {
 			x: 0,
 			y: 0,

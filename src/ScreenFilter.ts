@@ -87,11 +87,7 @@ export class ScreenFilter extends CustomFilter<Uniforms> {
 		);
 	}
 
-	update() {
-		document.body.style.backgroundColor = `rgb(${this.uniforms.bg
-			.map((i) => Math.floor(i))
-			.join(',')})`;
-	}
+	update() {}
 
 	tweenFlash: Tween[] = [];
 

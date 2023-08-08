@@ -17,7 +17,7 @@ body,
 
 html {
 	overflow: auto;
-	background: black;
+	background: #e4b4d7;
 }
 
 .resizer {
@@ -33,7 +33,7 @@ html {
 	width: min-content;
 	height: min-content;
 	background: transparent;
-	color: white;
+	color: #592d64;
 	font-family: inherit;
 	border: none;
 	cursor: pointer;
@@ -46,7 +46,7 @@ html {
 	width: initial !important;
 	height: initial !important;
 	text-align: center;
-	color: #fff;
+	color: #592d64;
 	display: flex;
 	align-items: center;
 	justify-content: center;
