@@ -3056,7 +3056,52 @@ you got the sandwich.
 
 ::give sandwich2
 voiceDefault
-"test"
+"..."
+>
+"what was all that??"
+>
+"hey, you!"
+>
+<<do
+	(async () => {
+		const doorStatic = this.scene.find('doorClosed');
+		const doorAnim = this.scene.find('doorOpen');
+		doorStatic.set('doorKnock1');
+		await this.delay(100);
+		doorStatic.set('doorKnock2');
+		await this.delay(100);
+		doorStatic.set('doorClosed');
+		this.sfx('chunk', { rate: 2 });
+		const t1 = this.Text('*TOC*', { x: 55, y: -363, fontSize: 48 });
+		t1.text.anchor.y = 0.4;
+		t1.text.anchor.x = 0.4;
+		this.add(t1);
+		this.tween(t1.display.container, 'alpha', 0, 2000);
+		this.tween(t1.display.container, 'angle', 0, 2000, 15, t => 1-Math.sin(t*60)*this.ease.circOut(t));
+		this.tween(t1.transform, 'y', t1.transform.y+20, 2000, undefined, this.ease.circOut);
+		await this.delay(500);
+		doorStatic.set('doorKnock1');
+		await this.delay(100);
+		doorStatic.set('doorKnock2');
+		await this.delay(100);
+		doorStatic.set('doorClosed');
+		this.sfx('chunk', { rate: 1.9 });
+		const t2 = this.Text('*TOC*', { x: 70, y: -330, fontSize: 48 });
+		t2.text.anchor.y = 0.4;
+		t2.text.anchor.x = 0.4;
+		this.add(t2);
+		this.tween(t2.display.container, 'alpha', 0, 2000);
+		this.tween(t2.display.container, 'angle', 0, 2000, 15, t => 1-Math.sin(t*60)*this.ease.circOut(t));
+		this.tween(t2.transform, 'y', t2.transform.y+20, 2000, undefined, this.ease.circOut);
+		await this.delay(3000);
+		this.goto('give sandwich3');
+	})();
+>>
+
+::give sandwich3
+"no answer..."
+>
+"but i thought no one lived here?"
 >
 <<do
 	(async () => {
