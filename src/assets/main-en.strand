@@ -1144,7 +1144,9 @@ by AQUILES`, { x: 0, y: -450 }),
 		doorStatic.display.container.visible = false;
 		doorAnim.spr.alpha = 1;
 		doorAnim.animator.setAnimation('doorOpen.1', { 12: 5 });
-		await this.delay(3000);
+		await this.delay(100);
+		this.shock(this.scene.find('guy_big'), 800);
+		await this.delay(2600);
 		doorAnim.animator.active = false;
 		const head = this.Prop({ texture: 'noone_head', alpha: 0, x: 25, y: -212, offset: -20000, });
 		this.add(head);
@@ -1212,6 +1214,7 @@ by AQUILES`, { x: 0, y: -450 }),
 
 ::start game3
 <<do this.gameObject = this.scene.find('playerText')>>
+<<do this.shock(this.scene.player, 500);>>
 "h-hey!"
 >
 "you shrunk me!!"
