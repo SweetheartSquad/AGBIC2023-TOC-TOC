@@ -225,3 +225,11 @@ textures/menu/guy_big.x2.png
 textures/credits/SweetHeart Squad.png
 textures/credits/AQUILES.png
 textures/credits/toctoc_white.png
+
+audio/templeDoor.mp3
+audio/crash.mp3
+audio/lightMatch.mp3
+audio/lightStove.mp3
+audio/slurp.mp3
+audio/wobble.mp3
+audio/blorp.mp3

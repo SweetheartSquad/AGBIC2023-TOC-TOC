@@ -1408,7 +1408,7 @@ continue
 			die: [`p:"rock and roll!"`],
 		}, }),
 	);
-	this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 50, 800, undefined, this.ease.cubicInOut);
+	this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 150, 800, undefined, this.ease.cubicInOut);
 	this.gameObject = this.scene.player;
 	setTimeout(() => {
 		this.goto('move leaf1');
@@ -1565,6 +1565,7 @@ continue
 <<do
 	this.scene.findAll('spot').forEach(i => { i.btn.enabled = false; });
 	this.scene.camera.shake = 2;
+	this.sfx('templeDoor');
 	this.camPoint = { x: this.size.x, y: -this.size.y };
 	this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
 	this.tween(this.scene.camera, 'shake', 0, 1500, 2, this.ease.cubicIn);
@@ -1817,7 +1818,7 @@ you got the moon-dried tomato.
 	const chandelier = this.scene.find('chandelier');
 	this.camPoint = chandelier.transform;
 	this.tween(chandelier.transform, 'x', chandelier.transform.x, 1200, chandelier.transform.x + 10, (t) => 1-Math.random()*(1-t));
-	// TODO: rumble sfx
+	this.sfx('wobble');
 	setTimeout(() => {
 		this.tween(chandelier.transform, 'y', chandelier.transform.y + 170, 400, undefined, this.ease.cubicIn);
 		// TODO: chain sfx
@@ -1838,7 +1839,7 @@ you got the moon-dried tomato.
 			this.scene.drop(
 				this.Poly({ verts: [-78,-163, -111,-162] }),
 			);
-			// TODO: crash sfx
+			this.sfx('crash');
 
 			this.goto('drop chandelier1');
 		}, 400);
@@ -1930,10 +1931,10 @@ you got the moon-dried tomato.
 	const beetle = this.scene.find('trophy mount');
 	this.camPoint = beetle.transform;
 	this.tween(beetle.transform, 'x', beetle.transform.x, 1200, beetle.transform.x + 10, (t) => 1-Math.random()*(1-t));
-	// TODO: rumble sfx
+	this.sfx('wobble');
 	setTimeout(() => {
 		this.tween(beetle.transform, 'y', -247, 400, undefined, this.ease.cubicIn);
-		// TODO: sfx?
+		// TODO: fall sfx?
 
 
 		setTimeout(() => {
@@ -1941,7 +1942,7 @@ you got the moon-dried tomato.
 			this.tween(this.scene.camera, 'shake', 0, 1000, 4, this.ease.cubicOut);
 			beetle.btn.enabled = false;
 			beetle.spr.angle = -10;
-			// TODO: crash sfx
+			this.sfx('crash');
 			this.destroy(this.scene.find('peanut'));
 			this.add(
 				this.gameObject = this.Hotspot({ label: 'peanut', texture: 'peanut smashed', x: 166, y: -228, offset: -15, use: {
@@ -1992,7 +1993,7 @@ you got the moon-dried tomato.
 <<do
 	const bread = this.scene.find('bread');
 	this.tween(bread.transform, 'x', bread.transform.x, 1600, bread.transform.x + 10, (t) => 1-Math.random()*(1-t));
-	// TODO: rumble sfx
+	this.sfx('wobble');
 	setTimeout(() => {
 		bread.display.container.offset = 0;
 		this.tween(bread.transform, 'y', bread.transform.y + 170, 400, undefined, this.ease.cubicIn);
@@ -2006,7 +2007,7 @@ you got the moon-dried tomato.
 			this.add(
 				this.Prop({ texture: 'busted bread', x: -40, y: -27, offset: -17 }),
 			);
-			// TODO: crash sfx
+			this.sfx('crash');
 			this.add(
 				this.Item({ texture: 'bread slice', x: -74, y: -45, offset: -50, use: {
 					player: [`p:"i'm not eating that"`, `p:"maybe someone else'll eat it though"`],
@@ -2035,6 +2036,10 @@ you got the moon-dried tomato.
 	const slice = this.scene.find('bread slice');
 	slice.texture = 'bread slice buttered';
 	slice.spr.texture = this.tex('bread slice buttered');
+	this.sfx('blorp', { rate: 2 });
+	setTimeout(() => this.sfx('slurp', { rate: 2 }), 250);
+	setTimeout(() => this.sfx('blorp', { rate: 2 }), 500);
+	setTimeout(() => this.sfx('slurp', { rate: 2 }), 750);
 >>
 *plaf* *smear* *plap* smush*
 [[>close]]
@@ -2060,7 +2065,12 @@ you got the moon-dried tomato.
 
 ::give bread2
 <<do this.voice = 'None'>>
-<<do this.sfx('bite')>>
+<<do 
+	this.sfx('bite')
+	setTimeout(() => this.sfx('bite', { rate: 0.75 }), 400);
+	setTimeout(() => this.sfx('bite', { rate: 1 }), 800);
+	setTimeout(() => this.sfx('bite', { rate: 0.75 }), 1200);
+>>
 *munch* *monch* *mounch* *muonch*
 >
 <<do this.voice = 'Default'>>
@@ -2102,6 +2112,10 @@ you got the moon-dried tomato.
 ::oil vault
 <<do
 	this.oiled = true;
+	this.sfx('blorp', { rate: 1 });
+	setTimeout(() => this.sfx('blorp', { rate: 1.1 }), 350);
+	setTimeout(() => this.sfx('blorp', { rate: 1.2 }), 700);
+	setTimeout(() => this.sfx('blorp', { rate: 1.3 }), 1050);
 	this.scene.loseItem();
 >>
 *oil* *oil* *oil* *oil*
@@ -2216,6 +2230,7 @@ you got the soap.
 			this.Prop({ texture: 'stove light', freq: 1/200, x: 208, y: 0, offset: 1000 }),
 		);
 		this.gameObject.btn.enabled = false;
+		this.sfx('lightStove');
 		this.scene.screenFilter.flash([255,125,0], 200);
 		this.scene.loseItem();
 		const smith = this.scene.find('stubborn smith');
@@ -2312,7 +2327,10 @@ you got the soap.
 
 ::give juice
 <<if this.juiced>>
-<<do this.scene.loseItem();>>
+<<do 
+	this.sfx('slurp');
+	this.scene.loseItem();
+>>
 "khh... not thirsty.. no more"
 [[>close]]
 <<else>>
@@ -2434,6 +2452,7 @@ you got the soap.
 >>
 <<else>>
 <<do
+	this.sfx('lightMatch');
 	this.scene.animatorCarrying.setAnimation('matchbox_lit');
 	this.scene.screenFilter.flash([255,125,0], 200);
 	this.goto('close');
