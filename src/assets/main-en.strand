@@ -1106,7 +1106,7 @@
 ::start game
 <<do
 	(async () => {
-		const guy = this.Prop({ texture: 'guy_big', tint: 0xa49484, alpha: 0, x: -69, y: -75, offset: 10000 });
+		const guy = this.Prop({ texture: 'guy_big_blank', tint: 0xa49484, alpha: 0, x: -69, y: -75, offset: 10000 });
 		this.add(
 			guy,
 		);
@@ -1174,7 +1174,7 @@
 		doorAnim.spr.alpha = 1;
 		doorAnim.animator.setAnimation('doorOpen.1', { 12: 5 });
 		await this.delay(100);
-		this.shock(this.scene.find('guy_big'), 800);
+		this.shock(this.scene.find('guy_big_blank'), 800);
 		await this.delay(2600);
 		doorAnim.animator.active = false;
 		const head = this.Prop({ texture: 'noone_head', alpha: 0, x: 25, y: -212, offset: -20000, });
@@ -1213,12 +1213,12 @@
 >
 <<do
 	(async () => {
-		const guy = this.scene.find('guy_big');
+		const guy = this.scene.find('guy_big_blank');
 		this.tween(guy.display.container.scale, 'x', 0.25, 1000, undefined, this.ease.cubicInOut);
 		this.tween(guy.display.container.scale, 'y', 0.25, 1000, undefined, this.ease.cubicInOut);
 		for(let i = 0; i < 10; ++i) {
 			setTimeout(() => {
-				const g = this.Prop({ texture: 'guy_big', tint: 0xa49484, alpha: 0.5, x: -69, y: -75, offset: 10000 });
+				const g = this.Prop({ texture: 'guy_big_blank', tint: 0xa49484, alpha: 0.5, x: -69, y: -75, offset: 10000 });
 				g.display.container.scale.x = guy.display.container.scale.x;
 				g.display.container.scale.y = guy.display.container.scale.y;
 				this.add(
@@ -3084,7 +3084,7 @@ you got the sandwich.
 		await this.delay(2700);
 		doorAnim.animator.active = false;
 
-		const guy = this.Prop({ texture: 'guy_big', tint: 0xa49484, alpha: 0, x: -69, y: -75, offset: 10000 });
+		const guy = this.Prop({ texture: 'guy_big_blank', tint: 0xa49484, alpha: 0, x: -69, y: -75, offset: 10000 });
 		this.add(
 			guy,
 		);
@@ -3159,7 +3159,9 @@ voiceDefault
 <<do
 	(async () => {
 		await this.delay(2000);
-		const guy = this.scene.find('guy_big');
+		const guy = this.scene.find('guy_big_blank');
+		guy.set('guy_big');
+		guy.spr.scale.x = -1;
 		this.shock(guy, 2000);
 		this.tween(guy.spr, 'y', 50, 2000);
 		this.tween(guy.spr, 'alpha', 0, 2000);
