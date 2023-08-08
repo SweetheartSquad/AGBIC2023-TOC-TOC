@@ -146,7 +146,7 @@
 		based on Famicase artwork
 		by AQUILES`, { x: 0, y: -400}),
 		this.Text(`BACK`, { x: -260, y: -475}),
-		this.Prop({ texture: 'toctoc_white', x: 5, y: -410}),
+		this.Prop({ texture: 'toctoc_white', x: 5, y: -390}),
 		this.Hotspot({ label: 'more games', texture: 'SweetHeart Squad', x: -96, y: -30, offset: 10000, use: {
 			undefined: ['goto:credits-sweetheartsquad'],
 		}, }),
