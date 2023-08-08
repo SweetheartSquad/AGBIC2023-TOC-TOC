@@ -1076,13 +1076,22 @@ by AQUILES`, { x: 0, y: -450 }),
 <<do
 	(async () => {
 		const guy = this.Prop({ texture: 'guy_big', tint: 0xa49484, alpha: 0, x: -69, y: -75, offset: 10000 });
-		const doorStatic = this.scene.find('doorClosed');
-		const doorAnim = this.scene.find('doorOpen');
 		this.add(
 			guy,
 		);
 		this.tween(guy.spr, 'alpha', 1, 2000);
 		await this.delay(1000);
+		this.goto('start game1');
+	})();
+>>
+
+::start game1
+"TODO: before knock"
+>
+<<do
+	(async () => {
+		const doorStatic = this.scene.find('doorClosed');
+		const doorAnim = this.scene.find('doorOpen');
 		doorStatic.set('doorKnock1');
 		await this.delay(100);
 		doorStatic.set('doorKnock2');
@@ -1122,6 +1131,17 @@ by AQUILES`, { x: 0, y: -450 }),
 		this.tween(head.spr, 'x', 0, 2000, -20, this.ease.cubicOut);
 		this.tween(head.spr, 'y', 0, 2000, -10, this.ease.cubicOut);
 		await this.delay(2000);
+		this.goto('start game2');
+	})();
+>>
+
+
+::start game2
+"TODO: after knock"
+>
+<<do
+	(async () => {
+		const guy = this.scene.find('guy_big');
 		this.tween(guy.display.container.scale, 'x', 0.25, 1000, undefined, this.ease.cubicInOut);
 		this.tween(guy.display.container.scale, 'y', 0.25, 1000, undefined, this.ease.cubicInOut);
 		for(let i = 0; i < 10; ++i) {
@@ -1145,11 +1165,26 @@ by AQUILES`, { x: 0, y: -450 }),
 		this.scene.player.flipped = false;
 		await this.delay(100);
 		await this.delay(1500);
-		this.scene.goto({ area: 'no one', x: -204, y: -96 });
-		this.goto('close');
-		this.scene.player.walkToMouse = this.scene.player.walkToMouseO;
+		this.goto('start game3');
 	})();
 >>
+
+::start game3
+"TODO: after shrink"
+>
+<<do
+	(async () => {
+		this.scrim(1, 2000);
+		await this.delay(2000);
+		this.scene.goto({ area: 'gnome puzzle', x: -106, y: -79 });
+		this.goto('close');
+		this.scene.player.walkToMouse = this.scene.player.walkToMouseO;
+		this.scrim(0, 2000);
+		await this.delay(2000);
+	})();
+>>
+
+
 
 ::close
 this should never render
