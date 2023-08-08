@@ -1086,7 +1086,35 @@ by AQUILES`, { x: 0, y: -450 }),
 >>
 
 ::start game1
-"TODO: before knock"
+//player
+"the house next door..."
+>
+//player
+"hmm..."
+>
+//player
+"seems like no one lives here."
+>
+//player
+"maybe i can just go in and explore..."
+>
+//player
+"..."
+>
+//player
+"maybe i should knock first?"
+>
+//player
+"just in case."
+>
+//player
+"..."
+>
+//player
+"..."
+>
+//player
+"ok... here goes..."
 >
 <<do
 	(async () => {
@@ -1137,7 +1165,29 @@ by AQUILES`, { x: 0, y: -450 }),
 
 
 ::start game2
-"TODO: after knock"
+//no one
+"hello, human child."
+>
+//player
+"who are you?"
+>
+//no one
+"no one."
+>
+//player
+"what?"
+>
+//player
+"but i'm talking to you."
+>
+//no one
+"..."
+>
+//player
+"..."
+>
+//player
+"um, i live next door, and--"
 >
 <<do
 	(async () => {
@@ -1170,7 +1220,47 @@ by AQUILES`, { x: 0, y: -450 }),
 >>
 
 ::start game3
-"TODO: after shrink"
+//player
+"h-hey!"
+>
+//player
+"you shrunk me!!"
+>
+//no one
+"..."
+>
+//player
+"make me big again!"
+>
+//no one
+"..."
+>
+//no one
+"perhaps later."
+>
+//no one
+"you must be small to complete your task."
+>
+//player
+"what task??"
+>
+//no one
+"you must fetch something."
+>
+//no one
+"an odd-looking tomato..."
+>
+//no one
+"locked in a temple for many years."
+>
+//player
+"um, what temple?"
+>
+//no one
+"the gnomes in the garden will know more."
+>
+//no one
+"go now, you haven't much time..."
 >
 <<do
 	(async () => {
@@ -1210,38 +1300,7 @@ continue
 
 
 ::request
-<<do this.gameObject = this.noone>>
-"hello, human child."
->
-<<do this.gameObject = this.scene.player>>
-"who are you?"
->
-<<do this.gameObject = this.noone>>
-"no one."
->
-"welcome to the world of the small."
->
-"you are here for a reason:"
->
-"you must fetch something."
->
-<<do this.gameObject = this.scene.player>>
-"ok... what?"
->
-<<do this.gameObject = this.noone>>
-"an odd-looking tomato..."
->
-"locked in a temple for many years."
->
-<<do this.gameObject = this.scene.player>>
-"um, what temple?"
->
-<<do this.gameObject = this.noone>>
-"the gnomes in the garden will know more."
->
-"go now, you haven't much time..."
->
-<<do this.leaveNoOne({ area: 'gnome puzzle', x: -106, y: -79 })>>
+//eh
 
 
 
