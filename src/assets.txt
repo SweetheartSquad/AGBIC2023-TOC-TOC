@@ -52,7 +52,7 @@ textures/mouse_smithIdle.x2.png
 textures/gnomePuzzle/bg_gnome_puzzle_closed_BACK.png
 textures/gnomePuzzle/bg_gnome_puzzle_FORE.png
 textures/gnomePuzzle/bg_gnome_puzzle_open_BACK.png
-textures/gnomePuzzle/bg_gnome_puzzle_worm.png
+textures/gnomePuzzle/bg_gnome_puzzle_worm.x4.png
 textures/gnomePuzzle/bg_gnome_puzzle_worm_gone.png
 textures/gnomePuzzle/bg_gnome_puzzle_flower.png
 textures/gnomePuzzle/bg_gnome_puzzle_flower_gone.png
