@@ -2735,16 +2735,18 @@ you got the soap.
 		this.add(
 			pill,
 		);
+		this.sfx('wobble');
 		this.tween(pill.transform, 'x', pill.transform.x, 1200, pill.transform.x + 10, (t) => 1-(Math.random()-0.5)*(1-t));
 		await this.delay(400);
 		this.tween(pill.transform, 'y', -257 - 30, 400, undefined, this.ease.cubicIn);
 		await this.delay(400);
+		this.sfx('crash');
 		this.destroy(pill);
 		this.camPoint = guard.transform;
 		this.scene.screenFilter.flash([255,128,128], 200, this.ease.cubicOut);
 		const ts = this.shock(guard, 450);
 		await this.delay(800);
-		// TODO: sfx
+		this.sfx('crash', { volume: 0.25, rate: 5 });
 		this.scene.screenFilter.flash([40,20,20], 200, this.ease.cubicOut);
 		ts.forEach(i => this.tweenFinish(i));
 		guard.spr.angle = 90;
