@@ -1070,11 +1070,20 @@
 		await this.delay(1500);
 		this.scrim(1, 0);
 		this.scene.goto(area);
-		this.scene.player.display.container.visible = true;
-		this.scene.player.display.container.offset = 0;
-		this.camPoint = undefined;
 		this.scrim(0, 2000);
 		await this.delay(2000);
+
+		this.scene.player.expression = 'up';
+		this.scene.player.display.container.visible = true;
+		this.scene.player.display.container.offset = 0;
+		this.tween(this.scene.player, 'flipped', 0, d/2, 50, t => (Math.sin(t*p)) < 0.5);
+		this.tween(this.scene.player.spr, 'y', 0, d/2, -200, t => this.ease.circIn(t));
+		this.tween(this.scene.player.spr, 'x', 0, d/2, -50, (t) => (this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*(1-t)+t);
+		this.tween(this.scene.player.spr, 'alpha', 1, d/2, 0, (t) => this.ease.cubicOut(t));
+		await this.delay(d/2);
+		this.scene.player.expression = '';
+
+		this.camPoint = undefined;
 		this.goto('close');
 	};
 
@@ -1275,10 +1284,23 @@
 		this.scrim(1, 2000);
 		await this.delay(2000);
 		this.scene.goto({ area: 'gnome puzzle', x: -106, y: -79 });
-		this.goto('close');
 		this.scene.player.walkToMouse = this.scene.player.walkToMouseO;
+		this.scene.player.display.container.visible = false;
 		this.scrim(0, 2000);
 		await this.delay(2000);
+
+		this.scene.player.expression = 'up';
+		const d = 4000/2;
+		const p = 30;
+		this.scene.player.display.container.visible = true;
+		this.scene.player.display.container.offset = 0;
+		this.tween(this.scene.player, 'flipped', 0, d, 50, t => (Math.sin(t*p)) < 0.5);
+		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => this.ease.circIn(t));
+		this.tween(this.scene.player.spr, 'x', 0, d, -50, (t) => (this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*(1-t)+t);
+		this.tween(this.scene.player.spr, 'alpha', 1, d, 0, (t) => this.ease.cubicOut(t));
+		await this.delay(d);
+		this.scene.player.expression = '';
+		this.goto('close');
 	})();
 >>
 
