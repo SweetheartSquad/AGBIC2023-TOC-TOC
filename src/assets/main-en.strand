@@ -130,6 +130,14 @@
 			}
 		}),
 	]);
+
+	this.Area('ending', [
+		this.Prop({ texture: 'mat', x: 0, y: -46, offset: -10000 }),
+		this.Prop({ texture: 'doorClosed', x: 0, y: -128, offset: -10000 }),
+		this.Prop({ texture: 'doorOpen', freq: 1/200, alpha: 0, x: 0, y: -128, offset: -10000 }),
+		this.Prop({ name: 'playerText', texture: 'blank', x: -74, y: -154, offset: -10000 }),
+	]);
+
 	this.Area('credits', [
 		this.Text(`
 		made by Sean, Michael & IAN
@@ -137,16 +145,22 @@
 		for	A Game By Its Cover 2023\n
 		based on Famicase artwork
 		by AQUILES`, { x: 0, y: -400}),
-		this.Text(`BACK`, { x: -260, y: -475}),
-		this.Prop({ texture: 'toctoc_white', x: 5, y: -410}),
+		this.creditsBackText = this.Text(`back`, { x: -260, y: -475 }),
+		(() => {
+			const h = this.Hotspot({ label: 'back', texture: 'blank', x: -260, y: -475+40, use: {
+				undefined: ['goto:credits-back'],
+			}, });
+			this.creditsBackBtn = h;
+			h.spr.width = 80;
+			h.spr.height = 60;
+			return h;
+		})(),
+		this.Prop({ texture: 'toctoc_white', x: 5, y: -390}),
 		this.Hotspot({ label: 'more games', texture: 'SweetHeart Squad', x: -96, y: -30, offset: 10000, use: {
 			undefined: ['goto:credits-sweetheartsquad'],
 		}, }),
 		this.Hotspot({ label: 'based on Famicase artwork\nby AQUILES', texture: 'AQUILES', x: 103, y: -30, offset: 10000, use: {
 			undefined: ['goto:credits-aquiles'],
-		}, }),
-		this.Hotspot({label: 'back', x: -260, y: -455, offset: 10000, use: {
-			undefined: ['goto:credits-back'],
 		}, }),
 	]);
 
@@ -2992,11 +3006,159 @@ you got the sandwich.
 <<do this.gameObject = this.noone>>
 "yes, you may return to your world."
 >
+<<do
+	(async () => {
+		this.scene.player.expression = 'up';
+		const d = 4000;
+		const p = 30;
+		this.tween(this.scene.player.spr, 'angle', 0, d, 50, t => 1-Math.sin(t*p)*(t));
+		this.tween(this.scene.player, 'flipped', 0, d, 50, t => (1-Math.sin(t*p)) < 0.5);
+		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => 1-this.ease.cubicIn(t)+Math.sin(t*10)*-0.1);
+		this.tween(this.scene.player.spr, 'x', 0, d, -50, (t) => 1-(this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*t); 
+		this.tween(this.scene.player.spr, 'alpha', 1, d, 0, (t) => 1-this.ease.cubicIn(t));
+		this.scene.player.display.container.offset = 100000;
+
+		await this.delay(d);
+		this.scene.player.flipped = false;
+		this.scene.player.display.container.visible = false;
+		this.scene.player.expression = '';
+		
+		this.tween(this.scene.find('no one LR').display.container, 'alpha', 0, 1000);
+		await this.delay(1000);
+		this.tween(this.scene.find('no one UL').display.container, 'alpha', 0, 1000);
+		await this.delay(800);
+		this.tween(this.scene.find('no one LL').display.container, 'alpha', 0, 1000);
+		await this.delay(800);
+		this.goto('give sandwich1');
+	})();
+>>
+
+::give sandwich1
 "no one will miss you..."
 >
 <<do
-	// this.leaveNoOne({ area: 'TODO', x: 50, y: -100 });
-	this.goto('close');
+	(async () => {
+		this.tween(this.scene.find('no one Head').display.container, 'alpha', 0, 1000);
+		await this.delay(1500);
+		this.scrim(1, 0);
+		this.scene.player.walkToMouse = () => {};
+		this.scene.player.display.container.visible = false;
+		this.scene.player.display.container.offset = 0;
+		this.scene.goto({ area: 'ending' });
+		this.gameObject = this.scene.find('playerText');
+		this.camPoint = undefined;
+		this.scrim(0, 2000);
+		const doorStatic = this.scene.find('doorClosed');
+		const doorAnim = this.scene.find('doorOpen');
+		doorStatic.spr.alpha = 0;
+		doorAnim.spr.alpha = 1;
+		doorAnim.animator.active = false;
+		await this.delay(2000);
+		doorAnim.animator.setAnimation('doorOpen.1', { 12: 5 });
+		doorAnim.animator.active = true;
+		await this.delay(2700);
+		doorAnim.animator.active = false;
+
+		const guy = this.Prop({ texture: 'guy_big', tint: 0xa49484, alpha: 0, x: -69, y: -75, offset: 10000 });
+		this.add(
+			guy,
+		);
+		this.shock(guy, 1500);
+		this.tween(guy.spr.scale, 'x', 1, 1700, 0.75, this.ease.backOut);
+		this.tween(guy.spr.scale, 'y', 1, 1700, 0.75, this.ease.backOut);
+		this.tween(guy.spr, 'y', 0, 1700, -50, this.ease.backOut);
+		this.tween(guy.spr, 'x', 0, 2000, 50, this.ease.backOut);
+		this.tween(guy.spr, 'alpha', 1, 2000, undefined, this.ease.cubicOut);
+		await this.delay(2500);
+		doorAnim.spr.alpha = 0;
+		doorStatic.spr.alpha = 1;
+		this.tween(this.scene.camera, 'shake', 0, 500, 2, this.ease.cubicIn);
+		this.sfx('chunk'),
+		this.shock(guy, 1000);
+		await this.delay(2000);
+
+
+		this.goto('give sandwich2');
+	})();
+>>
+
+::give sandwich2
+voiceDefault
+"..."
+>
+"what was all that??"
+>
+"hey, you!"
+>
+<<do
+	(async () => {
+		const doorStatic = this.scene.find('doorClosed');
+		const doorAnim = this.scene.find('doorOpen');
+		doorStatic.set('doorKnock1');
+		await this.delay(100);
+		doorStatic.set('doorKnock2');
+		await this.delay(100);
+		doorStatic.set('doorClosed');
+		this.sfx('chunk', { rate: 2 });
+		const t1 = this.Text('*TOC*', { x: 55, y: -363, fontSize: 48 });
+		t1.text.anchor.y = 0.4;
+		t1.text.anchor.x = 0.4;
+		this.add(t1);
+		this.tween(t1.display.container, 'alpha', 0, 2000);
+		this.tween(t1.display.container, 'angle', 0, 2000, 15, t => 1-Math.sin(t*60)*this.ease.circOut(t));
+		this.tween(t1.transform, 'y', t1.transform.y+20, 2000, undefined, this.ease.circOut);
+		await this.delay(500);
+		doorStatic.set('doorKnock1');
+		await this.delay(100);
+		doorStatic.set('doorKnock2');
+		await this.delay(100);
+		doorStatic.set('doorClosed');
+		this.sfx('chunk', { rate: 1.9 });
+		const t2 = this.Text('*TOC*', { x: 70, y: -330, fontSize: 48 });
+		t2.text.anchor.y = 0.4;
+		t2.text.anchor.x = 0.4;
+		this.add(t2);
+		this.tween(t2.display.container, 'alpha', 0, 2000);
+		this.tween(t2.display.container, 'angle', 0, 2000, 15, t => 1-Math.sin(t*60)*this.ease.circOut(t));
+		this.tween(t2.transform, 'y', t2.transform.y+20, 2000, undefined, this.ease.circOut);
+		await this.delay(3000);
+		this.goto('give sandwich3');
+	})();
+>>
+
+::give sandwich3
+"no answer..."
+>
+"but i thought no one lived here?"
+>
+<<do
+	(async () => {
+		const guy = this.scene.find('guy_big');
+		this.shock(guy, 2000);
+		this.tween(guy.spr, 'y', 50, 2000);
+		this.tween(guy.spr, 'alpha', 0, 2000);
+		await this.delay(2000);
+		this.scrim(1, 2000);
+		await this.delay(3000);
+		this.scene.goto({ area: 'empty' });
+		this.add(
+			this.Text('The End', { x: 0, y: -this.size.y/2 }),
+		);
+		this.scrim(0, 2000);
+		await this.delay(2000);
+	})();
+>>
+>
+<<do
+	(async () => {
+		this.scrim(1, 2000);
+		await this.delay(2000);
+		this.scene.goto({ area: 'credits' });
+		this.destroy(this.creditsBackText);
+		this.destroy(this.creditsBackBtn);
+		this.scrim(0, 2000);
+		this.goto('close');
+	})();
 >>
 
 ::The End
