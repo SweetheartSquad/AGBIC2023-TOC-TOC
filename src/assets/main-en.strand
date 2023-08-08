@@ -3044,9 +3044,12 @@ you got the sandwich.
 		this.add(
 			guy,
 		);
-		this.shock(guy, 2000);
+		this.shock(guy, 1500);
+		this.tween(guy.spr.scale, 'x', 1, 1700, 0.75, this.ease.backOut);
+		this.tween(guy.spr.scale, 'y', 1, 1700, 0.75, this.ease.backOut);
+		this.tween(guy.spr, 'y', 0, 1700, -50, this.ease.backOut);
 		this.tween(guy.spr, 'x', 0, 2000, 50, this.ease.backOut);
-		this.tween(guy.spr, 'alpha', 1, 2000);
+		this.tween(guy.spr, 'alpha', 1, 2000, undefined, this.ease.cubicOut);
 		await this.delay(2500);
 		doorAnim.spr.alpha = 0;
 		doorStatic.spr.alpha = 1;
@@ -3112,9 +3115,23 @@ voiceDefault
 <<do
 	(async () => {
 		const guy = this.scene.find('guy_big');
-		this.tween(guy.spr, 'y', 20, 2000);
+		this.shock(guy, 2000);
+		this.tween(guy.spr, 'y', 50, 2000);
 		this.tween(guy.spr, 'alpha', 0, 2000);
 		await this.delay(2000);
+		this.scrim(1, 2000);
+		await this.delay(3000);
+		this.scene.goto({ area: 'empty' });
+		this.add(
+			this.Text('The End', { x: 0, y: -this.size.y/2 }),
+		);
+		this.scrim(0, 2000);
+		await this.delay(2000);
+	})();
+>>
+>
+<<do
+	(async () => {
 		this.scrim(1, 2000);
 		await this.delay(2000);
 		this.scene.goto({ area: 'credits' });
