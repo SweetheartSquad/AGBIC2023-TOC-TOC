@@ -1063,7 +1063,6 @@ by AQUILES`, { x: 0, y: -450 }),
 >>
 <<endif>>
 <<do
-	this.tween(this.scene.border.display.container, 'alpha', 1, 1000);
 	this.scene.player.walkToMouseO = this.scene.player.walkToMouse;
 	this.scene.player.walkToMouse = () => {};
 	this.scene.player.display.container.visible = false;
@@ -2898,7 +2897,6 @@ blah blah
 >
 <<do
 	this.show('black', { scale: this.size.x });
-	this.tween(this.scene.border.display.container, 'alpha', 0, 1000);
 	this.tween(scene.camera.display.container, 'alpha', 0, 1000);
 
 >>

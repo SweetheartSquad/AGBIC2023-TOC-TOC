@@ -241,7 +241,6 @@ export class GameScene {
 
 		this.strand.history.push('close');
 
-		this.border.display.container.alpha = 0;
 		this.strand.goto('start');
 
 		this.runner = Runner.create({
