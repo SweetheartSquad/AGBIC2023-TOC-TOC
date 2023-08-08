@@ -102,7 +102,7 @@
 		this.Prop({ texture: 'doorClosed', x: 0, y: -128, offset: -10000 }),
 		this.Prop({ texture: 'doorOpen', freq: 1/200, alpha: 0, x: 0, y: -128, offset: -10000 }),
 		this.Prop({ name: 'playerText', texture: 'blank', x: -74, y: -154, offset: -10000 }),
-		this.Prop({ name: 'nooneText', texture: 'blank', x: 58, y: -335, offset: -10000 }),
+		this.nooneMenu = this.Prop({ name: 'nooneText', texture: 'blank', x: 58, y: -335, offset: -10000 }),
 		(() => {
 			const h = this.Hotspot({ label: 'start', texture: 'blank', x: -2, y: -228, offset: 10000, use: {
 				undefined: ['goto:start game'],
@@ -119,6 +119,16 @@
 			h.spr.height = 80;
 			return h;
 		})(),
+
+		this.Updater(() => {
+			if (this.gameObject === this.nooneMenu) {
+				const t = game.app.ticker.lastTime;
+				this.scene.dialogue.voice = 'No one';
+				this.scene.dialogue.strText = this.scene.dialogue.strText.split('').map((i, idx) => Math.floor(idx/5 -t/300 - Math.sin(t/300)*0.5 - Math.sin(t/400)*0.2) % 3 ? i.toLowerCase() : i.toUpperCase()).join('');
+			} else {
+				this.scene.dialogue.voice = 'Default';
+			}
+		}),
 	]);
 	this.Area('credits', [
 		this.Text(`
