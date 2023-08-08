@@ -3114,6 +3114,7 @@ voiceDefault
 >
 <<do
 	(async () => {
+		await this.delay(2000);
 		const guy = this.scene.find('guy_big');
 		this.shock(guy, 2000);
 		this.tween(guy.spr, 'y', 50, 2000);
