@@ -3426,7 +3426,7 @@ The End
 <<do window.open('https://sweetheartsquad.itch.io', '_blank'); this.goto('close');>>
 
 ::credits-aquiles
-<<do window.open('https://famicase.com/23/softs/122.html', '_blank'); this.goto('close');>>
+<<do window.open('https://withkoji.com/@AQUILES', '_blank'); this.goto('close');>>
 
 ::credits-back
 <<do
