@@ -101,6 +101,8 @@
 		this.Prop({ texture: 'mat', x: 0, y: -46, offset: -10000 }),
 		this.Prop({ texture: 'doorClosed', x: 0, y: -128, offset: -10000 }),
 		this.Prop({ texture: 'doorOpen', freq: 1/200, alpha: 0, x: 0, y: -128, offset: -10000 }),
+		this.Prop({ name: 'playerText', texture: 'blank', x: -74, y: -154, offset: -10000 }),
+		this.Prop({ name: 'nooneText', texture: 'blank', x: 58, y: -335, offset: -10000 }),
 		(() => {
 			const h = this.Hotspot({ label: 'start', texture: 'blank', x: -2, y: -228, offset: 10000, use: {
 				undefined: ['goto:start game'],
@@ -1086,34 +1088,25 @@ by AQUILES`, { x: 0, y: -450 }),
 >>
 
 ::start game1
-//player
+<<do this.gameObject = this.scene.find('playerText')>>
 "the house next door..."
 >
-//player
 "hmm..."
 >
-//player
 "seems like no one lives here."
 >
-//player
 "maybe i can just go in and explore..."
 >
-//player
 "..."
 >
-//player
 "maybe i should knock first?"
 >
-//player
 "just in case."
 >
-//player
 "..."
 >
-//player
 "..."
 >
-//player
 "ok... here goes..."
 >
 <<do
@@ -1165,28 +1158,26 @@ by AQUILES`, { x: 0, y: -450 }),
 
 
 ::start game2
-//no one
+<<do this.gameObject = this.scene.find('nooneText')>>
 "hello, human child."
 >
-//player
+<<do this.gameObject = this.scene.find('playerText')>>
 "who are you?"
 >
-//no one
+<<do this.gameObject = this.scene.find('nooneText')>>
 "no one."
 >
-//player
+<<do this.gameObject = this.scene.find('playerText')>>
 "what?"
 >
-//player
 "but i'm talking to you."
 >
-//no one
+<<do this.gameObject = this.scene.find('nooneText')>>
 "..."
 >
-//player
+<<do this.gameObject = this.scene.find('playerText')>>
 "..."
 >
-//player
 "um, i live next door, and--"
 >
 <<do
@@ -1220,46 +1211,40 @@ by AQUILES`, { x: 0, y: -450 }),
 >>
 
 ::start game3
-//player
+<<do this.gameObject = this.scene.find('playerText')>>
 "h-hey!"
 >
-//player
 "you shrunk me!!"
 >
-//no one
+<<do this.gameObject = this.scene.find('nooneText')>>
 "..."
 >
-//player
+<<do this.gameObject = this.scene.find('playerText')>>
 "make me big again!"
 >
-//no one
+<<do this.gameObject = this.scene.find('nooneText')>>
 "..."
 >
-//no one
 "perhaps later."
 >
-//no one
 "you must be small to complete your task."
 >
-//player
+<<do this.gameObject = this.scene.find('playerText')>>
 "what task??"
 >
-//no one
+<<do this.gameObject = this.scene.find('nooneText')>>
 "you must fetch something."
 >
-//no one
 "an odd-looking tomato..."
 >
-//no one
 "locked in a temple for many years."
 >
-//player
+<<do this.gameObject = this.scene.find('playerText')>>
 "um, what temple?"
 >
-//no one
+<<do this.gameObject = this.scene.find('nooneText')>>
 "the gnomes in the garden will know more."
 >
-//no one
 "go now, you haven't much time..."
 >
 <<do
