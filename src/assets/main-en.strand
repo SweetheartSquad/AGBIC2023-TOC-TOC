@@ -120,24 +120,20 @@
 	]);
 	this.Area('credits', [
 		this.Text(`
-made by Sean, Michael & IAN
-of Sweet♥Heart Squad
-
-
-
-for A Game By Its Cover 2023
-
-
-
-based on Famicase artwork
-by AQUILES`, { x: 0, y: -450 }),
-		this.Hotspot({ label: 'more games', texture: 'SweetHeart Squad', x: -176, y: -242, offset: 10000, use: {
+		made by Sean, Michael & IAN
+		of Sweet♥Heart Squad \n
+		for	A Game By Its Cover 2023\n
+		based on Famicase artwork
+		by AQUILES`, { x: 0, y: -400}),
+		this.Text(`BACK`, { x: -260, y: -475}),
+		this.Prop({ texture: 'toctoc_white', x: 5, y: -410}),
+		this.Hotspot({ label: 'more games', texture: 'SweetHeart Squad', x: -96, y: -30, offset: 10000, use: {
 			undefined: ['goto:credits-sweetheartsquad'],
 		}, }),
-		this.Hotspot({ label: 'based on Famicase artwork\nby AQUILES', texture: 'AQUILES', x: 183, y: -68, offset: 10000, use: {
+		this.Hotspot({ label: 'based on Famicase artwork\nby AQUILES', texture: 'AQUILES', x: 103, y: -30, offset: 10000, use: {
 			undefined: ['goto:credits-aquiles'],
 		}, }),
-		this.Hotspot({ texture: 'back', x: -185, y: -95, offset: 10000, use: {
+		this.Hotspot({label: 'back', x: -260, y: -455, offset: 10000, use: {
 			undefined: ['goto:credits-back'],
 		}, }),
 	]);
