@@ -71,7 +71,6 @@
 
 		(() => {
 			const h = this.Hotspot({ label: 'no one', texture: 'blank', x: 27, y: -214, offset: 10000, use: {
-				undefined: ['goto:request'],
 				'moon-dried tomato': ['goto:give tomato'],
 				'soap': ['goto:give soap'],
 				'half-eaten tuna fish sandwich': ['goto:give sandwich'],
@@ -1327,14 +1326,6 @@ continue
 ::no one item cancel
 "i probably shouldn't hold on to that..."
 [[>close]]
-
-
-::request
-//eh
-
-
-
-
 
 // .d8888b. 88d888b. .d8888b. 88d8b.d8b. .d8888b.
 // 88'  `88 88'  `88 88'  `88 88'`88'`88 88ooood8
