@@ -237,3 +237,7 @@ audio/blorp.mp3
 audio/anvil.mp3
 audio/whinny.mp3
 audio/bonk.mp3
+audio/vaultTurn.mp3
+audio/vaultOpen.mp3
+audio/sizzle.mp3
+audio/splash.mp3

@@ -2038,9 +2038,9 @@ you got the moon-dried tomato.
 *munch* *monch* *mounch* *muonch*
 >
 <<do this.voice = 'Default'>>
-"yum yum"
+"hm, decent grub, thanks"
 >
-"fine take my oil i don't care anymore"
+"take an oil on the house"
 [[>close]]
 
 
@@ -2095,7 +2095,8 @@ you got the moon-dried tomato.
 		h.spr.width = 50;
 		h.spr.height = 100;
 		this.add(h);
-		// TODO: sfx
+		this.sfx('vaultTurn');
+		setTimeout(() => this.sfx('vaultOpen'), 200);
 		this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 50, 1500, undefined, this.ease.cubicInOut);
 		this.tween(this.gameObject.transform, 'y', this.gameObject.transform.y - 25, 1500, undefined, this.ease.cubicInOut);
 		this.camPoint = this.gameObject.transform;
@@ -2653,6 +2654,8 @@ you got the soap.
 <<do
 	this.scene.loseItem();
 	this.destroy(this.gameObject);
+	this.sfx('splash');
+	this.sfx('sizzle');
 	this.add(
 		this.Item({ texture: 'cool sword', x: 277, y: -72,          offset: 75, use: {
 		}, }),
