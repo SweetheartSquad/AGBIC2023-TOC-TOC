@@ -998,10 +998,13 @@
 
 	this.gotoNoOne = async (getItem) => {
 		await this.delay(400);
+		// TODO: light flicker sfx
 		this.tween(this.scene.find('godRayL').display.container, 'alpha', 0, 50);
 		await this.delay(300);
+		// TODO: light flicker sfx
 		this.tween(this.scene.find('godRayC').display.container, 'alpha', 0, 50);
 		await this.delay(200);
+		// TODO: light flicker sfx
 		this.tween(this.scene.find('godRayR').display.container, 'alpha', 0, 50);
 		await this.delay(100);
 		this.scene.currentArea.filter(i => i.texture && !i.texture.includes('Ray')).forEach(i => {
@@ -1032,6 +1035,7 @@
 		this.scene.find('no one UL').display.container.alpha = 0;
 		this.scene.find('no one LL').display.container.alpha = 0;
 		this.scene.find('no one LR').display.container.alpha = 0;
+		// TODO: slither appear sfx
 		this.tween(this.scene.find('no one LL').display.container, 'alpha', 1, 1000);
 		await this.delay(1000);
 		this.scene.player.flipped = false;
@@ -1047,6 +1051,7 @@
 		this.scene.player.expression = 'up';
 		const d = 4000;
 		const p = 30;
+		// TODO: fly up sfx
 		this.tween(this.scene.player.spr, 'angle', 0, d, 50, t => 1-Math.sin(t*p)*(t));
 		this.tween(this.scene.player, 'flipped', 0, d, 50, t => (1-Math.sin(t*p)) < 0.5);
 		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => 1-this.ease.cubicIn(t)+Math.sin(t*10)*-0.1);
@@ -1075,6 +1080,7 @@
 		this.scene.player.expression = 'up';
 		this.scene.player.display.container.visible = true;
 		this.scene.player.display.container.offset = 0;
+		// TODO: fly down sfx
 		this.tween(this.scene.player, 'flipped', 0, d/2, 50, t => (Math.sin(t*p)) < 0.5);
 		this.tween(this.scene.player.spr, 'y', 0, d/2, -200, t => this.ease.circIn(t));
 		this.tween(this.scene.player.spr, 'x', 0, d/2, -50, (t) => (this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*(1-t)+t);
@@ -1169,6 +1175,7 @@
 		this.tween(t2.display.container, 'angle', 0, 2000, 15, t => 1-Math.sin(t*60)*this.ease.circOut(t));
 		this.tween(t2.transform, 'y', t2.transform.y+20, 2000, undefined, this.ease.circOut);
 		await this.delay(3000);
+		// TODO: door open sfx
 		doorStatic.display.container.visible = false;
 		doorAnim.spr.alpha = 1;
 		doorAnim.animator.setAnimation('doorOpen.1', { 12: 5 });
@@ -1213,6 +1220,7 @@
 <<do
 	(async () => {
 		const guy = this.scene.find('guy_big_blank');
+		// TODO: shrink sfx
 		this.tween(guy.display.container.scale, 'x', 0.25, 1000, undefined, this.ease.cubicInOut);
 		this.tween(guy.display.container.scale, 'y', 0.25, 1000, undefined, this.ease.cubicInOut);
 		for(let i = 0; i < 10; ++i) {
@@ -1293,6 +1301,7 @@
 		const p = 30;
 		this.scene.player.display.container.visible = true;
 		this.scene.player.display.container.offset = 0;
+		// TODO: fly down sfx
 		this.tween(this.scene.player, 'flipped', 0, d, 50, t => (Math.sin(t*p)) < 0.5);
 		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => this.ease.circIn(t));
 		this.tween(this.scene.player.spr, 'x', 0, d, -50, (t) => (this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*(1-t)+t);
@@ -1686,6 +1695,7 @@ you got the moon-dried tomato.
 
 ::mite run
 <<do
+	// TODO: mite run sfx
 	this.resetMite = async () => {
 		this.tween(this.mite.display.container, 'alpha', 0, 400);
 		this.mite.walkBy(0, 1000);
@@ -2395,6 +2405,7 @@ you got the soap.
 >>
 *wind*
 >
+// TODO: horse sfx
 "*whinny*"
 <<do
 	(async () => {
@@ -2691,6 +2702,7 @@ you got the soap.
 ::cool sword
 <<if this.capFilled>>
 <<do
+	// TODO: water splash on hot sword sfx
 	this.scene.loseItem();
 	this.destroy(this.gameObject);
 	this.add(
@@ -2707,7 +2719,7 @@ you got the soap.
 ::give sword
 "hahaha.. yesss...!"
 <<do
-	// TODO: sword sfx (reuse anvil hit?)
+	// TODO: give sword sfx
 	this.scene.loseItem(true);
 	this.scene.screenFilter.flash([20,20,20], 300, this.ease.cubicIn);
 	const spr = new this.PIXI.Sprite(this.tex('cool sword'));
@@ -3089,6 +3101,7 @@ you got the sandwich.
 		doorAnim.spr.alpha = 1;
 		doorAnim.animator.active = false;
 		await this.delay(2000);
+		// TODO: door open sfx
 		doorAnim.animator.setAnimation('doorOpen.1', { 12: 5 });
 		doorAnim.animator.active = true;
 		await this.delay(2700);
