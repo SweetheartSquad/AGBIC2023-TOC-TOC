@@ -1311,6 +1311,9 @@ this should never render
 ::choiceDefault
 continue
 
+::me
+me
+
 ::generic item
 <<do this.gameObject.pickup(); this.goto('close')>>
 
