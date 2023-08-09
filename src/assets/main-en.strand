@@ -1815,8 +1815,7 @@ you got the moon-dried tomato.
 	this.sfx('wobble');
 	setTimeout(() => {
 		this.tween(chandelier.transform, 'y', chandelier.transform.y + 170, 400, undefined, this.ease.cubicIn);
-		// TODO: chain sfx
-
+		this.sfx('crash', { volume: 0.8, rate: 10 });
 
 		setTimeout(() => {
 			this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
