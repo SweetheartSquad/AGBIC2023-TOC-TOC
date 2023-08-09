@@ -1991,8 +1991,6 @@ you got the moon-dried tomato.
 	setTimeout(() => {
 		bread.display.container.offset = 0;
 		this.tween(bread.transform, 'y', bread.transform.y + 170, 400, undefined, this.ease.cubicIn);
-		// TODO: chain sfx
-
 
 		setTimeout(() => {
 			this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
