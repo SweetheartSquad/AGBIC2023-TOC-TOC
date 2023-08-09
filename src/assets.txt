@@ -234,3 +234,6 @@ audio/lightStove.mp3
 audio/slurp.mp3
 audio/wobble.mp3
 audio/blorp.mp3
+audio/anvil.mp3
+audio/whinny.mp3
+audio/bonk.mp3

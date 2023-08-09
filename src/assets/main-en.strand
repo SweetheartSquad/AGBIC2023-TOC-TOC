@@ -71,6 +71,7 @@
 
 		(() => {
 			const h = this.Hotspot({ label: 'no one', texture: 'blank', x: 27, y: -214, offset: 10000, use: {
+				undefined: ['goto:request'],
 				'moon-dried tomato': ['goto:give tomato'],
 				'soap': ['goto:give soap'],
 				'half-eaten tuna fish sandwich': ['goto:give sandwich'],
@@ -129,14 +130,6 @@
 			}
 		}),
 	]);
-
-	this.Area('ending', [
-		this.Prop({ texture: 'mat', x: 0, y: -46, offset: -10000 }),
-		this.Prop({ texture: 'doorClosed', x: 0, y: -128, offset: -10000 }),
-		this.Prop({ texture: 'doorOpen', freq: 1/200, alpha: 0, x: 0, y: -128, offset: -10000 }),
-		this.Prop({ name: 'playerText', texture: 'blank', x: -74, y: -154, offset: -10000 }),
-	]);
-
 	this.Area('credits', [
 		this.Text(`
 		made by Sean, Michael & IAN
@@ -144,22 +137,16 @@
 		for	A Game By Its Cover 2023\n
 		based on Famicase artwork
 		by AQUILES`, { x: 0, y: -400}),
-		this.creditsBackText = this.Text(`back`, { x: -260, y: -475 }),
-		(() => {
-			const h = this.Hotspot({ label: 'back', texture: 'blank', x: -260, y: -475+40, use: {
-				undefined: ['goto:credits-back'],
-			}, });
-			this.creditsBackBtn = h;
-			h.spr.width = 80;
-			h.spr.height = 60;
-			return h;
-		})(),
-		this.Prop({ texture: 'toctoc_white', x: 5, y: -390}),
-		this.Hotspot({ label: 'Sweet♥Heart Squad', texture: 'SweetHeart Squad', x: -96, y: -30, offset: 10000, use: {
+		this.Text(`BACK`, { x: -260, y: -475}),
+		this.Prop({ texture: 'toctoc_white', x: 5, y: -410}),
+		this.Hotspot({ label: 'more games', texture: 'SweetHeart Squad', x: -96, y: -30, offset: 10000, use: {
 			undefined: ['goto:credits-sweetheartsquad'],
 		}, }),
-		this.Hotspot({ label: 'AQUILES', texture: 'AQUILES', x: 103, y: -30, offset: 10000, use: {
+		this.Hotspot({ label: 'based on Famicase artwork\nby AQUILES', texture: 'AQUILES', x: 103, y: -30, offset: 10000, use: {
 			undefined: ['goto:credits-aquiles'],
+		}, }),
+		this.Hotspot({label: 'back', x: -260, y: -455, offset: 10000, use: {
+			undefined: ['goto:credits-back'],
 		}, }),
 	]);
 
@@ -675,7 +662,7 @@
 		this.Prop({ texture: 'juiceboxL', x: -168, y: -225,         offset: -27 }),
 		this.Item({ texture: 'juice', x: -152, y: -265,         offset: -5, use: {
 			undefined: ['goto:take juice'],
-			player: [`goto:player-slurp`, `p:"tastes pretty good actually"`],
+			player: [`p:*sluurrrp*`, `p:"tastes pretty good actually"`],
 			'bottle cap': [`p:"it's already in a cup"`],
 			matchbox: [`p:"seems better cold"`],
 		}, }),
@@ -998,13 +985,10 @@
 
 	this.gotoNoOne = async (getItem) => {
 		await this.delay(400);
-		// TODO: light flicker sfx
 		this.tween(this.scene.find('godRayL').display.container, 'alpha', 0, 50);
 		await this.delay(300);
-		// TODO: light flicker sfx
 		this.tween(this.scene.find('godRayC').display.container, 'alpha', 0, 50);
 		await this.delay(200);
-		// TODO: light flicker sfx
 		this.tween(this.scene.find('godRayR').display.container, 'alpha', 0, 50);
 		await this.delay(100);
 		this.scene.currentArea.filter(i => i.texture && !i.texture.includes('Ray')).forEach(i => {
@@ -1035,7 +1019,6 @@
 		this.scene.find('no one UL').display.container.alpha = 0;
 		this.scene.find('no one LL').display.container.alpha = 0;
 		this.scene.find('no one LR').display.container.alpha = 0;
-		// TODO: slither appear sfx
 		this.tween(this.scene.find('no one LL').display.container, 'alpha', 1, 1000);
 		await this.delay(1000);
 		this.scene.player.flipped = false;
@@ -1051,7 +1034,6 @@
 		this.scene.player.expression = 'up';
 		const d = 4000;
 		const p = 30;
-		// TODO: fly up sfx
 		this.tween(this.scene.player.spr, 'angle', 0, d, 50, t => 1-Math.sin(t*p)*(t));
 		this.tween(this.scene.player, 'flipped', 0, d, 50, t => (1-Math.sin(t*p)) < 0.5);
 		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => 1-this.ease.cubicIn(t)+Math.sin(t*10)*-0.1);
@@ -1074,21 +1056,11 @@
 		await this.delay(1500);
 		this.scrim(1, 0);
 		this.scene.goto(area);
-		this.scrim(0, 2000);
-		await this.delay(2000);
-
-		this.scene.player.expression = 'up';
 		this.scene.player.display.container.visible = true;
 		this.scene.player.display.container.offset = 0;
-		// TODO: fly down sfx
-		this.tween(this.scene.player, 'flipped', 0, d/2, 50, t => (Math.sin(t*p)) < 0.5);
-		this.tween(this.scene.player.spr, 'y', 0, d/2, -200, t => this.ease.circIn(t));
-		this.tween(this.scene.player.spr, 'x', 0, d/2, -50, (t) => (this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*(1-t)+t);
-		this.tween(this.scene.player.spr, 'alpha', 1, d/2, 0, (t) => this.ease.cubicOut(t));
-		await this.delay(d/2);
-		this.scene.player.expression = '';
-
 		this.camPoint = undefined;
+		this.scrim(0, 2000);
+		await this.delay(2000);
 		this.goto('close');
 	};
 
@@ -1111,7 +1083,7 @@
 ::start game
 <<do
 	(async () => {
-		const guy = this.Prop({ texture: 'guy_big_blank', tint: 0xa49484, alpha: 0, x: -69, y: -75, offset: 10000 });
+		const guy = this.Prop({ texture: 'guy_big', tint: 0xa49484, alpha: 0, x: -69, y: -75, offset: 10000 });
 		this.add(
 			guy,
 		);
@@ -1175,12 +1147,11 @@
 		this.tween(t2.display.container, 'angle', 0, 2000, 15, t => 1-Math.sin(t*60)*this.ease.circOut(t));
 		this.tween(t2.transform, 'y', t2.transform.y+20, 2000, undefined, this.ease.circOut);
 		await this.delay(3000);
-		// TODO: door open sfx
 		doorStatic.display.container.visible = false;
 		doorAnim.spr.alpha = 1;
 		doorAnim.animator.setAnimation('doorOpen.1', { 12: 5 });
 		await this.delay(100);
-		this.shock(this.scene.find('guy_big_blank'), 800);
+		this.shock(this.scene.find('guy_big'), 800);
 		await this.delay(2600);
 		doorAnim.animator.active = false;
 		const head = this.Prop({ texture: 'noone_head', alpha: 0, x: 25, y: -212, offset: -20000, });
@@ -1219,13 +1190,12 @@
 >
 <<do
 	(async () => {
-		const guy = this.scene.find('guy_big_blank');
-		// TODO: shrink sfx
+		const guy = this.scene.find('guy_big');
 		this.tween(guy.display.container.scale, 'x', 0.25, 1000, undefined, this.ease.cubicInOut);
 		this.tween(guy.display.container.scale, 'y', 0.25, 1000, undefined, this.ease.cubicInOut);
 		for(let i = 0; i < 10; ++i) {
 			setTimeout(() => {
-				const g = this.Prop({ texture: 'guy_big_blank', tint: 0xa49484, alpha: 0.5, x: -69, y: -75, offset: 10000 });
+				const g = this.Prop({ texture: 'guy_big', tint: 0xa49484, alpha: 0.5, x: -69, y: -75, offset: 10000 });
 				g.display.container.scale.x = guy.display.container.scale.x;
 				g.display.container.scale.y = guy.display.container.scale.y;
 				this.add(
@@ -1291,24 +1261,10 @@
 		this.scrim(1, 2000);
 		await this.delay(2000);
 		this.scene.goto({ area: 'gnome puzzle', x: -106, y: -79 });
+		this.goto('close');
 		this.scene.player.walkToMouse = this.scene.player.walkToMouseO;
-		this.scene.player.display.container.visible = false;
 		this.scrim(0, 2000);
 		await this.delay(2000);
-
-		this.scene.player.expression = 'up';
-		const d = 4000/2;
-		const p = 30;
-		this.scene.player.display.container.visible = true;
-		this.scene.player.display.container.offset = 0;
-		// TODO: fly down sfx
-		this.tween(this.scene.player, 'flipped', 0, d, 50, t => (Math.sin(t*p)) < 0.5);
-		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => this.ease.circIn(t));
-		this.tween(this.scene.player.spr, 'x', 0, d, -50, (t) => (this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*(1-t)+t);
-		this.tween(this.scene.player.spr, 'alpha', 1, d, 0, (t) => this.ease.cubicOut(t));
-		await this.delay(d);
-		this.scene.player.expression = '';
-		this.goto('close');
 	})();
 >>
 
@@ -1319,9 +1275,6 @@ this should never render
 
 ::choiceDefault
 continue
-
-::me
-me
 
 ::generic item
 <<do this.gameObject.pickup(); this.goto('close')>>
@@ -1338,6 +1291,14 @@ me
 ::no one item cancel
 "i probably shouldn't hold on to that..."
 [[>close]]
+
+
+::request
+//eh
+
+
+
+
 
 // .d8888b. 88d888b. .d8888b. 88d8b.d8b. .d8888b.
 // 88'  `88 88'  `88 88'  `88 88'`88'`88 88ooood8
@@ -1695,7 +1656,6 @@ you got the moon-dried tomato.
 
 ::mite run
 <<do
-	// TODO: mite run sfx
 	this.resetMite = async () => {
 		this.tween(this.mite.display.container, 'alpha', 0, 400);
 		this.mite.walkBy(0, 1000);
@@ -1825,7 +1785,8 @@ you got the moon-dried tomato.
 	this.sfx('wobble');
 	setTimeout(() => {
 		this.tween(chandelier.transform, 'y', chandelier.transform.y + 170, 400, undefined, this.ease.cubicIn);
-		this.sfx('crash', { volume: 0.8, rate: 10 });
+		// TODO: chain sfx
+
 
 		setTimeout(() => {
 			this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
@@ -1937,7 +1898,8 @@ you got the moon-dried tomato.
 	this.sfx('wobble');
 	setTimeout(() => {
 		this.tween(beetle.transform, 'y', -247, 400, undefined, this.ease.cubicIn);
-		this.sfx('crash', { volume: 0.7, rate: 10 });
+		// TODO: fall sfx?
+
 
 		setTimeout(() => {
 			this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
@@ -1999,6 +1961,8 @@ you got the moon-dried tomato.
 	setTimeout(() => {
 		bread.display.container.offset = 0;
 		this.tween(bread.transform, 'y', bread.transform.y + 170, 400, undefined, this.ease.cubicIn);
+		// TODO: chain sfx
+
 
 		setTimeout(() => {
 			this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
@@ -2041,9 +2005,8 @@ you got the moon-dried tomato.
 	setTimeout(() => this.sfx('blorp', { rate: 2 }), 500);
 	setTimeout(() => this.sfx('slurp', { rate: 2 }), 750);
 >>
-<<do this.voice = 'None'>>
 *plaf* *smear* *plap* smush*
-[[|this.voice='Default';this.goto('close')]]
+[[>close]]
 <<else>>
 <<do this.gameObject = this.scene.player>>
 "i think it's peanutty enough"
@@ -2119,9 +2082,8 @@ you got the moon-dried tomato.
 	setTimeout(() => this.sfx('blorp', { rate: 1.3 }), 1050);
 	this.scene.loseItem();
 >>
-<<do this.voice = 'None'>>
 *oil* *oil* *oil* *oil*
-[[|this.voice='Default';this.goto('close')]]
+[[>close]]
 
 ::open vault
 <<if this.oiled>>
@@ -2133,7 +2095,7 @@ you got the moon-dried tomato.
 		h.spr.width = 50;
 		h.spr.height = 100;
 		this.add(h);
-		// TODO: open vault sfx
+		// TODO: sfx
 		this.tween(this.gameObject.transform, 'x', this.gameObject.transform.x + 50, 1500, undefined, this.ease.cubicInOut);
 		this.tween(this.gameObject.transform, 'y', this.gameObject.transform.y - 25, 1500, undefined, this.ease.cubicInOut);
 		this.camPoint = this.gameObject.transform;
@@ -2142,7 +2104,6 @@ you got the moon-dried tomato.
 			mook.btn.use.undefined = [`"thanks for da door help kid"`, `"but still. back off"`];
 		}
 		this.scene.find('teller').btn.use.undefined = [`"oh, you fixed da door?"`, `"coulda maybe picked a better time..."`, `"sigh"`];
-		this.scene.find('teller').btn.resetCycles();
 		setTimeout(() => {
 			this.camPoint = undefined;
 			this.goto('close');
@@ -2252,15 +2213,15 @@ you got the soap.
 		scene.dialogue.say('"finally"');
 		await this.delay(1500);
 		scene.dialogue.say('');
-		// TODO: anvil hit sfx
+		this.sfx('anvil');
 		this.scene.screenFilter.flash([250/3,200/3,150/3], 150, this.ease.cubicOut);
 		this.shock(smith, 250);
 		await this.delay(500);
-		// TODO: anvil hit sfx
+		this.sfx('anvil');
 		this.scene.screenFilter.flash([250/2,200/2,150/2], 150, this.ease.cubicOut);
 		this.shock(smith, 300);
 		await this.delay(500);
-		// TODO: anvil hit sfx
+		this.sfx('anvil');
 		this.scene.screenFilter.flash([250,200,150], 150, this.ease.cubicOut);
 		this.shock(smith, 450);
 		await this.delay(1500);
@@ -2330,19 +2291,11 @@ you got the soap.
 [[>close]]
 <<endif>>
 
-::player-slurp
-<<do
-	this.gameObject = this.scene.player;
-	this.voice = 'None';
-	this.sfx('slurp');
-	this.scene.loseItem();
->>
-*sluurrrp*
-[[|this.voice='Default';this.goto('close')]]
-
 ::give juice
 <<if this.juiced>>
-<<do this.scene.loseItem();>>
+<<do 
+	this.scene.loseItem();
+>>
 "khh... not thirsty.. no more"
 [[>close]]
 <<else>>
@@ -2359,16 +2312,12 @@ you got the soap.
 "khhfhhf... hmmf...?"
 >
 <<do
-	this.scene.screenFilter.flash([12,25,40], 600, this.ease.cubicIn);
+	this.scene.screenFilter.flash([12,25,40], 600, this.ease.cubicIn)
 	this.sfx('slurp');
-	this.voice = 'None';
 >>
 *sluuurrrrrp*
 >
-<<do
-	this.shock(this.scene.find('stuffy shopkeep'), 250);
-	this.voice = 'Default';
->>
+<<do this.shock(this.scene.find('stuffy shopkeep'), 250)>>
 "kahhh... good..."
 >
 "here.. key... yours..."
@@ -2405,7 +2354,7 @@ you got the soap.
 >>
 *wind*
 >
-// TODO: horse sfx
+<<do this.sfx('whinny'); >>
 "*whinny*"
 <<do
 	(async () => {
@@ -2433,7 +2382,7 @@ you got the soap.
 
 ::windup key2
 <<do this.voice = 'Default'>>
-"h-hey, my horse!!"
+"h-hey! horse!!"
 <<do
 	(async () => {
 		const farmer = this.scene.find('cheesy coachmouse');
@@ -2619,7 +2568,7 @@ you got the soap.
 [[>close]]
 <<else>>
 <<do
-	this.sfx('blorp', { rate: 2.5 });
+	this.sfx('blorp');
 	this.capFilled = true;
 	const cap = this.scene.find('bottle cap');
 	cap.texture = 'bottle cap filled';
@@ -2672,15 +2621,15 @@ you got the soap.
 		const smith = this.scene.find('stubborn smith');
 		this.camPoint = { x: this.size.x, y: this.size.y };
 		await this.delay(1500);
-		// TODO: anvil hit sfx
+		this.sfx('anvil');
 		this.scene.screenFilter.flash([250/3,200/3,150/3], 150, this.ease.cubicOut);
 		this.shock(smith, 250);
 		await this.delay(500);
-		// TODO: anvil hit sfx
+		this.sfx('anvil');
 		this.scene.screenFilter.flash([250/2,200/2,150/2], 150, this.ease.cubicOut);
 		this.shock(smith, 300);
 		await this.delay(500);
-		// TODO: anvil hit sfx
+		this.sfx('anvil');
 		this.scene.screenFilter.flash([250,200,150], 150, this.ease.cubicOut);
 		this.shock(smith, 450);
 		await this.delay(1500);
@@ -2702,7 +2651,6 @@ you got the soap.
 ::cool sword
 <<if this.capFilled>>
 <<do
-	// TODO: water splash on hot sword sfx
 	this.scene.loseItem();
 	this.destroy(this.gameObject);
 	this.add(
@@ -2719,7 +2667,7 @@ you got the soap.
 ::give sword
 "hahaha.. yesss...!"
 <<do
-	// TODO: give sword sfx
+	// TODO: sfx
 	this.scene.loseItem(true);
 	this.scene.screenFilter.flash([20,20,20], 300, this.ease.cubicIn);
 	const spr = new this.PIXI.Sprite(this.tex('cool sword'));
@@ -2755,19 +2703,19 @@ you got the soap.
 		this.add(
 			pill,
 		);
-		this.sfx('wobble');
 		this.tween(pill.transform, 'x', pill.transform.x, 1200, pill.transform.x + 10, (t) => 1-(Math.random()-0.5)*(1-t));
-		await this.delay(400);
+		this.sfx('wobble');
+		await this.delay(800);
 		this.tween(pill.transform, 'y', -257 - 30, 400, undefined, this.ease.cubicIn);
 		await this.delay(400);
-		this.sfx('crash');
+		this.sfx('bonk');
 		this.destroy(pill);
 		this.camPoint = guard.transform;
 		this.scene.screenFilter.flash([255,128,128], 200, this.ease.cubicOut);
 		const ts = this.shock(guard, 450);
-		await this.delay(800);
-		this.sfx('crash', { volume: 0.25, rate: 5 });
+		await this.delay(1000);
 		this.scene.screenFilter.flash([40,20,20], 200, this.ease.cubicOut);
+		this.sfx('crash');
 		ts.forEach(i => this.tweenFinish(i));
 		guard.spr.angle = 90;
 		guard.spr.x -= 20;
@@ -3053,163 +3001,11 @@ you got the sandwich.
 <<do this.gameObject = this.noone>>
 "yes, you may return to your world."
 >
-<<do
-	(async () => {
-		this.scene.player.expression = 'up';
-		const d = 4000;
-		const p = 30;
-		this.tween(this.scene.player.spr, 'angle', 0, d, 50, t => 1-Math.sin(t*p)*(t));
-		this.tween(this.scene.player, 'flipped', 0, d, 50, t => (1-Math.sin(t*p)) < 0.5);
-		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => 1-this.ease.cubicIn(t)+Math.sin(t*10)*-0.1);
-		this.tween(this.scene.player.spr, 'x', 0, d, -50, (t) => 1-(this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*t); 
-		this.tween(this.scene.player.spr, 'alpha', 1, d, 0, (t) => 1-this.ease.cubicIn(t));
-		this.scene.player.display.container.offset = 100000;
-
-		await this.delay(d);
-		this.scene.player.flipped = false;
-		this.scene.player.display.container.visible = false;
-		this.scene.player.expression = '';
-		
-		this.tween(this.scene.find('no one LR').display.container, 'alpha', 0, 1000);
-		await this.delay(1000);
-		this.tween(this.scene.find('no one UL').display.container, 'alpha', 0, 1000);
-		await this.delay(800);
-		this.tween(this.scene.find('no one LL').display.container, 'alpha', 0, 1000);
-		await this.delay(800);
-		this.goto('give sandwich1');
-	})();
->>
-
-::give sandwich1
 "no one will miss you..."
 >
 <<do
-	(async () => {
-		this.tween(this.scene.find('no one Head').display.container, 'alpha', 0, 1000);
-		await this.delay(1500);
-		this.scrim(1, 0);
-		this.scene.player.walkToMouse = () => {};
-		this.scene.player.display.container.visible = false;
-		this.scene.player.display.container.offset = 0;
-		this.scene.goto({ area: 'ending' });
-		this.gameObject = this.scene.find('playerText');
-		this.camPoint = undefined;
-		this.scrim(0, 2000);
-		const doorStatic = this.scene.find('doorClosed');
-		const doorAnim = this.scene.find('doorOpen');
-		doorStatic.spr.alpha = 0;
-		doorAnim.spr.alpha = 1;
-		doorAnim.animator.active = false;
-		await this.delay(2000);
-		// TODO: door open sfx
-		doorAnim.animator.setAnimation('doorOpen.1', { 12: 5 });
-		doorAnim.animator.active = true;
-		await this.delay(2700);
-		doorAnim.animator.active = false;
-
-		const guy = this.Prop({ texture: 'guy_big_blank', tint: 0xa49484, alpha: 0, x: -69, y: -75, offset: 10000 });
-		this.add(
-			guy,
-		);
-		this.shock(guy, 1500);
-		this.tween(guy.spr.scale, 'x', 1, 1700, 0.75, this.ease.backOut);
-		this.tween(guy.spr.scale, 'y', 1, 1700, 0.75, this.ease.backOut);
-		this.tween(guy.spr, 'y', 0, 1700, -50, this.ease.backOut);
-		this.tween(guy.spr, 'x', 0, 2000, 50, this.ease.backOut);
-		this.tween(guy.spr, 'alpha', 1, 2000, undefined, this.ease.cubicOut);
-		await this.delay(2500);
-		doorAnim.spr.alpha = 0;
-		doorStatic.spr.alpha = 1;
-		this.tween(this.scene.camera, 'shake', 0, 500, 2, this.ease.cubicIn);
-		this.sfx('chunk'),
-		this.shock(guy, 1000);
-		await this.delay(2000);
-
-
-		this.goto('give sandwich2');
-	})();
->>
-
-::give sandwich2
-voiceDefault
-"..."
->
-"what was all that??"
->
-"hey, you!"
->
-<<do
-	(async () => {
-		const doorStatic = this.scene.find('doorClosed');
-		const doorAnim = this.scene.find('doorOpen');
-		doorStatic.set('doorKnock1');
-		await this.delay(100);
-		doorStatic.set('doorKnock2');
-		await this.delay(100);
-		doorStatic.set('doorClosed');
-		this.sfx('chunk', { rate: 2 });
-		const t1 = this.Text('*TOC*', { x: 55, y: -363, fontSize: 48 });
-		t1.text.anchor.y = 0.4;
-		t1.text.anchor.x = 0.4;
-		this.add(t1);
-		this.tween(t1.display.container, 'alpha', 0, 2000);
-		this.tween(t1.display.container, 'angle', 0, 2000, 15, t => 1-Math.sin(t*60)*this.ease.circOut(t));
-		this.tween(t1.transform, 'y', t1.transform.y+20, 2000, undefined, this.ease.circOut);
-		await this.delay(500);
-		doorStatic.set('doorKnock1');
-		await this.delay(100);
-		doorStatic.set('doorKnock2');
-		await this.delay(100);
-		doorStatic.set('doorClosed');
-		this.sfx('chunk', { rate: 1.9 });
-		const t2 = this.Text('*TOC*', { x: 70, y: -330, fontSize: 48 });
-		t2.text.anchor.y = 0.4;
-		t2.text.anchor.x = 0.4;
-		this.add(t2);
-		this.tween(t2.display.container, 'alpha', 0, 2000);
-		this.tween(t2.display.container, 'angle', 0, 2000, 15, t => 1-Math.sin(t*60)*this.ease.circOut(t));
-		this.tween(t2.transform, 'y', t2.transform.y+20, 2000, undefined, this.ease.circOut);
-		await this.delay(3000);
-		this.goto('give sandwich3');
-	})();
->>
-
-::give sandwich3
-"no answer..."
->
-"but i thought no one lived here?"
->
-<<do
-	(async () => {
-		await this.delay(2000);
-		const guy = this.scene.find('guy_big_blank');
-		guy.set('guy_big');
-		guy.spr.scale.x = -1;
-		this.shock(guy, 2000);
-		this.tween(guy.spr, 'y', 50, 2000);
-		this.tween(guy.spr, 'alpha', 0, 2000);
-		await this.delay(2000);
-		this.scrim(1, 2000);
-		await this.delay(3000);
-		this.scene.goto({ area: 'empty' });
-		this.add(
-			this.Text('The End', { x: 0, y: -this.size.y/2 }),
-		);
-		this.scrim(0, 2000);
-		await this.delay(2000);
-	})();
->>
->
-<<do
-	(async () => {
-		this.scrim(1, 2000);
-		await this.delay(2000);
-		this.scene.goto({ area: 'credits' });
-		this.destroy(this.creditsBackText);
-		this.destroy(this.creditsBackBtn);
-		this.scrim(0, 2000);
-		this.goto('close');
-	})();
+	// this.leaveNoOne({ area: 'TODO', x: 50, y: -100 });
+	this.goto('close');
 >>
 
 ::The End
@@ -3442,7 +3238,6 @@ The End
 
 ::credits
 <<do
-	this.sfx('rustle', { volume: 0.8, rate: 1.1 });
 	this.scrim(1, 250);
 	setTimeout(() => {
 		this.scene.goto({ area: 'credits' });
@@ -3455,11 +3250,10 @@ The End
 <<do window.open('https://sweetheartsquad.itch.io', '_blank'); this.goto('close');>>
 
 ::credits-aquiles
-<<do window.open('https://withkoji.com/@AQUILES', '_blank'); this.goto('close');>>
+<<do window.open('https://famicase.com/23/softs/122.html', '_blank'); this.goto('close');>>
 
 ::credits-back
 <<do
-	this.sfx('rustle', { volume: 0.8, rate: 0.9 });
 	this.scrim(1, 250);
 	setTimeout(() => {
 		this.scene.goto({ area: 'menu' });
