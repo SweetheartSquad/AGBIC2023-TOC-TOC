@@ -155,10 +155,10 @@
 			return h;
 		})(),
 		this.Prop({ texture: 'toctoc_white', x: 5, y: -390}),
-		this.Hotspot({ label: 'more games', texture: 'SweetHeart Squad', x: -96, y: -30, offset: 10000, use: {
+		this.Hotspot({ label: 'Sweet♥Heart Squad', texture: 'SweetHeart Squad', x: -96, y: -30, offset: 10000, use: {
 			undefined: ['goto:credits-sweetheartsquad'],
 		}, }),
-		this.Hotspot({ label: 'based on Famicase artwork\nby AQUILES', texture: 'AQUILES', x: 103, y: -30, offset: 10000, use: {
+		this.Hotspot({ label: 'AQUILES', texture: 'AQUILES', x: 103, y: -30, offset: 10000, use: {
 			undefined: ['goto:credits-aquiles'],
 		}, }),
 	]);
