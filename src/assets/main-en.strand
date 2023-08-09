@@ -676,7 +676,7 @@
 		this.Prop({ texture: 'juiceboxL', x: -168, y: -225,         offset: -27 }),
 		this.Item({ texture: 'juice', x: -152, y: -265,         offset: -5, use: {
 			undefined: ['goto:take juice'],
-			player: [`p:*sluurrrp*`, `p:"tastes pretty good actually"`],
+			player: [`goto:player-slurp`, `p:"tastes pretty good actually"`],
 			'bottle cap': [`p:"it's already in a cup"`],
 			matchbox: [`p:"seems better cold"`],
 		}, }),
@@ -2328,12 +2328,19 @@ you got the soap.
 [[>close]]
 <<endif>>
 
-::give juice
-<<if this.juiced>>
-<<do 
+::player-slurp
+<<do
+	this.gameObject = this.scene.player;
+	this.voice = 'None';
 	this.sfx('slurp');
 	this.scene.loseItem();
 >>
+*sluurrrp*
+[[|this.voice='Default';this.goto('close')]]
+
+::give juice
+<<if this.juiced>>
+<<do this.scene.loseItem();>>
 "khh... not thirsty.. no more"
 [[>close]]
 <<else>>
@@ -2349,11 +2356,17 @@ you got the soap.
 ::give juice2
 "khhfhhf... hmmf...?"
 >
-// TODO: sfx
-<<do this.scene.screenFilter.flash([12,25,40], 600, this.ease.cubicIn)>>
+<<do
+	this.scene.screenFilter.flash([12,25,40], 600, this.ease.cubicIn);
+	this.sfx('slurp');
+	this.voice = 'None';
+>>
 *sluuurrrrrp*
 >
-<<do this.shock(this.scene.find('stuffy shopkeep'), 250)>>
+<<do
+	this.shock(this.scene.find('stuffy shopkeep'), 250);
+	this.voice = 'Default';
+>>
 "kahhh... good..."
 >
 "here.. key... yours..."
