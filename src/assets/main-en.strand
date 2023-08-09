@@ -2608,6 +2608,7 @@ you got the soap.
 [[>close]]
 <<else>>
 <<do
+	this.sfx('blorp', { rate: 2.5 });
 	this.capFilled = true;
 	const cap = this.scene.find('bottle cap');
 	cap.texture = 'bottle cap filled';
