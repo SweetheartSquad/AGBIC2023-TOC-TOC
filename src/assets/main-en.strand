@@ -1927,8 +1927,7 @@ you got the moon-dried tomato.
 	this.sfx('wobble');
 	setTimeout(() => {
 		this.tween(beetle.transform, 'y', -247, 400, undefined, this.ease.cubicIn);
-		// TODO: fall sfx?
-
+		this.sfx('crash', { volume: 0.7, rate: 10 });
 
 		setTimeout(() => {
 			this.scene.screenFilter.flash([255,255,255], 200, this.ease.cubicOut);
