@@ -247,3 +247,7 @@ audio/ambient music/mouse/mouse.x12.mp3
 audio/ambient music/outdoors.mp3
 audio/ambient music/wind.mp3
 audio/ambient music/heater.mp3
+
+audio/lightFlicker1.mp3
+audio/lightFlicker2.mp3
+audio/lightFlicker3.mp3

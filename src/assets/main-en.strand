@@ -1030,13 +1030,13 @@
 
 	this.gotoNoOne = async (getItem) => {
 		await this.delay(400);
-		// TODO: light flicker sfx
+		this.sfx('lightFlicker1', {volume: 1, rate: 1}),
 		this.tween(this.scene.find('godRayL').display.container, 'alpha', 0, 50);
 		await this.delay(300);
-		// TODO: light flicker sfx
+		this.sfx('lightFlicker2', {volume: 1, rate: 1}),
 		this.tween(this.scene.find('godRayC').display.container, 'alpha', 0, 50);
 		await this.delay(200);
-		// TODO: light flicker sfx
+		this.sfx('lightFlicker3', {volume: 1, rate: 0.9}),
 		this.tween(this.scene.find('godRayR').display.container, 'alpha', 0, 50);
 		await this.delay(100);
 		this.scene.currentArea.filter(i => i.texture && !i.texture.includes('Ray')).forEach(i => {
