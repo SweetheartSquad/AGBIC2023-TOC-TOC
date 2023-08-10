@@ -2281,11 +2281,11 @@ you got the soap.
 		scene.dialogue.say('"finally"');
 		await this.delay(1500);
 		scene.dialogue.say('');
-		this.sfx('anvil');
+		this.sfx('anvil', { volume: 0.8, rate: 0.8 });
 		this.scene.screenFilter.flash([250/3,200/3,150/3], 150, this.ease.cubicOut);
 		this.shock(smith, 250);
 		await this.delay(500);
-		this.sfx('anvil');
+		this.sfx('anvil', { volume: 0.9, rate: 0.8 });
 		this.scene.screenFilter.flash([250/2,200/2,150/2], 150, this.ease.cubicOut);
 		this.shock(smith, 300);
 		await this.delay(500);
@@ -2701,11 +2701,11 @@ you got the soap.
 		const smith = this.scene.find('stubborn smith');
 		this.camPoint = { x: this.size.x, y: this.size.y };
 		await this.delay(1500);
-		this.sfx('anvil');
+		this.sfx('anvil', { volume: 0.8, rate: 0.8 });
 		this.scene.screenFilter.flash([250/3,200/3,150/3], 150, this.ease.cubicOut);
 		this.shock(smith, 250);
 		await this.delay(500);
-		this.sfx('anvil');
+		this.sfx('anvil', { volume: 0.9, rate: 0.8 });
 		this.scene.screenFilter.flash([250/2,200/2,150/2], 150, this.ease.cubicOut);
 		this.shock(smith, 300);
 		await this.delay(500);
