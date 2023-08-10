@@ -240,3 +240,6 @@ audio/vaultTurn.mp3
 audio/vaultOpen.mp3
 audio/sizzle.mp3
 audio/splash.mp3
+
+audio/ambient music/gnome/flute/gnome_flute.x25.mp3
+audio/ambient music/western/western.x14.mp3

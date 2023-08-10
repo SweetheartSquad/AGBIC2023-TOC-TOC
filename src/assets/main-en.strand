@@ -196,6 +196,13 @@
 
 	this.flamingoMouthPoly = this.Poly({ verts: [37,-319, 18,-261, 40,-234, 75,-257, 131,-264, 209,-272, 239,-286] });
 	this.Area('gnome puzzle', [
+		this.Updater(() => {
+			if (this.ambientTimeout) return;
+			this.sfx(`gnome_flute.${Math.floor(Math.random()*24) + 1}`, { volume: 0.1 });
+			this.ambientTimeout = setTimeout(() => {
+				this.ambientTimeout = null;
+			}, 3000);
+		}),
 		// border
 		this.Poly({ verts: [205,-275, 17,-290, -90,-287, -217,-247, -292,-175, -328,-93, -296,-38, -121,-14, 93,-11, 238,-55, 253,-98, 268,-184, 242,-238, 201,-276] }),
 		this.flamingoMouthPoly,
@@ -389,6 +396,13 @@
 	};
 
 	this.Area('dustbun heist', [
+		this.Updater(() => {
+			if (this.ambientTimeout) return;
+			this.sfx(`western.${Math.floor(Math.random()*13) + 1}`, { volume: 0.25 });
+			this.ambientTimeout = setTimeout(() => {
+				this.ambientTimeout = null;
+			}, 3000);
+		}),
 		// main walls
 		this.Poly({ verts: [-247,-132, -74,-239, 58,-241, 162,-283, 348,-153, -2,-4, -249,-122] }),
 
