@@ -579,7 +579,7 @@
 	]);
 
 	this.Area('mouse town center', [
-		Musicer('mouse', 12, { volume: 0.25 }),
+		Musicer('mouse', 12, { volume: 0.22 }),
 		this.Poly({ verts: [349,-265, -23,-499, -350,-301, -350,15, 350,15, 350,-266] }), // walls
 
 		this.Prop({ texture: 'bg',                  offset: -1000000 }),
