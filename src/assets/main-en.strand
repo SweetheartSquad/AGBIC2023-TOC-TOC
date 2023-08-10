@@ -3101,7 +3101,7 @@ voiceNoone
 <<do this.gameObject = this.noone>>
 "no one wants a half-eaten sandwich."
 >
-voideDefault
+voiceDefault
 <<do this.gameObject = this.scene.player>>
 "you keep saying that..."
 >
