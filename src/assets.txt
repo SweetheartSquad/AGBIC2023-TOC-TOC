@@ -243,3 +243,5 @@ audio/splash.mp3
 
 audio/ambient music/gnome/flute/gnome_flute.x25.mp3
 audio/ambient music/western/western.x14.mp3
+audio/ambient music/outdoors.mp3
+audio/ambient music/wind.mp3
