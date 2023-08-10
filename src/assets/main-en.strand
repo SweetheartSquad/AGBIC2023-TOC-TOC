@@ -68,7 +68,15 @@
 
 	const Musicer = (key, num, options) => {
 		let sfxs = [];
+		let mounted = false;
 		const go = this.Updater(() => {
+			if (!mounted) {
+				mounted = true;
+				go.ambientTimeout = setTimeout(() => {
+					go.ambientTimeout = null;
+				}, 5000);
+				return;
+			}
 			if (go.ambientTimeout) return;
 			if (!sfxs.length) {
 				sfxs = new Array(num).fill(0).map((i, idx) => `${key}.${idx+1}`);
