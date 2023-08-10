@@ -2762,7 +2762,6 @@ voiceNoone
 ::cool sword
 <<if this.capFilled>>
 <<do
-	// TODO: water splash on hot sword sfx
 	this.scene.loseItem();
 	this.destroy(this.gameObject);
 	this.sfx('splash');
