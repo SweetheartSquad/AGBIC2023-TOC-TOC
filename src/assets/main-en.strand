@@ -654,6 +654,7 @@
 		this.Poly({ verts: [12,-175, 54,-180, 80,-198, 87,-219, 78,-239, 54,-257, 20,-263, -13,-259, -39,-246, -57,-224, -50,-196, -26,-182, 8,-174] }), // fountain
 		this.Poly({ verts: [-79,-199, 111,-234], width: 15 }), // altars
 		this.sfxWater = this.Audio({ sfx: 'water', x: 19, y: -227, volume: 0.5, maxDistance: 400 }),
+		this.sfxHeater = this.Audio({ sfx: 'heater', x: 310, y: 0, volume: 0, maxDistance: 400 }),
 		this.Prop({ texture: 'fountainWater', x: 15, y: -164, freq: 1/100, offset: -45 }),
 		this.Item({ texture: 'fountain',   x: 15, y: -164, alpha: 0, offset: -45, use: {
 			undefined: [`goto:pickup coin`],
@@ -2291,6 +2292,7 @@ voiceNoone
 		);
 		this.gameObject.btn.enabled = false;
 		this.sfx('lightStove');
+		this.tween(this.sfxHeater, 'volume', 0.5, 1000);
 		this.scene.screenFilter.flash([255,125,0], 200);
 		this.scene.loseItem();
 		const smith = this.scene.find('stubborn smith');
