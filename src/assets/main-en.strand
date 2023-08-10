@@ -2292,7 +2292,7 @@ voiceNoone
 		);
 		this.gameObject.btn.enabled = false;
 		this.sfx('lightStove');
-		this.tween(this.sfxHeater, 'volume', 0.5, 1000);
+		this.tween(this.sfxHeater, 'volume', 1, 1000);
 		this.scene.screenFilter.flash([255,125,0], 200);
 		this.scene.loseItem();
 		const smith = this.scene.find('stubborn smith');
