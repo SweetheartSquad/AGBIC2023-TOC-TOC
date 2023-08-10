@@ -2751,7 +2751,7 @@ you got the soap.
 ::give sword
 "hahaha.. yesss...!"
 <<do
-	// TODO: give sword sfx
+	this.sfx('anvil', { rate: 2, volume: 0.5 });
 	this.scene.loseItem(true);
 	this.scene.screenFilter.flash([20,20,20], 300, this.ease.cubicIn);
 	const spr = new this.PIXI.Sprite(this.tex('cool sword'));
