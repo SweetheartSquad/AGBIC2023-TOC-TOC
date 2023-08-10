@@ -635,6 +635,7 @@
 			'bottle cap': [`goto:fill cap`],
 			player: [`p:"it's a shiny coin"`],
 			matchbox: [`p:"i'm not sure i need a wet match"`],
+			juice: [`p:"no one likes when it's watered down"`],
 		}, }),
 		this.Hotspot({ label: 'left altar', texture: 'pizzaTableSL', x: -79, y: -189,      offset: -7, use: {
 			undefined: [`goto:cheese poem`],
@@ -893,6 +894,7 @@
 			fountain: [`"wahh.. for you.. free..."`],
 			cheese: [`"whaa..! forbidden...!"`],
 			'cookie cutter': [`"wagh... don't give mouse.. cookie..."`],
+			juice: [`"weehee.. try it!"`],
 		}, }),
 		this.Npc({ name: 'puny pyro', body: 'mouse_basic', tint: 0x47654c, x: 268, y: -165, flip: true, use: {
 			undefined: [`"iia... matches.. free..."`, `"iii'm liiiittle.. can't catch..."`, `"ihihihi..."`],
@@ -905,6 +907,7 @@
 			star: [`"ihihi.. melted.. good..."`],
 			'cookie cutter': [`"ihih... don't give mouse.. cookie..."`],
 			'cool sword': [`"ihh... hate cool things..."`],
+			juice: [`"ihha.. no.. keep dry..."`],
 		}, }),
 		this.Npc({ name: 'stubborn smith', body: 'mouse_smith', tint: 0x3CECA1, x: 238, y: -62, flip: true, offset: 62, use: {
 			undefined: [`"mhhe.. forge.. dead..."`, `"mm.. ring.. late..."`, `"mhm..."`],
@@ -918,6 +921,7 @@
 			anvil: [`"mm.. stregth.. share..."`],
 			'cookie cutter': [`"mrrhh... don't give mouse.. cookie..."`],
 			ring: [`"mmm... my bad..."`],
+			juice: [`"meh... maybe.. later..."`],
 		}, }),
 
 		this.Npc({ name: 'cheesy coachmouse', body: 'mouse_nervous', tint: 0xB5320C, x: -192, y: -172, bodyCollision: { isStatic: true }, use: {
@@ -926,6 +930,7 @@
 			fountain: [`"ah.. only work.. for crown..."`],
 			ring: [`"ahg.. for horse...?"`],
 			'cookie cutter': [`"arhgh... don't give mouse.. cookie..."`],
+			juice: [`"aahghg... no.. driving..."`],
 		}, }),
 		this.Npc({ name: 'haughty hooligan', body: 'mouse_sitting', tint: 0x88898c, offset: 1000, x: 218, y: -357, shadow: false, flip: true, use: {
 			undefined: [`"hehehe..."`, `"heh.. even guards.. below me..."`, `"hm... but.. have weapons..."`],
@@ -938,6 +943,7 @@
 			toothpicks: [`"hm... no.. weak..."`],
 			'cookie cutter': [`"hhh... don't give mouse.. cookie..."`],
 			ring: [`"heh.. not cool..."`],
+			juice: [`"heh.. not cool..."`],
 		}, }),
 
 		(() => {
