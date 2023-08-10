@@ -30,7 +30,15 @@ import { size } from './config';
 import { fontIngame } from './font';
 import { setScene } from './main';
 import { Prompt } from './prompt';
-import { chunks, clamp, delay, mousePos, shuffle, tex } from './utils';
+import {
+	chunks,
+	clamp,
+	delay,
+	mousePos,
+	randRange,
+	shuffle,
+	tex,
+} from './utils';
 
 export class StrandE extends Strand {
 	scene!: GameScene;
@@ -58,6 +66,8 @@ export class StrandE extends Strand {
 	clamp = clamp;
 
 	mousePos = mousePos;
+
+	randRange = randRange;
 
 	camPoint?: { x?: number; y?: number };
 
