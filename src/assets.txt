@@ -240,6 +240,7 @@ audio/vaultTurn.mp3
 audio/vaultOpen.mp3
 audio/sizzle.mp3
 audio/splash.mp3
+audio/lightFlicker.mp3
 
 audio/ambient music/gnome/flute/gnome_flute.x25.mp3
 audio/ambient music/western/western.x14.mp3
@@ -247,7 +248,3 @@ audio/ambient music/mouse/mouse.x12.mp3
 audio/ambient music/outdoors.mp3
 audio/ambient music/wind.mp3
 audio/ambient music/heater.mp3
-
-audio/lightFlicker1.mp3
-audio/lightFlicker2.mp3
-audio/lightFlicker3.mp3
