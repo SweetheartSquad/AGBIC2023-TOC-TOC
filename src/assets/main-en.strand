@@ -115,10 +115,7 @@
 		this.Updater(() => {
 			if (this.gameObject === this.noone) {
 				const t = game.app.ticker.lastTime;
-				this.scene.dialogue.voice = 'No one';
 				this.scene.dialogue.strText = this.scene.dialogue.strText.split('').map((i, idx) => Math.floor(idx/5 -t/300 - Math.sin(t/300)*0.5 - Math.sin(t/400)*0.2) % 3 ? i.toLowerCase() : i.toUpperCase()).join('');
-			} else {
-				this.scene.dialogue.voice = 'Default';
 			}
 		}),
 	]);
@@ -148,10 +145,7 @@
 		this.Updater(() => {
 			if (this.gameObject === this.nooneMenu) {
 				const t = game.app.ticker.lastTime;
-				this.scene.dialogue.voice = 'No one';
 				this.scene.dialogue.strText = this.scene.dialogue.strText.split('').map((i, idx) => Math.floor(idx/5 -t/300 - Math.sin(t/300)*0.5 - Math.sin(t/400)*0.2) % 3 ? i.toLowerCase() : i.toUpperCase()).join('');
-			} else {
-				this.scene.dialogue.voice = 'Default';
 			}
 		}),
 	]);
@@ -1231,23 +1225,29 @@
 
 
 ::start game2
+voiceNoone
 <<do this.gameObject = this.scene.find('nooneText')>>
 "hello, human child."
 >
+voiceDefault
 <<do this.gameObject = this.scene.find('playerText')>>
 "who are you?"
 >
+voiceNoone
 <<do this.gameObject = this.scene.find('nooneText')>>
 "no one."
 >
+voiceDefault
 <<do this.gameObject = this.scene.find('playerText')>>
 "what?"
 >
 "but i'm talking to you."
 >
+voiceNoone
 <<do this.gameObject = this.scene.find('nooneText')>>
 "..."
 >
+voiceDefault
 <<do this.gameObject = this.scene.find('playerText')>>
 "..."
 >
@@ -1291,12 +1291,15 @@
 >
 "you shrunk me!!"
 >
+voiceNoone
 <<do this.gameObject = this.scene.find('nooneText')>>
 "..."
 >
+voiceDefault
 <<do this.gameObject = this.scene.find('playerText')>>
 "make me big again!"
 >
+voiceNoone
 <<do this.gameObject = this.scene.find('nooneText')>>
 "..."
 >
@@ -1304,9 +1307,11 @@
 >
 "you must be small to complete your task."
 >
+voiceDefault
 <<do this.gameObject = this.scene.find('playerText')>>
 "what task??"
 >
+voiceNoone
 <<do this.gameObject = this.scene.find('nooneText')>>
 "you must fetch something."
 >
@@ -1314,9 +1319,11 @@
 >
 "locked in a temple for many years."
 >
+voiceDefault
 <<do this.gameObject = this.scene.find('playerText')>>
 "um, what temple?"
 >
+voiceNoone
 <<do this.gameObject = this.scene.find('nooneText')>>
 "the gnomes in the garden will know more."
 >
@@ -1666,26 +1673,33 @@ you got the moon-dried tomato.
 <<do this.gameObject = this.scene.player>>
 "i got this..."
 >
+voiceNoone
 <<do this.gameObject = this.noone>>
 "ah yes, the moon-dried tomato..."
 >
 "a face only a mother could love."
 >
+voiceDefault
 <<do this.gameObject = this.scene.player>>
 "what are you gonna do with it?"
 >
+voiceNoone
 <<do this.gameObject = this.noone>>
 "that's no one's business."
 >
+voiceDefault
 <<do this.gameObject = this.scene.player>>
 "..."
 >
+voiceNoone
 <<do this.gameObject = this.noone>>
 "..."
 >
+voiceDefault
 <<do this.gameObject = this.scene.player>>
 "can i go now?"
 >
+voiceNoone
 <<do this.gameObject = this.noone>>
 "no. i need another object."
 >
@@ -2214,23 +2228,28 @@ you got the soap.
 <<do this.gotoNoOne();>>
 
 ::give soap
+voiceNoone
 <<do this.scene.loseItem();>>
 <<do this.gameObject = this.noone>>
 "ah, the bar of soap."
 >
 "this will play a crucial part."
 >
+voiceDefault
 <<do this.gameObject = this.scene.player>>
 "they had a lot of soap..."
 >
 "why didn't you ask for more?"
 >
+voiceNoone
 <<do this.gameObject = this.noone>>
 "no one will miss just one."
 >
+voiceDefault
 <<do this.gameObject = this.scene.player>>
 "..."
 >
+voiceNoone
 <<do this.gameObject = this.noone>>
 "..."
 >
@@ -3065,21 +3084,26 @@ you got the sandwich.
 <<do this.gotoNoOne();>>
 
 ::give sandwich
+voiceNoone
 <<do this.scene.loseItem();>>
 <<do this.gameObject = this.noone>>
 "yes, the half-eaten sandwich."
 >
+voiceDefault
 <<do this.gameObject = this.scene.player>>
 "i don't get it..."
 >
 "don't you want a full sandwich?"
 >
+voiceNoone
 <<do this.gameObject = this.noone>>
 "no one wants a half-eaten sandwich."
 >
+voideDefault
 <<do this.gameObject = this.scene.player>>
 "you keep saying that..."
 >
+voiceNoone
 <<do this.gameObject = this.noone>>
 "do not worry your little head."
 >
@@ -3087,9 +3111,11 @@ you got the sandwich.
 >
 "all the objects are found."
 >
+voiceDefault
 <<do this.gameObject = this.scene.player>>
 "can i go home now?"
 >
+voiceNoone
 <<do this.gameObject = this.noone>>
 "yes, you may return to your world."
 >
