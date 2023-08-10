@@ -2714,6 +2714,7 @@ you got the soap.
 		this.shock(smith, 450);
 		await this.delay(1500);
 		smith.flipped = true;
+		this.sfx('pickup', { rate: 0.8 });
 		this.add(
 			this.Item({ texture: 'hot sword', x: 277, y: -72,          offset: 75, use: {
 				'bottle cap': ['goto:cool sword'],
