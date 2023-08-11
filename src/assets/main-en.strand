@@ -1207,7 +1207,7 @@
 		this.tween(t2.display.container, 'angle', 0, 2000, 15, t => 1-Math.sin(t*60)*this.ease.circOut(t));
 		this.tween(t2.transform, 'y', t2.transform.y+20, 2000, undefined, this.ease.circOut);
 		await this.delay(3000);
-		// TODO: door open sfx
+		this.sfx('creak', { rate: 0.5 });
 		doorStatic.display.container.visible = false;
 		doorAnim.spr.alpha = 1;
 		doorAnim.animator.setAnimation('doorOpen.1', { 12: 5 });
@@ -3169,7 +3169,7 @@ voiceNoone
 		doorAnim.spr.alpha = 1;
 		doorAnim.animator.active = false;
 		await this.delay(2000);
-		// TODO: door open sfx
+		this.sfx('creak', { rate: 0.5 });
 		doorAnim.animator.setAnimation('doorOpen.1', { 12: 5 });
 		doorAnim.animator.active = true;
 		await this.delay(2700);
