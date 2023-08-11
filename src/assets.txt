@@ -252,3 +252,4 @@ audio/ambient music/heater.mp3
 
 audio/flyUp.mp3
 audio/flyDown.mp3
+audio/shrink.mp3

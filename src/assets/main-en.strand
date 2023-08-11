@@ -1258,7 +1258,7 @@ voiceDefault
 <<do
 	(async () => {
 		const guy = this.scene.find('guy_big_blank');
-		// TODO: shrink sfx
+		this.sfx('shrink', {volume: 1.0, rate: 1.0 }),
 		this.tween(guy.display.container.scale, 'x', 0.25, 1000, undefined, this.ease.cubicInOut);
 		this.tween(guy.display.container.scale, 'y', 0.25, 1000, undefined, this.ease.cubicInOut);
 		for(let i = 0; i < 10; ++i) {
