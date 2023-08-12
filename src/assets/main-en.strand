@@ -1259,6 +1259,7 @@ voiceDefault
 	(async () => {
 		const guy = this.scene.find('guy_big_blank');
 		this.sfx('shrink', {volume: 1.0, rate: 1.0 }),
+		this.scene.screenFilter.flash([228, 180, 215], 500);
 		this.tween(guy.display.container.scale, 'x', 0.25, 1000, undefined, this.ease.cubicInOut);
 		this.tween(guy.display.container.scale, 'y', 0.25, 1000, undefined, this.ease.cubicInOut);
 		for(let i = 0; i < 10; ++i) {
