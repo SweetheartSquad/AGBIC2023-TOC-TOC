@@ -1494,7 +1494,14 @@ me
 
 ::take big rock
 <<if this.scene.find('worm').display.container.alpha <= 0>>
-<<do this.goto('generic item')>>
+	<<if !this.bigrock>>
+		<<do this.bigrock=this.gameObject>>
+		<<do this.gameObject = this.scene.find('fiery gnome')>>
+		"my rock? fine. but only if you use it right!"
+		[[|this.gameObject = this.bigrock;this.goto('take big rock')]]
+	<<else>>
+		<<do this.goto('generic item')>>
+	<<endif>>
 <<else>>
 <<do this.gameObject = this.scene.find('fiery gnome')>>
 "hands off my rock!!"
@@ -1503,7 +1510,14 @@ me
 
 ::take little rock
 <<if this.scene.find('numb gnome').expression === 'hatless'>>
-<<do this.goto('generic item')>>
+	<<if !this.littlerock>>
+		<<do this.littlerock=this.gameObject>>
+		<<do this.gameObject = this.scene.find('numb gnome')>>
+		"my rock? you can use it i guess..."
+		[[|this.gameObject = this.littlerock;this.goto('take little rock')]]
+	<<else>>
+		<<do this.goto('generic item')>>
+	<<endif>>
 <<else>>
 <<do this.gameObject = this.scene.find('numb gnome')>>
 "hey! that's my rock ya jerk."
