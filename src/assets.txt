@@ -254,3 +254,4 @@ audio/flyUp.mp3
 audio/flyDown.mp3
 audio/shrink.mp3
 audio/slither.mp3
+audio/slitherStart.mp3

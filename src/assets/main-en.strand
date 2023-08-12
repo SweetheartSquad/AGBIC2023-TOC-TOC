@@ -1067,6 +1067,7 @@
 		this.scene.find('no one UL').display.container.alpha = 0;
 		this.scene.find('no one LL').display.container.alpha = 0;
 		this.scene.find('no one LR').display.container.alpha = 0;
+		this.sfx('slitherStart', {volume: 1.0, rate: 0.8 }),
 		this.sfx('slither', {volume: 1.0, rate: 1.0 }),
 		this.tween(this.scene.find('no one LL').display.container, 'alpha', 1, 1000);
 		await this.delay(1000);
