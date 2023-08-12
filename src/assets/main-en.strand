@@ -1084,7 +1084,19 @@
 		this.scene.player.expression = 'up';
 		const d = 4000;
 		const p = 30;
-		this.sfx('flyUp', {volume: 1.0, rate: 1.0 }),
+		this.sfx('flyUp');
+		const color = [228, 180, 215];
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *   3/255/3), 500), 0);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *   5/255/3), 500), 1000);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  10/255/3), 500), 2000);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  15/255/3), 500), 2700);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  20/255/3), 500), 3400);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  25/255/3), 500), 4000);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  30/255/3), 500), 4500);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  40/255/3), 500), 5000);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  50/255/3), 500), 5400);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  80/255/3), 500), 5800);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i * 100/255/3), 500), 6200);
 		this.tween(this.scene.player.spr, 'angle', 0, d, 50, t => 1-Math.sin(t*p)*(t));
 		this.tween(this.scene.player, 'flipped', 0, d, 50, t => (1-Math.sin(t*p)) < 0.5);
 		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => 1-this.ease.cubicIn(t)+Math.sin(t*10)*-0.1);
@@ -1113,12 +1125,16 @@
 		this.scene.player.expression = 'up';
 		this.scene.player.display.container.visible = true;
 		this.scene.player.display.container.offset = 0;
-		this.sfx('flyDown', {volume: 1.0, rate: 1.0 }),
+		this.scene.screenFilter.flash(color.map(i => i * 0.25), 500);
+		this.sfx('flyDown'),
 		this.tween(this.scene.player, 'flipped', 0, d/2, 50, t => (Math.sin(t*p)) < 0.5);
 		this.tween(this.scene.player.spr, 'y', 0, d/2, -200, t => this.ease.circIn(t));
 		this.tween(this.scene.player.spr, 'x', 0, d/2, -50, (t) => (this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*(1-t)+t);
 		this.tween(this.scene.player.spr, 'alpha', 1, d/2, 0, (t) => this.ease.cubicOut(t));
 		await this.delay(d/2);
+		this.scene.screenFilter.flash([-25,-25,-25], 200);
+		this.tween(this.scene.camera, 'shake', 0, 500, 4, this.ease.cubicOut);
+		this.sfx('blorp', { rate: 4, volume: 0.5 });
 		this.scene.player.expression = '';
 
 		this.camPoint = undefined;
@@ -1260,6 +1276,7 @@ voiceDefault
 	(async () => {
 		const guy = this.scene.find('guy_big_blank');
 		this.sfx('shrink', {volume: 1.0, rate: 1.0 }),
+		this.scene.screenFilter.flash([228, 180, 215], 500);
 		this.tween(guy.display.container.scale, 'x', 0.25, 1000, undefined, this.ease.cubicInOut);
 		this.tween(guy.display.container.scale, 'y', 0.25, 1000, undefined, this.ease.cubicInOut);
 		for(let i = 0; i < 10; ++i) {
@@ -1347,12 +1364,17 @@ voiceNoone
 		const p = 30;
 		this.scene.player.display.container.visible = true;
 		this.scene.player.display.container.offset = 0;
-		// TODO: fly down sfx
+		const color = [228, 180, 215];
+		this.scene.screenFilter.flash(color.map(i => i * 0.25), 500);
+		this.sfx('flyDown'),
 		this.tween(this.scene.player, 'flipped', 0, d, 50, t => (Math.sin(t*p)) < 0.5);
 		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => this.ease.circIn(t));
 		this.tween(this.scene.player.spr, 'x', 0, d, -50, (t) => (this.ease.sineInOut(t*2) + this.ease.sineInOut(t*4))*(1-t)+t);
 		this.tween(this.scene.player.spr, 'alpha', 1, d, 0, (t) => this.ease.cubicOut(t));
 		await this.delay(d);
+		this.scene.screenFilter.flash([-25,-25,-25], 200);
+		this.tween(this.scene.camera, 'shake', 0, 500, 4, this.ease.cubicOut);
+		this.sfx('blorp', { rate: 4, volume: 0.5 });
 		this.scene.player.expression = '';
 		this.goto('close');
 	})();
