@@ -244,7 +244,7 @@ audio/lightFlicker.mp3
 audio/creak.mp3
 
 audio/ambient music/gnome/flute/gnome_flute.x25.mp3
-audio/ambient music/western/western.x14.mp3
+audio/ambient music/western/western.x13.mp3
 audio/ambient music/mouse/mouse.x12.mp3
 audio/ambient music/outdoors.mp3
 audio/ambient music/wind.mp3

@@ -413,7 +413,7 @@
 
 	this.Area('dustbun heist', [
 		this.Audio({ sfx: 'wind', maxDistance: this.size.x*10 }),
-		Musicer('western', 14, { volume: 0.1 }),
+		Musicer('western', 13, { volume: 0.1 }),
 		// main walls
 		this.Poly({ verts: [-247,-132, -74,-239, 58,-241, 162,-283, 348,-153, -2,-4, -249,-122] }),
 
