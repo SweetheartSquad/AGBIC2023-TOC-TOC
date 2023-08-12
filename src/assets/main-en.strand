@@ -94,6 +94,7 @@
 
 	this.Area('empty', []);
 	this.Area('no one', [
+		this.slither = this.Audio({ sfx: 'slither', volume: 0, maxDistance: this.size.x*10 }),
 
 		(() => {
 			const h = this.Hotspot({ label: 'no one', texture: 'blank', x: 27, y: -214, offset: 10000, use: {
@@ -1067,8 +1068,8 @@
 		this.scene.find('no one UL').display.container.alpha = 0;
 		this.scene.find('no one LL').display.container.alpha = 0;
 		this.scene.find('no one LR').display.container.alpha = 0;
-		this.sfx('slitherStart', {rate: 0.8 }),
-		this.sfx('slither'),
+		this.sfx('slitherStart', {rate: 0.8 });
+		this.tween(this.slither, 'volume', 1, 4000);
 		this.tween(this.scene.find('no one LL').display.container, 'alpha', 1, 1000);
 		await this.delay(1000);
 		this.scene.player.flipped = false;
@@ -1084,6 +1085,7 @@
 		this.scene.player.expression = 'up';
 		const d = 4000;
 		const p = 30;
+		this.tween(this.slither, 'volume', 0, 4000);
 		this.sfx('flyUp');
 		const color = [228, 180, 215];
 		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *   3/255/3), 500), 0);
