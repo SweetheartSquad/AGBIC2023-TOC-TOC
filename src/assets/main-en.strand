@@ -1033,7 +1033,7 @@
 		this.sfx('lightFlicker', { volume: 0.4, rate: 1.3 }),
 		this.tween(this.scene.find('godRayL').display.container, 'alpha', 0, 50);
 		await this.delay(300);
-		this.sfx('lightFlicker', { volume: 0.3, rate: 1 }),
+		this.sfx('lightFlicker', { volume: 0.3 }),
 		this.tween(this.scene.find('godRayC').display.container, 'alpha', 0, 50);
 		await this.delay(200);
 		this.sfx('lightFlicker', { volume: 0.2, rate: 0.7 }),
@@ -1045,7 +1045,7 @@
 		await this.delay(1500);
 		this.scene.player.expression = '';
 		await this.delay(1500);
-		this.sfx('chunk', { volume: 0.7, rate: 1.0 }),
+		this.sfx('chunk', { volume: 0.7 }),
 		this.tween(this.scene.find('godRayL').spr, 'alpha', 0, 100);
 		this.scene.player.flipped = true;
 		await this.delay(1000);
@@ -1053,7 +1053,7 @@
 		this.sfx('chunk', { volume: 0.85, rate: 0.95 }),
 		await this.delay(1000);
 		this.tween(this.scene.find('godRayR').spr, 'alpha', 0, 100);
-		this.sfx('chunk', { volume: 1.0, rate: 0.9 }),
+		this.sfx('chunk', { rate: 0.9 }),
 		await this.delay(1200);
 		this.scene.player.flipped = false;
 		await this.delay(1200);
@@ -1067,8 +1067,8 @@
 		this.scene.find('no one UL').display.container.alpha = 0;
 		this.scene.find('no one LL').display.container.alpha = 0;
 		this.scene.find('no one LR').display.container.alpha = 0;
-		this.sfx('slitherStart', {volume: 1.0, rate: 0.8 }),
-		this.sfx('slither', {volume: 1.0, rate: 1.0 }),
+		this.sfx('slitherStart', {rate: 0.8 }),
+		this.sfx('slither'),
 		this.tween(this.scene.find('no one LL').display.container, 'alpha', 1, 1000);
 		await this.delay(1000);
 		this.scene.player.flipped = false;
@@ -1275,7 +1275,7 @@ voiceDefault
 <<do
 	(async () => {
 		const guy = this.scene.find('guy_big_blank');
-		this.sfx('shrink', {volume: 1.0, rate: 1.0 }),
+		this.sfx('shrink'),
 		this.scene.screenFilter.flash([228, 180, 215], 500);
 		this.tween(guy.display.container.scale, 'x', 0.25, 1000, undefined, this.ease.cubicInOut);
 		this.tween(guy.display.container.scale, 'y', 0.25, 1000, undefined, this.ease.cubicInOut);
@@ -2144,7 +2144,7 @@ voiceNoone
 <<do 
 	this.sfx('bite')
 	setTimeout(() => this.sfx('bite', { rate: 0.75 }), 400);
-	setTimeout(() => this.sfx('bite', { rate: 1 }), 800);
+	setTimeout(() => this.sfx('bite'), 800);
 	setTimeout(() => this.sfx('bite', { rate: 0.75 }), 1200);
 >>
 *munch* *monch* *mounch* *muonch*
