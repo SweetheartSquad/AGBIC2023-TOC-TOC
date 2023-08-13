@@ -243,6 +243,7 @@ audio/splash.mp3
 audio/lightFlicker.mp3
 audio/creak.mp3
 audio/burn.mp3
+audio/miterun.mp3
 
 audio/ambient music/gnome/flute/gnome_flute.x25.mp3
 audio/ambient music/western/western.x13.mp3
@@ -256,9 +257,3 @@ audio/flyDown.mp3
 audio/shrink.mp3
 audio/slither.mp3
 audio/slitherStart.mp3
-
-audio/xylophone1.mp3
-audio/xylophone2.mp3
-audio/xylophone3.mp3
-audio/xylophone4.mp3
-audio/xylophone5.mp3
