@@ -671,7 +671,7 @@
 		this.Item({ texture: 'fountain',   x: 15, y: -164, alpha: 0, offset: -45, use: {
 			undefined: [`goto:pickup coin`],
 			'bottle cap': [`goto:fill cap`],
-			player: [`p:"it's a shiny coin"`],
+			player: [`p:"it's a shiny coin"`, `p:"what kind of mice use currency..."`],
 			matchbox: [`p:"i'm not sure i need a wet match"`],
 			juice: [`p:"no one likes when it's watered down"`],
 		}, }),
