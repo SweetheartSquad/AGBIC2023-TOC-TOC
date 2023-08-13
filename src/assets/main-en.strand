@@ -3447,7 +3447,7 @@ voiceDefault
 		}
 		await this.delay(3000);
 		this.scrim(1, 2000);
-		await this.delay(3000);
+		await this.delay(4000);
 		this.camPoint = { x: 0, y: 0 };
 		this.scene.goto({ area: 'empty' });
 		this.add(
