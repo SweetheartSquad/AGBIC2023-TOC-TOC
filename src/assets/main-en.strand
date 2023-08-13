@@ -3124,6 +3124,8 @@ voiceDefault
 	this.destroy(this.scene.find('starAltar'));
 	this.add(
 		this.Item({ label: 'star', texture: 'wax tree star', x: -89, y: -280,    offset: -5, use: {
+			player: [`p:"it's a little wax star"`],
+			matchbox: [`p:"i don't need to melt that"`],
 		}, }),
 	);
 	if (this.scene.find('cheeseAltar')) {
