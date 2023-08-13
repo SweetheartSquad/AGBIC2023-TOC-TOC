@@ -778,7 +778,7 @@
 		(() => {
 			// bottom right
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 311, y: -145, offset: 1000, use: {
-				player: [`p:"it's a cookie cutter"`],
+				player: [`p:"with i had some cookie dough..."`],
 				'cookie cutter': ['goto:swap cutter'],
 				'wax wad': [`p:"it'd need to be flat for that"`],
 			}, });
@@ -792,7 +792,7 @@
 		(() => {
 			// left
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: -314, y: -214, offset: 1000, use: {
-				player: [`p:"it's a cookie cutter"`],
+				player: [`p:"with i had some cookie dough..."`],
 				'cookie cutter': ['goto:swap cutter'],
 				'wax wad': ['goto:shape wax'],
 			}, });
@@ -806,7 +806,7 @@
 		(() => {
 			// top right
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 310, y: -346, offset: 1000, use: {
-				player: [`p:"it's a cookie cutter"`],
+				player: [`p:"with i had some cookie dough..."`],
 				'cookie cutter': ['goto:swap cutter'],
 				'wax wad': [`p:"it'd need to be flat for that"`],
 				other: [`p:"i can't do much with it up there"`],
