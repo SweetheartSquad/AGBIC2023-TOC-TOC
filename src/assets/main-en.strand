@@ -490,6 +490,7 @@
 			candle: [`"ey watch it, dat's hot!!"`],
 			rope: [`p:"they probably wouldn't appreciate being tied up"`],
 			'cowboy hat': [`"no thanks, i prefer oiling my tufts up"`],
+			oil: [`"it's 'genuine'!"`],
 			other: [`"get outta here with dat junk!"`, `"dis trash ain't worth dust..."`, `"more trash? where's da dough?!"`],
 		}, }),
 		this.Npc({ name: 'scared hare', body: 'dustbun_scared', tint: 0x746568, x: -30, y: -215, flip: true, use: {
