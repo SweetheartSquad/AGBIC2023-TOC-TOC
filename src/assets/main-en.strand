@@ -286,7 +286,7 @@
 
 		this.Item({ texture: 'big rock', x: -109, y: -219, use: {
 			undefined: ['goto:take big rock'],
-			player: [`"it's a rock the size of a large pebble"`],
+			player: [`p:"it's a rock the size of a large pebble"`],
 			'cut flower': [`p:"i don't want to crush it"`],
 			'little rock': [`p:"wouldn't want to get between these two"`],
 			'medium rock': [`p:"wouldn't want to get between these two"`],
@@ -295,7 +295,7 @@
 		}, }),
 		this.Item({ texture: 'little rock', x: 100, y: -110, use: {
 			undefined: ['goto:take little rock'],
-			player: [`"it's a rock the size of a tiny pebble"`],
+			player: [`p:"it's a rock the size of a tiny pebble"`],
 			'cut flower': [`p:"i don't want to crush it"`],
 			'big rock': [`p:"wouldn't want to get between these two"`],
 			'medium rock': [`p:"wouldn't want to get between these two"`],
@@ -304,7 +304,7 @@
 		}, }),
 		this.glassPoly = this.Poly({ verts: [-179,-82, -209,-84, -205,-66, -179,-84], width: 10 }),
 		this.Item({ texture: 'glass', x: -190, y: -50, offset: -35, use: {
-			player: [`"it's a sharp piece of broken glass"`],
+			player: [`p:"it's a sharp piece of broken glass"`],
 			'little rock': [`p:"not a house, but i still shouldn't throw it"`],
 			'medium rock': [`p:"not a house, but i still shouldn't throw it"`],
 			'big rock': [`p:"not a house, but i still shouldn't throw it"`],
@@ -314,14 +314,14 @@
 
 		//junk
 		this.Item({ texture: 'thimble', x: 290, y: -20, offset: 10000000, use: {
-			player: [`"it's a thimble"`],
+			player: [`p:"it's a thimble"`],
 			die: [`p:"yahtzee!"`],
 			'cut flower': [`p:"i think it's a daisy, not a thimble flower"`],
 			'safety pin': [`p:"wrong type of needle for that"`],
 			hat: [`p:"fashion is so complicated"`],
 		}, }),
 		this.Item({ texture: 'die', x: -304, y: -103, offset: 100000000, use: {
-			player: [`"it's a six-sided die"`],
+			player: [`p:"it's a six-sided die"`],
 			thimble: [`p:"yahtzee!"`],
 			'little rock': [`p:"rock and roll!"`],
 			'medium rock': [`p:"rock and roll!"`],
@@ -331,7 +331,7 @@
 			otherTarget: [`p:"now's not the time to be playing around"`],
 		}, }),
 		this.Item({ texture: 'safety pin', x: 50, y: -50, offset: -35, use: {
-			player: [`"it's a safety pin"`],
+			player: [`p:"it's a safety pin"`],
 			'cut flower': [`p:"it's too big for that"`],
 			glass: [`p:"they're both pretty sharp..."`],
 			thimble: [`p:"wrong type of needle for that"`],
@@ -1501,7 +1501,7 @@ me
 	this.gameObject.btn.enabled = false;
 	this.add(
 		this.Item({ texture: 'medium rock', x: 132, y: -185, use: {
-			player: [`"it's a rock the size of a pebble"`],
+			player: [`p:"it's a rock the size of a pebble"`],
 			'cut flower': [`p:"i don't want to crush it"`],
 			'little rock': [`p:"wouldn't want to get between these two"`],
 			'big rock': [`p:"wouldn't want to get between these two"`],
