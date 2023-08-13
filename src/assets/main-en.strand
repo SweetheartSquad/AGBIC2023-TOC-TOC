@@ -518,7 +518,7 @@
 		}, }),
 
 		this.Hotspot({ texture: 'ladder', x: 45, y: -36, offset: 1000, use: {
-			undefined: [`p:"a rickety, rotten ladder"`, `"i'm not gonna step on that"`],
+			undefined: [`p:"a rickety, rotten ladder"`, `p:"i'm not gonna step on that"`],
 			rope: [`p:"that's not how you make a rope ladder"`],
 			other: [`p:"that won't work... i gotta step it up"`],
 		}, }),
