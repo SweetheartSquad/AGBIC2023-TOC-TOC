@@ -588,6 +588,118 @@
 			undefined: ['goto:soap'],
 			player: ['goto:no one item cancel'],
 		} }),
+		(() => {
+			const h = this.Hotspot({ label: 'liquid assets', texture: 'blank', x: 87, y: -402, use: {
+				undefined: [`p:"they must be very solvent..."`],
+			}, });
+			h.spr.width = 50;
+			h.spr.height = 50;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'liquid assets', texture: 'blank', x: 171, y: -360, use: {
+				undefined: [`p:"they must be very solvent..."`],
+			}, });
+			h.spr.width = 50;
+			h.spr.height = 50;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'bath bonds', texture: 'blank', x: 26, y: -365, use: {
+				undefined: [`p:"i never really understood those..."`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'bath bonds', texture: 'blank', x: 20, y: -402, use: {
+				undefined: [`p:"i never really understood those..."`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'bath bonds', texture: 'blank', x: 99, y: -326, use: {
+				undefined: [`p:"i never really understood those..."`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'bath bonds', texture: 'blank', x: 157, y: -344, use: {
+				undefined: [`p:"i never really understood those..."`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'bath bonds', texture: 'blank', x: 121, y: -372, use: {
+				undefined: [`p:"i never really understood those..."`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'bath bonds', texture: 'blank', x: 196, y: -398, use: {
+				undefined: [`p:"i never really understood those..."`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'bath bonds', texture: 'blank', x: 59, y: -383, use: {
+				undefined: [`p:"i never really understood those..."`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'bath bonds', texture: 'blank', x: 116, y: -404, use: {
+				undefined: [`p:"i never really understood those..."`],
+			}, });
+			h.spr.width = 30;
+			h.spr.height = 30;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'gold bubbllion', texture: 'blank', x: 94, y: -362, use: {
+				undefined: [`p:"i can't even imagine laundering this much..."`],
+			}, });
+			h.spr.width = 50;
+			h.spr.height = 50;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'gold bubbllion', texture: 'blank', x: 155, y: -413, use: {
+				undefined: [`p:"i can't even imagine laundering this much..."`],
+			}, });
+			h.spr.width = 50;
+			h.spr.height = 50;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'gold bubbllion', texture: 'blank', x: 206, y: -327, use: {
+				undefined: [`p:"i can't even imagine laundering this much..."`],
+			}, });
+			h.spr.width = 50;
+			h.spr.height = 50;
+			return h;
+		})(),
+		(() => {
+			const h = this.Hotspot({ label: 'gold bubbllion', texture: 'blank', x: 244, y: -302, use: {
+				undefined: [`p:"i can't even imagine laundering this much..."`],
+			}, });
+			h.spr.width = 50;
+			h.spr.height = 50;
+			return h;
+		})(),
 		...rays(),
 	]);
 
