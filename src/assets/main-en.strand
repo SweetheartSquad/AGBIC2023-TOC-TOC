@@ -846,7 +846,7 @@
 		// cutlery
 		(() => {
 			const h = this.Item({ label: 'fork', texture: 'blank', carrying: 'fork_carrying', x: 197, y: -64, offset: 1000, use: {
-				player: [`p:"it's a fork"`],
+				player: [`p:"i wonder what's for dinner..."`, `p:"it's a fork"`],
 			}, });
 			h.spr.width = 30;
 			h.spr.height = 30;
@@ -854,7 +854,7 @@
 		})(),
 		(() => {
 			const h = this.Item({ label: 'spoon', texture: 'blank', carrying: 'spoon_carrying', x: 217, y: -61, offset: 1000, use: {
-				player: [`p:"it's a spoon"`],
+				player: [`p:"i wonder what's for dinner..."`, `p:"it's a spoon"`],
 			}, });
 			h.spr.width = 30;
 			h.spr.height = 30;
@@ -862,7 +862,7 @@
 		})(),
 		(() => {
 			const h = this.Item({ label: 'spoon', texture: 'blank', carrying: 'spoon_carrying', x: 241, y: -58, offset: 1000, use: {
-				player: [`p:"it's a spoon"`],
+				player: [`p:"i wonder what's for dinner..."`, `p:"it's a spoon"`],
 			}, });
 			h.spr.width = 30;
 			h.spr.height = 30;
@@ -870,7 +870,7 @@
 		})(),
 		(() => {
 			const h = this.Item({ label: 'spoon', texture: 'blank', carrying: 'spoon_carrying', x: 192, y: -14, offset: 1000, use: {
-				player: [`p:"it's a spoon"`],
+				player: [`p:"i wonder what's for dinner..."`, `p:"it's a spoon"`],
 			}, });
 			h.spr.width = 30;
 			h.spr.height = 60;
@@ -878,7 +878,7 @@
 		})(),
 		(() => {
 			const h = this.Item({ label: 'fork', texture: 'blank', carrying: 'fork_carrying', x: 218, y: -13, offset: 1000, use: {
-				player: [`p:"it's a fork"`],
+				player: [`p:"i wonder what's for dinner..."`, `p:"it's a fork"`],
 			}, });
 			h.spr.width = 30;
 			h.spr.height = 60;
@@ -886,7 +886,7 @@
 		})(),
 		(() => {
 			const h = this.Item({ label: 'fork', texture: 'blank', carrying: 'fork_carrying', x: 236, y: -8, offset: 1000, use: {
-				player: [`p:"it's a fork"`],
+				player: [`p:"i wonder what's for dinner..."`, `p:"it's a fork"`],
 			}, });
 			h.spr.width = 30;
 			h.spr.height = 60;
