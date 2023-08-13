@@ -641,7 +641,7 @@
 			other: [`p:"i can't reach it up there"`],
 		}, }),
 		this.Item({ texture: 'pill', x: 179, y: -385,     offset: 275, use: {
-			player: [`p:"it's a sleeping pill"`],
+			player: [`p:"it's a sleeping pill"`, `p:"i don't need a nap..."`],
 			undefined: ['goto:take pill'],
 			other: [`p:"i can't reach it up there"`],
 			otherTarget: [`p:"i don't think it'll reach that"`],
