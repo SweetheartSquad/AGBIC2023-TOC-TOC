@@ -693,6 +693,7 @@
 			player: [`p:"it's a match"`],
 			matchbox: [`goto:light match`],
 			toothpicks: [`p:"i think a match would work better"`],
+			other: [`p:"no, that doesn't match up"`, `p:"not exactly the match of the century..."`, `p:"doesn't make a good match"`],
 			otherTarget: [`p:"no, that doesn't match up"`, `p:"not exactly the match of the century..."`, `p:"doesn't make a good match"`],
 		}, }),
 
