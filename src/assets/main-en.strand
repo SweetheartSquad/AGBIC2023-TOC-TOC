@@ -923,6 +923,7 @@
 			ring: [`"grgr.. no.. fraternization..."`],
 			pill: ['goto:drop pill'],
 			'cool sword': [`"guhh...? cool..."`],
+			other: [`"ghrg.. leave..."`, `"gruhg.. back..."`],
 		}, }),
 		this.Npc({ name: 'stuffy shopkeep', body: 'mouse_basic', tint: 0xb68ab8, x: -78, y: -360, offset: -5, use: {
 			undefined: [`"kaffkafkf..."`, `"kkff.. t-too hot..."`, `"khh.. th-thirsty..."`],
