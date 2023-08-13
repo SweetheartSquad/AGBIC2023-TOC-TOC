@@ -162,7 +162,6 @@
 	]);
 
 	this.Area('credits', [
-		this.Audio({ sfx: 'outdoors', maxDistance: this.size.x*10 }),
 		this.Text(`
 		made by Sean, Michael & IAN
 		of Sweet♥Heart Squad \n
