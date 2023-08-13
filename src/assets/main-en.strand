@@ -321,7 +321,7 @@
 			hat: [`p:"fashion is so complicated"`],
 		}, }),
 		this.Item({ texture: 'die', x: -304, y: -103, offset: 100000000, use: {
-			player: [`p:"it's a six-sided die"`],
+			player: [`p:"i'd rather not think about that right now"`],
 			thimble: [`p:"yahtzee!"`],
 			'little rock': [`p:"rock and roll!"`],
 			'medium rock': [`p:"rock and roll!"`],
