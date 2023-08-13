@@ -815,7 +815,7 @@
 		this.Poly({ verts: [348,-187, 37,7] }), // stove ledge
 		this.Prop({ texture: 'stoveFloor', x: 175, y: 0, offset: 0 }),
 		this.Hotspot({ label: 'hob', texture: 'stoveHob', x: 310, y: 0,   offset: 0, use: {
-			undefined: [`p:"it's a gas hob"`],
+			undefined: [`p:"it's a gas hob"`, `p:"it's not lit right now"`],
 			matchbox: [`goto:light stove`],
 		}, }),
 		this.Prop({ texture: 'spoonForkStoveProng', x: 218, y: 0,      offset: 1 }),
