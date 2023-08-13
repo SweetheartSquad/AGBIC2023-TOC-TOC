@@ -1811,11 +1811,16 @@ voiceNoone
 ::mite run
 <<do
 	this.tween(this.miterun, 'volume', 1, 200);
+	let interval = setInterval(() => {
+		this.mite.spr.angle = -10 * (Math.sign(this.mite.spr.angle) || 1);
+	}, 258/2);
 	this.resetMite = async () => {
 		this.tween(this.mite.display.container, 'alpha', 0, 400);
 		this.mite.walkBy(0, 1000);
 		this.tween(this.miterun, 'volume', 0, 800);
 		await this.delay(500);
+		clearInterval(interval);
+		this.mite.spr.angle = 0;
 		this.mite.display.container.offset = 90000;
 		this.mite.setPosition(3, -448-50);
 		this.tween(this.mite.display.container, 'alpha', 1, 1000, 0, this.ease.cubicOut);
