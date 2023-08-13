@@ -446,7 +446,7 @@
 
 		this.Poly({ verts: [221,-114, 253,-120, 233,-133] }), // oil
 		this.Item({ texture: 'oil', x: 235, y: -114, offset: 0, use: {
-			player: [`p:"smells like... paint thinner?"`, `p:"really hope i don't run into a snake"`],
+			player: [`p:"smells like... paint thinner?"`, `p:"i don't wanna know where this came from"`],
 			undefined: ['goto:take oil'],
 			other: [`goto:use on oil`],
 			otherTarget: [`p:"that doesn't need oiling"`],
