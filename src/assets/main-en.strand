@@ -2656,7 +2656,7 @@ voiceNoone
 		(async () => {
 			this.scene.screenFilter.flash([128,68,0], 500);
 			const wax = this.Item({ texture: 'wax wad', x: -121, y: -298, alpha: 0, offset: -16, use: {
-				player: [`p:"it's a pile of soft, warm wax"`],
+				player: [`p:"it's a pile of soft wax"`, `p:"it's still warm..."`],
 				matchbox: [`p:"that's already melted"`],
 				'cookie cutter': [`p:"it'd be easier the other way around"`],
 				other: [`p:"why would i put that in wax..."`],
