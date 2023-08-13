@@ -314,7 +314,7 @@
 
 		//junk
 		this.Item({ texture: 'thimble', x: 290, y: -20, offset: 10000000, use: {
-			player: [`p:"it's a thimble"`],
+			player: [`p:"hats aren't really my style..."`, `p:"not this hat, anyway"`],
 			die: [`p:"yahtzee!"`],
 			'cut flower': [`p:"i think it's a daisy, not a thimble flower"`],
 			'safety pin': [`p:"wrong type of needle for that"`],
