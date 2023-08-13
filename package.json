@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "agbic2023",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "TOC TOC",
 	"main": "./src/index.js",
 	"author": "SweetHeart Squad <SweetHeartSquad@gmail.com>",
