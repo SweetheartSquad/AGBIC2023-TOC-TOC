@@ -2388,7 +2388,7 @@ voiceNoone
 <<endif>>
 
 ::light stove1
-"finally"
+"mm.. finally..."
 >
 <<do
 	(async () => {
