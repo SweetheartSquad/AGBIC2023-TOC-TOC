@@ -457,7 +457,7 @@
 		}, }),
 
 		this.Hotspot({ texture: 'peanut', x: 168, y: -239, offset: -5, use: {
-			undefined: [`p:"that's a lotta nut!"`, `p:"it is a peanut"`, `p:"it looks kinda mushy..."`],
+			undefined: [`p:"that's a lotta nut!"`, `p:"it's a peanut"`, `p:"it looks kinda mushy..."`],
 			candle: [`p:"a hot nut never helped anyone"`],
 			rope: [`p:"why would i tie up someone's nut?"`],
 			wheel: [`p:"maybe a whole wagon could crush it... oh well"`],
@@ -1549,7 +1549,7 @@ me
 		this.goto('close');
 		this.add(
 			this.Item({ texture: 'hat', x: 128, y: -83, tint: 0x6f79cd, use: {
-				player: ['p:"it is a gnome hat"'],
+				player: [`p:"it's a gnome hat"`],
 				'safety pin': [`p:"it doesn't need a pin to stay on"`],
 				thimble: [`p:"fashion is so complicated"`],
 			}, }),
