@@ -469,7 +469,7 @@
 			undefined: [`p:"that's a lotta nut!"`, `p:"it's a peanut"`, `p:"it looks kinda mushy..."`],
 			candle: [`p:"a hot nut never helped anyone"`],
 			rope: [`p:"why would i tie up someone's nut?"`],
-			wheel: [`p:"maybe a whole wagon could crush it... oh well"`],
+			wheel: [`p:"this is driving me nuts..."`],
 			horseshoe: [`p:"i'm not heavy enough to just step on it"`],
 		}, }),
 
@@ -559,6 +559,7 @@
 			this.HookItem({ texture: 'wheel', hookY: 103, use: {
 				player: [`p:"it's a big ol' wheel"`],
 				rope: [`p:"uhh... reel wope? no, that's nothing"`],
+				peanut: [`p:"this is driving me nuts..."`],
 				otherTarget: [`p:"that wheely won't work"`, `p:"try again, i'm on a roll"`, `p:"feel like i'm going in circles with this idea"`],
 			}, }),
 		),
@@ -2075,6 +2076,7 @@ voiceNoone
 					undefined: [`p:"it used to be a peanut"`, `p:"it looks very mushy..."`],
 					'bread slice': ['goto:butter bread'],
 					other: [`p:"i don't want to slather that in peanut"`],
+					wheel: [`p:"this is driving me nuts..."`],
 				}, }),
 			);
 
