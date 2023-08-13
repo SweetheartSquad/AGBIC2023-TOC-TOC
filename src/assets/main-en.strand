@@ -121,6 +121,8 @@
 		}),
 	]);
 	this.Area('menu', [
+		this.Audio({ sfx: 'outdoors', maxDistance: this.size.x*10 }),
+
 		this.Prop({ texture: 'mat', x: 0, y: -46, offset: -10000 }),
 		this.Prop({ texture: 'doorClosed', x: 0, y: -128, offset: -10000 }),
 		this.Prop({ texture: 'doorOpen', freq: 1/200, alpha: 0, x: 0, y: -128, offset: -10000 }),
@@ -152,6 +154,7 @@
 	]);
 
 	this.Area('ending', [
+		this.Audio({ sfx: 'outdoors', maxDistance: this.size.x*10 }),
 		this.Prop({ texture: 'mat', x: 0, y: -46, offset: -10000 }),
 		this.Prop({ texture: 'doorClosed', x: 0, y: -128, offset: -10000 }),
 		this.Prop({ texture: 'doorOpen', freq: 1/200, alpha: 0, x: 0, y: -128, offset: -10000 }),
@@ -159,6 +162,7 @@
 	]);
 
 	this.Area('credits', [
+		this.Audio({ sfx: 'outdoors', maxDistance: this.size.x*10 }),
 		this.Text(`
 		made by Sean, Michael & IAN
 		of Sweet♥Heart Squad \n
