@@ -2978,8 +2978,11 @@ voiceNoone
 
 ::toggle fountain
 <<do
+	this.camPoint = this.scene.find('fountain').transform;
 	setTimeout(() => {
 		this.sfx('chunk', { rate: 1.5, volume: 0.25 });
+		this.tween(this.scene.camera, 'shake', 0, 500, 1, this.ease.cubicOut);
+		this.scene.screenFilter.flash([-10,-10,-10], 200);
 	}, 1000);
 	setTimeout(() => {
 		this.fountainOff = !this.fountainOff;
@@ -2992,6 +2995,7 @@ voiceNoone
 			this.tween(this.scene.find('fountain').spr,      'alpha', 0, 800, undefined, this.ease.cubicIn);
 			this.tween(this.scene.find('fountainWater').spr, 'alpha', 1, 600, undefined, this.ease.cubicInOut);
 		}
+		this.camPoint = undefined;
 		this.goto('close');
 	}, 1500);
 >>
