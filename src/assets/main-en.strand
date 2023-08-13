@@ -331,7 +331,7 @@
 			otherTarget: [`p:"now's not the time to be playing around"`],
 		}, }),
 		this.Item({ texture: 'safety pin', x: 50, y: -50, offset: -35, use: {
-			player: [`p:"it's a safety pin"`],
+			player: [`p:"ouch!"`, `p:"doesn't seem that safe to me..."`],
 			'cut flower': [`p:"it's too big for that"`],
 			glass: [`p:"they're both pretty sharp..."`],
 			thimble: [`p:"wrong type of needle for that"`],
