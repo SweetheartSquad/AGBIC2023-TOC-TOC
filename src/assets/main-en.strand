@@ -560,7 +560,7 @@
 				player: [`p:"it's a big ol' wheel"`],
 				rope: [`p:"uhh... reel wope? no, that's nothing"`],
 				peanut: [`p:"this is driving me nuts..."`],
-				otherTarget: [`p:"that wheely won't work"`, `p:"try again, i'm on a roll"`, `p:"feel like i'm going in circles with this idea"`],
+				otherTarget: [`p:"that wheely won't work"`, `p:"feels a bit round-a-bout..."`, `p:"try again, i'm on a roll"`, `p:"feel like i'm going in circles with this idea"`, `p:"wish i spoke to someone about it first..."`],
 			}, }),
 		),
 		...this.HookSpot({ spot: 'l2', x: -132, y: -250 },
