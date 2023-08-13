@@ -568,7 +568,7 @@
 			}, }),
 		),
 
-		this.miterun = this.Audio({ sfx: 'stepWood', volume: 0, rate: 2, maxDistance: this.size.x*10 }),
+		this.miterun = this.Audio({ sfx: 'xylophone2', volume: 0, rate: 1, maxDistance: this.size.x*10 }),
 		this.mite = this.Npc({ name: 'dust mite', body: 'mite', x: 3, y: -448, roam: 50, offset: 90000, bodyCollision: { isStatic: false, isSensor: true }, use: {
 			undefined: ['goto:mite run'],
 			other: [`p:"it seems content to ignore that"`, `p:"got its own priorities"`, `p:"it doesn't get it"`],
