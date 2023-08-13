@@ -3281,10 +3281,23 @@ voiceNoone
 "yes, you may return to your world."
 >
 <<do
-	(async () => {
-		this.scene.player.expression = 'up';
+	(async () => {this.scene.player.expression = 'up';
 		const d = 4000;
 		const p = 30;
+		this.tween(this.slither, 'volume', 0, 4000);
+		this.sfx('flyUp');
+		const color = [228, 180, 215];
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *   3/255/3), 500), 0);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *   5/255/3), 500), 1000);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  10/255/3), 500), 2000);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  15/255/3), 500), 2700);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  20/255/3), 500), 3400);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  25/255/3), 500), 4000);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  30/255/3), 500), 4500);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  40/255/3), 500), 5000);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  50/255/3), 500), 5400);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i *  80/255/3), 500), 5800);
+		setTimeout(() => this.scene.screenFilter.flash(color.map(i => i * 100/255/3), 500), 6200);
 		this.tween(this.scene.player.spr, 'angle', 0, d, 50, t => 1-Math.sin(t*p)*(t));
 		this.tween(this.scene.player, 'flipped', 0, d, 50, t => (1-Math.sin(t*p)) < 0.5);
 		this.tween(this.scene.player.spr, 'y', 0, d, -200, t => 1-this.ease.cubicIn(t)+Math.sin(t*10)*-0.1);
