@@ -1739,8 +1739,6 @@ me
 <<do this.itemRoomPickup('moon-dried tomato1')>>
 
 ::moon-dried tomato1
-you got the moon-dried tomato.
->
 <<do this.gotoNoOne();>>
 
 ::give tomato
@@ -2303,8 +2301,6 @@ voiceNoone
 <<do this.itemRoomPickup('soap1')>>
 
 ::soap1
-you got the soap.
->
 <<do this.gotoNoOne();>>
 
 ::give soap
@@ -3247,8 +3243,6 @@ voiceDefault
 <<do this.itemRoomPickup('sandwich1')>>
 
 ::sandwich1
-you got the sandwich.
->
 <<do this.gotoNoOne();>>
 
 ::give sandwich
