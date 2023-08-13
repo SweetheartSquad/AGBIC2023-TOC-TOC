@@ -286,7 +286,7 @@
 
 		this.Item({ texture: 'big rock', x: -109, y: -219, use: {
 			undefined: ['goto:take big rock'],
-			player: [`"it's a rock"`],
+			player: [`"it's a rock the size of a large pebble"`],
 			'cut flower': [`p:"i don't want to crush it"`],
 			'little rock': [`p:"wouldn't want to get between these two"`],
 			'medium rock': [`p:"wouldn't want to get between these two"`],
@@ -295,7 +295,7 @@
 		}, }),
 		this.Item({ texture: 'little rock', x: 100, y: -110, use: {
 			undefined: ['goto:take little rock'],
-			player: [`"it's a rock"`],
+			player: [`"it's a rock the size of a tiny pebble"`],
 			'cut flower': [`p:"i don't want to crush it"`],
 			'big rock': [`p:"wouldn't want to get between these two"`],
 			'medium rock': [`p:"wouldn't want to get between these two"`],
@@ -1501,7 +1501,7 @@ me
 	this.gameObject.btn.enabled = false;
 	this.add(
 		this.Item({ texture: 'medium rock', x: 132, y: -185, use: {
-			player: [`"it's a rock"`],
+			player: [`"it's a rock the size of a pebble"`],
 			'cut flower': [`p:"i don't want to crush it"`],
 			'little rock': [`p:"wouldn't want to get between these two"`],
 			'big rock': [`p:"wouldn't want to get between these two"`],
