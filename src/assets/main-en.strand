@@ -2410,7 +2410,7 @@ voiceNoone
 		await this.delay(500);
 		this.add(
 			this.Item({ texture: 'ring', x: 149, y: -69,          offset: 69, use: {
-				player: [`p:"it's a pretty ring"`],
+				player: [`p:"it's a pretty ring"`, `p:"who here would even wear this?"`],
 			}, }),
 		);
 		this.sfx('pickup', { rate: 0.8 });
