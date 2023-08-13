@@ -737,6 +737,15 @@
 			h.spr.height = 100;
 			return h;
 		})(),
+		(() => {
+			// cart cheese
+			const h = this.Hotspot({ label: 'cart', texture: 'blank', x: -266, y: -93, offset: 0, use: {
+				other: [`goto:cart reject`],
+			}, });
+			h.spr.width = 130;
+			h.spr.height = 100;
+			return h;
+		})(),
 
 		this.polyWax = this.Poly({ verts: [-180,-336, -176,-327, -110,-292, -119,-297, -94,-316, -150,-353, -180,-336], width: 12 }), // candles
 		this.Hotspot({ texture: 'birthday candles', x: -132, y: -288,        offset: -33, use: {
@@ -2483,6 +2492,15 @@ voiceNoone
 [[>close]]
 
 
+::cart reject
+<<do
+	this.scene.loseItem();
+	this.gameObject = this.scene.find('cheesy coachmouse');
+	this.shock(this.gameObject, 250);
+>>
+"arh..! not.. selling..."
+[[>close]]
+
 ::windup key
 <<do
 	this.scene.loseItem(true);
@@ -2519,6 +2537,7 @@ voiceNoone
 	(async () => {
 		this.destroy(this.cartPoly);
 		this.destroy(this.scene.find('horse'));
+		this.destroy(this.scene.find('cart'));
 		this.cartPoly = null;
 		const horse = this.scene.find('horseKey');
 		const cart = this.scene.find('cheeseCart');
