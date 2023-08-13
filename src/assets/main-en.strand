@@ -2584,6 +2584,7 @@ voiceNoone
 			spoon: [`p:"for cheese??"`],
 			fork: [`p:"it looks tasty, but i shouldn't eat it..."`],
 			'wax wad': [`p:"no thanks, we have those at home"`],
+			'cool sword': [`p:"my favourite kind of cheddar: sharp"`],
 		}, });
 		cheese.display.container.offset -= 100;
 		this.add(cheese);
@@ -2884,6 +2885,7 @@ voiceNoone
 	this.add(
 		this.Item({ texture: 'cool sword', x: 277, y: -72,          offset: 75, use: {
 			player: [`p:"it's a cool sword!!"`],
+			cheese: [`p:"my favourite kind of cheddar: sharp"`],
 		}, }),
 	);
 	this.gameObject = undefined;
@@ -3176,6 +3178,7 @@ voiceDefault
 			spoon: [`p:"for cheese??"`],
 			fork: [`p:"it looks tasty, but i shouldn't eat it..."`],
 			'wax wad': [`p:"no thanks, we have those at home"`],
+			'cool sword': [`p:"my favourite kind of cheddar: sharp"`],
 		}, }),
 	);
 	if (this.scene.find('starAltar')) {
