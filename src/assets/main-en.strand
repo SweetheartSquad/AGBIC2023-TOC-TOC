@@ -2718,6 +2718,7 @@ voiceNoone
 	this.add(
 		this.Item({ label: 'star', texture: 'wax tree star', x: -89, y: -280,    offset: -5, use: {
 			player: [`p:"it's a little wax star"`],
+			matchbox: [`p:"i don't need to melt that"`],
 		}, }),
 	);
 	this.goto('close');
