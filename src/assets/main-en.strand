@@ -2884,7 +2884,7 @@ voiceNoone
 	this.sfx('sizzle');
 	this.add(
 		this.Item({ texture: 'cool sword', x: 277, y: -72,          offset: 75, use: {
-			player: [`p:"it's a cool sword!!"`],
+			player: [`p:"it's a cool sword!!"`, `p:"i'm not cool enough to wield this..."`],
 			cheese: [`p:"my favourite kind of cheddar: sharp"`],
 		}, }),
 	);
