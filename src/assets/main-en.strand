@@ -971,6 +971,7 @@
 			'cookie cutter': [`"mrrhh... don't give mouse.. cookie..."`],
 			ring: [`"mmm... my bad..."`],
 			juice: [`"meh... maybe.. later..."`],
+			matchbox: [`"mmh...? for.. forge...?"`],
 		}, }),
 
 		this.Npc({ name: 'cheesy coachmouse', body: 'mouse_nervous', tint: 0xB5320C, x: -192, y: -172, bodyCollision: { isStatic: true }, use: {
