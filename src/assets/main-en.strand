@@ -655,7 +655,7 @@
 			// key
 			const h = this.Item({ label: 'key', texture: 'blank', carrying: 'key_carrying', x: -55, y: -360,       offset: 100, use: {
 				undefined: ['goto:take key'],
-				player: [`p:"it's a windup key"`],
+				player: [`p:"it's a windup key"`, `p:"where could it go..."`],
 				otherTarget: [`p:"there's no keyhole for that"`],
 			}, });
 			h.spr.width = 40;
