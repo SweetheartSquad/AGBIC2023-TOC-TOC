@@ -3351,6 +3351,7 @@ voiceNoone
 		this.add(
 			guy,
 		);
+		scene.strand.sfx('bonk', { rate: 0.3, volume: 0.4 })
 		this.shock(guy, 1500);
 		this.tween(guy.spr.scale, 'x', 1, 1700, 0.75, this.ease.backOut);
 		this.tween(guy.spr.scale, 'y', 1, 1700, 0.75, this.ease.backOut);
@@ -3444,15 +3445,18 @@ voiceDefault
 		for (let i = 0; i < clicks; ++i) {
 			setTimeout(() => this.sfx('stepDefault', { volume: 1-i/clicks, rate: 1 - Math.random()*0.1 }), i*150);
 		}
-		await this.delay(2000);
+		await this.delay(3000);
 		this.scrim(1, 2000);
 		await this.delay(3000);
+		this.camPoint = { x: 0, y: 0 };
 		this.scene.goto({ area: 'empty' });
 		this.add(
 			this.Text('The End', { x: 0, y: -this.size.y/2 }),
 		);
 		this.scrim(0, 2000);
-		await this.delay(2000);
+		await this.delay(500);
+		this.sfx('mouse.9');
+		await this.delay(1500);
 	})();
 >>
 >
