@@ -923,7 +923,7 @@
 			fountain: [`"kafkf.. nothing left.. sale..."`],
 		}, }),
 		this.Npc({ name: 'jumpy juicemonger', body: 'mouse_basic', tint: 0x880DB4, x: -207, y: -278, use: {
-			undefined: [`"wehh.. late late late..."`, `"waahnhn..."`, `"wuhh.. waaannnt ring back..."`],
+			undefined: [`"wehh.. late late late..."`, `"waahnhn..."`, `"wuhh.. waaannnt ring..."`],
 			ring: ['goto:give ring'],
 			fountain: [`"wahh.. for you.. free..."`],
 			cheese: [`"whaa..! forbidden...!"`],
