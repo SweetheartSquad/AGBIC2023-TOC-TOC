@@ -314,14 +314,14 @@
 
 		//junk
 		this.Item({ texture: 'thimble', x: 290, y: -20, offset: 10000000, use: {
-			player: [`p:"it's a thimble"`],
+			player: [`p:"hats aren't really my style..."`, `p:"not this hat, anyway"`],
 			die: [`p:"yahtzee!"`],
 			'cut flower': [`p:"i think it's a daisy, not a thimble flower"`],
 			'safety pin': [`p:"wrong type of needle for that"`],
 			hat: [`p:"fashion is so complicated"`],
 		}, }),
 		this.Item({ texture: 'die', x: -304, y: -103, offset: 100000000, use: {
-			player: [`p:"it's a six-sided die"`],
+			player: [`p:"i'd rather not think about that right now"`],
 			thimble: [`p:"yahtzee!"`],
 			'little rock': [`p:"rock and roll!"`],
 			'medium rock': [`p:"rock and roll!"`],
@@ -331,7 +331,7 @@
 			otherTarget: [`p:"now's not the time to be playing around"`],
 		}, }),
 		this.Item({ texture: 'safety pin', x: 50, y: -50, offset: -35, use: {
-			player: [`p:"it's a safety pin"`],
+			player: [`p:"ouch!"`, `p:"doesn't seem that safe to me..."`],
 			'cut flower': [`p:"it's too big for that"`],
 			glass: [`p:"they're both pretty sharp..."`],
 			thimble: [`p:"wrong type of needle for that"`],
@@ -469,7 +469,7 @@
 			undefined: [`p:"that's a lotta nut!"`, `p:"it's a peanut"`, `p:"it looks kinda mushy..."`],
 			candle: [`p:"a hot nut never helped anyone"`],
 			rope: [`p:"why would i tie up someone's nut?"`],
-			wheel: [`p:"maybe a whole wagon could crush it... oh well"`],
+			wheel: [`p:"this is driving me nuts..."`],
 			horseshoe: [`p:"i'm not heavy enough to just step on it"`],
 		}, }),
 
@@ -559,7 +559,8 @@
 			this.HookItem({ texture: 'wheel', hookY: 103, use: {
 				player: [`p:"it's a big ol' wheel"`],
 				rope: [`p:"uhh... reel wope? no, that's nothing"`],
-				otherTarget: [`p:"that wheely won't work"`, `p:"try again, i'm on a roll"`, `p:"feel like i'm going in circles with this idea"`],
+				peanut: [`p:"this is driving me nuts..."`],
+				otherTarget: [`p:"that wheely won't work"`, `p:"feels a bit round-a-bout..."`, `p:"try again, i'm on a roll"`, `p:"feel like i'm going in circles with this idea"`, `p:"wish i spoke to someone about it first..."`],
 			}, }),
 		),
 		...this.HookSpot({ spot: 'l2', x: -132, y: -250 },
@@ -689,9 +690,11 @@
 
 		this.Poly({ verts: [218,-166, 192,-184, 271,-237, 298,-218, 219,-166], width: 5 }), // matchbox
 		this.Item({ texture: 'matchbox', x: 246, y: -161,         offset: -25, use: {
-			player: [`p:"it's a match"`],
+			player: [`p:"mom said not to play with matches..."`, `p:"oh well"`],
 			matchbox: [`goto:light match`],
 			toothpicks: [`p:"i think a match would work better"`],
+			other: [`p:"no, that doesn't match up"`, `p:"not exactly the match of the century..."`, `p:"doesn't make a good match"`],
+			otherTarget: [`p:"no, that doesn't match up"`, `p:"not exactly the match of the century..."`, `p:"doesn't make a good match"`],
 		}, }),
 
 		this.Block({ type: 'circle', x: -219, y: -339, radius: 2, }), // candle green
@@ -776,7 +779,7 @@
 		(() => {
 			// bottom right
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 311, y: -145, offset: 1000, use: {
-				player: [`p:"it's a cookie cutter"`],
+				player: [`p:"with i had some cookie dough..."`],
 				'cookie cutter': ['goto:swap cutter'],
 				'wax wad': [`p:"it'd need to be flat for that"`],
 			}, });
@@ -790,7 +793,7 @@
 		(() => {
 			// left
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: -314, y: -214, offset: 1000, use: {
-				player: [`p:"it's a cookie cutter"`],
+				player: [`p:"with i had some cookie dough..."`],
 				'cookie cutter': ['goto:swap cutter'],
 				'wax wad': ['goto:shape wax'],
 			}, });
@@ -804,7 +807,7 @@
 		(() => {
 			// top right
 			const h = this.Item({ label: 'cookie cutter', texture: 'blank', x: 310, y: -346, offset: 1000, use: {
-				player: [`p:"it's a cookie cutter"`],
+				player: [`p:"with i had some cookie dough..."`],
 				'cookie cutter': ['goto:swap cutter'],
 				'wax wad': [`p:"it'd need to be flat for that"`],
 				other: [`p:"i can't do much with it up there"`],
@@ -835,7 +838,7 @@
 		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 47 }),
 		(() => {
 			const h = this.Item({ label: 'anvil', texture: 'blank', carrying: 'anvil_carrying', x: 295, y: -52, offset: 100, use: {
-				player: [`p:"it's a hammer"`],
+				player: [`p:"ouch!"`, `p:"fool me once..."`, `p:"ouch!"`, `p:"fool me twice..."`, `p:"i'm not doing that again"`, `p:"..."`],
 				other: [`p:"better leave it to the smith"`],
 				otherTarget: [`p:"why would i hit that?"`],
 			}, });
@@ -1473,7 +1476,7 @@ me
 	this.gameObject = this.scene.player;
 
 	const cutFlower = this.Item({ label: 'cut flower', texture: 'flower_head', x: -55, y: -321, offset: 0, use: {
-		player: [`p:"it's a flower"`],
+		player: [`p:*achoo*`, `p:"...i think i'm allergic"`],
 		'safety pin': [`p:"it's too big for that"`],
 		thimble: [`p:"i think it's a daisy, not a thimble flower"`],
 		'little rock': [`p:"i don't want to crush it"`],
@@ -1736,8 +1739,6 @@ me
 <<do this.itemRoomPickup('moon-dried tomato1')>>
 
 ::moon-dried tomato1
-you got the moon-dried tomato.
->
 <<do this.gotoNoOne();>>
 
 ::give tomato
@@ -2075,6 +2076,7 @@ voiceNoone
 					undefined: [`p:"it used to be a peanut"`, `p:"it looks very mushy..."`],
 					'bread slice': ['goto:butter bread'],
 					other: [`p:"i don't want to slather that in peanut"`],
+					wheel: [`p:"this is driving me nuts..."`],
 				}, }),
 			);
 
@@ -2299,8 +2301,6 @@ voiceNoone
 <<do this.itemRoomPickup('soap1')>>
 
 ::soap1
-you got the soap.
->
 <<do this.gotoNoOne();>>
 
 ::give soap
@@ -2584,6 +2584,7 @@ voiceNoone
 			spoon: [`p:"for cheese??"`],
 			fork: [`p:"it looks tasty, but i shouldn't eat it..."`],
 			'wax wad': [`p:"no thanks, we have those at home"`],
+			'cool sword': [`p:"my favourite kind of cheddar: sharp"`],
 		}, });
 		cheese.display.container.offset -= 100;
 		this.add(cheese);
@@ -2742,7 +2743,7 @@ voiceNoone
 
 	this.add(
 		this.Item({ label: 'star', texture: 'wax tree star', x: -89, y: -280,    offset: -5, use: {
-			player: [`p:"it's a little wax star"`],
+			player: [`p:"bleh!"`, `p:"not as tasty as it looks"`],
 			matchbox: [`p:"i don't need to melt that"`],
 		}, }),
 	);
@@ -2883,7 +2884,8 @@ voiceNoone
 	this.sfx('sizzle');
 	this.add(
 		this.Item({ texture: 'cool sword', x: 277, y: -72,          offset: 75, use: {
-			player: [`p:"it's a cool sword!!"`],
+			player: [`p:"it's a cool sword!!"`, `p:"i'm not cool enough to wield this..."`],
+			cheese: [`p:"my favourite kind of cheddar: sharp"`],
 		}, }),
 	);
 	this.gameObject = undefined;
@@ -3153,7 +3155,7 @@ voiceDefault
 	this.destroy(this.scene.find('starAltar'));
 	this.add(
 		this.Item({ label: 'star', texture: 'wax tree star', x: -89, y: -280,    offset: -5, use: {
-			player: [`p:"it's a little wax star"`],
+			player: [`p:"bleh!"`, `p:"not as tasty as it looks"`],
 			matchbox: [`p:"i don't need to melt that"`],
 		}, }),
 	);
@@ -3176,6 +3178,7 @@ voiceDefault
 			spoon: [`p:"for cheese??"`],
 			fork: [`p:"it looks tasty, but i shouldn't eat it..."`],
 			'wax wad': [`p:"no thanks, we have those at home"`],
+			'cool sword': [`p:"my favourite kind of cheddar: sharp"`],
 		}, }),
 	);
 	if (this.scene.find('starAltar')) {
@@ -3240,8 +3243,6 @@ voiceDefault
 <<do this.itemRoomPickup('sandwich1')>>
 
 ::sandwich1
-you got the sandwich.
->
 <<do this.gotoNoOne();>>
 
 ::give sandwich
