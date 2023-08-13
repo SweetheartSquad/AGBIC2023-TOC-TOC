@@ -1576,7 +1576,7 @@ me
 		this.goto('close');
 		this.add(
 			this.Item({ texture: 'hat', x: 128, y: -83, tint: 0x6f79cd, use: {
-				player: [`p:"it's a gnome hat"`],
+				player: [`p:"gno thanks"`, `p:"i don't want to mess up my hair"`],
 				'safety pin': [`p:"it doesn't need a pin to stay on"`],
 				thimble: [`p:"fashion is so complicated"`],
 			}, }),
