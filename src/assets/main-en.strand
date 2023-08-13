@@ -2577,7 +2577,7 @@ voiceNoone
 		this.tween(cart.transform, 'y', cart.transform.y + 200, 2000, undefined, this.ease.cubicIn);
 
 		const cheese = this.Item({ label: 'cheese', texture: 'cheeseFloor', x: -268, y: -107,   offset: -5, use: {
-			player: [`p:"it's a hunk of cheese"`],
+			player: [`p:"it's a hunk of cheese"`, `p:"it looks tasty, but i shouldn't eat it..."`],
 			matchbox: [`p:"i don't want to melt that..."`],
 			toothpicks: [`p:"i'm not here to make hors d'oeuvres"`],
 			spoon: [`p:"for cheese??"`],
