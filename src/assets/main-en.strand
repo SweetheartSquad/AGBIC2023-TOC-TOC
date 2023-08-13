@@ -2203,6 +2203,7 @@ voiceNoone
 
 ::take oil hint
 <<do this.oilhint = ((this.oilhint || 3) + 1) % 3;>>
+<<do this.shock(this.gameObject, 200)>>
 <<print [
 	`"no free samples bucko"`,
 	`"gotta pay for that"`,
