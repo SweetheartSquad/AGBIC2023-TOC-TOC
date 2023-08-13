@@ -2948,6 +2948,7 @@ voiceNoone
 		guard.bounce = 0;
 		guard.btn.use = {
 			undefined: [`p:"...they're probably fine"`, `"zzz..."`],
+			other: [`p:"i'll should let them sleep it off..."`],
 		};
 		guard.btn.resetCycles();
 		this.knockedOut = true;
