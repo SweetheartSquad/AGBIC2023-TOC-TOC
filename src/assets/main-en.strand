@@ -974,6 +974,7 @@
 			ring: [`"mmm... my bad..."`],
 			juice: [`"meh... maybe.. later..."`],
 			matchbox: [`"mmh...? for.. forge...?"`],
+			cheese: [`"mmh... not.. here..."`],
 		}, }),
 
 		this.Npc({ name: 'cheesy coachmouse', body: 'mouse_nervous', tint: 0xB5320C, x: -192, y: -172, bodyCollision: { isStatic: true }, use: {
@@ -2580,6 +2581,9 @@ voiceNoone
 			player: [`p:"it's a hunk of cheese"`],
 			matchbox: [`p:"i don't want to melt that..."`],
 			toothpicks: [`p:"i'm not here to make hors d'oeuvres"`],
+			spoon: [`p:"for cheese??"`],
+			fork: [`p:"it looks tasty, but i shouldn't eat it..."`],
+			'wax wad': [`p:"no thanks, we have those at home"`],
 		}, });
 		cheese.display.container.offset -= 100;
 		this.add(cheese);
@@ -2658,6 +2662,7 @@ voiceNoone
 				'cookie cutter': [`p:"it'd be easier the other way around"`],
 				other: [`p:"why would i put that in wax..."`],
 				otherTarget: [`p:"why would i cover that in wax..."`],
+				cheese: [`p:"no thanks, we have those at home"`],
 			}, });
 			this.add(wax);
 			const t1 = this.tween(toMelt.display.container, 'alpha', 0, 600, undefined, this.ease.cubicIn);
