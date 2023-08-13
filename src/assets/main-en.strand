@@ -2404,6 +2404,7 @@ voiceNoone
 		this.shock(smith, 450);
 		await this.delay(1500);
 		smith.flipped = true;
+		await this.delay(500);
 		this.add(
 			this.Item({ texture: 'ring', x: 149, y: -69,          offset: 69, use: {
 				player: [`p:"it's a pretty ring"`],
@@ -2827,7 +2828,7 @@ voiceNoone
 	(async () => {
 		const smith = this.scene.find('stubborn smith');
 		this.camPoint = { x: this.size.x, y: this.size.y };
-		await this.delay(1500);
+		await this.delay(500);
 		this.sfx('anvil', { volume: 0.8, rate: 0.8 });
 		this.scene.screenFilter.flash([250/3,200/3,150/3], 150, this.ease.cubicOut);
 		this.shock(smith, 250);
@@ -2840,7 +2841,6 @@ voiceNoone
 		this.scene.screenFilter.flash([250,200,150], 150, this.ease.cubicOut);
 		this.shock(smith, 450);
 		await this.delay(1500);
-		smith.flipped = true;
 		this.sfx('pickup', { rate: 0.8 });
 		this.add(
 			this.Item({ texture: 'hot sword', x: 277, y: -72,          offset: 75, use: {
@@ -2848,6 +2848,8 @@ voiceNoone
 				otherTarget: [`p:"ow! that's too hot to move..."`, `p:"i can't move the sword while it's hot"`],
 			}, }),
 		);
+		await this.delay(500);
+		smith.flipped = true;
 		this.goto('close');
 		smith.btn.use.undefined = [`"mm..."`, `"mmmmmagnificent..."`];
 		smith.btn.resetCycles();
