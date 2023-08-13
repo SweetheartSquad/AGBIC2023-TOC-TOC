@@ -835,7 +835,7 @@
 		this.Prop({ texture: 'anvilStoveProng', x: 306, y: -45,          offset: 47 }),
 		(() => {
 			const h = this.Item({ label: 'anvil', texture: 'blank', carrying: 'anvil_carrying', x: 295, y: -52, offset: 100, use: {
-				player: [`p:"it's a hammer"`],
+				player: [`p:"ouch!"`, `p:"fool me once..."`, `p:"ouch!"`, `p:"fool me twice..."`, `p:"i'm not doing that again"`, `p:"..."`],
 				other: [`p:"better leave it to the smith"`],
 				otherTarget: [`p:"why would i hit that?"`],
 			}, });
