@@ -1585,7 +1585,7 @@ me
 	this.tween(worm.display.container, 'alpha', 0, 1000);
 	worm.btn.enabled = false;
 	const fierygnome = this.scene.find('fiery gnome');
-	fierygnome.btn.use.undefined = [`"i know where the rocks go!"`,`"don't listen to the other guy."`, `"so glad that worm is gone..."`];
+	fierygnome.btn.use.undefined = [`"so glad that worm is gone..."`, `"i know where the rocks go!"`,`"don't listen to the other guy."`];
 	fierygnome.btn.resetCycles();
 	this.sfx('rustle', { rate: 0.5 });
 	this.voice = 'None';
