@@ -2243,6 +2243,7 @@ voiceNoone
 		const mook = this.scene.find('mook');
 		if (mook) {
 			mook.btn.use.undefined = [`"thanks for da door help kid"`, `"but still. back off"`];
+			mook.btn.resetCycles();
 		}
 		this.scene.find('teller').btn.use.undefined = [`"oh, you fixed da door?"`, `"coulda maybe picked a better time..."`, `"sigh"`];
 		this.scene.find('teller').btn.resetCycles();
