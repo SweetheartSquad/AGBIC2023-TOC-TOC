@@ -418,6 +418,7 @@
 	this.Area('dustbun heist', [
 		this.Audio({ sfx: 'wind', maxDistance: this.size.x*10 }),
 		Musicer('western', 13, { volume: 0.1 }),
+		this.fusesfx = this.Audio({ sfx: 'burn', volume: 0, maxDistance: this.size.x*10 }),
 		// main walls
 		this.Poly({ verts: [-247,-132, -74,-239, 58,-241, 162,-283, 348,-153, -2,-4, -249,-122] }),
 
@@ -1976,8 +1977,7 @@ voiceNoone
 	this.gameObject.use.undefined = ['p:"must be one of those slow burning fuses"', 'p:"very, very slow burning..."'];
 	this.gameObject.use.other = [`p:"fusing those won't do anything"`, `p:"it's already lit"`];
 	this.gameObject.btn.resetCycles();
-	this.waterHowldId = this.sfx('water', { volume: 0.5, rate: 8, loop: true });
-	this.waterHowl = window.Howler._howls.find(i => i._src.includes('water'));
+	this.fusesfx.volume = 0.5;
 
 	setTimeout(() => {
 		this.goto('light fuse1');
@@ -2022,10 +2022,7 @@ voiceNoone
 		this.tweenAbort(t4);
 		this.tweenAbort(t5);
 		this.gameObject = undefined;
-		this.waterHowl.fade(0.5, 0, 10000, this.waterHowldId);
-		setTimeout(() => {
-			this.waterHowl.stop(this.waterHowldId);
-		}, 10000);
+		this.tween(this.fusesfx, 'volume', 0, 10000);
 		this.goto('close');
 	})();
 >>

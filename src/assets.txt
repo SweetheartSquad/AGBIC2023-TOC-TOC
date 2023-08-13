@@ -242,6 +242,7 @@ audio/sizzle.mp3
 audio/splash.mp3
 audio/lightFlicker.mp3
 audio/creak.mp3
+audio/burn.mp3
 
 audio/ambient music/gnome/flute/gnome_flute.x25.mp3
 audio/ambient music/western/western.x13.mp3
