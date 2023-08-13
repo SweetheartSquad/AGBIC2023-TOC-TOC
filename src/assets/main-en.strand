@@ -942,7 +942,7 @@
 		}, }),
 		this.Npc({ name: 'puny pyro', body: 'mouse_basic', tint: 0x47654c, x: 268, y: -165, flip: true, use: {
 			undefined: [`"iia... matches.. free..."`, `"iii'm liiiittle.. can't catch..."`, `"ihihihi..."`],
-			matchbox: [`"ihihi.. do iiit..."`],
+			matchbox: [`goto:do it`],
 			toothpicks: [`"ih.. prefer.. matches..."`],
 			other: [`"iit's.. cold..."`, `"iiiff.. i could..? burn it...?"`],
 			ring: [`"ih.. prefer.. siiingle..."`],
@@ -2588,7 +2588,13 @@ voiceNoone
 
 
 
-
+::do it
+<<do
+	this.shock(this.gameObject, 250);
+	this.scene.loseItem();
+>>
+"ihihi.. do iiit..."
+[[>close]]
 
 ::light match
 <<if this.scene.sprCarrying.texture !== this.tex('matchbox_carrying')>>
