@@ -1473,7 +1473,7 @@ me
 	this.gameObject = this.scene.player;
 
 	const cutFlower = this.Item({ label: 'cut flower', texture: 'flower_head', x: -55, y: -321, offset: 0, use: {
-		player: [`p:"it's a flower"`],
+		player: [`p:*achoo*`, `p:"...i think i'm allergic"`],
 		'safety pin': [`p:"it's too big for that"`],
 		thimble: [`p:"i think it's a daisy, not a thimble flower"`],
 		'little rock': [`p:"i don't want to crush it"`],
