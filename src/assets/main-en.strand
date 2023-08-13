@@ -3311,7 +3311,9 @@ voiceNoone
 voiceDefault
 "..."
 >
-"what was all that??"
+"what was all of that??"
+>
+"..."
 >
 "hey, you!"
 >
@@ -3355,6 +3357,12 @@ voiceDefault
 "no answer..."
 >
 "but i thought no one lived here?"
+>
+"..."
+>
+"..."
+>
+"maybe if i come back tomorrow..."
 >
 <<do
 	(async () => {
