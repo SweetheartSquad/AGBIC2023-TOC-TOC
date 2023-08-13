@@ -597,7 +597,7 @@
 		this.Prop({ texture: 'buttons', x: 44, y: -339,        offset: -30 }),
 		this.Poly({ verts: [-23,-472] }), // egg
 		this.Item({ texture: 'easter egg', x: -23, y: -463,          offset: -10, use: {
-			player: [`p:"it's an easter egg"`],
+			player: [`p:"it's an easter egg"`, `p:"it's just an easter egg"`, `p:"it's still just an easter egg"`],
 			matchbox: [`p:"i don't want to melt that..."`],
 			otherTarget: [`p:"maybe... no, nothing"`, `p:"what if... no, that couldn't be it"`, `p:"thought it might do something special... guess not"`],
 		}, }),
