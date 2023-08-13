@@ -2893,12 +2893,17 @@ voiceNoone
 	spr.y = 21;
 	const sitting = this.scene.find('haughty hooligan');
 	sitting.spr.addChild(spr);
-	sitting.btn.use.undefined = [`"hehehe... haha.. heh..."`, `"heh.. heehee..."`, `"haha...!"`];
+	sitting.btn.use.undefined = [`goto:hehehe`];
 	sitting.btn.use.other = [`"heh.. worse than sword..."`, `"hmph.. don't need..."`];
 	sitting.btn.resetCycles();
 	this.shock(sitting, 1000);
 	this.gaveSword = true;
 >>
+[[>close]]
+
+::hehehe
+<<do this.shock(this.gameObject, 400)>>
+<<print this.shuffle([`"hehehe... haha.. heh..."`, `"heh.. heehee..."`, `"haha...!"`])[0]>>
 [[>close]]
 
 ::take pill
