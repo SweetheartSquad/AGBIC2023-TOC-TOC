@@ -618,7 +618,7 @@
 		this.Prop({ texture: 'pushPins', x: 62, y: -420,          offset: 41 }),
 		this.Poly({ verts: [258,-268, 293,-282], width: 10 }), // toothpicks
 		this.Item({ texture: 'toothpicks', x: 273, y: -247,    offset: -87, use: {
-			player: [`p:"it's a toothpick"`],
+			player: [`p:"i don't think i should put it in my mouth..."`],
 			matchbox: [`p:"i could burn them, but i shouldn't"`],
 			foil: [`p:"hm... maybe if it were more malleable..."`],
 			anvil: [`p:"maybe the smith could use it"`],
