@@ -2578,6 +2578,7 @@ voiceNoone
 
 		const cheese = this.Item({ label: 'cheese', texture: 'cheeseFloor', x: -268, y: -107,   offset: -5, use: {
 			player: [`p:"it's a hunk of cheese"`],
+			matchbox: [`p:"i don't want to melt that..."`],
 		}, });
 		cheese.display.container.offset -= 100;
 		this.add(cheese);
