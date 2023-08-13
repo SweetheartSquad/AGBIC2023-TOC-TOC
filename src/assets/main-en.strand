@@ -2435,7 +2435,7 @@ voiceNoone
 <<do
 	this.scene.loseItem(true);
 	this.gaveRing = true;
-	this.scene.find('jumpy juicemonger').btn.use.undefined = [`"weee... pretty"`, `"whhoo... friend..? drink...!"`];
+	this.scene.find('jumpy juicemonger').btn.use.undefined = ['goto:weee'];
 	this.scene.find('jumpy juicemonger').btn.resetCycles();
 >>
 "whaaa.."
@@ -2462,6 +2462,10 @@ voiceNoone
 "friend.. take... whhhhaatever..."
 [[>close]]
 
+::weee
+<<do this.shock(this.gameObject, 250)>>
+<<print this.shuffle([`"weee... pretty"`, `"whhoo... friend..? drink...!"`])[0]>>
+[[>close]]
 
 ::take key
 <<if this.juiced>>
