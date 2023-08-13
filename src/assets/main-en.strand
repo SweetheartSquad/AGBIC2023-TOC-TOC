@@ -2868,6 +2868,7 @@ voiceNoone
 	this.sfx('sizzle');
 	this.add(
 		this.Item({ texture: 'cool sword', x: 277, y: -72,          offset: 75, use: {
+			player: [`p:"it's a cool sword!!"`],
 		}, }),
 	);
 	this.gameObject = undefined;
