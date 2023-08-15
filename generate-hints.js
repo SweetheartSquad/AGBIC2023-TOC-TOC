@@ -5,7 +5,7 @@ const src = fs.readFileSync('./hints.txt', { encoding: 'utf8' });
 
 const lines = src
 	.trim()
-	.split('\n')
+	.split(/[\r\n]+/)
 	.filter((i) => i);
 
 const hints = [{ summary: 'hints', detail: [] }];
