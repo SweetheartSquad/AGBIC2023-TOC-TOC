@@ -2973,6 +2973,7 @@ voiceNoone
 		this.add(
 			this.Item({ texture: 'hot sword', x: 277, y: -72,          offset: 75, use: {
 				'bottle cap': ['goto:cool sword'],
+				juice: [`p:"not enough to quench the blade..."`],
 				'wax wad': [`p:"that would make a mess..."`],
 				otherTarget: [`p:"ow! that's too hot to move..."`, `p:"i can't move the sword while it's hot"`],
 			}, }),
