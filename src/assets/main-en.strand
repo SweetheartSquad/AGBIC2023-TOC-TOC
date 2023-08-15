@@ -2483,7 +2483,7 @@ voiceNoone
 		this.scene.loseItem();
 		const smith = this.scene.find('stubborn smith');
 		smith.btn.use.undefined = [`"mmmmake..."`, `"mm.. material..."`, `"mhm... metal.. wood.."`];
-		smith.btn.use.matchbox = [`"mmhh... forge.. lit..."`];
+		smith.btn.use.matchbox = [`"mmhh... weak.. forge.. lit..."`, `"meh... wood.. too weak..."`];
 		smith.btn.use.foil = ['goto:give foil'];
 		smith.btn.use.toothpicks = ['goto:give toothpicks'];
 		smith.btn.use.fork = [`"mm.. no... fresh metal only..."`];
