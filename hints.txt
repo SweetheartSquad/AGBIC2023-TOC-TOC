@@ -89,7 +89,7 @@ gnomes
 					try trading with the numb gnome (see above)
 
 bunnies
-	how do i open the vault?
+	the vault door won't cooperate?
 		it's stuck, try loosening it
 
 		how do i loosen it?
