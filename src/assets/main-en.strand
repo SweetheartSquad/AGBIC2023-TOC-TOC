@@ -3101,7 +3101,9 @@ voiceNoone
 <<if this.fountainOff>>
 <<do this.goto('generic item')>>
 <<else>>
-<<do this.goto('generic use')>>
+<<do this.gameObject = this.scene.player>>
+"there's a glimmer at the bottom..."
+[[>close]]
 <<endif>>
 
 ::toggle fountain
