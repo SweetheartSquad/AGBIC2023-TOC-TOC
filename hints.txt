@@ -191,3 +191,268 @@ bunnies
 
 	the teller won't cooperate?
 		they already unlocked the door, ignore them
+
+mice
+	where's the sandwich?
+		the guards are blocking it
+
+		how do i get past them?
+			try giving them what they want (see below)
+
+	what's up with the grumpy guard?
+		what do they want?
+			money
+
+			where can i get money?
+				is there anything that might contain money?
+					maybe coins?
+						where could i find some shiny new coins?
+							is there something else shiny?
+								the fountain is "glimmering"
+
+								i can't use the fountain?
+									try the altars first (see below)
+
+									i've already finished the altars?
+										when the fountain is off, use a coin on the grumpy guard
+
+	what's up with the sleepy sentry?
+		what do they want?
+			help sleeping
+
+			how do i do that?
+				is there anything that might help someone sleep?
+					maybe a sleeping aid?
+						there's a sleeping pill next to the haughty hooligan
+
+						they won't let me have it?
+							try giving them what they want (see below)
+
+	what's up with these altars?
+		what do they do?
+			they're connected to the fountain
+		what do they say?
+			they're poems
+
+			what should i do with poetry?
+				try interpreting them as riddles
+
+				i don't get the right altar poem?
+					what could "a light to guide you north" refer to?
+						is there a light in the real world that guides people north?
+							the north star
+
+							where are there stars?
+								try the cookie cutters (see below)
+
+								the cookie cutters won't fit?
+									try making something with them
+				i don't get the left altar poem?
+					what could "the holy meal" refer to?
+						how else could "holy meal" be read?
+							holy, wholly, holey, holly...?
+								holey food?
+									it's cheese
+
+									where could i get cheese?
+										try the cart (see below)
+
+	what's up with these cookie cutters?
+		what are cookie cutters used for?
+			making shapes
+
+			what would i make a shape out of?
+				what materials could fit a mold?
+					something malleable?
+						something that could melt?
+							wax?
+								try candle wax
+
+								where can i find candle wax?
+									there are candles beside the jumpy juicemonger
+
+									i can't pick them up?
+										how can i make them easier to work with?
+											melt them
+
+											how?
+												try using the matches
+
+												the match isn't lit?
+													use the match on the matchbox
+											what do i do with melted wax?
+												place the wax in the cookie cutter
+
+												it didn't do anything?
+													what did it say?
+														where is it flat?
+															the cutter in the bottom right lies flat on the ground
+
+															how do i flatten the wax?
+																you can use the melted wax directly on the flat cutter
+															what if i want to use a different cutter?
+																they can swap positions
+												i made the wrong thing?
+													how do i try again?
+														melt it again with the matches
+			what shapes would i make?
+				what shapes are available?
+					the cutters are shaped like a snowman, a christmas tree, and a star
+
+					are any of them familiar?
+						did anything else reference them?
+							try the altars (see above)
+
+							this shape doesn't fit the altar?
+								is there one that would fit?
+									maybe a smaller one?
+										try the tree
+
+										how would the tree fit?
+											try interacting with the wax tree shape
+
+	what's up with the cheesy coachmouse?
+		what do they have?
+			cheese
+
+			how do i get it?
+				try solving their problem
+		what's their problem?
+			the horse is tired
+
+			why is the horse tired?
+					is there anything strange about the horse?
+						it's a toy horse
+
+						what would make a toy horse "tired"?
+							what stops a toy horse from moving?
+								a wind-up toy needs a key
+
+								where do i get a wind-up key?
+									the stuffy shopkeep has a key
+
+									they won't let me have it?
+										try giving them what they want (see below)
+
+	what's up with the stuffy shopkeep?
+		what do they have?
+			a key
+
+			how do i get it?
+				try solving their problem
+		what's their problem?
+			they're thirsty
+				can i get them a drink?
+					are there drinks here?
+						the jumpy juicemonger has juice
+
+						they won't let me have it?
+							try giving them what they want (see below)
+
+	what's up with the jumpy juicemonger?
+		what do they have?
+			juice
+
+			how do i get it?
+				try solving their problem
+		what's their problem?
+			they want a ring
+
+			where can i get a ring?
+				is there a ring here?
+					not at first
+
+					can one be made?
+						who could make a ring?
+							the smith
+
+							they won't make anything?
+								try solving their problem (see below)
+
+	what's up with the stubborn smith?
+		what do they have?
+			a stove
+
+			how do i use it?
+				try solving their problem
+		what's their problem?
+			they have multiple problems
+
+			what's the first?
+				they're late
+
+				late for what?
+					late with a ring
+
+					how do i solve that?
+						solve their second problem
+
+			what's the second?
+				their forge is dead
+
+				what is the forge?
+					the gas stove hob
+				how do i fix it?
+					what's the problem with it?
+						it's not lit
+
+						can i relight it?
+							how?
+								try using the matches
+
+								the match isn't lit?
+									use the match on the matchbox
+							what did the smith do with the lit forge?
+								they made a ring and placed it on the ground to their left
+			what's the third?
+				have i solved the other problems?
+					what do they want now?
+						they want metal and wood
+
+						where can i find wood?
+							give them a toothpick from next to the gatehouse
+						where can i find metal?
+							give them some foil from behind the jumpy juicemonger
+						what did they do with the materials?
+							they made a sword and placed it to their right
+
+	what's up with the haughty hooligan?
+		what do they have?
+			a pill
+
+			what kind of pill?
+				a sleeping pill
+
+				how do i get it?
+					try solving their problem
+		what's their problem?
+			they want a weapon
+
+			can i find a weapon for them?
+				they won't accept the weapons i found?
+					can i get something better?
+						they want a cool sword
+
+						can i get a sword?
+							is there a sword here?
+								who could make one?
+									the smith
+
+									they won't make anything?
+										try solving their problem (see above)
+									it's not working?
+										did i make a "cool" sword?
+											it's too hot
+
+											can i cool it down?
+												try water
+
+												where can i get water?
+													the fountain
+
+													what can i use to carry water?
+														use the pill bottle cap on the fountain, then on the sword
+													the fountain isn't working?
+														it's turned off?
+															can i turn it back on?
+																use one of the altars
