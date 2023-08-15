@@ -1,0 +1,193 @@
+general
+	did you find everything?
+		did you check the edges?
+			the camera moves with your mouse a bit, maybe you missed something
+		did you talk to everyone?
+			multiple times?
+				if people want something, they might hint at what
+		did you find every item?
+			did you examine them all?
+				sometimes using items on yourself gives you more hints
+			did you use them everywhere?
+				items can be used on people, other items, and hotspots
+		did you find every hotspot?
+			what's a hotspot?
+				something you can interact with that's not a person and can't be picked up (e.g. the tiles in the first puzzle)
+			did you examine them all?
+				multiple times?
+					if a hotspot is relevant, it might hint why
+	did you walk around?
+		walking around doesn't really matter but you might be blocking your view of something
+			(it's also just fun to walk around)
+
+gnomes
+	how do i open the entrance?
+		try using the tiles
+
+		how do i use the tiles?
+			try using items on them
+
+			i can't find an item that works?
+				there's one under the leaf
+
+				are there more?
+					yes, the gnomes each have a rock
+
+					how do i get them?
+						try giving them what they want (see below)
+					where do i put them?
+						do the sizes matter?
+							nah, the rocks are interchangeable
+						where do the gnomes tell you to put them?
+							the gnomes' answers don't make sense?
+								they disagree on the answer
+								where does the fiery gnome want me to put them?
+									upper middle left, upper middle right, lower middle
+								where does the numb gnome want me to put them?
+									middle left, middle middle, middle right
+								i still don't know where to put them?
+									if both gnomes are wrong, what does that leave?
+										try spots where they both say it's wrong
+
+										what spots?
+											upper middle, lower middle right, lower middle left
+
+	the gnomes won't let me touch their things?
+		what does the fiery gnome want?
+			they're mad about the worm
+
+			how do i make it go away?
+				try giving it what it wants (see below)
+		what does the numb gnome want?
+			a cute hat
+
+			where do i get that?
+				is there anything that could substitute a hat?
+					maybe something cute?
+						give them the flower
+
+						how do i get the flower?
+							try using items
+
+							what can i use on the flower?
+								use the glass to cut the flower
+
+								what glass?
+									bottom left, poking out of the grass
+
+	the dragonfly won't respond?
+		ignore it, it doesn't do anything
+
+	what does the worm want?
+		a hat
+
+		where do i get a hat?
+			are there any hats here?
+				the gnomes have hats
+
+				how do i get a gnome hat?
+					try trading with the numb gnome (see above)
+
+bunnies
+	how do i open the vault?
+		it's stuck, try loosening it
+
+		how do i loosen it?
+			are there any items that could loosen it?
+				maybe something lubricating?
+					the salesbun has oil
+
+					i can't use it?
+						try giving them what they want (see below)
+
+	what are these hooks?
+		they hold items
+
+		can i use them?
+			try moving the items on hooks to other hooks
+
+	what's that mite?
+		you can make it move
+
+		how do i control it?
+			try changing its path
+
+			how do i change its path?
+				try re-arranging the items on hooks
+
+				what items change its path?
+					the wheel and the rope
+
+					what does the wheel do?
+						it turns it around
+					what does the rope do?
+						it makes it climb down
+					what do the other items do?
+						the mite walks past them, but they might block your view
+			what path should i use?
+				try left, right, and down
+
+				how do i make it go left?
+					block the right path and leave the left path clear
+					how?
+						put both the wheel and the rope on the right
+				how do i make it go right?
+					block the left path and leave the right path clear
+					how?
+						put both the wheel and the rope on the left
+				how do i make it go down?
+					block the right path and bridge the gap
+					how?
+						put the wheel on the right and put the rope over the breadbox
+
+	the salesbun won't cooperate?
+		what do they want?
+			they're hungry
+
+			where can i get food?
+				try using the mite (see above)
+
+				i can't pick it up?
+					try smashing it with the mite
+
+					i still can't pick it up?
+						try the bread, not the peanut
+				they won't take it?
+					what do they say about it?
+						they don't want it plain
+
+						what can i combine it with?
+							are there any condiments?
+								can any be made?
+									try smashing the peanut with the mite
+
+	the scared hare won't cooperate?
+		ignore them, they're too scared to do anything
+
+	the mook won't cooperate?
+		try getting rid of them
+
+		how do i get rid of them?
+			try using the tnt
+
+			how do i use the tnt?
+				try using the mite first (see above)
+
+				i still can't use it?
+					is there anything that could light it?
+						the chandelier has candles
+
+						i can't reach it?
+							try using the mite
+
+							the candles went out?
+								one candle is still lit
+
+								i can't find it?
+									make sure it's not blocked by items on hooks
+
+									i can't use it on the tnt?
+										use the candle on the fuse
+
+	the teller won't cooperate?
+		they already unlocked the door, ignore them
